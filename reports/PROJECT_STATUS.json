@@ -1,0 +1,31 @@
+{
+  "protocol": "force_critic_act_v2_diagnostic_first",
+  "supersedes": "prd_mvp_v1_prior_gap",
+  "implementation_status": "NOT_RUN",
+  "simulation_status": "NOT_RUN",
+  "experiment_results": null,
+  "completed": [
+    "Replaced CODEX_TASK.md, AGENTS.md, README.md and START_CODEX.txt",
+    "Added the minimal validation configuration contract",
+    "Verified current Hugging Face dataset cards and relevant official documentation",
+    "Verified ACT/LeRobot and TD3+BC reference files through GitHub"
+  ],
+  "not_completed": [
+    "Raw dataset byte-level audit and download",
+    "FORGE action/force adapter implementation",
+    "ACT or critic training",
+    "Contact-state restoration tests",
+    "Paired rollout diagnostics",
+    "Three-arm ablation or generalization experiments"
+  ],
+  "current_assistant_runtime_check": {
+    "nvidia_smi_command_found": false,
+    "isaacsim_python_package_found": false,
+    "meaning": "This session did not run Isaac Sim. This is not an audit of the user's GPU machine."
+  },
+  "next_executor": "Codex in a user-provided compatible GPU/Isaac environment",
+  "next_stage": "P0 hardware/data/action/force/EMA/reset audit",
+  "recommended_work_branch": "codex/force-critic-act-v2",
+  "background_training_started": false,
+  "note": "These files are an implementation task and protocol. No robotic performance, autograd test result, or training success is claimed."
+}
