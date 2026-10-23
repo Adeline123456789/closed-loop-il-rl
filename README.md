@@ -1,43 +1,61 @@
-# PRD-ACT-SAC：三组件 MVP 最小验证
+# 力觉 Critic → ACT：最小可行性验证
 
-**当前状态：已提交实现任务书和执行规范；算法代码与 Isaac Lab 训练尚未运行，没有实验成绩。**
+**协议：`force_critic_act_v2_diagnostic_first`。当前只有任务书与配置；算法实现、真实 Isaac Lab 训练和实验成绩均为 NOT_RUN。**
 
-本项目冻结在 `prd_mvp_v1_prior_gap`：ACT-CVAE、模式条件 SAC（双奖励 Q）、双可恢复性头，以及不训练的幂等方向投影。不采用后续反事实力觉 KL、教师条件互信息、刚度辨识或额外网络。
+本协议已覆盖旧的三组件 residual/distillation MVP。旧内容只保留在 Git 历史中，不再执行。
 
-完整规范见 [CODEX_TASK.md](CODEX_TASK.md)。Codex 开始前先读 [AGENTS.md](AGENTS.md)。启动提示见 [START_CODEX.txt](START_CODEX.txt)。
+## 现在验证什么？
 
-## 最小验证路线
+示教初始化 ACT → ACT 输出完整动作块 → FORGE 接触交互与六维力 → 收益/接触代价 Critic → 对 ACT 动作求导 → 直接更新 ACT → 新交互。
 
-1. 审计硬件、数据、动作、六维力坐标、控制频率、EMA 和 reset，先启动真正的 `Isaac-Forge-PegInsert-Direct-v0`。
-2. 用成功集 PegInsert 子集预训练 ACT；失败集只作失败数据审计/诊断，不能把失败轨迹全部当作不可恢复标签。
-3. 冻结 ACT，训练模式条件 SAC 与双可恢复性头，得到一个共同教师。
-4. 从完全相同的教师轨迹和 ACT 起点分叉：不蒸馏、全量蒸馏、prior-gap 选择性蒸馏。
-5. 评估原始/全量/选择性三个 ACT-only 策略，再给三条完整分支相同的 residual 适配预算，完成一轮真正双向闭环。
-6. 一个训练种子、100 个测试回合先筛查；有可信信号后才扩展到三个训练种子和冻结模型的分布外评估。
+只有 ACT-CVAE 与双收益/代价 Critic 两组可训练组件。不实现残差教师、成功轨迹蒸馏、双可恢复性头、prior-gap 权重或额外方向预测网络。
 
-最初只做 PegInsert，不同时训练 GearMesh/NutThread。判定依据是实际稳定插接成功率、接触载荷、恢复结果和 residual 指标，不是离线重构损失或总 reward 单项。
+完整规格：[CODEX_TASK.md](CODEX_TASK.md)。实现约束：[AGENTS.md](AGENTS.md)。启动提示：[START_CODEX.txt](START_CODEX.txt)。预算草案：[configs/minimal_validation.yaml](configs/minimal_validation.yaml)。状态：[reports/PROJECT_STATUS.json](reports/PROJECT_STATUS.json)。
 
-## 环境审计的额外省时检查
+## 先诊断，后训练
 
-数据发布者同时提供 stock PegInsert 的 PPO 专家 checkpoint：
-https://huggingface.co/angledusgar/forge-peginsert-v1
+1. **P0 环境/接口验收**：HF schema、stock FORGE、原生动作、六维力帧、EMA、相机与 reset。1 个真实仿真环境通过后再并行。
+2. **P1 基础策略**：仅 PegInsert 成功示教预训练 ACT，新增仿真交互训练普通 Critic。失败集用于审计/诊断，不把所有失败片段标为不可恢复。
+3. **P2 最小诊断**：先 8 个检查点验证原始连续执行/快照恢复/前缀重放；通过后 24 个独立检查点检验 A0、A+、A- 的有限效果；再检查 Critic 梯度能否变成 ACT 的实际改善。
+4. **P3 三组同数据控制**：Direct-value、Direct-filter、Calibrated-filter；ACT0 仅作评估参照。先短步更新验证，出现可信信号才运行完整两轮闭环。
+5. **P4 扩展**：先 1 seed/100 测试回合；支持继续才 3 seeds。冻结模型测初始位姿、摩擦和力噪声/延迟，不先上多个任务。
 
-环境审计时先核对其 `rl_games` 版本、观测归一化和配置兼容性；兼容后通过官方 player 做一个小规模 rollout，检查 stock 任务是否正常。这个 PPO 仅用于环境验收或必要时补采可复现示教，不是本算法新增的第四个组件，也不替代 SAC 教师。
+| 组别 | Actor 的 Q 更新状态 | Critic 监督 |
+|---|---|---|
+| B1 Direct-value | 所有合法训练状态 | 同一批 TD 与端点回报 |
+| B2 Direct-filter | 训练配对确认的可信可改善状态 | 与 B1 相同 |
+| B3 Calibrated-filter | 与 B2 相同 | B2 + 有限尺度配对价值差损失 |
 
-模型卡特别提示：该 checkpoint 对应 stock PegInsert，不对应发布者另行修改的更困难插接配置。不要因困难变体失败就判定环境或算法无效。也不要将模型卡报告的成功率当作本项目实测结果。
+B3-B2 检验校准，B2-B1 检验筛选。所有组都拿到同样配对数据，不能把多采样收益当校准贡献。失败接触处的方向错误是待检验假设，不是既定事实。
 
-## 必须先解决的接口
+## 两个数据集与力
 
-候选 Isaac Lab v2.2.1 FORGE 的 7 维动作不是“6 维速度 + 夹爪”：第 7 维是成功预测，roll/pitch 策略动作被约束。首轮保持 stock 的 x/y/z/yaw 可控空间，明确六维力观测不等于六自由度控制。成功判据使用环境几何条件，不使用动作第 7 维。
+- https://huggingface.co/datasets/angledusgar/forge-v1
+- https://huggingface.co/datasets/angledusgar/forge-failure-v1
+- 发布者 stock 专家：https://huggingface.co/angledusgar/forge-peginsert-v1
 
-数据卡的 `ft` 为 6 维；`ft_noisy` 是 3 维。实际字段、参考坐标、平滑、延迟及记录动作位于 EMA 前后必须读数据和源码核验，不能补零冒充六维测量。
+数据卡的 ft 是已平滑六维 wrench，ft_noisy 只有三维力，记录为15Hz。它们不能代替新仿真的接触快照、分支回放或在线RL数据。
 
-无真机可以做仿真可行性实验；仍需能运行所选 Isaac Sim、资产和相机渲染的 GPU 环境。没有该环境就记录 BLOCKED，不用 mock、离线 MSE 或 CPU 单测替代机器人实验。
+没有真机可以验证仿真可行性，但需要能运行所选 Isaac Sim 和相机的 GPU。首轮仅 stock x/y/z/yaw 控制，完整六维力观测；原生第7维是成功预测，不是夹爪。具体以锁定源码和采集语义审计为准。
 
-## 结果与提交约定
+## 开源起点
 
-所有实验表从真实 `episode_metrics.csv` 生成，并附配置、commit、依赖版本、种子、数据 revision、真实执行命令和退出状态。未执行写 NOT_RUN，环境缺失写 BLOCKED；保留失败和负结果。
+- Isaac Lab / FORGE：https://github.com/isaac-sim/IsaacLab/tree/v2.2.1/source/isaaclab_tasks/isaaclab_tasks/direct/forge
+- ACT 原始实现：https://github.com/tonyzhaozh/act
+- ACT 工程参考：https://github.com/huggingface/lerobot
+- 直接 Q actor 更新参考：https://github.com/sfujim/TD3_BC
+- AC3 文献：https://arxiv.org/html/2508.11143v2 。作者仓库 https://github.com/flyfaerss/ac3 的 README 当前仅一行，不假定有可运行完整代码。
 
-GitHub 提交代码、配置、审计报告和真实小型结果文件；不上传密钥、HF 原始数据、Isaac 缓存或巨大 replay。权重用经授权的 Release/存储并记录校验值。完整要求见 CODEX_TASK.md。
+版本起点可用 Isaac Lab v2.2.1 / Isaac Sim 5.0.0 / Python 3.11，按对应文档审计安装。它不是已经确认的数据采集栈。保留来源和许可证，不混装所有旧依赖。
 
-本仓库的任务文件不是已经完成的代码实现，也不表示任何 GPU 训练已经在后台启动。
+## 启动 Codex
+
+在已有 GPU / Isaac 环境的机器克隆本仓库，运行 Codex，然后把 START_CODEX.txt 发给它。使用新分支 `codex/force-critic-act-v2`。CODEX_TASK 中列出的项目 CLI 尚待 Codex 实现，不能现在就声称命令可运行。
+
+真正的验收测试包括：固定数据与 ACT、改变 Critic 的动作梯度，ACT 参数更新应改变；Critic 自身参数不更新，但动作路径必须可微。仅重新做 BC 不算完成闭环。
+
+## 结果纪律
+
+这是一项可失败的验证，不预设正结果。回放不可信或动作效果无法识别就停止校准；普通直接更新已经足够好时优先保留简单方案。所有图表由真实 CSV/JSON 生成；保留失败/负结果和所有交互成本。无 GPU、资产或接口缺失写 BLOCKED，不用 mock 和离线误差冒充插接成绩。
+
+代码、配置、小型原始结果和报告上传 GitHub；不上传密钥、HF原始数据、Isaac缓存和巨大 replay。本次文档更新不表示 Codex 或GPU训练已在后台启动。
