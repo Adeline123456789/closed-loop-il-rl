@@ -65,5 +65,11 @@
     "TD3/TD3.py": "70bec1b3b9e7c623e732c1f81d95fb30618a550919bfcbaeea31c82d54754df0",
     "TD3_BC/LICENSE": "a240abc8cca1f89e9063e654943a2373bd1d040b9cd20cbc763007d5efef087f",
     "TD3_BC/TD3_BC.py": "2d4d5c20f21cd90ca27982864ad589f6960b1d84f0f14bed80ca1db6f2beab45"
+  },
+  "rl_games": {
+    "repository": "isaac-sim/rl_games",
+    "ref": "python3.11",
+    "sha": "6b3534f29568158e9e29ec8bf83cc88fce5f0cae",
+    "purpose": "candidate official expert player dependency; not yet installed or run"
   }
 }

@@ -1,0 +1,17 @@
+{
+  "command": [
+    "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/bin/python",
+    "scripts/smoke_forge.py",
+    "--headless",
+    "--enable_cameras",
+    "--num_envs",
+    "1",
+    "--output",
+    "reports/20261023T104759Z/smoke-1_1792759668095898884.json"
+  ],
+  "returncode": 1,
+  "stdout": "\nBy installing or using Omniverse Kit, I agree to the terms of NVIDIA OMNIVERSE LICENSE AGREEMENT (EULA)\nin https://docs.omniverse.nvidia.com/platform/latest/common/NVIDIA_Omniverse_License_Agreement.html\n\nDo you accept the EULA? (Yes/No): Traceback (most recent call last):\n  File \"/media/midea/F496AC8096AC4548/closed_loop_act/scripts/smoke_forge.py\", line 11, in <module>\n    from isaaclab.app import AppLauncher\n  File \"/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab/isaaclab/app/__init__.py\", line 15, in <module>\n    from .app_launcher import AppLauncher  # noqa: F401, F403\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab/isaaclab/app/app_launcher.py\", line 24, in <module>\n    import isaacsim  # noqa: F401\n    ^^^^^^^^^^^^^^^\n  File \"/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/isaacsim/__init__.py\", line 173, in <module>\n    bootstrap_kernel()\n  File \"/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/isaacsim/__init__.py\", line 40, in bootstrap_kernel\n    import omni.kit_app  # importing 'omni.kit_app' will bootstrap kernel\n    ^^^^^^^^^^^^^^^^^^^\n  File \"/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/omni/kit_app.py\", line 90, in <module>\n    check_eula()\n  File \"/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/omni/kit_app.py\", line 34, in check_eula\n    user_choice = input(\"Do you accept the EULA? (Yes/No): \")\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nEOFError: EOF when reading a line\n",
+  "stderr": "",
+  "combined_live_log": "reports/20261023T104759Z/smoke-1_1792759668095898884.log",
+  "output_excerpt_truncated": false
+}

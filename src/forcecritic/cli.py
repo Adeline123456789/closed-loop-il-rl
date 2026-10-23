@@ -64,7 +64,8 @@ def execute(run,args):
         attempt=f'{stage}_{time.time_ns()}'
         output=run.report/f'{attempt}.json'
         cmd=[sys.executable,'scripts/smoke_forge.py','--headless','--enable_cameras','--num_envs',str(args.num_envs),'--output',str(output)]
-        result=command(cmd,timeout=1800)
+        log_path=run.report/f'{attempt}.log'
+        result=command(cmd,timeout=1800,log_path=log_path)
         atomic_json(run.report/f'{attempt}_command.json',result)
         ok=result.get('returncode')==0 and output.exists()
         if output.exists():
@@ -77,7 +78,10 @@ def execute(run,args):
         failure_text=result.get('stderr','')+result.get('stdout','')+result.get('error','')
         environment_failure=any(x in failure_text for x in ["No module named 'isaaclab'","No module named 'isaacsim'",'EULA','LICENSE','ConnectionError','timed out'])
         status='PASSED' if ok else ('BLOCKED' if environment_failure else 'FAILED_IMPLEMENTATION')
-        run.record(stage,status,'Real launcher attempted; see command log',0 if ok else 2,[run.report/f'{attempt}_command.json',output,Path('environment.lock.json')])
+        reason='Real launcher attempted; see command log'
+        if not ok and 'Do you accept the EULA?' in failure_text:
+            reason='BLOCKED_LICENSE: Omniverse Kit requested EULA acceptance; no user acceptance was supplied and no scene was created'
+        run.record(stage,status,reason,0 if ok else 2,[run.report/f'{attempt}_command.json',log_path,output,Path('environment.lock.json')])
         return 0 if ok else 2
     if args.command=='run':return run_stage(run,args.stage,args.require_go)
     if args.command=='evaluate':

@@ -3,22 +3,84 @@
     {
       "command": "python -m venv .venv && .venv/bin/python -m pip install \"isaacsim[all,extscache]==5.0.0\" --extra-index-url https://pypi.nvidia.com",
       "returncode": 1,
-      "outcome": "manually interrupted to remove optional 3GB extension cache and obsolete inherited NGC mirror; not a terminal network failure"
+      "outcome": "manually interrupted to remove optional 3GB extension cache and obsolete inherited NGC mirror; not a terminal network failure",
+      "config_hash": "a355f6209f5049e01afb25d9cc196524ad577f11dee2d54404219f7f0e64eedb",
+      "isaaclab_source_sha": "0f00ca2b4b2d54d5f90006a92abb1b00a72b2f20",
+      "code_sha": "NOT_RECORDED_FOR_PACKAGE_INSTALL_COMMAND",
+      "source_note": "Exact package command and logs retained; standalone dependency commands are not robot experiments."
     },
     {
       "command": "PIP_CONFIG_FILE=/dev/null .venv/bin/python -m pip install \"isaacsim[all]==5.0.0\" --index-url https://pypi.org/simple --extra-index-url https://pypi.nvidia.com",
       "returncode": 1,
-      "outcome": "manually interrupted to preserve 26 complete wheels and use concurrent uv downloader; not classified as hard blocker"
+      "outcome": "manually interrupted to preserve 26 complete wheels and use concurrent uv downloader; not classified as hard blocker",
+      "config_hash": "a355f6209f5049e01afb25d9cc196524ad577f11dee2d54404219f7f0e64eedb",
+      "isaaclab_source_sha": "0f00ca2b4b2d54d5f90006a92abb1b00a72b2f20",
+      "code_sha": "NOT_RECORDED_FOR_PACKAGE_INSTALL_COMMAND",
+      "source_note": "Exact package command and logs retained; standalone dependency commands are not robot experiments."
     },
     {
       "command": "uv pip install --python .venv/bin/python --find-links .cache/wheelhouse --default-index https://pypi.org/simple --index https://pypi.nvidia.com --index-strategy unsafe-best-match \"isaacsim[all]==5.0.0\"",
       "returncode": 1,
-      "outcome": "FAILED: nvidia-cudnn-cu12==9.5.1.17 response body connection reset after retries"
+      "outcome": "FAILED: nvidia-cudnn-cu12==9.5.1.17 response body connection reset after retries",
+      "config_hash": "a355f6209f5049e01afb25d9cc196524ad577f11dee2d54404219f7f0e64eedb",
+      "isaaclab_source_sha": "0f00ca2b4b2d54d5f90006a92abb1b00a72b2f20",
+      "code_sha": "NOT_RECORDED_FOR_PACKAGE_INSTALL_COMMAND",
+      "source_note": "Exact package command and logs retained; standalone dependency commands are not robot experiments."
     },
     {
       "command": "UV_HTTP_TIMEOUT=300 UV_CONCURRENT_DOWNLOADS=4 uv pip install --python .venv/bin/python torch==2.7.0 torchvision==0.22.0 --default-index https://download.pytorch.org/whl/cu128",
-      "returncode": null,
-      "outcome": "RUNNING; alternate official source"
+      "returncode": 0,
+      "outcome": "COMPLETED; official cu128 PyTorch installed",
+      "completed_at": "2026-10-23T12:19:49.041351+00:00",
+      "config_hash": "a355f6209f5049e01afb25d9cc196524ad577f11dee2d54404219f7f0e64eedb",
+      "isaaclab_source_sha": "0f00ca2b4b2d54d5f90006a92abb1b00a72b2f20",
+      "code_sha": "NOT_RECORDED_FOR_PACKAGE_INSTALL_COMMAND",
+      "source_note": "Exact package command and logs retained; standalone dependency commands are not robot experiments."
+    },
+    {
+      "command": "UV_HTTP_TIMEOUT=300 UV_CONCURRENT_DOWNLOADS=4 uv pip install --python .venv/bin/python --find-links .cache/wheelhouse --default-index https://pypi.org/simple --index https://pypi.nvidia.com --index-strategy unsafe-best-match --constraint .cache/torch-cu128-constraints.txt 'isaacsim[all]==5.0.0'",
+      "returncode": 0,
+      "outcome": "COMPLETED; Isaac Sim 5.0.0 Python packages installed",
+      "config_hash": "a355f6209f5049e01afb25d9cc196524ad577f11dee2d54404219f7f0e64eedb",
+      "isaaclab_source_sha": "0f00ca2b4b2d54d5f90006a92abb1b00a72b2f20",
+      "code_sha": "NOT_RECORDED_FOR_PACKAGE_INSTALL_COMMAND",
+      "source_note": "Exact package command and logs retained; standalone dependency commands are not robot experiments."
+    },
+    {
+      "command": "UV_HTTP_TIMEOUT=300 UV_CONCURRENT_DOWNLOADS=4 uv pip install --python .venv/bin/python --find-links .cache/wheelhouse --default-index https://pypi.org/simple --index https://pypi.nvidia.com --index-strategy unsafe-best-match --constraint .cache/torch-cu128-constraints.txt 'isaacsim[all]==5.0.0' -e .cache/IsaacLab/source/isaaclab -e .cache/IsaacLab/source/isaaclab_assets -e .cache/IsaacLab/source/isaaclab_tasks -e .cache/IsaacLab/source/isaaclab_rl -e '.[test]'",
+      "returncode": 1,
+      "outcome": "FAILED build: flatdict 4.0.1 imports pkg_resources removed from current setuptools; retry with isolated build constraint",
+      "config_hash": "a355f6209f5049e01afb25d9cc196524ad577f11dee2d54404219f7f0e64eedb",
+      "isaaclab_source_sha": "0f00ca2b4b2d54d5f90006a92abb1b00a72b2f20",
+      "code_sha": "NOT_RECORDED_FOR_PACKAGE_INSTALL_COMMAND",
+      "source_note": "Exact package command and logs retained; standalone dependency commands are not robot experiments."
+    },
+    {
+      "command": "UV_HTTP_TIMEOUT=300 UV_CONCURRENT_DOWNLOADS=4 uv pip install --python .venv/bin/python --find-links .cache/wheelhouse --default-index https://pypi.org/simple --index https://pypi.nvidia.com --index-strategy unsafe-best-match --constraint .cache/torch-cu128-constraints.txt --build-constraints configs/isaac_build_constraints.txt 'isaacsim[all]==5.0.0' -e .cache/IsaacLab/source/isaaclab -e .cache/IsaacLab/source/isaaclab_assets -e .cache/IsaacLab/source/isaaclab_tasks -e .cache/IsaacLab/source/isaaclab_rl -e '.[test]'",
+      "returncode": 0,
+      "outcome": "COMPLETED; Lab and project dependencies installed",
+      "config_hash": "a355f6209f5049e01afb25d9cc196524ad577f11dee2d54404219f7f0e64eedb",
+      "isaaclab_source_sha": "0f00ca2b4b2d54d5f90006a92abb1b00a72b2f20",
+      "code_sha": "NOT_RECORDED_FOR_PACKAGE_INSTALL_COMMAND",
+      "source_note": "Exact package command and logs retained; standalone dependency commands are not robot experiments."
+    },
+    {
+      "command": "bash scripts/install_isaac.sh",
+      "returncode": 0,
+      "outcome": "COMPLETED; recovery helper re-executed successfully",
+      "config_hash": "a355f6209f5049e01afb25d9cc196524ad577f11dee2d54404219f7f0e64eedb",
+      "isaaclab_source_sha": "0f00ca2b4b2d54d5f90006a92abb1b00a72b2f20",
+      "code_sha": "NOT_RECORDED_FOR_PACKAGE_INSTALL_COMMAND",
+      "source_note": "Exact package command and logs retained; standalone dependency commands are not robot experiments."
+    },
+    {
+      "command": "UV_HTTP_TIMEOUT=300 uv pip install --python .venv/bin/python --default-index https://pypi.org/simple pyarrow==21.0.0",
+      "returncode": 0,
+      "outcome": "COMPLETED; actual cached parquet read with NumPy 1.26.0 passed",
+      "config_hash": "a355f6209f5049e01afb25d9cc196524ad577f11dee2d54404219f7f0e64eedb",
+      "isaaclab_source_sha": "0f00ca2b4b2d54d5f90006a92abb1b00a72b2f20",
+      "code_sha": "NOT_RECORDED_FOR_PACKAGE_INSTALL_COMMAND",
+      "source_note": "Exact package command and logs retained; standalone dependency commands are not robot experiments."
     }
   ],
   "disk_exhausted": false,

@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/cli.py", line 111, in main
+    try:return execute(run,args)
+               ^^^^^^^^^^^^^^^^^
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/cli.py", line 55, in execute
+    from .data.audit import audit
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/data/audit.py", line 8, in <module>
+    import pyarrow.parquet as pq
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/pyarrow/__init__.py", line 59, in <module>
+    from pyarrow.lib import (BuildInfo, CppBuildInfo, RuntimeInfo, set_timezone_db_path,
+  File "pyarrow/lib.pyx", line 42, in init pyarrow.lib
+ImportError: pyarrow requires NumPy 2.0 or newer, found 1.26.0
+reports/20261023T104759Z/FINAL_REPORT.md

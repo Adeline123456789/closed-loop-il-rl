@@ -1,6 +1,6 @@
 # Force Critic → ACT: diagnostic-first implementation
 
-Protocol: `force_critic_act_v2_diagnostic_first`. The current delivery contains CPU-tested learning/control components and a measured P0 audit. **P0 has not passed; B0/B1/B2/B3 robot results are NOT_RUN.** See [project status](reports/PROJECT_STATUS.json) for the actual run and report paths.
+Protocol: `force_critic_act_v2_diagnostic_first`. This is a P0 **license-blocked stop delivery**: learning/control components, measured data/runtime audits and actual failed-launch evidence. **P0 has not passed; B0/B1/B2/B3 robot results are NOT_RUN.** See [project status](reports/PROJECT_STATUS.json) for the actual run and report paths.
 
 ACT is the actor: single RGB + proprioception + four past wrench/motion/command frames → ACT-CVAE → full 4×4 native action chunk. Twin critics output return/cost; their action gradients directly update ACT. Critic weights and observation conditions stay fixed during actor updates. Deployment and Q actions use z=0. There is no residual SAC, teacher distillation, world model, recoverability head, or learned filter.
 
@@ -8,12 +8,12 @@ Implemented components and boundaries are documented in each run's `implementati
 
 ## Commands actually exercised on this machine
 
-The CPU verification interpreter is `.venv-cpu/bin/python`, created from the existing Python 3.12 / Torch 2.10.0+cu128 environment. It is separate from the candidate Python 3.11 / Isaac Sim 5.0 environment `.venv`.
+The installed candidate `.venv/bin/python` uses Python 3.11, Torch 2.7.0+cu128, Isaac Sim 5.0.0 and the pinned Isaac Lab v2.2.1 checkout. Its GPU tensor check and CPU tests passed. The actual simulator import stopped at the Omniverse EULA prompt, before scene creation. `.venv-cpu` is the separate historical Python 3.12 / Torch 2.10 verification environment; its logs are retained.
 
 ```bash
-PYTHONPATH=src PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 CUDA_VISIBLE_DEVICES='' .venv-cpu/bin/python -m pytest -q
-PYTHONPATH=src .venv-cpu/bin/python -m forcecritic.cli doctor --config configs/minimal_validation.yaml
-PYTHONPATH=src .venv-cpu/bin/python -m forcecritic.cli audit-data --config configs/minimal_validation.yaml
+PYTHONPATH=src PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 CUDA_VISIBLE_DEVICES='' .venv/bin/python -m pytest -q
+PYTHONPATH=src .venv/bin/python -m forcecritic.cli doctor --config configs/minimal_validation.yaml
+PYTHONPATH=src .venv/bin/python -m forcecritic.cli audit-data --config configs/minimal_validation.yaml
 ```
 
 The audit downloads metadata first and only one PegInsert parquet/video episode per success/failure set at pinned HF revisions. Raw downloads are ignored by Git. The observed schema does not settle camera extrinsics, sensor reference/sign, collection checkout or pre/post EMA action semantics. Therefore these episodes are not yet admitted for BC/TD training.
@@ -30,7 +30,7 @@ The baseline factory uses a pretrained frozen ResNet18, an 8×8 image feature gr
 The unified entry records blockers, generates reports and attempts publication even after a stage stops:
 
 ```bash
-FORCECRITIC_PYTHON=.venv-cpu/bin/python bash scripts/run_end_to_end.sh \
+FORCECRITIC_PYTHON=.venv/bin/python bash scripts/run_end_to_end.sh \
   --config configs/minimal_validation.yaml --resume auto --publish
 ```
 
@@ -48,6 +48,14 @@ PYTHONPATH=src .venv/bin/python -m forcecritic.cli smoke --num-envs 8
 ```
 
 The smoke subprocess uses `--headless --enable_cameras`, stock PegInsert, and a diagnostic camera. It checks rendered RGB and six-axis sensor finiteness, not expert insertion performance or HF camera equivalence. Its logs, not the command examples, determine what actually ran. Full dependencies and asset loading must succeed before this can pass.
+
+The next recovery command is:
+
+```bash
+bash scripts/resume_after_environment_fix.sh
+```
+
+Run it in an interactive terminal to review the [vendor agreement](https://docs.omniverse.nvidia.com/enterprise/latest/common/NVIDIA_Omniverse_License_Agreement.html). The script displays the vendor prompt and never supplies acceptance or writes its marker itself. If acceptance is declined or unavailable, it stops. Even after acceptance, P0 alignment and later robot orchestration still need resolution; no training capability is implied by accepting a license.
 
 ## Experimental discipline
 

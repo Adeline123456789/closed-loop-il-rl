@@ -1,0 +1,5 @@
+# Measured build compatibility
+
+Isaac Sim 5.0.0 Python packages installed successfully after the official cu128 Torch installation. The initial pinned Isaac Lab build failed on flatdict 4.0.1 importing pkg_resources. Setuptools removed pkg_resources in 82.0.0 ([official documentation](https://setuptools.pypa.io/en/stable/deprecated/pkg_resources.html)). The isolated build backend is now constrained to setuptools 80.9.0; no upstream task code was changed. See installation_attempts.json for actual return codes. This dependency repair is not a passed simulator test.
+
+The first Python 3.11 end-to-end audit imported PyArrow 26.0.0 and failed because it requires NumPy 2, while Isaac Sim pins NumPy 1.26.0. PyArrow 21.0.0 was installed and a real cached 149-row parquet was read successfully; the full audit then decoded both videos. The compatibility pin is in configs/isaac_constraints.txt. Official requirements: [PyArrow 26](https://arrow.apache.org/docs/python/install.html), [PyArrow 21](https://arrow.apache.org/docs/21.0/python/install.html). Failure and successful rerun logs are retained.

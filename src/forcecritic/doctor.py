@@ -1,6 +1,7 @@
 """Read-only runtime audit. Package availability is not a camera/asset smoke test."""
 import importlib.metadata as md
 import json
+import os
 from pathlib import Path
 import platform
 import shutil
@@ -8,9 +9,20 @@ import sys
 from .runtime import atomic_json, command,digest
 
 
+def license_state():
+    """Read the vendor's acceptance indicators without importing Kit or accepting terms."""
+    try:marker=Path(md.distribution('omniverse-kit').locate_file('omni/EULA_ACCEPTED'))
+    except md.PackageNotFoundError:return {'status':'NOT_INSTALLED','accepted':False}
+    environment=os.environ.get('OMNI_KIT_ACCEPT_EULA','N').lower() in ('y','yes','1')
+    recorded=marker.exists() and (marker.read_text().splitlines() or [''])[0].strip().lower() in ('y','yes','1')
+    return {'status':'ACCEPTED' if environment or recorded else 'NOT_ACCEPTED','accepted':bool(environment or recorded),
+            'acceptance_marker_exists':marker.exists(),'environment_acceptance_flag':environment,
+            'agreement_url':'https://docs.omniverse.nvidia.com/enterprise/latest/common/NVIDIA_Omniverse_License_Agreement.html'}
+
+
 def doctor(run):
     packages={}
-    for name in ('torch','torchvision','isaacsim','isaacsim-kernel','isaaclab','numpy','pyarrow'):
+    for name in ('torch','torchvision','isaacsim','isaacsim-kernel','omniverse-kit','isaaclab','numpy','pyarrow'):
         try: packages[name]=md.version(name)
         except md.PackageNotFoundError: packages[name]=None
     gpu=command(['nvidia-smi','--query-gpu=name,memory.total,driver_version','--format=csv,noheader'])
@@ -43,7 +55,7 @@ def doctor(run):
           'git_read':command(['git','ls-remote','origin','HEAD']),
           'git_push_dry_run':command(['git','push','--dry-run','origin','HEAD']),
           'isaac_launcher':str(Path('.cache/IsaacLab/isaaclab.sh').absolute()),
-          'license_acceptance':'NOT_VERIFIED',
+          'license_acceptance':license_state(),
           'note':'doctor PASSED only means import prerequisites found; smoke and interface audits remain mandatory'}
     atomic_json(run.report/'doctor.json',data)
     atomic_json('environment.lock.json',data)

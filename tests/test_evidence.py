@@ -103,3 +103,13 @@ def test_resume_rejects_changed_artifact_and_config(tmp_path,monkeypatch):
     assert not run.verified('smoke-1')
     Path('config.yaml').write_text('protocol: force_critic_act_v2_diagnostic_first\nseed: 1\n')
     with pytest.raises(ValueError,match='resume config changed'):Run('config.yaml','resume')
+
+
+def test_live_command_log_preserves_nonzero_exit(tmp_path):
+    import sys
+    from forcecritic.runtime import command
+    log=tmp_path/'launcher.log'
+    result=command([sys.executable,'-c','import sys; print("launch failed", flush=True); sys.exit(3)'],log_path=log)
+    assert result['returncode']==3
+    assert log.read_text()=='launch failed\n'
+    assert result['stdout']=='launch failed\n'

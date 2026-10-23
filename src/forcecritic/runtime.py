@@ -27,12 +27,23 @@ def atomic_json(path, value):
     temp=path.with_suffix(path.suffix+'.tmp'); temp.write_text(json.dumps(value,indent=2,allow_nan=False)+'\n'); temp.replace(path)
 
 
-def command(cmd, timeout=60):
+def command(cmd, timeout=60, log_path=None):
     try:
+        if log_path is not None:
+            log_path=Path(log_path);log_path.parent.mkdir(parents=True,exist_ok=True)
+            with log_path.open('w') as stream:
+                p=subprocess.run(cmd,stdout=stream,stderr=subprocess.STDOUT,text=True,timeout=timeout,
+                                 env={**os.environ,'GIT_TERMINAL_PROMPT':'0'})
+            output=log_path.read_text(errors='replace')
+            return {'command':cmd,'returncode':p.returncode,'stdout':output[-20000:],'stderr':'',
+                    'combined_live_log':str(log_path),'output_excerpt_truncated':len(output)>20000}
         p=subprocess.run(cmd,capture_output=True,text=True,timeout=timeout,env={**os.environ,'GIT_TERMINAL_PROMPT':'0'})
         return {'command':cmd,'returncode':p.returncode,'stdout':p.stdout,'stderr':p.stderr}
     except (OSError,subprocess.TimeoutExpired) as e:
-        return {'command':cmd,'returncode':None,'error':str(e)}
+        result={'command':cmd,'returncode':None,'error':str(e)}
+        if log_path is not None and Path(log_path).exists():
+            result.update(combined_live_log=str(log_path),stdout=Path(log_path).read_text(errors='replace')[-20000:])
+        return result
 
 
 class Run:
@@ -67,8 +78,10 @@ class Run:
         return bool(event.get('artifacts'))
 
     def record(self, stage, status, reason='', returncode=0, artifacts=()):
+        invocation=([sys.executable,'-m','forcecritic.cli',*sys.argv[1:]]
+                    if Path(sys.argv[0]).name=='cli.py' else [sys.executable,*sys.argv])
         event={'stage':stage,'status':status,'reason':reason,'returncode':returncode,
-               'command':[sys.executable,'-m','forcecritic.cli',*sys.argv[1:]],
+               'command':invocation,
                'code_sha':command(['git','rev-parse','HEAD'])['stdout'].strip(),
                'dirty':bool(command(['git','status','--porcelain'])['stdout'].strip()),
                'source_hashes':source_hashes(),
