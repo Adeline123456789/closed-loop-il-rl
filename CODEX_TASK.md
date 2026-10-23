@@ -1,256 +1,258 @@
-# Codex 执行任务书：PRD-ACT-SAC 三组件 MVP 的最小可行性验证
+# Codex 实施任务书：力觉 Critic 直接更新 ACT 的最小验证
 
-状态：设计与实现任务书；尚未实现算法、下载核验数据字节、运行 Isaac Sim 或产生实验成绩。
-研究目标：先以最少实验判断核心机制是否值得继续，再扩展泛化；允许负结果，不以制造显著提升为目标。
+协议：`force_critic_act_v2_diagnostic_first`。这是待执行的研究协议，不是已验证算法。
 目标仓库：https://github.com/Adeline123456789/closed-loop-il-rl
-版本标识：prd_mvp_v1_prior_gap。此标识是本项目协议，不是既有开源软件版本。
+当前状态：只有实施规范与配置；没有本项目机器人训练结果。旧版 `prd_mvp_v1_prior_gap` 已作废，Git 历史保留，禁止继续按旧版执行。
 
-## 0. 不可变范围
+## 0. 先固定研究对象，不再换题
 
-只允许三组可训练组件：
-1. ACT-CVAE：块级基础策略；先验、后验、图像/历史编码器均属于这一组件。
-2. 模式条件 SAC：一个接收 F/R 模式的 residual actor、双奖励 Q 及其 target copies。
-3. 轻量双可恢复性头：共享轻量特征，输出 Q_g^F、Q_g^R；target copies 不是新算法组件。
+保留的主计算图：
+示教 -> ACT 初始化 -> 完整动作块 -> FORGE 接触交互 -> 收益/力代价 Critic -> 对动作求导 -> 直接更新 ACT -> 新交互。
 
-确定性组件：动作适配器、幂等方向投影、限幅、固定恢复基础控制律、有限状态监督器。
-禁止新增 f_chi、刚度矩阵在线辨识、QP、世界模型、顶层 Q_Omega、教师条件边缘化网络、反事实力觉 KL、条件互信息估计模块。
-保留的步级权重是冻结 SAC 教师与冻结 ACT 先验的分布差距。它是“先验可实现性代理”，混合了欠拟合与反馈差异，不能称为严格可预测性或因果信息增益。
+只实现两组可训练组件：
+- ACT-CVAE（ACT 本身就是在线 Actor，不是永远冻结的基础策略）。
+- 两个 Critic 副本，每个输出收益 Q_R 和接触代价 Q_C；target copies 不是新的研究模块。
 
-不得为跑通而退化成 ACT 每步重规划、冻结 ACT 永不蒸馏、仅训练成功分类器、只计算离线 MSE、用玩具环境冒充 FORGE、或者用三维力补零冒充六维测量。
-不得承诺算法有效；代码正确性、训练收敛、仿真性能、真机有效性分别报告。
+不实现独立 residual SAC、双可恢复性头、prior-gap 蒸馏、教师条件互信息、方向投影安全证明、刚度回归、世界模型、QP、可学习恢复监督器。确定性的控制适配、动作限幅、硬载荷保护和必要 reset 保留。
 
-## 1. 已核对来源；先锁版本，不混装所有项目
+第一任务只做 stock `Isaac-Forge-PegInsert-Direct-v0`。先诊断，再有限训练；诊断失败不自动扩大模型或预算。负结果允许且必须提交。
 
-环境与安装：
-- Isaac Lab: https://github.com/isaac-sim/IsaacLab
-- 已检查存在 FORGE 源码的候选 tag：v2.2.1
-- FORGE 目录：https://github.com/isaac-sim/IsaacLab/tree/v2.2.1/source/isaaclab_tasks/isaaclab_tasks/direct/forge
-- 动作和力觉：https://github.com/isaac-sim/IsaacLab/blob/v2.2.1/source/isaaclab_tasks/isaaclab_tasks/direct/forge/forge_env.py
-- 任务配置：https://github.com/isaac-sim/IsaacLab/blob/v2.2.1/source/isaaclab_tasks/isaaclab_tasks/direct/forge/forge_env_cfg.py
-- 安装：https://isaac-sim.github.io/IsaacLab/v2.2.1/source/setup/installation/pip_installation.html
-- FORGE 项目：https://noseworm.github.io/forge/
+核心假设不是“AC3 已证明梯度方向错误”，而是：在本任务部分困难接触状态上，普通 Critic 对有限可执行动作变化的判断有误；真实配对执行能提供可信监督；修正后梯度能改善 ACT 的实际输出。
+校准的默认对象是有限尺度价值差，不宣称接触切换处存在真实微分。无新增配对信号时仍可判断普通 Critic->ACT 路径是否可用；校准无效不等于整个直接强化闭环无效。
 
-候选复现栈：Isaac Lab v2.2.1 + Isaac Sim 5.0.0 + Python 3.11，按上述对应版本文档安装；这是已确认兼容文档的起点，不是已证明等于数据采集栈。优先采用能重现数据语义的可用版本并锁实际 commit。不要无条件使用当前 main。已有其他可工作的栈不得擅自破坏；在独立环境验证。
+## 1. 来源与复用边界
 
-算法代码：
-- ACT 原始实现：https://github.com/tonyzhaozh/act
-- 推荐复用的 ACT 实现：https://github.com/huggingface/lerobot
-- ACT 文件：https://github.com/huggingface/lerobot/blob/main/src/lerobot/policies/act/modeling_act.py
-- ACT 文档：https://huggingface.co/docs/lerobot/en/act
-- 简洁 SAC 参考：https://github.com/vwxyzjn/cleanrl/blob/master/cleanrl/sac_continuous_action.py
-- ResFiT 官方 off-policy residual 参考：https://github.com/amazon-far/residual-offpolicy-rl
-- ResiP：https://github.com/ankile/robust-rearrangement
-- ResiP 项目：https://residual-assembly.github.io/
+所有 main 链接只供定位；安装前锁实际 commit、许可证及依赖。不把全部仓库混装成一个环境。
 
-建议只实现一个一致的 PyTorch 训练循环，借用 ACT 与 SAC 必要代码，保留许可证/来源。ResFiT 用于核对 residual replay 和冻结基座接口；ResiP 是 PPO/其他任务的设计参考，不把其环境或整套依赖装进来。不要把四个仓库硬拼为主工程。
+### 必要工程参考
+1. NVIDIA Isaac Lab / FORGE
+   https://github.com/isaac-sim/IsaacLab
+   https://github.com/isaac-sim/IsaacLab/tree/v2.2.1/source/isaaclab_tasks/isaaclab_tasks/direct/forge
+   https://isaac-sim.github.io/IsaacLab/v2.2.1/source/setup/installation/pip_installation.html
+   https://isaac-sim.github.io/IsaacLab/v2.2.1/source/features/reproducibility.html
+   候选兼容栈：Isaac Lab v2.2.1 / Isaac Sim 5.0.0 / Python 3.11；此组合来自对应版本文档，不保证等于数据采集栈。已有能工作的环境优先审计，不盲目重装驱动。
+2. ACT
+   https://github.com/tonyzhaozh/act
+   https://github.com/huggingface/lerobot
+   https://github.com/huggingface/lerobot/blob/main/src/lerobot/policies/act/modeling_act.py
+   复用 ACT/CVAE，增加六维力历史的输入适配；RL 调用可微 forward，不调用带 no_grad 的部署 predict_action 接口。
+3. TD3 / TD3+BC
+   https://github.com/sfujim/TD3
+   https://github.com/sfujim/TD3_BC
+   复用 replay、target update、直接 Q actor update。旧 MuJoCo/D4RL/Python 环境不需要安装。我们是动作块及收益/代价头的适配版本，不宣称原版 TD3+BC 复现，也不将隐式 CVAE 当有可计算密度的 SAC 高斯 actor。
+4. FORGE 数据与发布者专家
+   https://huggingface.co/datasets/angledusgar/forge-v1
+   https://huggingface.co/datasets/angledusgar/forge-failure-v1
+   https://huggingface.co/angledusgar/forge-peginsert-v1
+   PPO checkpoint 仅用于兼容性检查与必要时补采示教，不是新增学习模块。
 
-数据：
-- 成功：https://huggingface.co/datasets/angledusgar/forge-v1
-- 失败：https://huggingface.co/datasets/angledusgar/forge-failure-v1
-- Codex 使用方式参考：https://developers.openai.com/codex/cli
+### 文献定位，不作为可用代码的保证
+- AC3: https://arxiv.org/html/2508.11143v2
+  作者链接 https://github.com/flyfaerss/ac3 ，本次读取 README 只有 `# ac3`，不能依赖其存在完整训练代码；Codex 再检查实际文件，缺失就明确记录。
+- MAGE / How to Learn a Useful Critic?: https://arxiv.org/abs/2004.14309
+  只作价值导数研究参考，不额外实现动力学网络。
+- ACT–Flow：成功轨迹 BC 回流不是本协议的核心更新路径，禁止用它替代 Critic 对 ACT 的动作梯度。
 
-记录每个依赖 SHA/tag、HF revision、Isaac Sim/Python/Torch/CUDA/驱动和资产版本到 reports/environment.lock.json。网址中的 main 只供发现文件，实验必须锁实际 SHA。核对第三方许可证；不要无授权更改其许可证。
+## 2. P0：先审计数据与控制（不计为方法消融）
 
-## 2. 两个 HF 数据集的用途与边界
+### 2.1 硬件和运行环境
+写 doctor，记录 GPU 型号/显存/驱动、Torch/CUDA、Isaac Sim/Lab SHA、资产、相机、磁盘、Git 认证。先 1 env headless+camera，再 8 env。没有支持当前 Isaac Sim 的 GPU 或资产时记 BLOCKED；CPU/mock 单测通过不等于 FORGE 通过。不得自动付费租机器、修改系统驱动、绕过许可、上传凭据。
 
-数据卡说明二者来自 Isaac Lab FORGE 的 PPO 专家仿真轨迹，不是真机采集。包含三个任务；首轮只过滤 Isaac-Forge-PegInsert-Direct-v0。
-数据卡给出的主要字段：state[8]、actions[7]、ft[6]、ft_noisy[3]、image、wrist_image；ft 声称为平滑后的腕部六维 wrench，ft_noisy 只有带噪三维力；15 fps。实际读取 revision 后核对，不能只信卡片。
-成功集卡片报告约 984 条 PegInsert 成功；失败集卡片报告三个任务共 51 条，当前 UI 又显示 53。最终数量、schema 与任务分布必须按实际 metadata/parquet 统计，不硬编码任意一方。
-失败的标签来自 dataset provenance，不保证存在 success 列。失败轨迹不是逐帧“不可恢复”标签。数据未提供完整关节角、保证可用的仿真快照、恢复策略 rollout、奖励或每步完整终止事件。
+### 2.2 HF 数据审计
+先 metadata+少量 parquet/视频，不下载所有任务再过滤。只取 PegInsert。数据卡显示：state[8]、actions[7]、ft[6]、ft_noisy[3]，15 Hz，两相机；ft 已平滑，不称完全原始力。失败卡片 51 与 UI 53 数量不一致，按固定 revision 的 metadata/parquet 实测，不硬编码。
 
-用途：
-- 成功 PegInsert：ACT 预训练、离线验证、数据适配。
-- 失败 PegInsert：检查输入/标签/力曲线，做可选的行为策略结局预测 sanity check；不得将其动作无筛选加入正向 BC。
-- 双可恢复性和 SAC：主要依赖新增的真实仿真交互转移。不得将失败集的所有状态标为 g_F=0 或 g_R=0，不得将文件结束一律伪造为危险终止，不在缺失奖励/状态语义时伪造 offline RL replay。
-- Dataset loss 下降不能证明插接成功，最终性能必须来自在线 FORGE rollout。
+成功集用于 ACT 预训练。失败集用于接触/动作/结局审计及离线失败分布诊断，不把每帧标成不可恢复，不把失败动作全部纳入正向 BC。
+数据缺少完整机器人/接触/求解器快照，不能从 HF 文件直接恢复同一接触状态；配对分支必须在新仿真 rollout 中保存或重放。
+数据没有经过验证的块级奖励/终止/计划时，不伪造为离策略 TD 训练集。相邻 4 个示教动作可以作 BC 目标，不能假定它们原本由一个开环块生成并直接作为块级因果转移。
 
-划分：按 episode/source run 分组，优先用采集批次避免泄漏；至少 episode-level 70/15/15，全部相邻块留在同一 split。若 run id 不存在则说明不能完全排除批次相关性。成功/失败集 episode index 可能冲突，键用 (dataset_id, revision, task, episode_id)。只用训练集计算归一化量。
-先读 meta/info、tasks、episodes 与少量 parquet，输出 reports/data_audit.json/md，再按 PegInsert 需要选择下载，不先拉全部三任务视频。v2.1 卡片与实际格式/新 LeRobot API 不一致时写兼容 reader，不静默升级原始数据。
+按完整回合分组拆分 70/15/15（有采集 run id 时按 run 分组）。同一回合全部片段、前缀和派生分支在同一分区。episode key=(dataset,revision,task,episode_id)，防止成功/失败编号冲突。只用训练数据估计标准化量。
 
-## 3. 阶段 P0：环境/数据/控制契约审计（不算消融）
+### 2.3 stock 任务与动作契约
+数据卡警告采集 checkout 还有另一个困难变体；首轮必须 stock，不静默开启 ±10 度 peg tilt。核对采集时恢复的 stock 配置：
+hand_init_pos=[0,0,0.047], hand_init_pos_noise=[0.02,0.02,0.01],
+hand_init_orn_noise=[0,0,0.785], held_asset_pos_noise=[0.003,0,0.003]。
+只有源码有相应 tilt 字段才设置为0，不传不存在参数。
 
-先写 scripts/doctor.py，记录 GPU、驱动、CUDA、Isaac Sim 启动、网络/资产、磁盘、数据读取、Git 认证。无需真机，但必须有能运行所选 Isaac Sim 和相机渲染的 GPU 环境。先 1 env，再 8 env；没有 GPU 时完成 CPU 单测/文档并明确 BLOCKED，不把 CPU 伪环境结果算 FORGE。不得自动租赁付费机器或修改系统驱动。
+所查 v2.2.1 FORGE 的七维动作不是六维速度+夹爪：前六项映射相对零件的位姿目标，roll/pitch 被约束，第七项是成功预测。重新读所选源码确认。
+主实验使用四个实际可控量 x/y/z/yaw，ACT 输出 Kx4 的原生归一化指令。adapter 插入被固定的两个轴与第7维占位。关闭成功预测奖励，成功只用独立几何判据。六维力输入不等于六自由度控制。
+动作记录在 EMA 前还是后、坐标/单位/yaw wrap/限幅顺序，必须查清。提交给 env.step 的动作、EMA 后目标、实际下发目标、实测运动分别记录。不得把实测速度当策略动作，不重复 EMA。
+不能确认 HF 动作含义或相机配置时，先完成小样本回放；确实无法对齐则记录 BLOCKED_DATA_ALIGNMENT，并用兼容专家在当前环境补采少量明确语义示教。必须区分 HF 预训练与补采数据，不称完全由 HF 复现。
 
-第一目标：stock Isaac-Forge-PegInsert-Direct-v0。数据卡专门警告采集 checkout 存在另一个困难插接变体，但采集时恢复 stock 参数。检查并记录：
-hand_init_pos=[0,0,0.047]
-hand_init_pos_noise=[0.02,0.02,0.01]
-hand_init_orn_noise=[0,0,0.785]
-held_asset_pos_noise=[0.003,0,0.003]
-fixed_asset_init_tilt_deg=0（仅在相应字段确实存在时配置）
-held_asset_tilt_deg=0（同上）
-不要将不存在的自定义字段直接传给 stock config。先成功启动 stock，再在后续泛化阶段定义独立变体，不暗改同名任务。
+### 2.4 力和时间契约
+ft 六维包含力和力矩；ft_noisy 仅三维，禁止补零冒充六维。核对传感器参考点、坐标、正负号、平滑与延迟。包括力矩平移项，不能仅旋转 force 后直接保留 torque。
+观测首轮：单固定 RGB + state + 最近 H=4 步六维力/运动/指令历史。力同时进入 ACT 和 Critic，所有组相同。可记录抓取后无接触基线并减偏置，但绝不让六维力历史偷用未来。物理阈值与代价使用正确单位，不直接用标准化网络输入计算 N/Nm 阈值。
+若数据视觉信息不匹配，不暗中给 actor 真实孔位/接触模式；仿真真值只允许用于奖励、终止、状态恢复与诊断。
 
-### 3.1 动作契约：必须先实现/测试适配器
+K=M=4；先不 temporal ensemble、不动态块长，完整块一次产生，除硬保护/成功外执行到块尾再重规划。policy FPS 从实际 dt/decimation 读取并匹配数据；15Hz 与 4步块不称千赫兹力控。训练与采集的块执行规则必须相同。
+回合有限时域 T 由任务配置确定，剩余预算输入 Critic。块提前终止 k<K 时记录原计划、有效执行 mask、k、gamma^k 和 final_observation。不得 bootstrap 到自动 reset 后状态。审查 FORGE 全批次同步 reset，诊断优先 num_envs=1，防止其他并行环境被隐式重置。
 
-已检查的 v2.2.1 FORGE：actions 为 7 维；前 6 项映射到相对固定零件的位姿目标，不是六维末端速度；roll/pitch 两项被清零；第 7 项用于成功预测奖励，不是夹爪；夹爪通过底层固定闭合。
-首轮保留 stock 可控维度 x/y/z/yaw，使用完整六维力反馈，不宣称“六自由度纠偏”。不在首轮解锁 roll/pitch。
-- 查明 HF actions 记录的是提交给 env.step 的原始动作，还是 env 内 EMA 后动作。数据卡“executed”不足以辨认。查 source/metadata，可输出证据或未知。
-- 查明位置单位、角度单位、yaw wrap、物体相对坐标、env_origin、EMA、限幅顺序。
-- 统一 ACT 输出、SAC 残差、监督目标的控制空间。native normalized pose target 与物理 twist 不可直接相加。
-- 在原生目标转换为运动误差的确定性适配层投影，并映射回底层目标。若使用速度形式，明确 u=local pose error/dt 是控制命令而非实测速度。
-- 投影应在可控子空间构建，而不是先在 6D 投影再丢掉不可控轴。令 S 为缩放六维运动空间的正交可控基（本例 6x4），对 S^T w 与 S^T e 构造 n/t，输出 S G(u4)；报告可控空间的功率关系。
-- ACT 蒸馏最终被接受的同类目标指令，不把测量速度当动作标签。原始提交动作、EMA 后目标、投影后目标、实际测量速度分别保存。
-- EMA 仅作用一次。执行目标蒸馏到 ACT 后不能再多做一次 EMA。若需要统一“post-EMA target”接口，离线数据要可证明转换；不能证明时记录阻塞，补采同格式少量仿真示教，明确数据协议变更，禁止静默猜测。
-- 第 7 维从运动损失、运动 Q 和残差动作中排除。adapter 写固定占位，并统一关闭原 FORGE success_pred_error 奖励；成功只用环境几何条件计算。不能用专家第 7 维做真值或让策略通过它自行宣告成功。
+P0 报告：data_audit.md/json、action_contract.md、sensor_contract.md、environment.lock.json、expert_smoke.csv。专家卡片报告的成绩不能当项目实测。
 
-### 3.2 力觉/观测契约
+## 3. P1：可用 ACT 起点与普通 Critic
 
-数据卡称 ft 是 EE frame；所选源码仍须核对 reference point、旋转、力矩平移及正负号。不能仅重命名 world_smooth 就称 EE wrench。不同版本/collector 可能有变换差异。
-报告 free-space 基线、已知方向轻接触响应、卸载响应、ft/ft_noisy shape、平滑系数与相位延迟。不得用 |f| 标量复制成六维，不用 noisy force 三维补零力矩。
-归一化保留物理单位；用于功率的 w=[f;tau/Lc]、V=[v;Lc*omega] 以同一参考点/坐标系计算。力与力矩阈值分别以 N / N m 报告。Lc 来自实际资产尺度并记录。
-真实仿真完整接触/零件位姿可用于奖励、成功判据及离线诊断，不能偷塞给只在部署中拿不到这些信息的 actor。
+### 3.1 ACT
+成功训练集先取固定200条回合，训练10,000次更新；验证32个固定初始条件。若无任何有效行为，先审计接口，可扩到全部训练示教/20,000更新上限；仍失败则 BLOCKED_BASELINE，不能算校准失败，也不刻意弱化 ACT 制造空间。
+单相机、已有视觉骨干；首轮可冻结视觉骨干，ACT transformer/decoder 与低维输入层在线可训练，所有组一致。BC 保留 CVAE 后验重构+KL。
+部署、Q策略目标和配对冻结续行统一使用 z=0 的确定性先验推理（不是后验）。这是最小版，不宣称解决多模态采样问题。后续采样先验实验另立协议。
 
-首轮观测推荐一张固定 RGB + state + 过去 H=4 步 ft/运动/动作历史；不要双相机或大视觉模型。若数据中缺少可用零件相对位姿，不能为了省视觉而从仿真真值补给 state-only actor。state-only 仅作审计，除非该非特权观测确实能完成任务并被所有组共享。
-匹配相机位姿/内参/裁剪。若 HF 相机参数缺失，显式记录域差异；必要时先补采可复现 sim demos，不把视觉/坐标不匹配解释为算法失败。
+### 3.2 网络与损失
+A=ACT_psi(h,z=0)，不是 frozen_ACT+bounded_residual。
+两个 Critic 各输出 (Q_R,Q_C)。输入是可观察历史、剩余时间、完整原生动作块与必要的已知控制器记忆。状态特征在 Actor 更新时作为固定条件；不允许 Actor 改变 Critic 的观察编码以“刷Q”。首轮 Critic 用固定 ACT0 视觉特征+自身低维层，Critic 优化器不修改 ACT 参数。
 
-### 3.3 时间与成功判据
+r 使用所选官方几何进度/成功项，去除第7维预测奖励和原接触惩罚以避免与独立成本重复；导出每项公式与系数。终端成功奖励只记一次。
+c = sum_i relu(|f_i|/F_lim_i-1)^2 + sum_i relu(|tau_i|/Tau_lim_i-1)^2 + unsafe_penalty*unsafe。
+阈值根据任务/资产和开发验证数据预先登记；没有可信阈值就标注代价尚未校准，不能看测试调。硬保护独立于学习。若能获取物理子步峰值，成本/安全检查不能只看低频平滑力；否则报告采样带宽限制。
 
-保留 stock 控制节奏并从 cfg 实测 physics_dt、decimation；数据为 15 Hz。第一版 SAC 每环境决策步更新动作，ACT K=M=8，约 1.875 Hz；这是相对快慢闭环，不是 100/1000Hz 实机力控。不插值 15Hz 数据后宣称取得新的高频接触观测。
-K=M；禁止 temporal ensemble、跨模式/跨 reset/chunk 混合。记录 phase 与 remaining chunk 供 SAC/Q/g 访问。ACT 块初之后不再读取新图像/力生成该块后续动作；SAC 可以读新反馈。
-成功固定为官方几何插入条件并持续 3 个控制步（若官方已有更严格保持，沿用），记录首次成功时间；绝不以 Q 值、reward 阈值或动作第7维判断。额外分别记录 ever_success 和 final_success，主指标为声明的稳定完成。所有组用同一成功/超限/回合预算定义。
-审查 Factory/FORGE reset 是否会重置整个并行批次；保留 terminal_observation，禁止 bootstrap 到自动 reset 后的初始状态，禁止 chunk 跨越 reset。批次同步 reset 条件下用 active mask/填充直到批次结束，避免其他 env 无声丢样本。
+R=sum_l gamma^l r_l, C=sum_l gamma^l c_l, gamma=0.99起点。
+y_R=R+gamma^k*bootstrap*mean_i Q_R_target(h',ACT_target(h'))；C同理。
+概率/安全保证不在本项目范围。初轮固定归一化后 lambda_cost=1，固定 alpha_BC/eta_step；不新增乘子学习器或Q加权示教，以免归因混乱。
+L_actor= -mean_valid(min_i Q_R_i(h,A)-lambda_cost*max_i Q_C_i(h,A)) + alpha_BC*L_demo_CVAE + eta_step*||A_psi(h,0)-stopgrad A_old(h,0)||^2。
+state mask全部为零时只做BC/保持项，不除以零。先拟合并固定 Critic，再小步改ACT，不需对模拟器求导。same-z保持项是移动参照，不永久锁初始ACT。
 
-P0 退出条件：真实 headless FORGE 启动并完成 1->8 env smoke；数据 schema/任务过滤验证；动作、力帧、EMA 和 reset 测试通过。未通过不开始大训练。
+建议起点：critic lr=3e-4，actor lr=1e-5，batch=128（OOM可64且所有组一致），target tau=0.005。不直接继承旧 TD3_BC 的lambda自适应尺度又称相同目标；用训练尺度固定归一化，记录所有值。
 
-## 4. 固定算法，实现后不继续加理论补丁
+### 3.3 共享数据
+先用ACT0及小幅完整动作块探索收集100次仿真尝试或50,000个独立环境步，以先到者为限。不足以形成成功/失败价值范围时先报告，不强行把全零Critic做校准。
+统一保存块计划、实际执行、成本、结果和policy_version。行为动作分布不同可用于动作条件TD；next action来自被评价的目标策略。多步Monte Carlo标签只属于指定的冻结续行策略，不能跨策略版本无限复用。
+普通Critic先训练最多10,000更新，训练/验证按parent episode分组。HF失败不能伪造回报入buffer。
 
-### 4.1 ACT 与选择性分布蒸馏
+## 4. P2：最小诊断，先回答三个“能不能”
 
-先以成功训练片段预训练 ACT。CVAE 后验训练、先验推理；部署不能读取目标块进入后验。先验可为标准 N(0,I)。以整块潜变量采样保持块内模态一致，不逐步平均多模态样本；用于评分必须能够从先验采样，不能一直 z=0 后声称估计了动作分布。部署模式在所有组一致。若存在显式动作分支 c，必须块初选定，不得事后按成功动作贴标签；首轮不增加独立模态分类器。
+### D0 回放保真度（先8个检查点）
+从新仿真采样8个独立检查点，包含正常接触/停滞/模式切换附近。至少记录所有刚体/关节、速度、夹持、控制积分/EMA、force滤波、history、episode计数、物理参数/随机种子与外部噪声时间表。不能声称用户快照包含全部PhysX内部状态，必须实测。
+- O：到达检查点后不重置，执行A0及冻结续行。
+- R：快照恢复后执行相同测试，重复至少3次。
+- P：从明确初始条件重放固定动作前缀，再测试；R不可靠时作为替代。
+重复初始seed+固定前缀仍需验证，不把同一seed自动当相同物理状态。对代表性A+/A-也检查O/R/P，不只检查A0。
+测轨迹位姿/速度/力偏差、回报与成本差和成功差。A/A只说明重复性，不能排除每次恢复都到错误状态。采用预先登记的等价范围，而不是p>0.05就算通过。
+将收益/成本按开发集固定尺度归一化；工程默认最小有效差delta_effect=0.1个尺度单位，回放容差delta_replay=0.025；物理位姿/force容差必须按资产与采样定义。它们是工程门槛，不是通用统计保证。测试前锁protocol_effect_thresholds.json。
+R失败用P；都失败则NO_GO_REPLAY并停止方向校准；可以保留普通直接Q基线，不虚构结果。
 
-按旧版定义：
-T_jl = frozen teacher 的最终可执行动作分布（在记录的实际状态处采样 SAC 并经过相同 adapter/投影）；
-P_jl^- = frozen ACT 在块初 H_j 的先验动作边缘（映射到相同监督动作空间，不输入未来历史）；
-d_jl = KL(T_jl^sigma || P_jl^{-,sigma})。
+### D1 有限动作效果是否可辨识（先24个独立检查点）
+固定24个parent episode检查点：16困难、8正常。按parent episode分成12训练/6验证/6诊断测试并分层；检查点是pilot不是足够统计证据。全部派生分支随其父episode进入同一split。
+困难定义来自事先规定的接触载荷+低进度/偏差，不使用被测试Critic的好坏选样。不得把“本次失败”叫不可恢复。
+每点选择2个方向模板（如卸载、侧移或yaw；只能在stock可控空间）；尺度从开发集冻结，默认候选为原生归一化动作幅度0.02和0.05，adapter必须导出对应米/弧度且检查硬边界，若不合理先校准再锁定。
+A+=A0+epsilon*d，A-=A0-epsilon*d。方向单位范数、时序模板写进manifest。裁剪后不对称时用真实候选差，不能仍按2epsilon解释微分。
+每个方向/尺度先做3次配对；另做3次A0。24*(2*2*2*3+3)=648条续行；不等于648次从零训练。先筛查不声称显著。
+用同一冻结ACT续行，外部噪声按物理时间/通道对齐。完整剩余时域返回G_R/G_C为主要标签；短窗结果只叫短时效果，不用被检验的Q补尾巴充当真值。
+计算 Delta=mean(G+ - G-)、I+=mean(G+-G0)、I-=mean(G--G0)。A+胜A-不代表优于A0。
+先分析有限效应及配对区间，不先除epsilon。重复不独立时按episode/外部噪声块聚类；完全确定重复不能冒充统计样本。多方向搜索后独立复测，预留至少部分被拒绝点复查。
+最多对8个候选条件/检查点追加独立重复至8次；诊断总预算上限1500条续行或300,000环境步（包括prefix/restore burn-in），先到者停并报告INCONCLUSIVE，不自动加预算。
+输出三类覆盖：局部斜率候选可信；有限效应可信但导数不可用；当前预算不可辨识。主要校准仅依赖第二类也可参与的有限效应，不要求把跨分支差值当导数。
+训练筛选标记仅由训练分支生成。测试分支只用于评估，禁止用测试效应选择actor样本/调参。恢复容差经验估计不是严格偏差上界。
 
-使用固定的动作白化尺度及共同高斯小核，prior samples=16、teacher samples=16 作为首轮起点；logsumexp 估计混合密度。评分采样与建密度采样分离。投影多对一，不把原始 residual 高斯 log_prob 当作最终动作密度。保持所有样本，禁止先平均动作再做单高斯 KL。
-beta_jl = stopgrad[epsilon + (1-epsilon)*exp(-max(dhat_jl,0)/T)]，epsilon=0.1 作为起点；T 用训练/评分校准集 gap 的稳健尺度确定并冻结，不能看测试成功率调。记录 beta 分位数、ESS、所有无效值及被选片段相位分布。
-这只是 prior-gap 代理，严禁写成条件互信息、反事实判据或无偏可预测概率。
+### D2 “正确方向”能否成为ACT更新
+对训练中可信改善点，诊断副本进行：候选动作直接执行；Q-only小步更新；Q+BC+step小步更新。固定输入与z，记录真实DeltaA、与改善方向夹角、动作饱和、Q梯度/BC梯度范数及实际回报变化。
+同时在固定的正常成功验证集评估遗忘。输出是参数更新的实际结果，不能用Q上涨代替。
+可做诊断性局部监督拟合检验表达能力，但其副本不参与主实验、不把它算作Critic更新效果。
+禁止声称反向梯度投影保证输出动作只沿该方向；本最小版不实现方向子空间反传投影，统一用普通autograd+小步长+验证。
+必须区分：Critic排序/尺度错；BC抵消；输出限幅；参数共享遗忘；信息不足。如果原Critic判断已准确或普通缩步足够，则停止把校准当主创新。
 
-omega_j：同一 F 尝试中有效、安全并最终稳定成功的片段。不要让某次失败后的重试成功倒灌为先前不良推进的正向标签。首轮不额外叠加多个 Q/恢复性权重。
-从 beta 抽 Bernoulli 动作 mask；后验只看块初信息、mask、选中动作，不偷看被遮蔽的未来动作。共享 z 重构所选步；空 mask 跳过。
-L_distill = -E_q sum_{selected l} log p_psi(u_exec_l|H,z) + KL(q_phi(z|H,U_selected,mask)||p_psi(z|H)).
-L_ACT = L_expert + lambda_D L_distill，起点 lambda_D=1；expert/online batches 1:1。标注固定 decoder likelihood（例如训练集尺度的 Gaussian）；不把 L1 直接称为 Gaussian NLL。旧 ACT/teacher/gap/mask 权重 stop_gradient；ACT 不接 -grad Q。
+## 5. 固定最小校准形式，不再同时试多套算法
 
-### 4.2 SAC 与版本化 replay
+默认有限尺度配对价值差，不实现Sobolev二阶损失、模型梯度或随机平滑新策略。
+对k in {R,C}：
+L_point = mean_{b in {0,+,-},i} Huber(Q_k_i(h,A_b)-G_k_b)
+L_pair = mean_{accepted pairs,i,k} Huber((Q_k_i(h,A+)-Q_k_i(h,A-)) - stopgrad(mean(G_k+ - G_k-)))
+L_Q = L_TD + lambda_point*L_point + lambda_pair*L_pair。
+起点lambda_point=lambda_pair=1；各量先用同一训练尺度归一化；loss归一化按样本数固定。方差权重可不做，首轮只有接受/拒绝，避免再调多个权重。
 
-奖励 Q 采用 SAC 标准 entropy-regularized target；Q 的动作约定为原始 residual，确定性 adapter/投影视为环境的一部分，entropy 对 residual proposal 而非投影后动作。另存最终物理动作给 g 头和蒸馏。
-state 含历史、F/R、块 phase、基础当前/剩余计划、必要 controller memory，防止计划混叠。不要将跨版本计划直接复用为正确的 next state。
-F 基础指令来自 ACT；R 丢弃原 ACT 块，基础指令为固定顺应卸载/有限回抽，同一 SAC actor 接收 mode=R。
-保留官方几何进度和接触惩罚，去除 success-prediction 奖励；R 有到达已卸载可重新规划集合的奖励、时间/载荷成本。所有比较组完全一致。明确各奖励公式/系数写进 config。
-ACT 每个外层轮次冻结。先只用本 ACT 版本在线 replay；HF 数据不满足转移契约时不直接入 TD。
-采样/更新起点：每个 vector_step 1 个 gradient update，batch=256；global_transitions += num_envs。分别记录 vector_steps、transitions、critic_updates，不将 num_envs 倍数漏记。
-常规起点 actor/critic lr=3e-4、gamma_reward=0.99、target tau=0.005，初始化小残差。只是待验证默认值，非声称最优。
+重要：两端点标签已含差分信息，L_pair是强调相对效应的归纳偏置，不宣称创造新监督。它能否改善实际Actor更新是待测结论。
+每条MC/pair标签携带frozen_continuation_policy_sha；策略更新后旧MC不能继续当Q新策略真值。当前轮固定目标策略评价，下一轮用同规则重采新配对；普通真实转移可重用于当前目标TD。训练与评估return定义、budget一致。
+观察近似相同而隐藏状态不同，不能给策略隐藏状态来消除问题；按历史条件不确定性报告。
 
-### 4.3 双可恢复性
+## 6. P3：三组最小消融 + ACT0参照
 
-Q_g^m(s,u,b) 是先执行物理动作 u、随后持续目标模式 pi_m、在 b 步内到目标且不先入危险集的概率，m∈{F,R}。概率头不加入 entropy，也不做 expectile；gamma_g=1，剩余预算 b 明确输入。
-目标：到 G_m ->1；危险终止或预算耗尽 ->0；其余 E_{u'~pi_m} target Q_g^m(s'_m,u',b-1)。BCE 用 soft targets。
-使用真实 mode 对应的转移；next action 从当前目标 mode 重采样，而不是 replay 的行为 next action。F->R 主动切换处为 F counterfactual continuation bootstrap，不把 R 后续轨迹当 F 续行，也不把切换贴失败。必须保存切换前 F 的 remaining-plan/controller state。
-G_R 必须同时包括卸载、足够回退/分离且仍保有可重试的抓持/位置；只有 force≈0 不算（掉落也会没力）。这些条件可在仿真定义成目标标签，actor 不读取未来/真值答案。
-先收集实际 R rollout。失败数据不提供 g_R 真值。先固定恢复监督器并以 shadow mode 训练 g；达到预先规定验证和数据覆盖要求再启用概率切换，否则明确报告 g 未校准/未激活。
-不训练 Q_Omega：continue_score=g_F(s,b)；retry_score≈g_R(s,b)*mean_restart_gF(b-d)，d 来自恢复数据；同一预算、gamma_g=1。加滞回/时间上限。该近似是一次恢复后重试，不宣称全局最优。
+先同一个ACT0、同一个普通Critic checkpoint，复制网络/优化器和随机种子。
+B0 ACT0-only：仅评估，不额外训练。
+B1 Direct-value：全部合法训练状态用于Q actor更新；Critic=TD+相同点值MC；lambda_pair=0。
+B2 Direct-filter：与B1完全相同的Critic值训练，只用训练配对中预先确认的可改善可信状态作Q actor更新；其余仍可训练Critic/BC；lambda_pair=0。
+B3 Calibrated-filter：与B2相同训练数据、actor状态mask、优化器、更新次数与预算；仅lambda_pair=1。
 
-### 4.4 幂等方向投影
+首轮B2/B3使用同一份冻结白名单（具体parent/snapshot，不靠测试标签或新增网络泛化mask）。不使用梯度方向投影；比较的是样本筛选与配对对比损失。以后若推广邻域过滤，另写协议，不能偷偷更换。
+B1也拿到所有分支转移和端点MC，点值监督方式与B2/B3完全一致。额外计算量单独报告。B3比B2的差才可归于配对项；B2比B1检验筛选。不得拿不同teacher/更多data当校准贡献。
 
-在功率保持尺度和可控子空间中：n=-w/||w||；e=延迟对齐后的已下发指令-实测速度；r=(I-nn^T)e；t=r/||r||，仅有效时构造。
-G(v)=v-[n^T v-kappa]_+n-chi(t^T v)t；kappa>=0，chi∈{0,1}；对基础+残差的完整指令作用，最后统一非负缩放限幅。固定方向下幂等。无接触/退化方向必须有稳定分支，不除近零量。
-chi 最简用接触载荷与正交误差持续阈值，计数器/方向缓存防抖；它不是第四网络。数值测试幂等性、加载上界、负向卸载和可控子空间保持。
-不要宣称系统被动性/真机安全已证明。功率是指令端口性质；继续保留独立硬限幅与保护。
+### 最省钱的先后顺序
+1. 固定共享数据各再训Critic 2,000 updates，ACT从同一checkpoint只做最多200小步更新（不同时放大许多参数）。在32 validation starts及未见诊断检查点检验效果。
+2. 只有B3出现可重复的预测/ACT实际改进信号且没有明显超载，才开始下面的完整闭环pilot；否则报告negative/inconclusive。离线成绩不当闭环成功率。
+3. 完整pilot先seed=0，最多2轮；每组每轮最多50,000 individual simulator transitions，含普通rollout、配对采集、prefix、校准验证。B1/B2/B3具有相同总预算，配对采集协议相同。后续策略不同，轨迹自然可不同，不能再宣称同数据；第一轮共享数据才有严格同数据归因。
+4. 每轮先冻结当前ACT采集并训练当前策略Critic，再短步更新ACT，评价，下一轮重新采集。新配对的续行策略必须为本轮冻结ACT；保持旧标签版本不混用。因可辨识性不足无法提供新mask时不无限搜干净状态，按预算停止。
+5. 最终100个独立test reset条件，三组相同初始配置与预采样扰动序列；测试不调超参。稳定成功定义预注册：官方几何成功连续3个控制步（若官方更严格则沿用），任务固定总预算包含任何退出/重新接近。第7维不能宣告成功。
+6. 信号值得继续才跑seeds=[0,1,2]，每seed200测试回合。三seed仍是有限证据。
 
-## 5. 最小实验：一个预训练起点、一个共享教师、三条后续分支
+原来的R-small/R-wide不在第一轮重新训练列表。诊断可用现有ACT和候选动作检查小残差边界是否排除了已验证改善动作；这不是残差RL性能证明。若以后宣称“比残差更好”，必须额外实现相同观测/动作权限/预算的R-small/R-wide或残差+相同校准对照。
 
-先做 smoke，再做 pilot；全流程第一任务只 PegInsert。
-建议 pilot 配额（研究预算，不是效果保证）：
-- 先使用成功训练 split 中固定 200 episodes，ACT 10,000 updates；若基础策略完全失败，先审计/增加到所有训练示教并最多 20,000 updates，不能故意把 ACT 弄差。
-- actor observation 默认单 RGB + state/force；相机匹配失败先报告，不把 OOD 视觉误差算方法失败。
-- 8 env 起跑，可内存允许时增至16/32且各组一致。
-- seed=0；教师在线预算 200,000 individual transitions，必要时预先登记上限500,000。失败原因先定位，不能无限加预算挑成功。
-- 所有训练中调参只用32个 validation reset seeds；最终 pilot 用另外100个固定测试初始条件。测试用结果不可反调阈值。
+## 7. Go / No-go：先锁工程门槛，不根据测试改结论
 
-分组（A0为评估参考，真正核心比较 A1/A2/A3）：
-A0 原始 ACT-only：预训练后直接评估，无额外训练，保留统一底层硬安全；无学习 residual/恢复性能主张。
-A1 NoDistill：冻结 ACT0，模式 SAC+双g+幂等投影；这是共享教师起点。
-A2 Uniform：复制同一 ACT0；同一教师执行数据、omega、专家混合、训练updates，beta恒1，完整CVAE蒸馏。
-A3 Selective：复制同一 ACT0；除 beta 来自 prior-gap 外，与 A2 完全一致。
+状态：NOT_RUN / BLOCKED / FAILED_IMPLEMENTATION / GO_PILOT / NO_GO_CALIBRATION / INCONCLUSIVE。
+1. P0失败：BLOCKED，不谈算法有效性。
+2. O/R/P无法提供可信比较：NO_GO_CALIBRATION。可以保留Direct基线，不转成伪配对实验。
+3. 困难状态中可信有限效果覆盖不足：工程初筛以>=25%且至少4个独立困难检查点为继续门槛；这是项目预算决策，不是统计证明。必须报告区间和全部被拒绝比例；不足/样本太少记INCONCLUSIVE或停止，不只展示干净子集。
+4. 普通Critic在这些点基本准确、但ACT仍坏：优先检查BC权重/梯度幅度/参数共享；不强推校准。方向错误不是先验事实。
+5. 只改善训练差值误差、没改善独立检查点和实际ACT动作：不能GO。
+6. pilot实践性信号：预登记B3相对B2稳定成功率+5个百分点且超限/峰值无明显恶化；或成功率差不低于-3个百分点、超限率相对降低>=20%且基准确有足够超限事件。低事件数、区间过宽则INCONCLUSIVE。阈值是继续投入准则，不等于显著性。
+7. B1/B2已经同样好：保留更简单直接Q闭环，结论是校准不必要，不是所有idea失败。
 
-步骤：
-1. 训练并评估 A0。
-2. 在 ACT0 下训练 A1。先确认“有效纠偏教师”存在；教师没有比基础行为更好的安全纠偏就不解释蒸馏失败为核心理论失败。
-3. 冻结 A1 教师，收集固定200次尝试（成功失败全记录），A2/A3共用完全相同数据。若有效成功轨迹很少，停止蒸馏判定并报告 bottleneck。
-4. A2/A3 各5,000次更新；同 batch 顺序、同源数据、同优化器设置，仅 masking 不同。
-5. 零额外RL成本：评估 ACT0-only、ACT_uniform-only、ACT_selective-only，硬安全逻辑相同，检验是否真的内化经验。
-6. 完成一轮双向闭环：A1/A2/A3 从相同 residual+双g checkpoint 各继续100,000 transitions。A1 不改 ACT；A2/A3 使用新ACT、清空或正确重建版本化 replay，给相同适配预算。不能拿旧 residual 不适配直接永久叠到新ACT上。
-7. 用相同测试初始条件/扰动序列评价完整三分支。不得让选择性组多拿交互/更多恢复重试。
+所有门槛、尺度与选择规则须在test评估前写入protocol_lock.json。不得无限调参直到某组赢。
 
-统计与决策：
-- pilot 仅判断是否值得继续，不称证明。100回合可能区分不了小差距。
-- 若教师有效且 A3 相对 A2/A1 有合理成功率、力安全或 residual 节约信号，才重复 seeds=[0,1,2]，每seed 200测试回合。三训练seed仍属初步证据。
-- 实用 go 条件事先登记，例如 A3 vs A2 成功率+5个百分点且载荷不更差，或成功率差不低于-3个百分点而 residual 能量降低15%且恢复/超限不恶化。这些是项目决策阈值，不等于显著性证明。区间太宽则记 inconclusive。
-- 如果 A2>A1 而 A3≈/低于A2，只能支持“蒸馏有用”，不支持选择性权重；记录欠拟合代理可能误筛，不能自动升级算法重跑后冒称原版本成功。
-- 若 beta 几乎全低/全高、prior采样塌缩、教师不改善、传感器/控制不匹配，分别报告；不要用总 reward 掩盖。
+## 8. P4：只在pilot/确认有信号后做泛化
 
-不再为每个辅助模块都训练一套 ablation。A1/A2/A3 都保留相同 g 和投影，第一轮只检验蒸馏主线。可做低成本 frozen-policy force-shuffle 评估诊断（只打乱学习策略的力输入，不破坏保护通道）；明确这是使用力的诊断，不是“重新训练无力消融”的证据。双g/投影各自必要性待核心通过后再研究。
+先不重新训练，冻结checkpoint：
+- ID新初始条件100回合；
+- 一个训练范围外的初始位置/姿态区间100回合；
+- 一个训练范围外的摩擦条件100回合；
+- 力传感1控制步延迟或预登记噪声条件100回合。
+每次只变一因子，先检查FORGE已有随机化支持。新seed不是OOD，训练覆盖的摩擦不能标OOD。三组使用相同变体/seed。更困难但物理不可行的任务不算正常泛化测试。
+可做冻结策略force-shuffle诊断（只打乱学习输入，不破坏真实保护/成本通道），明确它不是重训无力baseline。
+只有以上通过才考虑GearMesh第二任务。重新训练后有效叫跨任务方法验证，不叫PegInsert零样本跨任务泛化。无真机结果不写sim2real成功。
 
-## 6. 先通过可行性，再做小规模泛化
+## 9. 指标与原始数据
 
-先不新训练。冻结最优验证checkpoint，对A1/A2/A3做相同评估：
-1. ID：原训练分布的新初始条件。
-2. 初始位姿 OOD：仅一个维度扩大至训练范围外，先轻度偏移再加姿态；记录真实范围，不直接复用失败率100%的极端改装。
-3. 接触/传感 OOD：分别改变一个训练范围外的摩擦值或力噪声/1-step延迟，再考虑组合。每组100回合筛查。
-改变参数前审计 FORGE 已有 randomization 支持：训练中已经含有的摩擦/噪声值不能再称OOD。未见随机seed不等于参数泛化。每个变体独立config，与stock不混名。
-通过后才选 GearMesh 第二任务。该任务单独训练验证叫“跨任务可复现性”；只有用 PegInsert 训练好的同一模型直接无微调执行才叫零样本跨任务泛化，不能混用术语。NutThread和6DoF动作解锁不在第一轮范围。
+最少输出：
+- fidelity.csv：O/R/P、同动作差、力/位姿轨迹误差、版本与恢复方法；
+- pairs.csv：parent_id, split, continuation_sha, A0/A+/A-, epsilon/方向/实际单位, seed, G_R,G_C, success, unsafe, env_steps, cutoff；
+- critic_diagnostics.csv：point_error, contrast_error, predicted_sign, observed_sign/区间, support状态；
+- actor_step.csv：前后动作、实际DeltaA、梯度范数、BC冲突、候选效果与更新效果；
+- episode_metrics.csv：稳定成功、ever/final success、时间、峰值力/力矩、超限、终止原因、steps；
+- run_manifest.json：git SHA、HF revisions、环境/资产版本、命令、返回码、配置hash、时间、GPU/显存、计数器。
 
-## 7. 指标、日志、审计与产物
+以parent episode分组汇总；不把同一snapshot多分支当很多独立训练seed。首次成功时间和失败时间分开注明分母；不只统计成功轨迹峰值。区间可用固定方案的配对/聚类bootstrap，独立种子单独报告。3次筛查重复不足以证明显著。
+训练曲线横轴是所有individual env transitions，包括分支/前缀恢复和验证；另记录纯训练步、evaluation步与梯度更新数，不能藏掉配对采集成本。
 
-主指标：稳定插入成功率；回合按固定总预算含恢复计数，不能通过更长回合提高成功率。
-辅指标：首次成功/稳定完成时间、超载发生率、力峰值/95分位(N)、力矩峰值(N m)、卡滞率、R触发次数/成功率、误退出率、raw residual与实际纠偏能量、projection干预幅度、ACT-only成功率、g头Brier/校准曲线/删失比例、beta分布。
-恢复成功率分母是实际进入R的次数，无R则NA不是100%；失败不能从时间平均中悄悄删掉。成功时间可条件统计但明确分母。报告ever_success与stable_success区别。
-reset seeds、训练种子、场景初始参数、动作/force trace、完整命令、退出码、walltime、GPU显存、有效transition数量全部保存。相同seed不保证不同策略后续随机过程对齐，尽量预采样按时刻的扰动序列。
-每seed给成功率及Wilson区间；配对评估差异、训练seed间波动分别报告，不把回合当独立训练seed。不得挑最佳seed。
-不写预期数字当结果；所有表由 episode_metrics.csv 自动生成。未执行=NOT_RUN，环境缺失=BLOCKED，程序错误=FAILED，可评价但不支持假设=NEGATIVE/INCONCLUSIVE。
+## 10. 必须实现的接口与测试
 
-建议结构：
-closed-loop-il-rl/
-  AGENTS.md
-  CODEX_TASK.md
-  README.md
-  pyproject.toml
-  configs/{data,env,algorithm,experiments}/
-  src/prd/{data,envs,models,training,evaluation}/
-  scripts/{doctor,audit_dataset,smoke_forge,train_act,train_teacher,collect_teacher,distill_act,adapt_residual,evaluate,summarize}.py
+建议工程：
+  src/forcecritic/{data,envs,models,diagnostics,training,evaluation}/
+  configs/minimal_validation.yaml
+  scripts/{doctor,audit_data,smoke_forge,pretrain_act,collect_base,check_replay,probe_pairs,check_actor_step,run_pilot,evaluate,report}.py
   tests/
-  reports/{data_audit,action_contract,sensor_contract,environment,results}/
-  results/<run_id>/{config.yaml,manifest.json,episode_metrics.csv,train_metrics.csv,status.json}
-  artifacts_manifest.json
-  THIRD_PARTY_NOTICES.md
+  reports/<run_id>/
+  results/<run_id>/
 
-必须单测：split不泄漏、HF task过滤、mask后验不见未来、先验/后验推理区分、完整latent保持、动作roundtrip/第7维隔离、EMA单次、投影幂等/功率/退化方向、F切R删失目标、预算终止、向量终止obs与reset隔离、versioned replay、单环境步和global transitions计数、只有当前phase/mode合法。
-提供 no-Isaac CPU unit tests；真实 Isaac smoke 独立标记。Mock通过不称仿真通过。
-构造简单多模态/未来泄漏合成单测是代码验证，不作为机器人实验结果。
+CLI须真正实现：
+python -m forcecritic.cli doctor
+python -m forcecritic.cli audit-data
+python -m forcecritic.cli run --stage baseline --config configs/minimal_validation.yaml
+python -m forcecritic.cli run --stage diagnostic --config configs/minimal_validation.yaml
+python -m forcecritic.cli run --stage pilot --require-go reports/<run>/decision.json
+python -m forcecritic.cli evaluate --suite generalization --no-training
+python -m forcecritic.cli report --run-dir results/<run>
+上述目前只是接口合同，不是已存在命令。README应给实际Isaac launcher/camera flags；不要把示例标为已验证。
 
-## 8. Codex 必须交付可运行命令，不只给伪代码
+最重要autograd单测：固定replay和ACT，改变Critic动作梯度，actor更新确实改变；Critic参数冻结不更新，但dQ/dA非零。不能在Q(actor_action)外层no_grad或detach动作。证明online actor收到Q项而不仅BC项。
+其他单测：分割不泄漏、HF task过滤、动作第7维排除、roll/pitch约束、EMA单次、force帧变换、z=0推理不读未来、K步执行及提前终止、gamma^k、terminal_observation、防跨reset、零mask稳定、MC续行policy版本、paired数据各组一致、测试标签不进筛选、env_steps计数含所有分支。
+CPU单测与真实Isaac smoke分开，Mock只验证软件。禁止以mock输出“插接成功率”。
 
-实现一个入口，至少支持：
-python -m prd.cli audit
-python -m prd.cli smoke --task peg_insert
-python -m prd.cli run --protocol pilot --seed 0
-python -m prd.cli run --protocol confirm --seeds 0 1 2
-python -m prd.cli evaluate --suite generalization --no-training
-python -m prd.cli report --run-dir <actual_run>
-这些是要实现的接口，不是当前已经存在的命令。README 中同时给所选 Isaac Lab launcher 的真实调用方式；camera路径需要对应 --enable_cameras。不能将示意命令标为已验证。
-训练进程前台执行、定期checkpoint；中断后可恢复到明确状态，不承诺在任务结束后无管理地继续工作。
+## 11. GitHub提交与任务执行
 
-## 9. GitHub 提交规则
+已授权目标仓库；新工作分支`codex/force-critic-act-v2`。先读现有改动，不覆盖用户新代码，不force push。旧文档只通过Git历史保留，根目录新协议唯一有效。
+分阶段提交audit -> env/data adapter/tests -> direct actor-critic -> diagnostics -> pilot results -> confirmation/generalization（条件满足才执行）。
+提交代码/config、单测、dependency lock、CSV/JSON、小图与报告，生成结果表必须可回溯原始回合文件。未跑写NOT_RUN；GPU缺失写BLOCKED；负结果正常提交。
+不得上传原始HF数据、大replay、Isaac缓存、tokens或整个conda环境。大权重按经授权的Release/存储上传并记录SHA256；失败则报告本地路径和缺失状态，不造下载地址。
+只能运行实际可用的前台会话/用户已有受管理作业；当前消息结束不表示训练会自动后台继续。无需询问是否新增大模块，遇预算/可信性门槛直接按协议停止并写结论。
 
-本仓库可能最初为空。已有内容先读，不覆盖用户修改。初始化后工作分支建议 codex/prd-mvp；每阶段提交：audit -> adapter/tests -> algorithms -> pilot真实结果 -> confirmation -> generalization。
-可以向用户指定仓库推送实现和真实结果，但不能伪造已跑、删去负结果或强推覆盖。
-Git中提交源码、configs、lock/manifest、CSV/JSON、小图、报告、精简视频索引。不上传HF原始数据、Isaac缓存、tokens、完整本地env、巨大replay；权重大文件以Release或经授权的存储上传，写SHA256和可验证位置，不发本机绝对路径冒充公开下载。
-CPU CI运行单测，GPU仿真需实际可用的自托管/开发主机，不以普通CI通过声称GPU训练通过。
-无认证/推送失败就保留commit和完整报错，不宣称上传成功。
+最终Codex回报：实际完成阶段、branch/commit、真实执行命令/退出码、环境是否启动、数据数量、所有组结果/区间、成本计数、停止原因、是否支持继续投入。实现完成但未运行仿真只能称“代码待仿真验证”。
 
-最终Codex回复必须列明：实际完成阶段、commit/branch、执行过的命令和退出码、实际数据规模、原始结果位置、四组比较、哪些假设被支持/不支持、未完成原因。实现完但无GPU时，结论只能是“代码待真实仿真验证”。
+## 12. 现在开始
 
-## 10. 第一条执行指令
-
-先读本任务书并冻结算法范围。现在从 P0 环境与数据审计开始，随后按序实现、测试并运行 pilot；每个阶段失败先定位，达到预算上限就诚实记录。未通过pilot不自动开展大规模泛化，不增加网络，不把最后两版理论补丁带回。只有真实运行后才能填写实验结果并推送。
+先完成P0，随后P1及P2。不要先把所有训练脚本空壳写完，也不要直接运行全套泛化。在可运行GPU环境中按门槛推进；条件不满足就以真实审计/诊断产物完成本轮交付。目标是尽早判断是否值得做，不是强行制造正结果。
