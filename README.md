@@ -1,61 +1,49 @@
-# 力觉 Critic → ACT：最小可行性验证
+# Force Critic → ACT: diagnostic-first implementation
 
-**协议：`force_critic_act_v2_diagnostic_first`。当前只有任务书与配置；算法实现、真实 Isaac Lab 训练和实验成绩均为 NOT_RUN。**
+Protocol: `force_critic_act_v2_diagnostic_first`. The current delivery contains CPU-tested learning/control components and a measured P0 audit. **P0 has not passed; B0/B1/B2/B3 robot results are NOT_RUN.** See [project status](reports/PROJECT_STATUS.json) for the actual run and report paths.
 
-本协议已覆盖旧的三组件 residual/distillation MVP。旧内容只保留在 Git 历史中，不再执行。
+ACT is the actor: single RGB + proprioception + four past wrench/motion/command frames → ACT-CVAE → full 4×4 native action chunk. Twin critics output return/cost; their action gradients directly update ACT. Critic weights and observation conditions stay fixed during actor updates. Deployment and Q actions use z=0. There is no residual SAC, teacher distillation, world model, recoverability head, or learned filter.
 
-## 现在验证什么？
+Implemented components and boundaries are documented in each run's `implementation_audit.md`. In particular, a stage command returning a blocked prerequisite is **not** a completed robot training driver. Online collection, accepted simulator integration and complete later-stage orchestration still require P0 acceptance and implementation/validation. This repository does not claim the full research pipeline has run.
 
-示教初始化 ACT → ACT 输出完整动作块 → FORGE 接触交互与六维力 → 收益/接触代价 Critic → 对 ACT 动作求导 → 直接更新 ACT → 新交互。
+## Commands actually exercised on this machine
 
-只有 ACT-CVAE 与双收益/代价 Critic 两组可训练组件。不实现残差教师、成功轨迹蒸馏、双可恢复性头、prior-gap 权重或额外方向预测网络。
+The CPU verification interpreter is `.venv-cpu/bin/python`, created from the existing Python 3.12 / Torch 2.10.0+cu128 environment. It is separate from the candidate Python 3.11 / Isaac Sim 5.0 environment `.venv`.
 
-完整规格：[CODEX_TASK.md](CODEX_TASK.md)。实现约束：[AGENTS.md](AGENTS.md)。启动提示：[START_CODEX.txt](START_CODEX.txt)。预算草案：[configs/minimal_validation.yaml](configs/minimal_validation.yaml)。状态：[reports/PROJECT_STATUS.json](reports/PROJECT_STATUS.json)。
+```bash
+PYTHONPATH=src .venv-cpu/bin/python -m pytest -q
+PYTHONPATH=src .venv-cpu/bin/python -m forcecritic.cli doctor --config configs/minimal_validation.yaml
+PYTHONPATH=src .venv-cpu/bin/python -m forcecritic.cli audit-data --config configs/minimal_validation.yaml
+```
 
-## 先诊断，后训练
+The audit downloads metadata first and only one PegInsert parquet/video episode per success/failure set at pinned HF revisions. Raw downloads are ignored by Git. The observed schema does not settle camera extrinsics, sensor reference/sign, collection checkout or pre/post EMA action semantics. Therefore these episodes are not yet admitted for BC/TD training.
 
-1. **P0 环境/接口验收**：HF schema、stock FORGE、原生动作、六维力帧、EMA、相机与 reset。1 个真实仿真环境通过后再并行。
-2. **P1 基础策略**：仅 PegInsert 成功示教预训练 ACT，新增仿真交互训练普通 Critic。失败集用于审计/诊断，不把所有失败片段标为不可恢复。
-3. **P2 最小诊断**：先 8 个检查点验证原始连续执行/快照恢复/前缀重放；通过后 24 个独立检查点检验 A0、A+、A- 的有限效果；再检查 Critic 梯度能否变成 ACT 的实际改善。
-4. **P3 三组同数据控制**：Direct-value、Direct-filter、Calibrated-filter；ACT0 仅作评估参照。先短步更新验证，出现可信信号才运行完整两轮闭环。
-5. **P4 扩展**：先 1 seed/100 测试回合；支持继续才 3 seeds。冻结模型测初始位姿、摩擦和力噪声/延迟，不先上多个任务。
+The unified entry records blockers, generates reports and attempts publication even after a stage stops:
 
-| 组别 | Actor 的 Q 更新状态 | Critic 监督 |
-|---|---|---|
-| B1 Direct-value | 所有合法训练状态 | 同一批 TD 与端点回报 |
-| B2 Direct-filter | 训练配对确认的可信可改善状态 | 与 B1 相同 |
-| B3 Calibrated-filter | 与 B2 相同 | B2 + 有限尺度配对价值差损失 |
+```bash
+FORCECRITIC_PYTHON=.venv-cpu/bin/python bash scripts/run_end_to_end.sh \
+  --config configs/minimal_validation.yaml --resume auto --publish
+```
 
-B3-B2 检验校准，B2-B1 检验筛选。所有组都拿到同样配对数据，不能把多采样收益当校准贡献。失败接触处的方向错误是待检验假设，不是既定事实。
+Exit 2 means a prerequisite block; exit 1 means an implementation/command error. Shell Git authentication failure is reported separately; Codex can publish through the authenticated GitHub connector. The CLI records exact commands, return codes, source hashes, Git SHA and configuration hash. Raw robot metric files are header-only while NOT_RUN; empty files do not represent 0% success.
 
-## 两个数据集与力
+## Candidate Isaac installation and smoke
 
-- https://huggingface.co/datasets/angledusgar/forge-v1
-- https://huggingface.co/datasets/angledusgar/forge-failure-v1
-- 发布者 stock 专家：https://huggingface.co/angledusgar/forge-peginsert-v1
+[Version-locked official installation source](https://github.com/isaac-sim/IsaacLab/blob/0f00ca2b4b2d54d5f90006a92abb1b00a72b2f20/docs/source/setup/installation/pip_installation.rst) specifies Python 3.11 and Isaac Sim 5.0.0. The helper below does not accept a license on the user's behalf and does not modify drivers:
 
-数据卡的 ft 是已平滑六维 wrench，ft_noisy 只有三维力，记录为15Hz。它们不能代替新仿真的接触快照、分支回放或在线RL数据。
+```bash
+bash scripts/install_isaac.sh
+PYTHONPATH=src .venv/bin/python -m forcecritic.cli smoke --num-envs 1
+# Only after the real 1-env test passes:
+PYTHONPATH=src .venv/bin/python -m forcecritic.cli smoke --num-envs 8
+```
 
-没有真机可以验证仿真可行性，但需要能运行所选 Isaac Sim 和相机的 GPU。首轮仅 stock x/y/z/yaw 控制，完整六维力观测；原生第7维是成功预测，不是夹爪。具体以锁定源码和采集语义审计为准。
+The smoke subprocess uses `--headless --enable_cameras`, stock PegInsert, and a diagnostic camera. It checks rendered RGB and six-axis sensor finiteness, not expert insertion performance or HF camera equivalence. Its logs, not the command examples, determine what actually ran. Full dependencies and asset loading must succeed before this can pass.
 
-## 开源起点
+## Experimental discipline
 
-- Isaac Lab / FORGE：https://github.com/isaac-sim/IsaacLab/tree/v2.2.1/source/isaaclab_tasks/isaaclab_tasks/direct/forge
-- ACT 原始实现：https://github.com/tonyzhaozh/act
-- ACT 工程参考：https://github.com/huggingface/lerobot
-- 直接 Q actor 更新参考：https://github.com/sfujim/TD3_BC
-- AC3 文献：https://arxiv.org/html/2508.11143v2 。作者仓库 https://github.com/flyfaerss/ac3 的 README 当前仅一行，不假定有可运行完整代码。
+The [task specification](CODEX_TASK.md) and [frozen configuration](configs/minimal_validation.yaml) retain the diagnostic-first budgets. Physical limits/tolerances are unresolved and remain null. No long training can start before accepted P0 evidence. O/R/P equivalence precedes pair probing. All prefix/restore/branch/evaluation steps count. B2/B3 use identical data and training-only masks; B3 adds finite pair contrast, not derivative supervision. Test labels cannot release Actor masks. Checkpoints save optimizers and RNG along with model state.
 
-版本起点可用 Isaac Lab v2.2.1 / Isaac Sim 5.0.0 / Python 3.11，按对应文档审计安装。它不是已经确认的数据采集栈。保留来源和许可证，不混装所有旧依赖。
+B1/B2/B3 robot efficacy, replay fidelity, calibration benefit, confirmation and OOD generalization remain unmeasured. The direct gradient mechanism passing software tests supports only implementation correctness, not improved insertion. No learned weights have been published.
 
-## 启动 Codex
-
-在已有 GPU / Isaac 环境的机器克隆本仓库，运行 Codex，然后把 START_CODEX.txt 发给它。使用新分支 `codex/force-critic-act-v2`。CODEX_TASK 中列出的项目 CLI 尚待 Codex 实现，不能现在就声称命令可运行。
-
-真正的验收测试包括：固定数据与 ACT、改变 Critic 的动作梯度，ACT 参数更新应改变；Critic 自身参数不更新，但动作路径必须可微。仅重新做 BC 不算完成闭环。
-
-## 结果纪律
-
-这是一项可失败的验证，不预设正结果。回放不可信或动作效果无法识别就停止校准；普通直接更新已经足够好时优先保留简单方案。所有图表由真实 CSV/JSON 生成；保留失败/负结果和所有交互成本。无 GPU、资产或接口缺失写 BLOCKED，不用 mock 和离线误差冒充插接成绩。
-
-代码、配置、小型原始结果和报告上传 GitHub；不上传密钥、HF原始数据、Isaac缓存和巨大 replay。本次文档更新不表示 Codex 或GPU训练已在后台启动。
+Licenses and pinned code/data sources: [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md), [upstream lock](upstream.lock.json). No raw HF datasets, simulator cache, environments or credentials are committed.

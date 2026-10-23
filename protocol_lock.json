@@ -1,0 +1,221 @@
+{
+  "protocol": "force_critic_act_v2_diagnostic_first",
+  "config_hash": "a355f6209f5049e01afb25d9cc196524ad577f11dee2d54404219f7f0e64eedb",
+  "config": {
+    "protocol": "force_critic_act_v2_diagnostic_first",
+    "status": "NOT_RUN",
+    "seed": 0,
+    "repository": "Adeline123456789/closed-loop-il-rl",
+    "work_branch": "codex/force-critic-act-v2",
+    "runtime": {
+      "candidate_isaaclab": "v2.2.1",
+      "candidate_isaacsim": "5.0.0",
+      "candidate_python": "3.11",
+      "audit_existing_installation_first": true,
+      "require_real_simulator": true,
+      "auto_rent_gpu": false
+    },
+    "data": {
+      "success_repo": "angledusgar/forge-v1",
+      "failure_repo": "angledusgar/forge-failure-v1",
+      "success_revision": "0ebe4ff65ade3da8d2011d66cce0259870c95f78",
+      "failure_revision": "820392e1167df4d6f5d60f985ec4f3b1b4fd6237",
+      "task": "Isaac-Forge-PegInsert-Direct-v0",
+      "expected_fps": 15,
+      "expected_wrench_dim": 6,
+      "expected_noisy_force_dim": 3,
+      "expected_recorded_action_dim": 7,
+      "group_split": [
+        0.7,
+        0.15,
+        0.15
+      ],
+      "split_unit": "parent_episode_or_collection_run",
+      "primary_camera": "image",
+      "first_demo_episode_budget": 200,
+      "failures_as_positive_bc": false,
+      "hf_as_simulator_snapshot": false,
+      "hf_as_unverified_td_replay": false
+    },
+    "environment": {
+      "stock_task_only": true,
+      "diagnostic_num_envs": 1,
+      "initial_training_num_envs": 8,
+      "controllable_axes": [
+        "x",
+        "y",
+        "z",
+        "yaw"
+      ],
+      "seventh_action_semantics": "audit_success_prediction_not_gripper",
+      "disable_success_prediction_reward": true,
+      "chunk_length": 4,
+      "replan_interval": 4,
+      "temporal_ensemble": false,
+      "force_history_steps": 4,
+      "force_frame": null,
+      "action_ema_location": null,
+      "action_physical_scales": null,
+      "wrench_reference_point": null,
+      "force_limits_N": null,
+      "torque_limits_Nm": null,
+      "success_hold_control_steps": 3,
+      "thresholds_must_be_locked_pretest": true
+    },
+    "algorithm": {
+      "actor": "ACT_CVAE_direct",
+      "actor_rl_latent": "zero",
+      "actor_outputs_native_complete_chunks": true,
+      "independent_residual_actor": false,
+      "recoverability_network": false,
+      "critic_copies": 2,
+      "critic_outputs": [
+        "discounted_return",
+        "discounted_contact_cost"
+      ],
+      "calibration": "finite_pair_contrast",
+      "derivative_matching": false,
+      "gradient_subspace_projection": false,
+      "gamma": 0.99,
+      "critic_lr": 0.0003,
+      "actor_lr": 1e-05,
+      "target_tau": 0.005,
+      "batch_size": 128,
+      "lambda_cost": 1.0,
+      "alpha_bc": 1.0,
+      "eta_step": 1.0,
+      "lambda_point": 1.0,
+      "lambda_pair": 1.0,
+      "scales_from_training_data_only": true,
+      "check_critic_to_actor_autograd": true,
+      "retain_mc_continuation_policy_version": true
+    },
+    "baseline": {
+      "act_pretrain_updates": 10000,
+      "act_pretrain_update_cap_after_audit": 20000,
+      "validation_reset_count": 32,
+      "shared_collection_episode_cap": 100,
+      "shared_collection_transition_cap": 50000,
+      "critic_initial_updates": 10000
+    },
+    "diagnostic": {
+      "fidelity_checkpoint_count": 8,
+      "fidelity_repeats_min": 3,
+      "fidelity_methods": [
+        "original",
+        "snapshot_restore",
+        "prefix_replay"
+      ],
+      "paired_checkpoint_count": 24,
+      "hard_checkpoint_count": 16,
+      "normal_checkpoint_count": 8,
+      "paired_split_counts": [
+        12,
+        6,
+        6
+      ],
+      "directions_per_checkpoint": 2,
+      "normalized_epsilon_candidates": [
+        0.02,
+        0.05
+      ],
+      "epsilon_requires_physical_audit": true,
+      "screening_paired_repeats": 3,
+      "baseline_action_repeats": 3,
+      "nominal_screening_continuations": 648,
+      "independent_confirmation_checkpoint_cap": 8,
+      "confirmation_repeats_cap": 8,
+      "all_diagnostic_continuation_cap": 1500,
+      "all_diagnostic_transition_cap": 300000,
+      "count_prefix_and_restore_steps": true,
+      "use_full_remaining_horizon_for_task_claims": true,
+      "critic_bootstrapped_test_ground_truth": false,
+      "engineering_effect_threshold_scaled": 0.1,
+      "engineering_replay_tolerance_scaled": 0.025,
+      "physical_fidelity_tolerances": null,
+      "hard_identifiable_fraction_go": 0.25,
+      "hard_identifiable_count_go": 4,
+      "thresholds_are_significance_claims": false
+    },
+    "arms": {
+      "B0": {
+        "name": "ACT0_only",
+        "train": false
+      },
+      "B1": {
+        "name": "Direct_value",
+        "actor_state_filter": "all_valid_training",
+        "endpoint_mc_supervision": true,
+        "lambda_pair": 0.0
+      },
+      "B2": {
+        "name": "Direct_filter",
+        "actor_state_filter": "frozen_training_pair_whitelist",
+        "endpoint_mc_supervision": true,
+        "lambda_pair": 0.0
+      },
+      "B3": {
+        "name": "Calibrated_filter",
+        "actor_state_filter": "frozen_training_pair_whitelist",
+        "endpoint_mc_supervision": true,
+        "lambda_pair": 1.0
+      }
+    },
+    "pilot": {
+      "requires_diagnostic_go": true,
+      "shared_data_critic_updates_per_arm": 2000,
+      "initial_actor_small_update_cap": 200,
+      "online_round_cap": 2,
+      "transition_cap_per_arm_per_round": 50000,
+      "all_branch_prefix_and_validation_steps_counted": true,
+      "test_reset_count": 100,
+      "confirmation_seeds": [
+        0,
+        1,
+        2
+      ],
+      "confirmation_test_episodes_per_seed": 200,
+      "success_gain_go_percentage_points": 5.0,
+      "alternative_success_noninferiority_percentage_points": -3.0,
+      "alternative_overload_relative_reduction": 0.2,
+      "report_inconclusive_when_intervals_wide": true
+    },
+    "generalization": {
+      "enabled_before_pilot_go": false,
+      "freeze_checkpoints": true,
+      "cases": [
+        "new_id_initial_conditions",
+        "initial_pose_ood",
+        "friction_ood",
+        "force_delay_or_noise_ood"
+      ],
+      "episodes_per_case": 100,
+      "modify_one_factor_at_a_time": true,
+      "check_training_randomization_support": true,
+      "second_task_initially_enabled": false
+    },
+    "publishing": {
+      "retain_negative_results": true,
+      "raw_metrics_required": true,
+      "upload_raw_datasets": false,
+      "upload_secrets": false,
+      "force_push": false,
+      "declare_mock_as_robot_result": false
+    }
+  },
+  "locked_before_test": true,
+  "physical_thresholds_status": "UNRESOLVED_DO_NOT_RUN",
+  "rules": {
+    "replay_failure": "NO_GO_CALIBRATION",
+    "hard_coverage": [
+      0.25,
+      4
+    ],
+    "pilot_success_gain_pp": 5,
+    "alternative_noninferiority_pp": -3,
+    "overload_reduction": 0.2,
+    "minimum_baseline_overload_events": 10,
+    "low_event_or_wide_interval": "INCONCLUSIVE",
+    "no_test_labels_for_training": true
+  }
+}

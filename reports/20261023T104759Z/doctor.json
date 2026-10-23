@@ -1,0 +1,77 @@
+{
+  "status": "BLOCKED",
+  "missing_packages": [
+    "isaacsim",
+    "isaaclab"
+  ],
+  "compatibility_issues": [
+    "Isaac candidate requires Python 3.11; this interpreter is CPU verification only"
+  ],
+  "isaaclab_checkout": {
+    "command": [
+      "git",
+      "-C",
+      ".cache/IsaacLab",
+      "rev-parse",
+      "HEAD"
+    ],
+    "returncode": 0,
+    "stdout": "0f00ca2b4b2d54d5f90006a92abb1b00a72b2f20\n",
+    "stderr": ""
+  },
+  "python": "3.12.13 | packaged by conda-forge | (main, Mar  5 2026, 16:50:00) [GCC 14.3.0]",
+  "executable": "/media/midea/F496AC8096AC4548/closed_loop_act/.venv-cpu/bin/python",
+  "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+  "gpu": {
+    "command": [
+      "nvidia-smi",
+      "--query-gpu=name,memory.total,driver_version",
+      "--format=csv,noheader"
+    ],
+    "returncode": 0,
+    "stdout": "NVIDIA GeForce RTX 3090, 24576 MiB, 575.51.03\n",
+    "stderr": ""
+  },
+  "cuda": {
+    "torch_cuda": "12.8",
+    "available": true
+  },
+  "packages": {
+    "torch": "2.10.0",
+    "torchvision": "0.25.0",
+    "isaacsim": null,
+    "isaacsim-kernel": null,
+    "isaaclab": null,
+    "numpy": "2.2.6",
+    "pyarrow": "25.0.0"
+  },
+  "disk_free_bytes": 130659422208,
+  "asset_loading": "NOT_RUN",
+  "camera_rendering": "NOT_RUN",
+  "git_read": {
+    "command": [
+      "git",
+      "ls-remote",
+      "origin",
+      "HEAD"
+    ],
+    "returncode": 0,
+    "stdout": "527da843bb6c42074a4d1c8d10d1742cd61b4ddf\tHEAD\n",
+    "stderr": ""
+  },
+  "git_push_dry_run": {
+    "command": [
+      "git",
+      "push",
+      "--dry-run",
+      "origin",
+      "HEAD"
+    ],
+    "returncode": 128,
+    "stdout": "",
+    "stderr": "fatal: could not read Username for 'https://github.com': terminal prompts disabled\n"
+  },
+  "isaac_launcher": "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/isaaclab.sh",
+  "license_acceptance": "NOT_VERIFIED",
+  "note": "doctor PASSED only means import prerequisites found; smoke and interface audits remain mandatory"
+}

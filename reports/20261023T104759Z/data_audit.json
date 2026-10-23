@@ -1,0 +1,124 @@
+{
+  "status": "BLOCKED",
+  "datasets": [
+    {
+      "repository": "angledusgar/forge-v1",
+      "revision": "0ebe4ff65ade3da8d2011d66cce0259870c95f78",
+      "metadata_total_episodes": 2968,
+      "peg_episodes": 984,
+      "fps": 15,
+      "samples": [
+        {
+          "episode": 0,
+          "rows": 149,
+          "dimensions": {
+            "state": [
+              149,
+              8
+            ],
+            "actions": [
+              149,
+              7
+            ],
+            "ft": [
+              149,
+              6
+            ],
+            "ft_noisy": [
+              149,
+              3
+            ]
+          },
+          "timestamp_delta_median": 0.0666666030883789,
+          "parquet_sha256": "4b2b97cae02faf952d3132855d0d86054eae9af16c7adfbd15d08b0bfb1cb835",
+          "video_sha256": "42abf55ad9174d4fd0d840ff8e6e25526b8a4c8345d98449f8a5d592c863c49d",
+          "video_stream": {
+            "width": 256,
+            "height": 256,
+            "fps": "15",
+            "codec": "libdav1d",
+            "decoded_frames": 149
+          },
+          "bytes": 281235,
+          "columns": [
+            "state",
+            "actions",
+            "ft",
+            "ft_noisy",
+            "timestamp",
+            "frame_index",
+            "episode_index",
+            "index",
+            "task_index"
+          ]
+        }
+      ],
+      "collection_run_id_available": false
+    },
+    {
+      "repository": "angledusgar/forge-failure-v1",
+      "revision": "820392e1167df4d6f5d60f985ec4f3b1b4fd6237",
+      "metadata_total_episodes": 53,
+      "peg_episodes": 26,
+      "fps": 15,
+      "samples": [
+        {
+          "episode": 0,
+          "rows": 149,
+          "dimensions": {
+            "state": [
+              149,
+              8
+            ],
+            "actions": [
+              149,
+              7
+            ],
+            "ft": [
+              149,
+              6
+            ],
+            "ft_noisy": [
+              149,
+              3
+            ]
+          },
+          "timestamp_delta_median": 0.0666666030883789,
+          "parquet_sha256": "81997b0676fa10af5b207aea7b01894808cbb40b060a74d00cf811d873feb546",
+          "video_sha256": "102c8978e94b2a8debf3c17d3263da5cce85147ba4d7a21c0694ee1150643964",
+          "video_stream": {
+            "width": 256,
+            "height": 256,
+            "fps": "15",
+            "codec": "libdav1d",
+            "decoded_frames": 149
+          },
+          "bytes": 308443,
+          "columns": [
+            "state",
+            "actions",
+            "ft",
+            "ft_noisy",
+            "timestamp",
+            "frame_index",
+            "episode_index",
+            "index",
+            "task_index"
+          ]
+        }
+      ],
+      "collection_run_id_available": false
+    }
+  ],
+  "blocking_items": [
+    "BLOCKED_DATA_ALIGNMENT: collection code/SHA and pre/post EMA action stage unavailable",
+    "BLOCKED_SENSOR_CONTRACT: data-card EE frame differs from pinned stock source; sign/reference/baseline unverified",
+    "BLOCKED_CAMERA_ALIGNMENT: collection camera extrinsics/intrinsics not supplied"
+  ],
+  "splits": {
+    "train": 707,
+    "validation": 151,
+    "test": 152
+  },
+  "split_limitation": "No collection run IDs in metadata; episode split cannot exclude correlation across lockstep sibling environments."
+}

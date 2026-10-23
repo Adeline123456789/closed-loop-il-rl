@@ -1,0 +1,158 @@
+{
+  "run_id": "20261023T104759Z",
+  "artifacts": {
+    "reports/20261023T104759Z/FINAL_REPORT.md": {
+      "sha256": "1ced99e2cd9543f74c7357b40c5ab282ce6f2f131a1ac6e5d84d464e7b19082e",
+      "bytes": 4010
+    },
+    "reports/20261023T104759Z/action_contract.md": {
+      "sha256": "d89a8c8835bf84dcb1ed4123f10d84fbaa2a2e96827e80d3dad658d43d44166f",
+      "bytes": 2170
+    },
+    "reports/20261023T104759Z/asset_access.json": {
+      "sha256": "491238880b3d52f87e161e8ea6d27f34d62bd1415bdedeb942c8106c1bf98d6b",
+      "bytes": 381
+    },
+    "reports/20261023T104759Z/checks.json": {
+      "sha256": "b543e7ef4a42612da88ad4231fb2777a065d57368ed05541e0e8e4bea42bf4b8",
+      "bytes": 3595
+    },
+    "reports/20261023T104759Z/cpu_environment.lock.json": {
+      "sha256": "0407527cd6de7dde60fe3afb7e304967cc1c0c1ca7a40e21c14b0e8f47c0fbf7",
+      "bytes": 18039
+    },
+    "reports/20261023T104759Z/cpu_tests.log": {
+      "sha256": "c878b1dfb755b0aa4bdde9bc78668f5448cbf86f338fb20bdb43d305d54a6209",
+      "bytes": 99
+    },
+    "reports/20261023T104759Z/data_audit.json": {
+      "sha256": "3319550832fcc627ef2a7cd82f4a2fef368efa3ff181c88e99ffb27017e0a7fa",
+      "bytes": 3348
+    },
+    "reports/20261023T104759Z/data_audit.md": {
+      "sha256": "f3c32f1dfaceef7f26c00d10d7a8e3682da4166074734e3f741575edc0bdc935",
+      "bytes": 1139
+    },
+    "reports/20261023T104759Z/decision.json": {
+      "sha256": "997802ea93609c5c68a3510ff2e8399f42d8ccbebbc702f750ae959a9e148c94",
+      "bytes": 314
+    },
+    "reports/20261023T104759Z/diff_check.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "reports/20261023T104759Z/doctor.json": {
+      "sha256": "c7043cc4aefa029e7857ce91ffc9673499eeae99ff53c935aa503d6d722c1b04",
+      "bytes": 2011
+    },
+    "reports/20261023T104759Z/end_to_end.log": {
+      "sha256": "092af0529121a389c448f909f7aefebb4cee3a14c48b3a5b3f29104a07d6fc79",
+      "bytes": 331
+    },
+    "reports/20261023T104759Z/end_to_end_initial_failure.log": {
+      "sha256": "f724891b2740595bd834b55c4c9285c999b4b3fdf58d090477db2d29b7c27ece",
+      "bytes": 5854
+    },
+    "reports/20261023T104759Z/episode_splits.json": {
+      "sha256": "26c3ecb05c67dd1c89b605fc00b5d2f99ff14b9ed1ec8b6257acc9f9e765f43f",
+      "bytes": 91567
+    },
+    "reports/20261023T104759Z/github_access.json": {
+      "sha256": "8efb438a202d9fb4bcd1b94b081b637d95aa76185316e59cb9bcf67294e7a240",
+      "bytes": 278
+    },
+    "reports/20261023T104759Z/implementation_audit.md": {
+      "sha256": "5eaa4204b2ac41abb83c9d22bb290165502f5a69e9650c6cf696432ff0df959c",
+      "bytes": 1542
+    },
+    "reports/20261023T104759Z/installation_attempts.json": {
+      "sha256": "3bec6550183d5ec8d47c9ef8a6eeb39784f27745e9f3c1a75be6537e607ec011",
+      "bytes": 1469
+    },
+    "reports/20261023T104759Z/isaac_install.log": {
+      "sha256": "af6d4db1474bf7589dd1c98b71b9a886561143bfa819430ce652fec88068d255",
+      "bytes": 6197
+    },
+    "reports/20261023T104759Z/isaac_install_minimal.log": {
+      "sha256": "75fc8fe8412eb253aea7cfda08a8743285167ab805a789ced5ddfacf6051bb7f",
+      "bytes": 29082
+    },
+    "reports/20261023T104759Z/isaac_install_uv.log": {
+      "sha256": "37f1bf814c8d7905910cd328d5f2e55c5a8cd26a4b3909ab64a46aaa641b23b4",
+      "bytes": 4594
+    },
+    "reports/20261023T104759Z/isaaclab_clone.log": {
+      "sha256": "d87f17b3d77e45830e1cdf9c3b07d89d2049630e4aa2e02d25a0d571c611e236",
+      "bytes": 630
+    },
+    "reports/20261023T104759Z/preflight.json": {
+      "sha256": "66a3dfe29f84b3ce060896d033f30301a54b9bc5eb4c797a5d31ba90a98580b4",
+      "bytes": 745
+    },
+    "reports/20261023T104759Z/protocol_preregistration.md": {
+      "sha256": "56dc1c51f4cb42d2cede242e030e15a8066fa92bcb09da7d125e03d4634040c7",
+      "bytes": 797
+    },
+    "reports/20261023T104759Z/run_manifest.json": {
+      "sha256": "ca2b2d6fd1dcdcb4a196c29ba68f7cb27617f6cb7ba3b8435c0c259c9de4b08e",
+      "bytes": 120319
+    },
+    "reports/20261023T104759Z/sensor_contract.md": {
+      "sha256": "a382e0d209d55ae447cd4279bb7805582b8f70b8c031c7e4402059fecfb0c879",
+      "bytes": 1510
+    },
+    "reports/20261023T104759Z/smoke-1_1792754034833191383_command.json": {
+      "sha256": "dcf5640b09e9a901542acd910683394d4037263ebfd6779cb6143bd36579b82d",
+      "bytes": 557
+    },
+    "reports/20261023T104759Z/smoke-1_1792754084734709008_command.json": {
+      "sha256": "a8ea783c04d2dac864068a4de50974a84c1b3c34b8b157f70ac8c31d94018f4c",
+      "bytes": 557
+    },
+    "reports/20261023T104759Z/smoke-1_command.json": {
+      "sha256": "9aa6d68e82e3d715455c728cea9890f6f5222953e8a328b424cd3d181f1bd43f",
+      "bytes": 537
+    },
+    "reports/20261023T104759Z/software_gradient_evidence.json": {
+      "sha256": "7cff69e86747406de0e8ca855ba5eab1d591ed7fae1a2ad38cf76a1233f7c235",
+      "bytes": 8308
+    },
+    "reports/20261023T104759Z/stage_gate_invocations.json": {
+      "sha256": "8e3cfd6871b1908f1a3404b74d5e68a375ad284339d88ff0f38321114c706818",
+      "bytes": 1970
+    },
+    "results/20261023T104759Z/actor_step.csv": {
+      "sha256": "f77b7d7500cb7bf5bf392ba038ff62dd9c9e1e3994b39934f8ea7b64dd014b24",
+      "bytes": 181
+    },
+    "results/20261023T104759Z/critic_diagnostics.csv": {
+      "sha256": "9e041953cd677eed826fb25315432413834844e72a358f6c30690ffed24c92db",
+      "bytes": 110
+    },
+    "results/20261023T104759Z/episode_metrics.csv": {
+      "sha256": "744f27fe7f94647e735acf42be2677f30e22ff60f00393252172b85cd4091073",
+      "bytes": 167
+    },
+    "results/20261023T104759Z/expert_smoke.csv": {
+      "sha256": "d02098f57f5d526197a78f4f99be0379a53e572449a12371c398899b99d1c9a4",
+      "bytes": 87
+    },
+    "results/20261023T104759Z/fidelity.csv": {
+      "sha256": "5ff3e229e73a91ead42c52b0f083474a07020383cce4659c479e59d3dadd59cf",
+      "bytes": 167
+    },
+    "results/20261023T104759Z/figures/README.md": {
+      "sha256": "27cd26248a5126217e77974a2304266ec9660c1c52154106ea078a756a35957b",
+      "bytes": 93
+    },
+    "results/20261023T104759Z/pairs.csv": {
+      "sha256": "7acc41b899268cff050bcf6c1788af5147637fe3ed8e6e79d97161d31ad03ec3",
+      "bytes": 198
+    },
+    "results/20261023T104759Z/summary.csv": {
+      "sha256": "5a06a7a2b74d8eab2388bb9ec4996982708256705623a03662eb2dfd90340fd1",
+      "bytes": 135
+    }
+  },
+  "weights": []
+}

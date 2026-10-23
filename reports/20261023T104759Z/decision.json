@@ -1,0 +1,8 @@
+{
+  "status": "BLOCKED",
+  "reason": "P0 prerequisites not passed; no robot-method evidence",
+  "config_hash": "a355f6209f5049e01afb25d9cc196524ad577f11dee2d54404219f7f0e64eedb",
+  "direct_critic_act": "INSUFFICIENT_ROBOT_EVIDENCE",
+  "paired_calibration": "INSUFFICIENT_ROBOT_EVIDENCE",
+  "evidence_hashes": {}
+}

@@ -1,0 +1,31 @@
+Looking in indexes: https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple, https://pypi.ngc.nvidia.com, https://pypi.nvidia.com
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)'))': /isaacsim/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)'))': /isaacsim/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)'))': /isaacsim/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)'))': /isaacsim/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)'))': /isaacsim/
+Could not fetch URL https://pypi.ngc.nvidia.com/isaacsim/: There was a problem confirming the ssl certificate: HTTPSConnectionPool(host='pypi.ngc.nvidia.com', port=443): Max retries exceeded with url: /isaacsim/ (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)'))) - skipping
+Collecting isaacsim==5.0.0 (from isaacsim[all,extscache]==5.0.0)
+  Downloading https://pypi.nvidia.com/isaacsim/isaacsim-5.0.0.0-cp311-none-manylinux_2_35_x86_64.whl (33 kB)
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)'))': /isaacsim-kernel/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)'))': /isaacsim-kernel/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)'))': /isaacsim-kernel/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)'))': /isaacsim-kernel/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)'))': /isaacsim-kernel/
+Could not fetch URL https://pypi.ngc.nvidia.com/isaacsim-kernel/: There was a problem confirming the ssl certificate: HTTPSConnectionPool(host='pypi.ngc.nvidia.com', port=443): Max retries exceeded with url: /isaacsim-kernel/ (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)'))) - skipping
+Collecting isaacsim-kernel==5.0.0.0 (from isaacsim==5.0.0->isaacsim[all,extscache]==5.0.0)
+  Downloading https://pypi.nvidia.com/isaacsim-kernel/isaacsim_kernel-5.0.0.0-cp311-none-manylinux_2_35_x86_64.whl (22 kB)
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)'))': /isaacsim-extscache-kit/
+WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)'))': /isaacsim-extscache-kit/
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)'))': /isaacsim-extscache-kit/
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)'))': /isaacsim-extscache-kit/
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)'))': /isaacsim-extscache-kit/
+Could not fetch URL https://pypi.ngc.nvidia.com/isaacsim-extscache-kit/: There was a problem confirming the ssl certificate: HTTPSConnectionPool(host='pypi.ngc.nvidia.com', port=443): Max retries exceeded with url: /isaacsim-extscache-kit/ (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)'))) - skipping
+Collecting isaacsim-extscache-kit==5.0.0.0 (from isaacsim[all,extscache]==5.0.0)
+  Downloading https://pypi.nvidia.com/isaacsim-extscache-kit/isaacsim_extscache_kit-5.0.0.0-cp311-none-manylinux_2_35_x86_64.whl (3029.5 MB)
+     ━━━━                                     0.3/3.0 GB 536.2 kB/s eta 1:24:34
+ERROR: Operation cancelled by user
+Could not fetch URL https://pypi.ngc.nvidia.com/pip/: There was a problem confirming the ssl certificate: HTTPSConnectionPool(host='pypi.ngc.nvidia.com', port=443): Max retries exceeded with url: /pip/ (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)'))) - skipping
+
+[notice] A new release of pip is available: 24.0 -> 26.2.2
+[notice] To update, run: python -m pip install --upgrade pip
