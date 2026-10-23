@@ -10,7 +10,7 @@ from torch.nn import functional as F
 
 class ACT(nn.Module):
     def __init__(self, state_dim=8, history_dim=16, width=128, latent_dim=32,
-                 layers=2, backbone=None, feature_dim=512):
+                 layers=2, backbone=None, feature_dim=512, decoder_layers=None):
         super().__init__()
         if backbone is None:
             from torchvision.models import resnet18, ResNet18_Weights
@@ -31,7 +31,7 @@ class ACT(nn.Module):
         self.posterior = nn.TransformerEncoder(enc(), layers, enable_nested_tensor=False)
         self.encoder = nn.TransformerEncoder(enc(), layers, enable_nested_tensor=False)
         self.decoder = nn.TransformerDecoder(nn.TransformerDecoderLayer(
-            width, 4, width * 4, dropout=0., batch_first=True), layers)
+            width, 4, width * 4, dropout=0., batch_first=True), decoder_layers or layers)
         self.latent_head = nn.Linear(width, latent_dim * 2)
         self.action_head = nn.Linear(width, 4)
         self.latent_dim = latent_dim

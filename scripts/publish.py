@@ -8,6 +8,7 @@ import re
 
 os.environ['PYTEST_DISABLE_PLUGIN_AUTOLOAD']='1'
 os.environ['CUDA_VISIBLE_DEVICES']=''
+os.environ['GIT_TERMINAL_PROMPT']='0'
 ROOTS=['src','scripts','tests','configs','reports','results','pyproject.toml','.gitignore',
        'README.md','CODEX_TASK.md','AGENTS.md','THIRD_PARTY_NOTICES.md','third_party',
        'environment.lock.json','upstream.lock.json','protocol_lock.json','artifacts_manifest.json']

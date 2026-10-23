@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 name = "forcecritic"
 version = "0.1.0"
 requires-python = ">=3.11"
-dependencies = ["torch>=2.7", "torchvision>=0.22", "numpy>=1.26", "PyYAML>=6", "pyarrow>=17", "huggingface-hub>=0.30", "av>=14"]
+dependencies = ["torch>=2.7", "torchvision>=0.22", "numpy>=1.26", "PyYAML>=6", "pyarrow>=17", "huggingface-hub>=0.30", "av>=14", "matplotlib>=3.8"]
 [project.optional-dependencies]
 test = ["pytest>=8"]
 [tool.pytest.ini_options]

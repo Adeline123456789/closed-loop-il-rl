@@ -1,5 +1,5 @@
-arm,status,episodes,stable_success_rate,overload_rate
-B0,NOT_RUN,0,NA,NA
-B1,NOT_RUN,0,NA,NA
-B2,NOT_RUN,0,NA,NA
-B3,NOT_RUN,0,NA,NA
+arm,seed,split,policy_sha,status,episodes,independent_parents,stable_success_rate,stable_success_ci_low,stable_success_ci_high,ever_success_rate,ever_success_ci_low,ever_success_ci_high,final_success_rate,final_success_ci_low,final_success_ci_high,overload_rate,overload_ci_low,overload_ci_high,force_peak_observed_episodes,force_peak_mean_all_episodes,force_peak_max_all_episodes,torque_peak_observed_episodes,torque_peak_mean_all_episodes,torque_peak_max_all_episodes,successful_completion_time_denominator,successful_completion_time_mean,env_steps
+B0,NA,NA,NA,NOT_RUN,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,NA,NA,0,NA,NA,0,NA,0
+B1,NA,NA,NA,NOT_RUN,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,NA,NA,0,NA,NA,0,NA,0
+B2,NA,NA,NA,NOT_RUN,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,NA,NA,0,NA,NA,0,NA,0
+B3,NA,NA,NA,NOT_RUN,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,NA,NA,0,NA,NA,0,NA,0

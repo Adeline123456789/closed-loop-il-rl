@@ -24,26 +24,26 @@ P0 has not passed. No ACT pretraining or robot-method experiment is claimed. The
 
 1. Critic → ACT: implemented in `training/updates.py`; CPU tests change critic slope on fixed ACT/data, observe changed ACT output, and verify nonzero Q-only gradients with critic parameters fixed.
 2. Ordinary direct update improves insertion: **insufficient evidence**, B0/B1 not run.
-3. Replay/pair fidelity: **NOT_RUN**; no same-state claim and no HF snapshot reconstruction.
+3. Replay fidelity rows: 0; diagnostic stage status: BLOCKED. Row count alone is not evidence of equivalence.
 4. B2 vs B1 filtering: **insufficient evidence**, NOT_RUN.
 5. B3 vs B2 calibration: **insufficient evidence**, NOT_RUN. Endpoint labels already contain contrast information.
-6. Continue: repair P0 environment and measured sensor/action/camera contracts first. No GO_PILOT.
-7. P1–P4 skipped by the P0 gate, not an algorithm negative result.
+6. Recorded continuation decision: **BLOCKED** — P0 prerequisites not passed; no robot-method evidence.
+7. Stages not passed/completed: doctor, audit-data, smoke-1, smoke-8, baseline, diagnostic, short-ablation, pilot, confirm, generalization, installation. Reasons are listed above; an environment block is not an algorithm negative result.
 
 ## Raw result summary
 
-| Arm | Status | Episodes | Success | Overload |
+| Arm / seed / split / policy | Status | Episodes | Success | Overload |
 |---|---|---:|---|---|
-| B0 | NOT_RUN | 0 | NA | NA |
-| B1 | NOT_RUN | 0 | NA | NA |
-| B2 | NOT_RUN | 0 | NA | NA |
-| B3 | NOT_RUN | 0 | NA | NA |
+| B0 / NA / NA / NA | NOT_RUN | 0 | NA | NA |
+| B1 / NA / NA / NA | NOT_RUN | 0 | NA | NA |
+| B2 / NA / NA / NA | NOT_RUN | 0 | NA | NA |
+| B3 / NA / NA / NA | NOT_RUN | 0 | NA | NA |
 
 ## Cost and artifacts
 
 Individual simulator transitions by category: `{"interaction": 0, "branch": 0, "prefix": 0, "restore": 0, "evaluation": 0}`.
 Total accounted simulator transitions: 0. CPU unit fixtures are excluded from robot metrics.
-No trained checkpoint or Release asset exists; weights: **未发布**. No fake download URL.
+Checkpoint index entries: 0. Publication is not implied by a local checkpoint; only verified Release entries may be used as download links.
 Header-only fidelity/pair/actor/episode CSV files mean NOT_RUN, not zero success.
 
 ## Reproduce / resume
@@ -57,6 +57,6 @@ Use the audited Isaac Python instead once installed. Installation alone does not
 
 ## Scope still unverified
 
-Real simulator integration, expert compatibility, six-axis sign/reference/baseline, camera alignment, physical safety limits, replay fidelity, and all robot training/evaluation remain unverified.
+Consult the stage table and implementation_audit.md for unresolved interfaces and unimplemented orchestration; CPU software tests never establish robot efficacy.
 Stage execution deliberately fails closed while P0 is incomplete. Higher-stage robot orchestration is not presented as experimentally validated.
 See `data_audit.json`, `doctor.json`, `action_contract.md`, `sensor_contract.md`, `implementation_audit.md`, and command logs for exact evidence.

@@ -1,0 +1,37 @@
+{
+  "objective_status": "ACTIVE_NOT_COMPLETE",
+  "observed_at": "2026-10-23T11:52:49Z",
+  "live_installation": {
+    "tool_session_id": 20900,
+    "pid": 639899,
+    "ps_returncode": 0,
+    "ps": "PID     ELAPSED STAT COMMAND\n 639899       36:47 Ssl  uv pip install --python .venv/bin/python torch==2.7.0 torchvision==0.22.0 --default-index https://download.pytorch.org/whl/cu128",
+    "log": ".cache/torch_cu128_install.log"
+  },
+  "remote_branch": "codex/force-critic-act-v2",
+  "remote_commit": "dc1ba7265686b56245f7773ee8c4860be5400bc1",
+  "pr": "https://github.com/Adeline123456789/closed-loop-il-rl/pull/1",
+  "pr_draft": true,
+  "publication_transport": "GitHub connector (HTTPS and SSH shell authentication failed)",
+  "verified_remote_tree": "4cbb711f02b07522a61c56b64272bc9117b66cfd",
+  "current_robot_transitions": 0,
+  "cpu_tests_passed": 37,
+  "next_action": "Poll existing tool session 20900; do not restart solely because a poll expires. If successful, install pinned Isaac/Lab dependencies and execute real 1-env camera smoke, then expert/interface audit. If terminal failure, finish truthful environment stop delivery and remote verification.",
+  "remaining_work": [
+    "resolve or establish terminal environment blocker",
+    "complete measured P0 if runtime becomes available; later stages only if P0 passes",
+    "later robot-stage orchestration is not implemented/validated; see implementation_audit.md",
+    "finalize terminal installation logs and report",
+    "publish final changes through connector",
+    "preserve local commits in archive branch/bundle then align working branch to verified remote commit without reset/force",
+    "verify exact local HEAD equals remote, critical source/report/raw metrics accessible, actual PR and Release status",
+    "completion audit against full original attachment; only then mark goal complete"
+  ],
+  "expert_download": {
+    "session_id": 28640,
+    "status": "RUNNING",
+    "first_attempt_returncode": 1,
+    "first_attempt_reason": "truncated response: 88447446 / 213431615 bytes; rejected, retry resumes",
+    "retry_log": ".cache/expert_download_retry.log"
+  }
+}

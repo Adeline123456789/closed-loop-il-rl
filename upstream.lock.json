@@ -38,7 +38,13 @@
     "forge-peginsert-v1": {
       "repository": "angledusgar/forge-peginsert-v1",
       "revision": "447a6109cec7c228763d1bfc8cf0ab73f6558a1b",
-      "license": "apache-2.0"
+      "license": "apache-2.0",
+      "checkpoint": {
+        "filename": "forge_peginsert_2026-06-30.pth",
+        "bytes": 213431615,
+        "lfs_sha256": "10efdf802e8abfccaa13f6e7a18cc2887ca2f3f96b35526bc9984fde419e59f8",
+        "compatibility": "NOT_RUN"
+      }
     }
   },
   "audited_source_files": {

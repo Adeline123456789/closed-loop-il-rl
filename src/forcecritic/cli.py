@@ -29,8 +29,11 @@ def run_stage(run,stage,require_go=None):
     if stage in ('pilot','confirm','generalization'):
         if not require_go:raise ValueError('versioned GO decision required')
         decision=json.loads(Path(require_go).read_text())
-        if decision.get('status')!='GO_PILOT' or decision.get('config_hash')!=run.config_hash:
-            raise ValueError('GO decision absent, stale or wrong configuration')
+        predecessor={'pilot':'short-ablation','confirm':'pilot','generalization':'confirm'}[stage]
+        if (decision.get('status')!='GO_PILOT' or decision.get('config_hash')!=run.config_hash
+                or decision.get('from_stage')!=predecessor or decision.get('next_stage')!=stage
+                or not decision.get('evidence_hashes')):
+            raise ValueError('GO decision absent, stale, wrong stage or unsupported by evidence')
         for p,h in decision['evidence_hashes'].items():
             if digest(p)!=h:raise ValueError('GO evidence changed')
     # All robot stages require a measured P0 acceptance contract, not a manually flipped status.
@@ -55,6 +58,7 @@ def execute(run,args):
         return rc
     if args.command=='smoke':
         stage=f'smoke-{args.num_envs}'
+        if run.verified(stage):return 0
         if args.num_envs==8 and run.manifest['stages']['smoke-1']['status']!='PASSED':
             run.record(stage,'BLOCKED','1-env smoke not passed',2);return 2
         attempt=f'{stage}_{time.time_ns()}'
@@ -73,7 +77,7 @@ def execute(run,args):
         failure_text=result.get('stderr','')+result.get('stdout','')+result.get('error','')
         environment_failure=any(x in failure_text for x in ["No module named 'isaaclab'","No module named 'isaacsim'",'EULA','LICENSE','ConnectionError','timed out'])
         status='PASSED' if ok else ('BLOCKED' if environment_failure else 'FAILED_IMPLEMENTATION')
-        run.record(stage,status,'Real launcher attempted; see command log',0 if ok else 2,[run.report/f'{attempt}_command.json',output])
+        run.record(stage,status,'Real launcher attempted; see command log',0 if ok else 2,[run.report/f'{attempt}_command.json',output,Path('environment.lock.json')])
         return 0 if ok else 2
     if args.command=='run':return run_stage(run,args.stage,args.require_go)
     if args.command=='evaluate':

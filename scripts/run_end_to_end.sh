@@ -26,7 +26,20 @@ if ((rc==0)); then "$PY" -m forcecritic.cli smoke --num-envs 8 --config "$config
 for stage in baseline diagnostic short-ablation; do
   "$PY" -m forcecritic.cli run --stage "$stage" --config "$config" || { rc=$?; break; }
 done
-# GO stages can only be entered by a versioned decision; never auto-create one.
+# Conditional stages consume a stage-specific decision from the preceding stage.
+# Missing/negative evidence is recorded as a stop; this entry never manufactures GO.
+if ((rc==0)); then
+  run_id=$("$PY" -c 'import json; print(json.load(open("reports/PROJECT_STATUS.json"))["run_id"])') || rc=$?
+  for stage in pilot confirm generalization; do
+    ((rc==0)) || break
+    decision="reports/$run_id/decision.json"
+    if [[ "$stage" == generalization ]]; then
+      "$PY" -m forcecritic.cli evaluate --suite generalization --no-training --require-go "$decision" --config "$config" || rc=$?
+    else
+      "$PY" -m forcecritic.cli run --stage "$stage" --require-go "$decision" --config "$config" || rc=$?
+    fi
+  done
+fi
 "$PY" -m forcecritic.cli report --config "$config" || rc=$?
 if "$publish"; then "$PY" scripts/publish.py || rc=$?; fi
 exit "$rc"

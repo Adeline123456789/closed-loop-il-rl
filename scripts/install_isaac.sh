@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 # Candidate environment install, distinct from CPU test environment. Does not accept EULA.
 set -euo pipefail
-python3.11 -m venv .venv
-PIP_CONFIG_FILE=/dev/null .venv/bin/python -m pip install 'isaacsim[all]==5.0.0' --index-url https://pypi.org/simple --extra-index-url https://pypi.nvidia.com
+cd "$(dirname "$0")/.."
+[[ -x .venv/bin/python ]] || python3.11 -m venv .venv
+# Install the audited CUDA build first, avoiding a redundant default CUDA wheel set.
 PIP_CONFIG_FILE=/dev/null .venv/bin/python -m pip install torch==2.7.0 torchvision==0.22.0 --index-url https://download.pytorch.org/whl/cu128
+PIP_CONFIG_FILE=/dev/null .venv/bin/python -m pip install 'isaacsim[all]==5.0.0' --index-url https://pypi.org/simple --extra-index-url https://pypi.nvidia.com
 if [[ ! -d .cache/IsaacLab ]]; then git clone --branch v2.2.1 --depth 1 https://github.com/isaac-sim/IsaacLab.git .cache/IsaacLab; fi
 actual=$(git -C .cache/IsaacLab rev-parse HEAD)
 [[ "$actual" == 0f00ca2b4b2d54d5f90006a92abb1b00a72b2f20 ]] || { echo 'Isaac Lab SHA mismatch' >&2; exit 2; }

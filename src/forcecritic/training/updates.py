@@ -60,14 +60,14 @@ def critic_step(critic, optimizer, condition, action, target, endpoints=None, pa
     pred = critic(condition.detach(), action.detach())
     loss = F.smooth_l1_loss(pred, target.detach()[:, None].expand_as(pred))
     if endpoints is not None:
-        if endpoints['policy_sha'] != policy_sha:
-            raise ValueError('stale MC continuation policy')
-        point = critic(endpoints['condition'], endpoints['action'].detach())
+        if endpoints['policy_sha'] != policy_sha or any(s != 'train' for s in endpoints['splits']):
+            raise ValueError('stale or non-training MC continuation labels')
+        point = critic(endpoints['condition'].detach(), endpoints['action'].detach())
         loss = loss + F.smooth_l1_loss(point, endpoints['returns'].detach()[:, None].expand_as(point))
     if pairs is not None:
         if pairs['policy_sha'] != policy_sha or any(s != 'train' for s in pairs['splits']):
             raise ValueError('stale or non-training pair labels')
-        delta = critic(pairs['condition'], pairs['plus'].detach()) - critic(pairs['condition'], pairs['minus'].detach())
+        delta = critic(pairs['condition'].detach(), pairs['plus'].detach()) - critic(pairs['condition'].detach(), pairs['minus'].detach())
         error = F.smooth_l1_loss(delta, pairs['delta'].detach()[:, None].expand_as(delta), reduction='none').mean((1, 2))
         loss = loss + lambda_pair * masked_mean(error, pairs['accepted'])
     loss.backward()
