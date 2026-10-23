@@ -59,7 +59,7 @@ def execute(run,args):
     if args.command=='smoke':
         stage=f'smoke-{args.num_envs}'
         if run.verified(stage):return 0
-        if args.num_envs==8 and run.manifest['stages']['smoke-1']['status']!='PASSED':
+        if args.num_envs==8 and not run.verified('smoke-1'):
             run.record(stage,'BLOCKED','1-env smoke not passed',2);return 2
         attempt=f'{stage}_{time.time_ns()}'
         output=run.report/f'{attempt}.json'

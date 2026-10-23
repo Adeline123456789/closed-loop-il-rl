@@ -10,8 +10,10 @@ from torch.nn import functional as F
 
 class ACT(nn.Module):
     def __init__(self, state_dim=8, history_dim=16, width=128, latent_dim=32,
-                 layers=2, backbone=None, feature_dim=512, decoder_layers=None):
+                 layers=2, backbone=None, feature_dim=512, decoder_layers=None,
+                 visual_grid=4, attention_heads=4):
         super().__init__()
+        self.visual_grid=visual_grid
         if backbone is None:
             from torchvision.models import resnet18, ResNet18_Weights
             net = resnet18(weights=ResNet18_Weights.DEFAULT)
@@ -24,14 +26,14 @@ class ACT(nn.Module):
         self.z_proj = nn.Linear(latent_dim, width)
         self.action_proj = nn.Linear(4, width)
         self.cls = nn.Parameter(torch.zeros(1, 1, width))
-        self.obs_pos = nn.Parameter(torch.randn(1, 23, width) * .02)
+        self.obs_pos = nn.Parameter(torch.randn(1, max(23,6+visual_grid**2), width) * .02)
         self.post_pos = nn.Parameter(torch.randn(1, 6, width) * .02)
         self.queries = nn.Parameter(torch.randn(1, 4, width) * .02)
-        enc = lambda: nn.TransformerEncoderLayer(width, 4, width * 4, dropout=0., batch_first=True)
+        enc = lambda: nn.TransformerEncoderLayer(width, attention_heads, width * 4, dropout=0., batch_first=True)
         self.posterior = nn.TransformerEncoder(enc(), layers, enable_nested_tensor=False)
         self.encoder = nn.TransformerEncoder(enc(), layers, enable_nested_tensor=False)
         self.decoder = nn.TransformerDecoder(nn.TransformerDecoderLayer(
-            width, 4, width * 4, dropout=0., batch_first=True), decoder_layers or layers)
+            width, attention_heads, width * 4, dropout=0., batch_first=True), decoder_layers or layers)
         self.latent_head = nn.Linear(width, latent_dim * 2)
         self.action_head = nn.Linear(width, 4)
         self.latent_dim = latent_dim
@@ -47,7 +49,7 @@ class ACT(nn.Module):
             mean=image.new_tensor([.485,.456,.406])[None,:,None,None]
             std=image.new_tensor([.229,.224,.225])[None,:,None,None]
             x = self.backbone((image-mean)/std)
-            return F.adaptive_avg_pool2d(x, (4, 4)).flatten(2).transpose(1, 2)
+            return F.adaptive_avg_pool2d(x, (self.visual_grid,self.visual_grid)).flatten(2).transpose(1, 2)
 
     def decode(self, obs, z):
         if obs['history'].shape[1] != 4:

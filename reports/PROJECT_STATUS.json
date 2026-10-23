@@ -5,7 +5,7 @@
     "doctor": {
       "stage": "doctor",
       "status": "BLOCKED",
-      "reason": "Missing runtime: isaacsim,isaaclab; Isaac candidate requires Python 3.11; this interpreter is CPU verification only",
+      "reason": "Missing runtime: isaacsim,isaaclab; Isaac candidate requires Python 3.11; this interpreter is CPU verification only; Torch differs from audited 2.7.0 candidate",
       "returncode": 2,
       "command": [
         "/media/midea/F496AC8096AC4548/closed_loop_act/.venv-cpu/bin/python",
@@ -15,38 +15,42 @@
         "--config",
         "configs/minimal_validation.yaml"
       ],
-      "code_sha": "dd7a843d94bb6bf97c679f2a6b9bb65b3d0393e7",
+      "code_sha": "7fb6d7dd8979c5131158d9c968e3090f27847f34",
       "dirty": true,
       "source_hashes": {
         "src/forcecritic/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "src/forcecritic/cli.py": "a8c5f1dfe93287ebb70f01dba7291e0dbaf11d59e9a30315edfba4635bbd89ea",
+        "src/forcecritic/cli.py": "8ec026a2546ed2f1457d0dd231cb1392979fe3eef4035680b0708c50d59b497b",
         "src/forcecritic/data/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "src/forcecritic/data/audit.py": "863a57c83f424150d12bce6b288c0af54fc7226ba196c5473971e8e5396d0441",
+        "src/forcecritic/data/demonstrations.py": "304155e4219e022de344b386ff28b52954c6efce7e1d8296ee5ada1270b6ed3b",
         "src/forcecritic/data/splits.py": "401f04ccae56c9a94ee2850e58b47238167c101768347f6a81f718e44725f885",
         "src/forcecritic/diagnostics/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "src/forcecritic/diagnostics/pairs.py": "d7db4d80d547e988ce5cf0d97677e279df94930d6231ca5e3b6c539c36c7acb3",
-        "src/forcecritic/doctor.py": "66b514dcb87e8c679cc64adca10dc9f9b477c1062a1f9d5e965276d9418458f9",
+        "src/forcecritic/doctor.py": "2cabd3c8db6c6485985e02fbc2628281a0b10649c3e032b0d5d4db9a72e1abd9",
         "src/forcecritic/envs/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "src/forcecritic/envs/contracts.py": "bd7248770b38f66f88df405399e67b5008384dc54c7add5b8cd8fd15d7367495",
         "src/forcecritic/envs/observations.py": "9bdd847a8ad4357eb602e43e3cc38e2492f36f52138571f27c388d7f5cbffb96",
         "src/forcecritic/envs/reward.py": "a96b9b415fbed5d7527ec5845cbbe455797d516a195ee10ffcfa82ec540df606",
         "src/forcecritic/evaluation/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "src/forcecritic/evaluation/gates.py": "41b000644a23f6b1f9137d86632d81a7131b4ddeb278b028437acaff7313fcde",
-        "src/forcecritic/evaluation/report.py": "0f81b323dd55325443cc14b545bf156a98e57c8dbd70d1d3ac5e6f2b8cb05042",
+        "src/forcecritic/evaluation/metrics.py": "e81957859ad13165695701dea3d871af5cba94bc8f762495bdf620bef1feda6f",
+        "src/forcecritic/evaluation/plots.py": "3a1a0d04bf891722900cfb69bc851f7c00c560e892af3f118da9009af78d052d",
+        "src/forcecritic/evaluation/report.py": "fb5dc2a67178dee1b308846de36fb8268ecefd57e577da0c73c82781ace703f9",
         "src/forcecritic/models/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "src/forcecritic/models/act.py": "660cdc402b359d58174d289bb3652bf3044af5adf502d8868f0d775403ca9281",
+        "src/forcecritic/models/act.py": "5dde71eed6ca449c333cb5cf78c954813219b89b26a4189025986794a2bbae91",
         "src/forcecritic/models/critic.py": "b1f62c883982aa8c884c811743c5f7e5bac90574a335f219705ee5ce9db5ff05",
         "src/forcecritic/runtime.py": "ec2d8da9a045426978bae67b44ebe00f03e9b3785ea1ea82c77820484dd83b00",
         "src/forcecritic/training/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "src/forcecritic/training/ablation.py": "4302b50d25c6327db4e065c5ac3f50c32b35679abf4030f1927f1765d3eac92a",
+        "src/forcecritic/training/ablation.py": "7818964f0503bd350c2b466cd574f8f1cf2e845c33778e2845d79f3837b7ce97",
         "src/forcecritic/training/checkpoint.py": "b63edd04f2ffd5012e9f0c90e46d67702036816c0d4518a8b17d9e4b6baa8d3c",
+        "src/forcecritic/training/pretrain.py": "440e49296367c45ee51119656350fdc9e20b8b2dd330badb556a7b95eb85f853",
         "src/forcecritic/training/replay.py": "bc179c3ea8fdc39731d0ccd5420092da92a378616cea049e58fc64fc99140b84",
-        "src/forcecritic/training/updates.py": "de30146a37ec89540aacd14eef658e1bdba05eca470ec133cc95be64b4685fe4"
+        "src/forcecritic/training/updates.py": "3d14d304d29483132f9d86098fe835ba61f3e16e5fcc035236f970522aad6d7e"
       },
       "config_hash": "a355f6209f5049e01afb25d9cc196524ad577f11dee2d54404219f7f0e64eedb",
-      "time": "2026-10-23T11:19:58.713145+00:00",
+      "time": "2026-10-23T11:57:11.662211+00:00",
       "artifacts": {
-        "reports/20261023T104759Z/doctor.json": "c7043cc4aefa029e7857ce91ffc9673499eeae99ff53c935aa503d6d722c1b04"
+        "reports/20261023T104759Z/doctor.json": "e7d84219b3a58afea543b55e6aa6a31935257c97fb1adbf26a2fc2aac532c5ef"
       }
     },
     "audit-data": {

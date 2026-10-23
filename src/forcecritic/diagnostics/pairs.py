@@ -43,5 +43,10 @@ def fidelity(original, repeated, tolerance):
 def training_whitelist(rows, continuation_sha):
     if any(r['split'] != 'train' or r['continuation_sha'] != continuation_sha for r in rows):
         raise ValueError('non-training or stale continuation labels')
-    return sorted({r['checkpoint_id'] for r in rows if r['replay_passed'] and r['independent_confirmation']
-                   and r['improvement_lower'] > 0 and not r['cost_worse']})
+    accepted={}
+    for row in rows:
+        if (row['replay_passed'] and row['independent_confirmation']
+                and row['improvement_lower']>0 and not row['cost_worse']):
+            # Retain provenance for clone_arms/short_updates; bare IDs lose the split and policy guard.
+            accepted[row['checkpoint_id']]={k:row[k] for k in ('checkpoint_id','split','continuation_sha')}
+    return [accepted[k] for k in sorted(accepted)]

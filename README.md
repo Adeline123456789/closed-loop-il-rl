@@ -11,12 +11,21 @@ Implemented components and boundaries are documented in each run's `implementati
 The CPU verification interpreter is `.venv-cpu/bin/python`, created from the existing Python 3.12 / Torch 2.10.0+cu128 environment. It is separate from the candidate Python 3.11 / Isaac Sim 5.0 environment `.venv`.
 
 ```bash
-PYTHONPATH=src .venv-cpu/bin/python -m pytest -q
+PYTHONPATH=src PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 CUDA_VISIBLE_DEVICES='' .venv-cpu/bin/python -m pytest -q
 PYTHONPATH=src .venv-cpu/bin/python -m forcecritic.cli doctor --config configs/minimal_validation.yaml
 PYTHONPATH=src .venv-cpu/bin/python -m forcecritic.cli audit-data --config configs/minimal_validation.yaml
 ```
 
 The audit downloads metadata first and only one PegInsert parquet/video episode per success/failure set at pinned HF revisions. Raw downloads are ignored by Git. The observed schema does not settle camera extrinsics, sensor reference/sign, collection checkout or pre/post EMA action semantics. Therefore these episodes are not yet admitted for BC/TD training.
+
+Additional software checks actually exercised (neither is a robot rollout):
+
+```bash
+PYTHONPATH=src CUDA_VISIBLE_DEVICES='' .venv-cpu/bin/python scripts/inspect_baseline.py --output reports/20261023T104759Z/baseline_architecture.json
+CUDA_VISIBLE_DEVICES='' .venv-cpu/bin/python scripts/audit_expert.py --output reports/20261023T104759Z/expert_download.json
+```
+
+The baseline factory uses a pretrained frozen ResNet18, an 8×8 image feature grid, width 512, eight attention heads, four encoder layers and seven decoder layers. The checkpoint audit verifies the pinned expert file's size/hash and safely reads tensor shapes; compatibility and insertion performance still require the official player. Download the expert first with `.venv-cpu/bin/python scripts/download_expert.py` if its ignored cache is absent.
 
 The unified entry records blockers, generates reports and attempts publication even after a stage stops:
 

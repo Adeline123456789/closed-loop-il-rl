@@ -19,6 +19,8 @@ def short_updates(actor,critic,actor_optimizer,critic_optimizer,*,td_batches,end
     if critic_updates and not all((td_batches,endpoint_batches,pair_batches)):
         raise ValueError('shared TD, endpoint and pair batches required')
     if actor_updates and not actor_batches:raise ValueError('actor batches required')
+    if any(row['continuation_sha']!=policy_sha for row in whitelist):
+        raise ValueError('stale actor whitelist continuation policy')
     states=clone_arms(actor,critic,actor_optimizer,critic_optimizer,data_hash,whitelist)
     results={}
     for arm,start in states.items():

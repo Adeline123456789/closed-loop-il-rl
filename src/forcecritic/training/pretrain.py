@@ -17,7 +17,7 @@ from ..runtime import atomic_json
 def baseline_actor(seed=0):
     # Standard-capacity ACT backbone/transformer for the real baseline, not the tiny test fixture.
     torch.manual_seed(seed)
-    return ACT(width=512,layers=4,decoder_layers=7)
+    return ACT(width=512,layers=4,decoder_layers=7,visual_grid=8,attention_heads=8)
 
 
 def pretrain(actor,dataset,optimizer,checkpoint,*,updates=10000,batch_size=128,seed=0,

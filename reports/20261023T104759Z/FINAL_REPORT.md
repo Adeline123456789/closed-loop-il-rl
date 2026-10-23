@@ -8,7 +8,7 @@ P0 has not passed. No ACT pretraining or robot-method experiment is claimed. The
 
 | Stage | Status | Reason |
 |---|---|---|
-| doctor | BLOCKED | Missing runtime: isaacsim,isaaclab; Isaac candidate requires Python 3.11; this interpreter is CPU verification only |
+| doctor | BLOCKED | Missing runtime: isaacsim,isaaclab; Isaac candidate requires Python 3.11; this interpreter is CPU verification only; Torch differs from audited 2.7.0 candidate |
 | audit-data | BLOCKED | BLOCKED_DATA_ALIGNMENT: collection code/SHA and pre/post EMA action stage unavailable; BLOCKED_SENSOR_CONTRACT: data-card EE frame differs from pinned stock source; sign/reference/baseline unverified; BLOCKED_CAMERA_ALIGNMENT: collection camera extrinsics/intrinsics not supplied |
 | smoke-1 | BLOCKED | Real launcher attempted; see command log |
 | smoke-8 | NOT_RUN | Predecessor gate not passed |

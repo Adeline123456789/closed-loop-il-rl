@@ -5,6 +5,7 @@ from torch import nn
 import forcecritic.training.ablation as ablation
 from forcecritic.models.critic import TwinCritic
 from forcecritic.training.updates import critic_step
+from forcecritic.diagnostics.pairs import training_whitelist
 
 
 def test_short_updates_recompute_targets_and_reset_each_arm(monkeypatch):
@@ -55,3 +56,14 @@ def test_endpoint_labels_reject_test_split_and_detach_observation():
     endpoint['splits']=['train','train']
     critic_step(q,optimizer,condition,action,returns,endpoints=endpoint,policy_sha='fixed')
     assert condition.grad is None and action.grad is None
+
+
+def test_generated_whitelist_retains_training_policy_identity():
+    row=dict(checkpoint_id='p1/c0',split='train',continuation_sha='v1',replay_passed=True,
+             independent_confirmation=True,improvement_lower=.1,cost_worse=False)
+    white=training_whitelist([row],'v1')
+    assert white==[dict(checkpoint_id='p1/c0',split='train',continuation_sha='v1')]
+    # Reject stale filters even before any optimizer or sampling operation.
+    with pytest.raises(ValueError,match='stale actor whitelist'):
+        ablation.short_updates(None,None,None,None,td_batches=[],endpoint_batches=[],pair_batches=[],
+            actor_batches=[],whitelist=white,data_hash='x',policy_sha='v2',critic_updates=0,actor_updates=0)

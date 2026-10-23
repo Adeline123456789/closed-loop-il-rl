@@ -16,6 +16,12 @@ def digest(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
+def source_hashes():
+    paths=list(Path('src').rglob('*.py'))
+    paths+=list(Path('scripts').rglob('*.py'))+list(Path('scripts').rglob('*.sh'))
+    return {str(p):digest(p) for p in sorted(paths)}
+
+
 def atomic_json(path, value):
     path=Path(path); path.parent.mkdir(parents=True, exist_ok=True)
     temp=path.with_suffix(path.suffix+'.tmp'); temp.write_text(json.dumps(value,indent=2,allow_nan=False)+'\n'); temp.replace(path)
@@ -55,6 +61,7 @@ class Run:
     def verified(self, stage):
         event=self.manifest['stages'].get(stage,{})
         if event.get('status')!='PASSED' or event.get('config_hash')!=self.config_hash:return False
+        if event.get('source_hashes')!=source_hashes():return False
         for p,h in {**event.get('artifacts',{}),**event.get('source_hashes',{})}.items():
             if not Path(p).is_file() or digest(p)!=h:return False
         return bool(event.get('artifacts'))
@@ -64,7 +71,7 @@ class Run:
                'command':[sys.executable,'-m','forcecritic.cli',*sys.argv[1:]],
                'code_sha':command(['git','rev-parse','HEAD'])['stdout'].strip(),
                'dirty':bool(command(['git','status','--porcelain'])['stdout'].strip()),
-               'source_hashes':{str(p):digest(p) for p in sorted(Path('src').rglob('*.py'))},
+               'source_hashes':source_hashes(),
                'config_hash':self.config_hash,'time':datetime.datetime.now(datetime.timezone.utc).isoformat(),
                'artifacts':{str(p):digest(p) for p in artifacts if Path(p).is_file()}}
         self.manifest['stages'][stage]=event;self.manifest['events'].append(event);self.save()
