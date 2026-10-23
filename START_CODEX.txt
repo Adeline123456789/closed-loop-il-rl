@@ -1,9 +1,15 @@
-请先阅读本仓库的 AGENTS.md、README.md 和 CODEX_TASK.md，严格实现 prd_mvp_v1_prior_gap 三组件 MVP：ACT-CVAE、模式条件 SAC+双Q、双可恢复性头，以及确定性的幂等方向投影。不要采用后来讨论的反事实力觉 KL、条件互信息或新增网络。
+请读取 AGENTS.md、README.md、CODEX_TASK.md 和 configs/minimal_validation.yaml。唯一有效协议是 force_critic_act_v2_diagnostic_first；旧 residual/distillation 三组件 MVP 已废弃，不要继续实现它。
 
-从 P0 环境/数据/动作/六维力审计开始；在兼容条件下用发布者的 stock PegInsert PPO checkpoint 做环境验收。先写适配器与单测，再实现真正 Isaac Lab FORGE 训练和评估；不要只生成伪代码或用 mock 替代仿真。
+目标：在真实 Isaac Lab FORGE PegInsert 中，验证六维力条件下的收益/接触代价 Critic 能否通过动作梯度直接更新 ACT，以及有限尺度配对校准是否比相同数据上的普通值学习更有用。ACT 就是在线 Actor；不加 residual SAC、双可恢复性头或成功轨迹蒸馏。
 
-先只做 PegInsert：用成功数据训练 ACT，审计失败数据；训练一个共同 residual 教师；从同一 ACT 起点和同一批教师数据比较不蒸馏、全量蒸馏、选择性蒸馏。额外评估 ACT-only，再给三条完整分支相同的 SAC 适配预算，完成一轮双向闭环。严格执行 CODEX_TASK.md 中的 pilot 预算、测试集隔离与日志规则。
+在 codex/force-critic-act-v2 分支先做 P0 硬件、数据、原生动作、力坐标、EMA、相机和reset审计。只取两个HF数据集的PegInsert子集；成功数据预训练ACT，失败数据审计，不虚构奖励/快照。实际读取数据版本后记录schema和split。
 
-一个训练种子的 pilot 有可信信号后，才做三个种子的确认与冻结模型的泛化测试。无 GPU、无兼容环境或关键数据语义不明确时，明确记录 BLOCKED/未验证，不伪造训练成绩，也不自动租赁付费机器。
+先实现可微ACT forward、双收益/代价Q和真正critic->action->ACT的autograd单测。不要仅生成伪代码。没有兼容GPU/Isaac时完成能实际执行的CPU检查并明确BLOCKED，不用toy/mock环境给插接成功率。
 
-在 codex/prd-mvp 分支分阶段提交并推送实际源码、配置、单测、版本清单、原始实验 CSV/JSON 和报告到 https://github.com/Adeline123456789/closed-loop-il-rl。保留失败与负结果；不上传密钥、原始数据和巨大缓存。每阶段说明实际执行的命令、退出码、commit 和产物位置。只在真实运行后填写实验结果。
+然后按任务书做最小诊断：8个检查点比较原始连续执行、快照恢复、前缀重放；通过后24个独立检查点比较A0/A+/A-的真实有限效果；检验Q的动作判断与ACT更新后的真实动作/收益。不能把跨接触模式差值当精确导数，不能用正在检验的Q为测试回报补尾。
+
+只有可信性与改进证据足够才推进B1 Direct-value、B2 Direct-filter、B3 Calibrated-filter。三组同起点、同批配对数据、相同端点值监督；B2/B3只差配对价值差loss。先短步试验，再最多两轮在线闭环；保留ACT0作评估参照。无校准信号不自动扩大预算；普通直接更新有效但校准无效要分别报告。
+
+先seed=0、100个独立测试回合。有可重复信号才扩3个种子与冻结策略的位姿、摩擦、力噪声/延迟泛化，禁止第一轮同时训练多个任务。所有配对/前缀/验证环境步都计成本。
+
+分阶段提交并推送真实源码、配置、单测、依赖版本、原始CSV/JSON和报告到 https://github.com/Adeline123456789/closed-loop-il-rl 。不要上传秘密、原始数据/缓存或巨大replay；不force-push。未跑写NOT_RUN、环境缺失写BLOCKED、证据不足写INCONCLUSIVE；保留负结果，不能为了赢对照偷偷改算法。最终给实际commit、命令/退出码、实测结果位置和继续/停止判断。当前会话结束不表示任务在后台自动继续。
