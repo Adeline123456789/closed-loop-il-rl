@@ -1,0 +1,11 @@
+{
+  "shell_push": "BLOCKED_AUTH",
+  "connector_identity": "Adeline123456789",
+  "connector_repository": "Adeline123456789/closed-loop-il-rl",
+  "connector_permissions": {
+    "admin": true,
+    "push": true
+  },
+  "publication": "NOT_YET_ATTEMPTED",
+  "secrets_logged": false
+}

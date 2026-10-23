@@ -1,0 +1,95 @@
+[
+  {
+    "command": [
+      "/media/midea/F496AC8096AC4548/closed_loop_act/.venv-cpu/bin/python",
+      "-m",
+      "forcecritic.cli",
+      "run",
+      "--stage",
+      "baseline",
+      "--config",
+      "configs/minimal_validation.yaml"
+    ],
+    "returncode": 2,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "/media/midea/F496AC8096AC4548/closed_loop_act/.venv-cpu/bin/python",
+      "-m",
+      "forcecritic.cli",
+      "run",
+      "--stage",
+      "diagnostic",
+      "--config",
+      "configs/minimal_validation.yaml"
+    ],
+    "returncode": 2,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "/media/midea/F496AC8096AC4548/closed_loop_act/.venv-cpu/bin/python",
+      "-m",
+      "forcecritic.cli",
+      "run",
+      "--stage",
+      "short-ablation",
+      "--config",
+      "configs/minimal_validation.yaml"
+    ],
+    "returncode": 2,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "/media/midea/F496AC8096AC4548/closed_loop_act/.venv-cpu/bin/python",
+      "-m",
+      "forcecritic.cli",
+      "run",
+      "--stage",
+      "pilot",
+      "--config",
+      "configs/minimal_validation.yaml",
+      "--require-go",
+      "reports/20261023T104759Z/decision.json"
+    ],
+    "returncode": 2,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "/media/midea/F496AC8096AC4548/closed_loop_act/.venv-cpu/bin/python",
+      "-m",
+      "forcecritic.cli",
+      "run",
+      "--stage",
+      "confirm",
+      "--config",
+      "configs/minimal_validation.yaml",
+      "--require-go",
+      "reports/20261023T104759Z/decision.json"
+    ],
+    "returncode": 2,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "/media/midea/F496AC8096AC4548/closed_loop_act/.venv-cpu/bin/python",
+      "-m",
+      "forcecritic.cli",
+      "evaluate",
+      "--suite",
+      "generalization",
+      "--no-training"
+    ],
+    "returncode": 2,
+    "stdout": "",
+    "stderr": ""
+  }
+]

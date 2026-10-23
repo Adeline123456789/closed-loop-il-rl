@@ -1,0 +1,75 @@
+{
+  "IsaacLab": {
+    "repository": "isaac-sim/IsaacLab",
+    "ref": "v2.2.1",
+    "sha": "0f00ca2b4b2d54d5f90006a92abb1b00a72b2f20"
+  },
+  "act": {
+    "repository": "tonyzhaozh/act",
+    "ref": "HEAD",
+    "sha": "742c753c0d4a5d87076c8f69e5628c79a8cc5488"
+  },
+  "lerobot": {
+    "repository": "huggingface/lerobot",
+    "ref": "HEAD",
+    "sha": "f9e9d739ea7055b282ea1b165e8785412a674693"
+  },
+  "TD3": {
+    "repository": "sfujim/TD3",
+    "ref": "HEAD",
+    "sha": "34770ccdcb51df6f6c7d85c1ba7e40d71b940d16"
+  },
+  "TD3_BC": {
+    "repository": "sfujim/TD3_BC",
+    "ref": "HEAD",
+    "sha": "8791ad7d7656cb8396f1b3ac8c37f170b2a2dd5f"
+  },
+  "HF": {
+    "forge-v1": {
+      "repository": "angledusgar/forge-v1",
+      "revision": "0ebe4ff65ade3da8d2011d66cce0259870c95f78",
+      "license": "apache-2.0"
+    },
+    "forge-failure-v1": {
+      "repository": "angledusgar/forge-failure-v1",
+      "revision": "820392e1167df4d6f5d60f985ec4f3b1b4fd6237",
+      "license": "apache-2.0"
+    },
+    "forge-peginsert-v1": {
+      "repository": "angledusgar/forge-peginsert-v1",
+      "revision": "447a6109cec7c228763d1bfc8cf0ab73f6558a1b",
+      "license": "apache-2.0",
+      "checkpoint": {
+        "filename": "forge_peginsert_2026-06-30.pth",
+        "bytes": 213431615,
+        "lfs_sha256": "10efdf802e8abfccaa13f6e7a18cc2887ca2f3f96b35526bc9984fde419e59f8",
+        "compatibility": "NOT_RUN"
+      }
+    }
+  },
+  "audited_source_files": {
+    "act/LICENSE": "4666c312da313e6c46929f6695d06cf98a2e7359b9c7dcbb0ea232d01b32cd42",
+    "act/detr/models/detr_vae.py": "499d968a3704156e5e29425a29691c3fa93421481d3609ed6b600b21801270f1",
+    "act/detr/models/transformer.py": "c6d2a1e7138e6ca62db7cc61bfc99857fb2a3a9375ba7b304310ca264f357ee2",
+    "IsaacLab/LICENSE": "df351ebfa8af317bf5a9ad83df63a8b68e4f5c04b71f30767cdb27aa434eac62",
+    "IsaacLab/source/isaaclab_tasks/isaaclab_tasks/direct/factory/factory_env.py": "52d843bc0dac4c3661ecc0e9c84bfafcfa73d11623337b8c9a74032e1ecf6869",
+    "IsaacLab/source/isaaclab_tasks/isaaclab_tasks/direct/factory/factory_env_cfg.py": "58e55b4ec4aab7c486077a29daa396bd4b8c8e08ba657d81467c9f4bc76720d6",
+    "IsaacLab/source/isaaclab_tasks/isaaclab_tasks/direct/factory/factory_tasks_cfg.py": "7ec8b9a66025f757a22fc5629d74918a4aeebd6b1bd68c19234c76bcdabe1366",
+    "IsaacLab/source/isaaclab_tasks/isaaclab_tasks/direct/forge/forge_env.py": "98a4739a4ce162773f85b7fb42172ca71ba2c60945d4f6e17276dcb0ca31cefd",
+    "IsaacLab/source/isaaclab_tasks/isaaclab_tasks/direct/forge/forge_env_cfg.py": "e28569c32335d71e42311424098472bb3424df8d50631221257fb1dac9a4670b",
+    "IsaacLab/source/isaaclab_tasks/isaaclab_tasks/direct/forge/forge_tasks_cfg.py": "9c1ad06cd537783dcd9b921bc98b74f2a34a25ad6929f3225314fa5f6fac2915",
+    "IsaacLab/source/isaaclab_tasks/isaaclab_tasks/direct/forge/forge_utils.py": "b41290b592545c1d708000c9eb49fd79fdc2f7046d6fc33be470e89fd299577f",
+    "lerobot/LICENSE": "9e108af26a7ae92a6d2cb0273856a4a0a84da8819c2cffee8b2657cc4f905718",
+    "lerobot/src/lerobot/policies/act/modeling_act.py": "83d954f79ccd3eaa6774dbea92524939c8ac08359bb355ba7cd37b8601e1e3af",
+    "TD3/LICENSE": "5a596c473413553b1fb3e8db602e32524b20166adbbd0f58cbcda60b16e19195",
+    "TD3/TD3.py": "70bec1b3b9e7c623e732c1f81d95fb30618a550919bfcbaeea31c82d54754df0",
+    "TD3_BC/LICENSE": "a240abc8cca1f89e9063e654943a2373bd1d040b9cd20cbc763007d5efef087f",
+    "TD3_BC/TD3_BC.py": "2d4d5c20f21cd90ca27982864ad589f6960b1d84f0f14bed80ca1db6f2beab45"
+  },
+  "rl_games": {
+    "repository": "isaac-sim/rl_games",
+    "ref": "python3.11",
+    "sha": "6b3534f29568158e9e29ec8bf83cc88fce5f0cae",
+    "purpose": "candidate official expert player dependency; not yet installed or run"
+  }
+}
