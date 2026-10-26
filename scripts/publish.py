@@ -22,6 +22,12 @@ if run(['git','branch','--show-current']).stdout.strip()!='codex/force-critic-ac
     raise SystemExit('Refuse publication outside task branch')
 tests=run([sys.executable,'-m','pytest','-q'])
 print(tests.stdout+tests.stderr)
+test_evidence={'scope':'Software checks only, not robot success evidence',
+    'command':[sys.executable,'-m','pytest','-q'],'returncode':tests.returncode,
+    'output':tests.stdout+tests.stderr,
+    'source_hashes':{str(p):hashlib.sha256(p.read_bytes()).hexdigest()
+        for root in ('src','scripts','tests') for p in sorted(Path(root).rglob('*.py')) if '__pycache__' not in str(p)}}
+Path('reports/publication_checks.json').write_text(json.dumps(test_evidence,indent=2)+'\n')
 if tests.returncode:raise SystemExit('CPU tests failed; refuse publication')
 check=run(['git','diff','--check'])
 if check.returncode:raise SystemExit(check.stdout+check.stderr)

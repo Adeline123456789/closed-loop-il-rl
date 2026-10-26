@@ -23,6 +23,7 @@ for name in ('eval_A1_initial','eval_A1_extension','eval_A2_extension'):
         sha=training['checkpoint_sha'] if 'A1' in name else p['inputs']['checkpoints/20261023T104759Z/direct_Q.pt']
         admission[name]=validate_completed_batch(report,result,name,p,sha)
 gradients=gradient_evidence(result/'A1_updates.csv','results/20261023T104759Z/direct_Q_actor_updates.csv')
+objective_probe=json.loads((report/'objective_probe.json').read_text()) if (report/'objective_probe.json').exists() else {'status':'NOT_RUN'}
 atomic_json(report/'gradient_evidence.json',gradients)
 atomic_json(report/'evaluation_admission.json',admission)
 decision=dict(status='NOT_RUN',reason='Matched A1 evaluation incomplete',extension_allowed=False)
@@ -50,7 +51,7 @@ summary=dict(protocol=p['protocol'],config_sha=digest(CONFIG),phase1=decision,ar
     phase3=dict(status='NOT_RUN',reason='Requires phase1/phase2 support and trustworthy replay; historical D0 NO_GO retained'),
     phase4=dict(status='NOT_RUN',reason='Requires phase3 GO'),phase5=dict(status='NOT_RUN',reason='Requires confirmation GO'),
     provenance=dict(historical_A2_already_observed=True,a2_first_update_audit=audit.get('status','NOT_RUN')),
-    gradient_evidence=gradients,evaluation_admission=admission,training_matching_audit=matching,
+    gradient_evidence=gradients,final_policy_objective_probe=objective_probe,evaluation_admission=admission,training_matching_audit=matching,
     execution_manifest=json.loads((report/'execution_manifest.json').read_text()))
 atomic_json(report/'phase1_decision.json',decision);atomic_json(report/'stage_results.json',summary)
 with (result/'phase1_summary.csv').open('w',newline='') as stream:
@@ -96,6 +97,9 @@ text+='6. 未运行原因：第二阶段等待第一阶段 GO；第三阶段还�
 text+='\n配置、模型 SHA、批次次序、训练/评估命令、退出码、原始 CSV、逐物理步日志和阶段报告分别保存。停止不等于停止交付；失败和 INCONCLUSIVE 同样上传。\n'
 text+=f"\n实现证据：200 次 A2 更新的 Q 梯度范数范围 {gradients['q_gradient_norm_range']}，Q/BC 范数比中位数 {gradients['q_to_bc_gradient_norm_median']:.4f}；负内积比例 {gradients['q_bc_negative_dot_fraction']:.3f}。每次均有非零实际 ACT 动作变化。这不证明 Q 方向正确；历史 A2 未记录步长项完整梯度，不能仅用范数断言没有抵消，也不以此擅自增加训练。\n"
 text+=f"\n匹配审计：{matching['batches_verified']}/200 批次一致，{matching['replay_train_rows']} 条训练 replay、{matching['demonstration_episodes']} 个示教回合、{matching['demonstration_windows']} 个窗口；优化器设置、归一化和冻结视觉编码器一致。A2−A1 参数差 L2={matching['parameter_changes']['A2_vs_A1']['l2']:.6f}，两种更新确实得到不同 ACT。历史 A2 未保存最终 RNG；首次更新数值精确复现，后续采样次序与随机调用数量由源代码和全批次记录核对。\n"
+if objective_probe.get('status')=='PASSED':
+    norms=objective_probe['weighted_parameter_gradient_norm']
+    text+=f"\n最终 A2 的固定训练批次只读检查：Q/BC/步长梯度范数为 {norms['q']:.4f}/{norms['bc']:.4f}/{norms['step']:.4f}，Q 与步长梯度余弦 {objective_probe['q_step_cosine']:.4f}；合梯度在 Q 方向的投影保留 {100*objective_probe['total_gradient_projection_onto_q_relative_to_q']:.2f}%。约束明显抵消部分 Q 梯度，但没有完全清零。这是一个最终状态的局部梯度检查，不是历史全部更新重现，也不等同于 Adam 实际步向或物理改善；没有新增优化步、仿真或权重调节。真实效果仍只由 episode CSV 判定。\n"
 text+='\n## 本轮执行预算与返回码\n\n'
 text+='| 批次 | OS 返回码 | 初始化/重置控制步等价数 | 评估控制步 | 总数（含失败尝试） |\n|---|---:|---:|---:|---:|\n'
 total=0

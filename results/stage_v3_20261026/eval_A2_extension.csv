@@ -1,0 +1,2 @@
+arm,policy_sha,split,seed,parent_id,stable_success,ever_success,final_success,return,cost,overload_steps,peak_force_N,peak_torque_Nm,steps,control_dt,termination_reason,source
+A2,58737a7556c76d0fa5cace6aa2f97dfe5730960fe2133e7ae0c12557ae356452,ordinary_direct_q_validation,22000,ordinary_direct_q_validation-22000,0,0,0,34.36702280203865,0.23426602020479048,10,21.14486312866211,2.748753786087036,149,0.06666666666666667,finite_horizon,real_forge

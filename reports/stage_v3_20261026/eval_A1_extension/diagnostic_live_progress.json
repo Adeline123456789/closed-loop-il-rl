@@ -1,31 +1,31 @@
 {
   "pid": 1337246,
   "started": 1793018509.6846528,
-  "phase": "real_evaluation",
+  "phase": "finished",
   "journal_path": "checkpoints/stage_v3_20261026/eval_A1_extension/physics_ledger.jsonl",
   "completed_continuations": 0,
   "previous_continuations": 0,
   "phase_completed": {},
-  "status": "RUNNING",
-  "last_physics_step": 1793018545.669853,
-  "updated": 1793018545.669855,
+  "status": "PASSED",
+  "last_physics_step": 1793019508.396242,
+  "updated": 1793019508.4019198,
   "accounting": {
     "physics_substeps": {
-      "restore": 67,
+      "restore": 3618,
       "interaction": 0,
       "branch": 0,
       "prefix": 0,
-      "evaluation": 981
+      "evaluation": 32312
     },
     "decimation": 8,
     "num_envs": 1,
     "control_step_cap": 10000.0,
     "individual_control_step_equivalents": {
-      "restore": 9,
+      "restore": 453,
       "interaction": 0,
       "branch": 0,
       "prefix": 0,
-      "evaluation": 123
+      "evaluation": 4039
     },
     "charged_before_step": true
   },

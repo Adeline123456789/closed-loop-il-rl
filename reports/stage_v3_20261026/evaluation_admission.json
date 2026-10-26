@@ -37,5 +37,44 @@
       "--enable_cameras",
       "--kit_args=--/exts/omni.kit.registry.nucleus/registries/0/url=https://ovextensionsprod.blob.core.windows.net/exts/kit/prod/107/shared"
     ]
+  },
+  "eval_A1_extension": {
+    "status": "PASSED",
+    "episodes": 32,
+    "csv_sha": "3e9ce5039a895229f88406900ca54b17a64e4a605ed2f1d35ad51e4dc8a28cee",
+    "policy_sha": "b425a94d3e0d10d5ad5db558fe0f7d5aba47458329ead603803655d3aea313e6",
+    "accounting": {
+      "physics_substeps": {
+        "restore": 3618,
+        "interaction": 0,
+        "branch": 0,
+        "prefix": 0,
+        "evaluation": 32312
+      },
+      "decimation": 8,
+      "num_envs": 1,
+      "control_step_cap": 10000.0,
+      "individual_control_step_equivalents": {
+        "restore": 453,
+        "interaction": 0,
+        "branch": 0,
+        "prefix": 0,
+        "evaluation": 4039
+      },
+      "charged_before_step": true
+    },
+    "returncode": 0,
+    "command": [
+      "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/bin/python",
+      "-u",
+      "scripts/evaluate_stage_v3.py",
+      "--arm",
+      "A1",
+      "--batch",
+      "extension",
+      "--headless",
+      "--enable_cameras",
+      "--kit_args=--/exts/omni.kit.registry.nucleus/registries/0/url=https://ovextensionsprod.blob.core.windows.net/exts/kit/prod/107/shared"
+    ]
   }
 }

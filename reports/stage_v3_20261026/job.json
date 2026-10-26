@@ -1,9 +1,9 @@
 {
   "status": "RUNNING",
-  "phase": "eval_A1_extension",
+  "phase": "eval_A2_extension",
   "pid": 1331113,
-  "updated": 1793018498.0470636,
-  "child_pid": 1337246,
-  "started": 1793018498.046738,
-  "log": "reports/stage_v3_20261026/eval_A1_extension.log"
+  "updated": 1793019512.1422703,
+  "child_pid": 1342543,
+  "started": 1793019512.141334,
+  "log": "reports/stage_v3_20261026/eval_A2_extension.log"
 }
