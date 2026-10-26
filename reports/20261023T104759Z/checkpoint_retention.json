@@ -1,0 +1,52 @@
+{
+  "status": "RUNNING",
+  "interval": 1000,
+  "producer_pid": 1228198,
+  "retained": [
+    {
+      "update": 6800,
+      "path": "checkpoints/20261023T104759Z/act0_milestones/act0_update_006800.pt",
+      "sha256": "2b939f3ff423f9587e25252a29808f0611fc98c8ffb311b0afb92d506db11148",
+      "bytes": 705477017,
+      "reason": "activation_snapshot",
+      "contains": [
+        "actor",
+        "optimizer",
+        "sampler_rng",
+        "torch_rng",
+        "cuda_rng",
+        "python_rng",
+        "numpy_rng",
+        "history",
+        "identity"
+      ]
+    },
+    {
+      "update": 7000,
+      "path": "checkpoints/20261023T104759Z/act0_milestones/act0_update_007000.pt",
+      "sha256": "9562d654970a108780f84b3704abf3e26e6223c21a6a3bfcc18ce31e1893290d",
+      "bytes": 705482969,
+      "reason": "scheduled_milestone",
+      "contains": [
+        "actor",
+        "optimizer",
+        "sampler_rng",
+        "torch_rng",
+        "cuda_rng",
+        "python_rng",
+        "numpy_rng",
+        "history",
+        "identity"
+      ]
+    }
+  ],
+  "unavailable_before_activation": [
+    1000,
+    2000,
+    3000,
+    4000,
+    5000,
+    6000
+  ],
+  "latest_observed_update": 7100
+}

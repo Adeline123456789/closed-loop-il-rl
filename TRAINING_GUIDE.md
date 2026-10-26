@@ -100,7 +100,14 @@ tail -f .cache/background_training.log
 watch -n 10 '.venv/bin/python -c "import json,pathlib; p=pathlib.Path(\"checkpoints/20261023T104759Z/act0.json\"); d=json.loads(p.read_text()) if p.exists() else {}; print({k:d.get(k) for k in (\"status\",\"completed_updates\",\"requested_updates\")})"'
 ```
 
-`act0.json` 每 100 次更新保存进度；模型与优化器在 `act0.pt`。普通 Critic 的 10,000 次更新目前在阶段结束时保存 `critic0.pt` 和 `baseline_training.json`，没有逐步进度 JSON。仿真评估时 CSV 每回合刷新：
+`act0.json` 每 100 次更新保存进度；模型与优化器在滚动覆盖的 `act0.pt`。独立后台保留器每 1,000 次将完整 checkpoint 留在 `checkpoints/20261023T104759Z/act0_milestones/act0_update_XXXXXX.pt`；启用时另存当前版本。早于启用时间且已被覆盖的版本无法补回，详见 `reports/20261023T104759Z/checkpoint_retention.json`。保留器固定原子保存的文件版本，并读取 checkpoint 内部 update 核实命名；不改变当前训练代码或优化器。
+
+```bash
+ls -lh checkpoints/20261023T104759Z/act0_milestones/
+cat reports/20261023T104759Z/checkpoint_retention.json
+```
+
+普通 Critic 的 10,000 次更新目前在阶段结束时保存 `critic0.pt` 和 `baseline_training.json`，没有逐步进度 JSON。仿真评估时 CSV 每回合刷新：
 
 ```bash
 cat reports/PROJECT_STATUS.json

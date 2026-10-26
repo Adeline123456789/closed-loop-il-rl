@@ -127,6 +127,14 @@ def main():
     fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
     if not (DATA / 'manifest.json').exists():
         raise RuntimeError('Completed demonstration manifest required; no duplicate collection launched')
+    # Independent retention also works with a trainer already loaded in memory.
+    # Its own lock prevents duplicates when the supervisor is replaced.
+    with (ROOT / '.cache/checkpoint_retention.log').open('a') as retention_log:
+        subprocess.Popen([PYTHON, 'scripts/retain_act_checkpoints.py',
+            '--checkpoint', str(ROOT / 'checkpoints' / RUN / 'act0.pt'),
+            '--report', str(REPORT / 'checkpoint_retention.json'),
+            '--producer-pid', str(args.adopt_pid or os.getpid())],
+            stdout=retention_log, stderr=subprocess.STDOUT)
     if not args.adopt_pid:
         state('RUNNING', 'initial-publication')
         publish()
