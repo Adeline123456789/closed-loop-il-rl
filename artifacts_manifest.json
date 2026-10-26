@@ -1365,7 +1365,7 @@
       "bytes": 73535
     },
     "reports/publication_checks.json": {
-      "sha256": "1b1e4926e934c212380a296769cc3cdab5354e67bd7c4bb7a15230ac4db059fe",
+      "sha256": "99cc128adaffb69f6311f8250d3f28b7b8acee103feafa016e38b4224ce129c1",
       "bytes": 11028
     },
     "reports/stage_v3_20261026/A1_batch_order.json": {
@@ -1387,6 +1387,10 @@
     "reports/stage_v3_20261026/a2_reproduction_audit.json": {
       "sha256": "5f892cbec76fc324acc5ba338142f10898a9c3b7fe7ba7935b799f9ecb43ed32",
       "bytes": 10088
+    },
+    "reports/stage_v3_20261026/background_supervisor.log": {
+      "sha256": "5c6a174dff30afc6645ca4d6f0f69673a61e398c02901e38a50ff9f28e4e98f4",
+      "bytes": 2255
     },
     "reports/stage_v3_20261026/eval_A1_extension.json": {
       "sha256": "341a1bdfd8d97d0059927c18e5ad2cb42ce7a5f4ce6662f725f9349606fde020",
@@ -1507,6 +1511,10 @@
     "reports/stage_v3_20261026/stage_results.json": {
       "sha256": "8f14b713c310718a53402c85aa492fc98e403c712a325d77b8424811e691705a",
       "bytes": 18675
+    },
+    "reports/stage_v3_20261026/supervisor_exit.json": {
+      "sha256": "f28f094dd884ef68372a6abed51ec0b6ae10736f4da3b0f742e1a85a78576461",
+      "bytes": 439
     },
     "reports/stage_v3_20261026/training_matching_audit.json": {
       "sha256": "5ef92ee6797386f4a9ef84c58d0eddd213f2cc7cb7aaa98ba467cae61af50da0",

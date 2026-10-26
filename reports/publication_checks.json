@@ -77,7 +77,7 @@
     "scripts/probe_environment_recreation.py": "ec071837404721fdbc490a80050e9396c3caab4376d4e8cbe20a0500e3e4b692",
     "scripts/probe_stage_v3_objective.py": "0ee98a2d808ea10918be94eb016693c188924f5f1f6b5215b9e2b9e2cb0a4d87",
     "scripts/publish.py": "e5fe1a08a70f83b06007750a18f757302f0c2e775b98a5c9d7dfee3ae417dada",
-    "scripts/publish_stage_v3.py": "638c4976f562faa4630862b533ee9fd1ba9dade1b1adb80ffa59ea6a64ed2863",
+    "scripts/publish_stage_v3.py": "deb0c80b5b7241c2c736cf068cde1dd8e9d8d7bf1bd5e028983f0e3c9ad49fd6",
     "scripts/record_checks.py": "ce86e4526e0186430de8577fe87e3200fd662974a5c7bc33d18621e1c95fa2c7",
     "scripts/record_environment.py": "e05442fdab973348326841d92eb9864fc0750454dc9cfa31a6530ea4e6548439",
     "scripts/recover_diagnostic_attempt.py": "949e6fb22dfc875d42f5dfd0a5c9fce4cf7a2e5887521202e65d77930f3f9e5e",
