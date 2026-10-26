@@ -1,0 +1,29 @@
+{
+  "phase": "shared_collection",
+  "time": 1793000984.008805,
+  "completed_episodes": 8,
+  "episode_cap": 100,
+  "individual_transitions": 2376,
+  "transition_cap": 50000,
+  "real_blocks": 531,
+  "accounting": {
+    "physics_substeps": {
+      "restore": 1072,
+      "interaction": 19008,
+      "branch": 0,
+      "prefix": 0,
+      "evaluation": 0
+    },
+    "decimation": 8,
+    "num_envs": 8,
+    "control_step_cap": 50000.0,
+    "individual_control_step_equivalents": {
+      "restore": 134,
+      "interaction": 2376,
+      "branch": 0,
+      "prefix": 0,
+      "evaluation": 0
+    },
+    "charged_before_step": true
+  }
+}

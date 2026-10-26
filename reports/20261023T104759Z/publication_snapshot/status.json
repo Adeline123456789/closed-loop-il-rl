@@ -1,5 +1,5 @@
 {
-  "snapshot_time_utc": "2026-10-26T07:47:35.874190+00:00",
+  "snapshot_time_utc": "2026-10-26T07:49:43.156488+00:00",
   "completed_collection_runs": 20,
   "planned_collection_runs": 20,
   "completed_episodes": 376,
@@ -136,13 +136,12 @@
   },
   "raw_dataset_location": "/media/midea/F496AC8096AC4548/closed_loop_act/data/act_demonstrations",
   "background_job": {
-    "status": "STAGE_FINISHED",
-    "stage": "smoke-8",
-    "time_utc": "2026-10-26T07:47:35.494921+00:00",
+    "status": "RUNNING",
+    "stage": "baseline",
+    "time_utc": "2026-10-26T07:47:43.604285+00:00",
     "pid": 1249544,
     "session": "forcecritic-training",
-    "log": ".cache/background_training.log",
-    "returncode": 0
+    "log": ".cache/background_training.log"
   },
   "note": "Measured snapshot; expert success is not ACT performance. Raw arrays and weights remain local."
 }
