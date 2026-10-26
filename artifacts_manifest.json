@@ -1361,8 +1361,8 @@
       "bytes": 3998
     },
     "reports/PROJECT_STATUS.json": {
-      "sha256": "4064c1a6b5a171724f222612d696e84f4b01633c949cc2016281ee40387e24f7",
-      "bytes": 72484
+      "sha256": "06e1adad68cddefac864bc45275bb5d47e51bbbbe6d9ea75422328aa2078e929",
+      "bytes": 72993
     },
     "reports/stage_v3_20261026/A1_batch_order.json": {
       "sha256": "f4fbd10ff18a75dbbcaf9293638a74cbddeed0dff64d2196f97218b2076e6095",
@@ -1377,28 +1377,44 @@
       "bytes": 6942
     },
     "reports/stage_v3_20261026/FINAL_REPORT.md": {
-      "sha256": "4b2be164933798039aaa3f5f264f2a2463b2e17a0686f38dedc10496e75ed6db",
-      "bytes": 4087
+      "sha256": "a2bae0604fbe88b25d24896877c00284539420c4cded27c05b1c0ce8b3cf4989",
+      "bytes": 4473
     },
     "reports/stage_v3_20261026/a2_reproduction_audit.json": {
       "sha256": "5f892cbec76fc324acc5ba338142f10898a9c3b7fe7ba7935b799f9ecb43ed32",
       "bytes": 10088
     },
+    "reports/stage_v3_20261026/eval_A1_extension.log": {
+      "sha256": "4b69a9e39b97a1170a1d8d59c13774feb466d12d56fcb7847bade711cd147553",
+      "bytes": 6971
+    },
+    "reports/stage_v3_20261026/eval_A1_extension/diagnostic_live_progress.json": {
+      "sha256": "bec12a7e4a6f5fd3bced05bff558a690802ed17a822a4bbf0e08216e57e52518",
+      "bytes": 849
+    },
+    "reports/stage_v3_20261026/eval_A1_initial.json": {
+      "sha256": "8d10d406567d9075d07c3f2b77a99fb5b07da85121738dde3ef65276c7e7ef4f",
+      "bytes": 10587
+    },
     "reports/stage_v3_20261026/eval_A1_initial.log": {
-      "sha256": "7bc5cdf8f770b9acf0047170a73392dc27f0ea448ee6bb089abe47bdd1d99d17",
-      "bytes": 7431
+      "sha256": "5142dd6626a1d79c6476a6ff363aa1d26884afaa93de8d165dd17f4245a11090",
+      "bytes": 7591
+    },
+    "reports/stage_v3_20261026/eval_A1_initial.supervisor.json": {
+      "sha256": "3c3bf69421be31ff9fb531a024d2a5ab20d7f1f849875dd3aa756a539d47eedc",
+      "bytes": 973
     },
     "reports/stage_v3_20261026/eval_A1_initial/diagnostic_live_progress.json": {
-      "sha256": "f12d8eeaf891bfe16e20c02714183cd3c7e5841bec622fee93db4d73a9982b52",
-      "bytes": 852
+      "sha256": "3fdf3d0fa12e2616b994fff5736b55a8cf0ad6c4e36c6944dde6ad466216d167",
+      "bytes": 843
     },
     "reports/stage_v3_20261026/evaluation_admission.json": {
-      "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
-      "bytes": 3
+      "sha256": "0377bed1504ac0c5036b9d632933057ac974b912a1835a754c8a3f17deec22a5",
+      "bytes": 1132
     },
     "reports/stage_v3_20261026/execution_manifest.json": {
-      "sha256": "d33c3b9c6f4276c9fc52eb8b4bfdc194a3f3d45aaae317a2b2dd137c329d75e4",
-      "bytes": 522
+      "sha256": "1bd0f149947139a75fe99dea1b8e5acb5f375dc8ba5a468a9236907b8d86dedc",
+      "bytes": 1673
     },
     "reports/stage_v3_20261026/gradient_evidence.json": {
       "sha256": "c94dc704ef9b3275ce1447c2e85f1ec15f200baeeb935ed566b3fd62c8a088f9",
@@ -1409,12 +1425,16 @@
       "bytes": 2485
     },
     "reports/stage_v3_20261026/job.json": {
-      "sha256": "8b941eef72d4cdea684f31d00bb633762b114ad33d9eb46c18971690f46af551",
-      "bytes": 221
+      "sha256": "efd5487baa8a4dbe125f40c6f7e6edb8dbfb17b2c113ac3254dea0949c011aeb",
+      "bytes": 225
     },
     "reports/stage_v3_20261026/phase1_decision.json": {
-      "sha256": "bcf72a7b89a220c783fcd058e1f7f0f48691ef30ffbe66bdcbb2ac1e3ff2adf6",
-      "bytes": 104
+      "sha256": "7a35d255b227e4f2208c8646550e8f5db9db20148c90cd555cb75e4d15d65def",
+      "bytes": 556
+    },
+    "reports/stage_v3_20261026/phase1_look1.json": {
+      "sha256": "7a35d255b227e4f2208c8646550e8f5db9db20148c90cd555cb75e4d15d65def",
+      "bytes": 556
     },
     "reports/stage_v3_20261026/plan_lock.json": {
       "sha256": "c739cf654660dc6c96e24ee889bb00f361c6ac80a57ece4f6a23aa6e3c7ff21f",
@@ -1425,8 +1445,8 @@
       "bytes": 657
     },
     "reports/stage_v3_20261026/stage_results.json": {
-      "sha256": "28454c0a73f89acb6ddf731f0d74e3e10519d529f3a8a776a3d20b6adfc5975b",
-      "bytes": 7450
+      "sha256": "4eca33641e29808ebe638e1ada7a41f82492942944c03a8e02958a1a442f62df",
+      "bytes": 10311
     },
     "reports/stage_v3_20261026/training_matching_audit.json": {
       "sha256": "5ef92ee6797386f4a9ef84c58d0eddd213f2cc7cb7aaa98ba467cae61af50da0",
@@ -1520,13 +1540,17 @@
       "sha256": "d81aec707b590519a7023cd3a8e96e5c6ad86cbe3c03a520c49ecd0eb8398e94",
       "bytes": 29647
     },
+    "results/stage_v3_20261026/eval_A1_extension.csv": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
     "results/stage_v3_20261026/eval_A1_initial.csv": {
-      "sha256": "648b6df17efc7ea3a7097f03bd67fda86767a5bbeeb6c250322af51dfb58c933",
-      "bytes": 6406
+      "sha256": "72e6a6907722733af833c83063f5fec5f4da416657677218f6f8ee49bd59af15",
+      "bytes": 8839
     },
     "results/stage_v3_20261026/phase1_summary.csv": {
-      "sha256": "7e0fd0b41d698346a8e872d3e7a380fdc075262cb67ed37632e0703c26c361bb",
-      "bytes": 861
+      "sha256": "39656f347891f4e5ac44a1c0d32df443c0a950218d91fa50e08568b1f080da46",
+      "bytes": 841
     }
   },
   "weights": []

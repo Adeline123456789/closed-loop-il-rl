@@ -2,9 +2,21 @@
   "protocol": "forcecritic_staged_v3",
   "config_sha": "d520e1f544db8a09be8252eabf6fa22e2ece8ef984b59a5cb32643ad2b72fe95",
   "phase1": {
-    "status": "NOT_RUN",
-    "reason": "Matched A1 evaluation incomplete",
-    "extension_allowed": false
+    "status": "INCONCLUSIVE",
+    "look": 1,
+    "episodes_per_arm": 32,
+    "success_difference": -0.09375,
+    "paired_seed_bootstrap_interval": [
+      -0.25,
+      0.0625
+    ],
+    "interval_level": 0.975,
+    "exact_discordant_p": 0.375,
+    "A2_only_success": 1,
+    "A1_only_success": 4,
+    "paired_seed_caveat": "Pair assigned evaluation seed, not trusted D0 checkpoint replay; report marginal Wilson intervals too",
+    "reason": "Locked success-effect/interval/exact-test rule applied; equal-seed pairing is not D0 contact-state recovery",
+    "extension_allowed": true
   },
   "arms": {
     "A0_historical": {
@@ -39,34 +51,35 @@
       "evaluation_control_steps": 4271
     },
     "A1": {
-      "status": "INCONCLUSIVE",
-      "episodes": 23,
-      "successes": 7,
-      "success_rate": null,
-      "wilson95": null,
-      "mean_return": 30.796154123209625,
-      "mean_cost": 0.95114964206857,
-      "mean_peak_force_N": 21.12638689124066,
+      "status": "PASSED",
+      "episodes": 32,
+      "successes": 9,
+      "success_rate": 0.28125,
+      "wilson95": [
+        0.15564580497742764,
+        0.45374509425916565
+      ],
+      "mean_return": 30.4992791502536,
+      "mean_cost": 0.9243941794207304,
+      "mean_peak_force_N": 20.979050278663635,
       "max_peak_force_N": 37.97411346435547,
-      "mean_peak_torque_Nm": 2.276584345361461,
+      "mean_peak_torque_Nm": 2.3307297453284264,
       "max_peak_torque_Nm": 4.6904449462890625,
-      "overload_episode_rate": 0.9130434782608695,
-      "overload_step_rate": 0.06220614828209765,
-      "protection_stop_rate": 0.043478260869565216,
+      "overload_episode_rate": 0.90625,
+      "overload_step_rate": 0.06969540526587506,
+      "protection_stop_rate": 0.03125,
       "termination_reason_counts": {
-        "finite_horizon": 15,
-        "stable_success": 7,
+        "finite_horizon": 22,
+        "stable_success": 9,
         "unsafe": 1
       },
       "failure_reasons": {
-        "finite_horizon": 15,
+        "finite_horizon": 22,
         "unsafe": 1
       },
-      "mean_first_stable_success_seconds": 4.038095238095237,
+      "mean_first_stable_success_seconds": 3.6296296296296293,
       "success_time_definition": "Time to first 3-step stable-success detection, conditional on success; failures censored",
-      "evaluation_control_steps": 2765,
-      "complete": false,
-      "reason": "Evaluation still incomplete; counts are progress only"
+      "evaluation_control_steps": 3874
     },
     "A2": {
       "status": "PASSED",
@@ -106,7 +119,7 @@
   },
   "phase2": {
     "status": "NOT_RUN",
-    "reason": "Phase1 is NOT_RUN; requires GO. Historical arms include force and cannot stand in for no-force B2"
+    "reason": "Phase1 is INCONCLUSIVE; requires GO. Historical arms include force and cannot stand in for no-force B2"
   },
   "phase3": {
     "status": "NOT_RUN",
@@ -143,7 +156,47 @@
     "a1_csv_sha": "d81aec707b590519a7023cd3a8e96e5c6ad86cbe3c03a520c49ecd0eb8398e94",
     "a2_csv_sha": "ce82c848c0dacc171dfd36e7146de22cd677bebd7e3a53aea3b002dc1ba2e4e7"
   },
-  "evaluation_admission": {},
+  "evaluation_admission": {
+    "eval_A1_initial": {
+      "status": "PASSED",
+      "episodes": 32,
+      "csv_sha": "72e6a6907722733af833c83063f5fec5f4da416657677218f6f8ee49bd59af15",
+      "policy_sha": "b425a94d3e0d10d5ad5db558fe0f7d5aba47458329ead603803655d3aea313e6",
+      "accounting": {
+        "physics_substeps": {
+          "restore": 3618,
+          "interaction": 0,
+          "branch": 0,
+          "prefix": 0,
+          "evaluation": 30992
+        },
+        "decimation": 8,
+        "num_envs": 1,
+        "control_step_cap": 10000.0,
+        "individual_control_step_equivalents": {
+          "restore": 453,
+          "interaction": 0,
+          "branch": 0,
+          "prefix": 0,
+          "evaluation": 3874
+        },
+        "charged_before_step": true
+      },
+      "returncode": 0,
+      "command": [
+        "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/bin/python",
+        "-u",
+        "scripts/evaluate_stage_v3.py",
+        "--arm",
+        "A1",
+        "--batch",
+        "initial",
+        "--headless",
+        "--enable_cameras",
+        "--kit_args=--/exts/omni.kit.registry.nucleus/registries/0/url=https://ovextensionsprod.blob.core.windows.net/exts/kit/prod/107/shared"
+      ]
+    }
+  },
   "training_matching_audit": {
     "status": "PASSED",
     "scope": "Read-only artifact audit; no optimizer or simulation steps",
@@ -212,6 +265,46 @@
       "A0_episodes": 32,
       "A2_episodes": 32
     },
-    "new_evaluations": {}
+    "new_evaluations": {
+      "eval_A1_initial": {
+        "command": [
+          "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/bin/python",
+          "-u",
+          "scripts/evaluate_stage_v3.py",
+          "--arm",
+          "A1",
+          "--batch",
+          "initial",
+          "--headless",
+          "--enable_cameras",
+          "--kit_args=--/exts/omni.kit.registry.nucleus/registries/0/url=https://ovextensionsprod.blob.core.windows.net/exts/kit/prod/107/shared"
+        ],
+        "returncode": 0,
+        "started": 1793017522.8902552,
+        "finished": 1793018494.9827363,
+        "log": "reports/stage_v3_20261026/eval_A1_initial.log",
+        "status": "PASSED",
+        "accounting": {
+          "physics_substeps": {
+            "restore": 3618,
+            "interaction": 0,
+            "branch": 0,
+            "prefix": 0,
+            "evaluation": 30992
+          },
+          "decimation": 8,
+          "num_envs": 1,
+          "control_step_cap": 10000.0,
+          "individual_control_step_equivalents": {
+            "restore": 453,
+            "interaction": 0,
+            "branch": 0,
+            "prefix": 0,
+            "evaluation": 3874
+          },
+          "charged_before_step": true
+        }
+      }
+    }
   }
 }

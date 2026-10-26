@@ -773,13 +773,25 @@
   "active_stage_report": "reports/stage_v3_20261026/stage_results.json",
   "staged_v3": {
     "phase1": {
-      "status": "NOT_RUN",
-      "reason": "Matched A1 evaluation incomplete",
-      "extension_allowed": false
+      "status": "INCONCLUSIVE",
+      "look": 1,
+      "episodes_per_arm": 32,
+      "success_difference": -0.09375,
+      "paired_seed_bootstrap_interval": [
+        -0.25,
+        0.0625
+      ],
+      "interval_level": 0.975,
+      "exact_discordant_p": 0.375,
+      "A2_only_success": 1,
+      "A1_only_success": 4,
+      "paired_seed_caveat": "Pair assigned evaluation seed, not trusted D0 checkpoint replay; report marginal Wilson intervals too",
+      "reason": "Locked success-effect/interval/exact-test rule applied; equal-seed pairing is not D0 contact-state recovery",
+      "extension_allowed": true
     },
     "phase2": {
       "status": "NOT_RUN",
-      "reason": "Phase1 is NOT_RUN; requires GO. Historical arms include force and cannot stand in for no-force B2"
+      "reason": "Phase1 is INCONCLUSIVE; requires GO. Historical arms include force and cannot stand in for no-force B2"
     },
     "phase3": {
       "status": "NOT_RUN",
@@ -796,11 +808,11 @@
   },
   "staged_v3_execution": {
     "status": "RUNNING",
-    "phase": "eval_A1_initial",
+    "phase": "eval_A1_extension",
     "pid": 1331113,
-    "updated": 1793017522.890693,
-    "child_pid": 1331142,
-    "started": 1793017522.8902552,
-    "log": "reports/stage_v3_20261026/eval_A1_initial.log"
+    "updated": 1793018498.0470636,
+    "child_pid": 1337246,
+    "started": 1793018498.046738,
+    "log": "reports/stage_v3_20261026/eval_A1_extension.log"
   }
 }
