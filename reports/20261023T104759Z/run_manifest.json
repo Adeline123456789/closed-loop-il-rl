@@ -6823,9 +6823,9 @@
   ],
   "steps": {
     "interaction": 71539,
-    "branch": 5909,
-    "prefix": 337,
-    "restore": 7111,
+    "branch": 5921,
+    "prefix": 385,
+    "restore": 7163,
     "evaluation": 4412
   },
   "checkpoints": [],
@@ -7618,5 +7618,8 @@
       },
       "reason": "Original interrupted evaluation and bounded lifecycle probes were not charged by the terminated CLI attempt; reconcile exactly once."
     }
-  }
+  },
+  "diagnostic_engineering_repairs": [
+    "reports/20261023T104759Z/diagnostic_repair.json"
+  ]
 }

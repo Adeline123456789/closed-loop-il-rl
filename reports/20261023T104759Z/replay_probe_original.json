@@ -1,0 +1,861 @@
+{
+  "status": "MEASURED",
+  "purpose": "Engineering reset/restore probe, not scientific admission",
+  "source_hashes": {
+    "scripts/audit_expert.py": "8bb4e278e0eddd70b07604d2fee6ed8f95a70561e7c76f8f21835780463f9d26",
+    "scripts/audit_forge.py": "f6c0d53a2922e62bd68dc9b23eaba5123eda7b5269cc66c9b5c864694a61d1fa",
+    "scripts/background_training.py": "07a3870cc017d0a74c685de5706a0c62187755c88140741e7ec8674d6de1b97b",
+    "scripts/bootstrap_cpu.sh": "f9571af76723f1bce07a536a38612dab20e88c48a86f47f7094cacde0ec3ad1f",
+    "scripts/check_stage_gates.py": "a85f6bcda2973a108e89990dd6a844c96335925687dc8669b69182284b04a312",
+    "scripts/collect_demonstrations.py": "6dfbd516f89f4fd4c08641c362955b5270b2c84eb9ab74a7f39b15131742f831",
+    "scripts/collect_forge.py": "42a994a0c6a88b40df02178d8037a7917c4e79ef8ed59dd375a7b4d9f87f4026",
+    "scripts/continue_training.sh": "282342349023fed671d424b17439386a1485460f3514ea908fb6521a142807d8",
+    "scripts/download_expert.py": "edb418986cc7c4cdd2602d666965571da647af1f03f3cb0a42597ea076419802",
+    "scripts/inspect_baseline.py": "d21261f28df3b39eb26c9acfdb059ac2e63057d5f7c59f9a7fbbf624bdbe1f61",
+    "scripts/inspect_recording.py": "974e84daf4e83f8b261fde18a5d635de87dfa58fdb55a432b26d2a2475190b91",
+    "scripts/install_expert.sh": "7ae5714e80f874e64006a8e781cf74efeae37dec7ade75ca645276e3cf5ead0b",
+    "scripts/install_isaac.sh": "d00af540630018ee80d68ef78948294abdf86a0f443459db7e91394dfa29a259",
+    "scripts/measure_gradient_path.py": "d0daae4188de9de415624c6faf6362aeb79c59260d7dbf71b086227bf8fab61f",
+    "scripts/probe_diagnostic_replay.py": "611339b39496a84d84a7729f95b1067cfd21471c1f43564758459863f2daa53d",
+    "scripts/probe_environment_recreation.py": "ec071837404721fdbc490a80050e9396c3caab4376d4e8cbe20a0500e3e4b692",
+    "scripts/publish.py": "1fedf20d6c6fb044ee605484d85aeb4299d05e26d009e98dc285603c68bec813",
+    "scripts/record_checks.py": "ce86e4526e0186430de8577fe87e3200fd662974a5c7bc33d18621e1c95fa2c7",
+    "scripts/record_environment.py": "e05442fdab973348326841d92eb9864fc0750454dc9cfa31a6530ea4e6548439",
+    "scripts/resume_after_environment_fix.sh": "517b308665fe95f26b147ce86f036994b8c2e092ece2108d6745ef721c7aef35",
+    "scripts/retain_act_checkpoints.py": "46b250e8049c2abc44f54994760e44f0ea07750483e9a742a8f78f7d9efa4eb1",
+    "scripts/run_end_to_end.sh": "5d4ff196cd3d4d0d37a4a03a5449bdc816af5096f94446fd63fcd0b2da92a1fb",
+    "scripts/run_forge_probe.py": "b3ee7558aff19057d97e34965988b99fbdad45031228f31420cff9bf023e0475",
+    "scripts/run_robot_stage.py": "1fffee4f2dd6646f7f3eea0371219f8bece1f6763e35667bdd809bee46053590",
+    "scripts/smoke_forge.py": "111f9f0afc9c46ea66aaadbec1d0555088252b9e95e7a69cef4823106a958d8a",
+    "scripts/start_background_training.sh": "434ec81e2a392646918fa102ad9e9c9299987ead810132545e8f6c86601a6eda",
+    "scripts/train_forge.py": "6306ef909ca65577b7dc22ca9aef761c37db21c1543057fca148ce824cd3cfdc",
+    "scripts/training_status.py": "20a20bad6635464e5cdd2b6c177da90d881661152a82fbbf2d8cc4e6e233d8df",
+    "src/forcecritic/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/forcecritic/cli.py": "847f2d6efc3227d8c0c9179999bee4b4fab0ab3ea918621a398fb5a43d819999",
+    "src/forcecritic/data/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/forcecritic/data/audit.py": "863a57c83f424150d12bce6b288c0af54fc7226ba196c5473971e8e5396d0441",
+    "src/forcecritic/data/demonstrations.py": "c61d70ae4fe27010a03e34895c7cd84223df1c46d03a249c25ad160187e92f6a",
+    "src/forcecritic/data/splits.py": "401f04ccae56c9a94ee2850e58b47238167c101768347f6a81f718e44725f885",
+    "src/forcecritic/diagnostics/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/forcecritic/diagnostics/artifacts.py": "f19b92be05423ffa24ece2e31b68fd705ce6b33833cce15da1119a85538069b0",
+    "src/forcecritic/diagnostics/driver.py": "f16778691f0dda030d800d4c58df3f00cb99713a3e82d610cee9df089a13ead7",
+    "src/forcecritic/diagnostics/live.py": "df535df2bd8a78781a29905472bbe200ffd7959f7dc84091b44763f3552821fc",
+    "src/forcecritic/diagnostics/pairs.py": "b513aafd9835a316c5d8d18964833536c691d7b51576dd908c371ff4ce96f8e0",
+    "src/forcecritic/doctor.py": "0ade30c5da2f74f1e48df9aaf117d69769f0040e52f9e2cf4de5afd2abe24b50",
+    "src/forcecritic/envs/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/forcecritic/envs/accounting.py": "cc15dfb6cdc408e29ea74b5d5b353c5f117d58a98af47f1d0a8b47c82c00f151",
+    "src/forcecritic/envs/contracts.py": "bd7248770b38f66f88df405399e67b5008384dc54c7add5b8cd8fd15d7367495",
+    "src/forcecritic/envs/expert.py": "3ad2bc55d55cbb483eb0aec9fe7c66bd7b16bd648be2fc6be434a51919447be9",
+    "src/forcecritic/envs/forge.py": "f81310cec14e25f2114438e6162b3e5ecdae9652a1c6d16226e0ff1438f49d90",
+    "src/forcecritic/envs/observations.py": "9bdd847a8ad4357eb602e43e3cc38e2492f36f52138571f27c388d7f5cbffb96",
+    "src/forcecritic/envs/reward.py": "a96b9b415fbed5d7527ec5845cbbe455797d516a195ee10ffcfa82ec540df606",
+    "src/forcecritic/evaluation/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/forcecritic/evaluation/export.py": "6000b58edaec2524237418fea7fc8c48e686ddf07a9ed81f2e886658ba86577b",
+    "src/forcecritic/evaluation/gates.py": "41b000644a23f6b1f9137d86632d81a7131b4ddeb278b028437acaff7313fcde",
+    "src/forcecritic/evaluation/metrics.py": "e81957859ad13165695701dea3d871af5cba94bc8f762495bdf620bef1feda6f",
+    "src/forcecritic/evaluation/plots.py": "3a1a0d04bf891722900cfb69bc851f7c00c560e892af3f118da9009af78d052d",
+    "src/forcecritic/evaluation/report.py": "269084c2eca00fd67335c7581eec9d557d28d36707b9e2b3e2f814205e4d856e",
+    "src/forcecritic/evaluation/short_gate.py": "aaee5a6aa5795d7a6ca28549ef42b056218f560034d4f9e934ffca5de4c40996",
+    "src/forcecritic/models/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/forcecritic/models/act.py": "026c8142310fe81976cf5a5a215a6d316ae12bb35ae78bd6464156692a18c927",
+    "src/forcecritic/models/critic.py": "b1f62c883982aa8c884c811743c5f7e5bac90574a335f219705ee5ce9db5ff05",
+    "src/forcecritic/runtime.py": "c536d0a21a6998559c9fd9f2a58467156615ddf884a3202d6ffb0405b4e806bc",
+    "src/forcecritic/training/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/forcecritic/training/ablation.py": "27df88e718963c7a934d38ed11f59fdb76e7832d16898d5c1666b04bf350ee99",
+    "src/forcecritic/training/baseline.py": "5e782ce9a9014629bc92612e7f2ec7ea54d0f940d951503c88ec1685441b1cbb",
+    "src/forcecritic/training/checkpoint.py": "b63edd04f2ffd5012e9f0c90e46d67702036816c0d4518a8b17d9e4b6baa8d3c",
+    "src/forcecritic/training/live.py": "f8b77b838237031855982a63968da30c13effaaa530a4ac726150dc89923cd72",
+    "src/forcecritic/training/pretrain.py": "9a979017e908d9a42c43cf75ab6882ce39d910611f4b9fa6c96c9dc30b759da8",
+    "src/forcecritic/training/replay.py": "bc179c3ea8fdc39731d0ccd5420092da92a378616cea049e58fc64fc99140b84",
+    "src/forcecritic/training/short_live.py": "cfd941d82a4ad2d66ba668c37641a800067abae62c71e3fcc129846c4beb74cc",
+    "src/forcecritic/training/updates.py": "65961aa7ff318235095b1bd7b209123a5bd38da655a1a3a19bb2917ea65a0cbd"
+  },
+  "observations": [
+    {
+      "actions": [
+        [
+          -0.22914767265319824,
+          0.4218793213367462,
+          0.806308388710022,
+          0.0,
+          0.0,
+          0.6615027189254761,
+          -1.0
+        ]
+      ],
+      "ema_factor": [
+        [
+          0.09221023321151733
+        ]
+      ],
+      "task_prop_gains": [
+        [
+          417.7492980957031,
+          406.757080078125,
+          611.2301635742188,
+          34.80899429321289,
+          23.580060958862305,
+          23.10283088684082
+        ]
+      ],
+      "pos_threshold": [
+        [
+          0.018737711012363434,
+          0.0189552940428257,
+          0.020627213642001152
+        ]
+      ],
+      "rot_threshold": [
+        [
+          0.09211415797472,
+          0.10830015689134598,
+          0.11667755991220474
+        ]
+      ],
+      "dead_zone_thresholds": [
+        [
+          2.01202130317688,
+          3.7805562019348145,
+          1.1897096633911133,
+          0.3265027701854706,
+          0.055398695170879364,
+          0.8663291931152344
+        ]
+      ],
+      "init_fixed_pos_obs_noise": [
+        [
+          0.0005996303516440094,
+          -0.0022166587878018618,
+          -0.00047335014096461236
+        ]
+      ],
+      "fingertip_midpoint_pos": [
+        [
+          0.6323698163032532,
+          0.031078152358531952,
+          0.13212154805660248
+        ]
+      ],
+      "joint_pos": [
+        [
+          -0.2425556182861328,
+          0.5114962458610535,
+          0.31210148334503174,
+          -1.8909229040145874,
+          -0.21702492237091064,
+          2.3701653480529785,
+          1.747045874595642,
+          0.004021267406642437,
+          0.004035044461488724
+        ]
+      ],
+      "joint_vel": [
+        [
+          -1.1354790925979614,
+          0.1608579307794571,
+          1.2235580682754517,
+          0.007077057845890522,
+          -0.8756616115570068,
+          -0.10300098359584808,
+          0.5572587251663208,
+          2.5707149688969366e-06,
+          4.681118298321962e-06
+        ]
+      ],
+      "held_pos": [
+        [
+          0.6332035660743713,
+          0.03021056018769741,
+          0.09746018052101135
+        ]
+      ],
+      "held_quat": [
+        [
+          0.3770922124385834,
+          7.412930426653475e-05,
+          0.0006537265726365149,
+          0.9261754751205444
+        ]
+      ],
+      "force_sensor_world_smooth": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "noise_tick": 67,
+      "interval": [
+        2.0
+      ],
+      "mass": [
+        [
+          0.0157470740377903
+        ]
+      ],
+      "joint_position_target": [
+        [
+          -0.008904986083507538,
+          0.4916709363460541,
+          0.0618259534239769,
+          -1.8924620151519775,
+          -0.042405012995004654,
+          2.3828940391540527,
+          1.6350764036178589,
+          0.0,
+          0.0
+        ]
+      ],
+      "joint_velocity_target": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "joint_effort_target": [
+        [
+          0.3053053021430969,
+          0.0006928890943527222,
+          0.10683786869049072,
+          -0.024068962782621384,
+          0.007696890272200108,
+          -0.0017690665554255247,
+          -0.0006176759488880634,
+          0.0,
+          0.0
+        ]
+      ]
+    },
+    {
+      "actions": [
+        [
+          -0.22600412368774414,
+          0.4225267469882965,
+          0.8126673102378845,
+          0.0,
+          0.0,
+          0.6615509986877441,
+          -1.0
+        ]
+      ],
+      "ema_factor": [
+        [
+          0.09221023321151733
+        ]
+      ],
+      "task_prop_gains": [
+        [
+          417.7492980957031,
+          406.757080078125,
+          611.2301635742188,
+          34.80899429321289,
+          23.580060958862305,
+          23.10283088684082
+        ]
+      ],
+      "pos_threshold": [
+        [
+          0.018737711012363434,
+          0.0189552940428257,
+          0.020627213642001152
+        ]
+      ],
+      "rot_threshold": [
+        [
+          0.09211415797472,
+          0.10830015689134598,
+          0.11667755991220474
+        ]
+      ],
+      "dead_zone_thresholds": [
+        [
+          2.01202130317688,
+          3.7805562019348145,
+          1.1897096633911133,
+          0.3265027701854706,
+          0.055398695170879364,
+          0.8663291931152344
+        ]
+      ],
+      "init_fixed_pos_obs_noise": [
+        [
+          0.0005996303516440094,
+          -0.0022166587878018618,
+          -0.00047335014096461236
+        ]
+      ],
+      "fingertip_midpoint_pos": [
+        [
+          0.6325269937515259,
+          0.031110523268580437,
+          0.1324394941329956
+        ]
+      ],
+      "joint_pos": [
+        [
+          -0.24279190599918365,
+          0.5110273957252502,
+          0.31236645579338074,
+          -1.890990972518921,
+          -0.21688443422317505,
+          2.3705923557281494,
+          1.7470635175704956,
+          0.004020798951387405,
+          0.004035073332488537
+        ]
+      ],
+      "joint_vel": [
+        [
+          -1.1392476558685303,
+          0.154365673661232,
+          1.2277253866195679,
+          0.0047776601277291775,
+          -0.8733320236206055,
+          -0.1015753224492073,
+          0.5571121573448181,
+          2.6328107196604833e-06,
+          4.796282155439258e-06
+        ]
+      ],
+      "held_pos": [
+        [
+          0.6333896517753601,
+          0.030249495059251785,
+          0.09777826815843582
+        ]
+      ],
+      "held_quat": [
+        [
+          0.37714728713035583,
+          -0.00026441176305525005,
+          0.00041738408617675304,
+          0.9261531829833984
+        ]
+      ],
+      "force_sensor_world_smooth": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "noise_tick": 67,
+      "interval": [
+        1.3999994993209839
+      ],
+      "mass": [
+        [
+          0.0157470740377903
+        ]
+      ],
+      "joint_position_target": [
+        [
+          -0.008904600515961647,
+          0.4916711449623108,
+          0.06182596832513809,
+          -1.8924623727798462,
+          -0.042405322194099426,
+          2.3828940391540527,
+          1.6350764036178589,
+          0.0,
+          0.0
+        ]
+      ],
+      "joint_velocity_target": [
+        [
+          0.0922919511795044,
+          0.17516747117042542,
+          -0.1076524630188942,
+          0.1717333197593689,
+          -0.03184225782752037,
+          0.011506068520247936,
+          -0.3198036253452301,
+          1.41415994221461e-05,
+          4.5052729547023773e-07
+        ]
+      ],
+      "joint_effort_target": [
+        [
+          0.30107688903808594,
+          -0.09939223527908325,
+          0.11767548322677612,
+          0.002302751876413822,
+          0.009796969592571259,
+          -4.604589776135981e-05,
+          -1.327804994843973e-07,
+          0.0,
+          0.0
+        ]
+      ]
+    },
+    {
+      "actions": [
+        [
+          -0.22585511207580566,
+          0.4226124584674835,
+          0.8127295970916748,
+          0.0,
+          0.0,
+          0.6615481376647949,
+          -1.0
+        ]
+      ],
+      "ema_factor": [
+        [
+          0.09221023321151733
+        ]
+      ],
+      "task_prop_gains": [
+        [
+          417.7492980957031,
+          406.757080078125,
+          611.2301635742188,
+          34.80899429321289,
+          23.580060958862305,
+          23.10283088684082
+        ]
+      ],
+      "pos_threshold": [
+        [
+          0.018737711012363434,
+          0.0189552940428257,
+          0.020627213642001152
+        ]
+      ],
+      "rot_threshold": [
+        [
+          0.09211415797472,
+          0.10830015689134598,
+          0.11667755991220474
+        ]
+      ],
+      "dead_zone_thresholds": [
+        [
+          2.01202130317688,
+          3.7805562019348145,
+          1.1897096633911133,
+          0.3265027701854706,
+          0.055398695170879364,
+          0.8663291931152344
+        ]
+      ],
+      "init_fixed_pos_obs_noise": [
+        [
+          0.0005996303516440094,
+          -0.0022166587878018618,
+          -0.00047335014096461236
+        ]
+      ],
+      "fingertip_midpoint_pos": [
+        [
+          0.6325344443321228,
+          0.031114809215068817,
+          0.13244260847568512
+        ]
+      ],
+      "joint_pos": [
+        [
+          -0.24279265105724335,
+          0.5110266208648682,
+          0.31236714124679565,
+          -1.8909938335418701,
+          -0.2168547511100769,
+          2.370633840560913,
+          1.7470358610153198,
+          0.0040213274769485,
+          0.004034718498587608
+        ]
+      ],
+      "joint_vel": [
+        [
+          -1.1392537355422974,
+          0.15436038374900818,
+          1.227728009223938,
+          0.004722174257040024,
+          -0.8731412887573242,
+          -0.10126853734254837,
+          0.5569961071014404,
+          2.253088041470619e-06,
+          4.097208147868514e-06
+        ]
+      ],
+      "held_pos": [
+        [
+          0.6333894729614258,
+          0.030252845957875252,
+          0.0977783054113388
+        ]
+      ],
+      "held_quat": [
+        [
+          0.37714532017707825,
+          -0.0002550045901443809,
+          0.0004100499500054866,
+          0.9261538982391357
+        ]
+      ],
+      "force_sensor_world_smooth": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "noise_tick": 67,
+      "interval": [
+        0.7999992370605469
+      ],
+      "mass": [
+        [
+          0.0157470740377903
+        ]
+      ],
+      "joint_position_target": [
+        [
+          -0.008904729969799519,
+          0.49167102575302124,
+          0.061825916171073914,
+          -1.8924620151519775,
+          -0.04240533709526062,
+          2.3828938007354736,
+          1.6350764036178589,
+          0.0,
+          0.0
+        ]
+      ],
+      "joint_velocity_target": [
+        [
+          0.09359663724899292,
+          0.17858977615833282,
+          -0.10871688276529312,
+          0.17683058977127075,
+          -0.03192136809229851,
+          0.008645585738122463,
+          -0.3231202960014343,
+          1.4213690519682132e-05,
+          4.922039806842804e-07
+        ]
+      ],
+      "joint_effort_target": [
+        [
+          0.3010849952697754,
+          -0.0993889570236206,
+          0.11768442392349243,
+          0.002303643152117729,
+          0.009797744452953339,
+          -4.5770895667374134e-05,
+          2.1139703676453792e-07,
+          0.0,
+          0.0
+        ]
+      ]
+    }
+  ],
+  "comparisons": [
+    {
+      "kind": "reset",
+      "repeat": 0,
+      "max_errors": {
+        "actions": 0.0,
+        "ema_factor": 0.0,
+        "task_prop_gains": 0.0,
+        "pos_threshold": 0.0,
+        "rot_threshold": 0.0,
+        "dead_zone_thresholds": 0.0,
+        "init_fixed_pos_obs_noise": 0.0,
+        "fingertip_midpoint_pos": 0.0,
+        "joint_pos": 0.0,
+        "joint_vel": 0.0,
+        "held_pos": 0.0,
+        "held_quat": 0.0,
+        "force_sensor_world_smooth": 0.0,
+        "noise_tick": 0.0,
+        "interval": 0.0,
+        "mass": 0.0,
+        "joint_position_target": 0.0,
+        "joint_velocity_target": 0.0,
+        "joint_effort_target": 0.0
+      }
+    },
+    {
+      "kind": "prefix",
+      "repeat": 0,
+      "max_errors": {
+        "actions": 0.0,
+        "ema_factor": 0.0,
+        "task_prop_gains": 0.0,
+        "pos_threshold": 0.0,
+        "rot_threshold": 0.0,
+        "dead_zone_thresholds": 0.0,
+        "init_fixed_pos_obs_noise": 0.0,
+        "fingertip_midpoint_pos": 0.0,
+        "joint_pos": 0.0,
+        "joint_vel": 0.0,
+        "held_pos": 0.0,
+        "held_quat": 0.0,
+        "force_sensor_world_smooth": 0.0,
+        "noise_tick": 0.0,
+        "interval": 0.0,
+        "mass": 0.0,
+        "joint_position_target": 0.0,
+        "joint_velocity_target": 0.0,
+        "joint_effort_target": 0.0
+      }
+    },
+    {
+      "kind": "restore_before_step",
+      "repeat": 0,
+      "max_errors": {
+        "actions": 0.0,
+        "ema_factor": 0.0,
+        "task_prop_gains": 0.0,
+        "pos_threshold": 0.0,
+        "rot_threshold": 0.0,
+        "dead_zone_thresholds": 0.0,
+        "init_fixed_pos_obs_noise": 0.0,
+        "fingertip_midpoint_pos": 0.0,
+        "joint_pos": 0.0,
+        "joint_vel": 0.0,
+        "held_pos": 0.0,
+        "held_quat": 0.0,
+        "force_sensor_world_smooth": 0.0,
+        "noise_tick": 0.0,
+        "interval": 0.0,
+        "mass": 0.0,
+        "joint_position_target": 0.4578537046909332,
+        "joint_velocity_target": 0.3198036253452301,
+        "joint_effort_target": 0.9577112793922424
+      }
+    },
+    {
+      "kind": "restore_one_step",
+      "repeat": 0,
+      "max_errors": {
+        "position_m": 0.0002613067626953125,
+        "rotation_matrix": 0.01779228448867798,
+        "joint_rad": 0.0008817911148071289,
+        "gripper_m": 7.867813110351562e-06,
+        "linear_velocity_m_s": 0.009445943869650364,
+        "angular_velocity_rad_s": 0.8725877404212952,
+        "joint_velocity_rad_s": 0.028332024812698364,
+        "gripper_velocity_m_s": 4.759698640555143e-06
+      }
+    },
+    {
+      "kind": "reset",
+      "repeat": 1,
+      "max_errors": {
+        "actions": 0.006358921527862549,
+        "ema_factor": 0.0,
+        "task_prop_gains": 0.0,
+        "pos_threshold": 0.0,
+        "rot_threshold": 0.0,
+        "dead_zone_thresholds": 0.0,
+        "init_fixed_pos_obs_noise": 0.0,
+        "fingertip_midpoint_pos": 0.00031794607639312744,
+        "joint_pos": 0.00046885013580322266,
+        "joint_vel": 0.006492257118225098,
+        "held_pos": 0.000318087637424469,
+        "held_quat": 0.00033854105276986957,
+        "force_sensor_world_smooth": 0.0,
+        "noise_tick": 0.0,
+        "interval": 0.6000005006790161,
+        "mass": 0.0,
+        "joint_position_target": 3.855675458908081e-07,
+        "joint_velocity_target": 0.3198036253452301,
+        "joint_effort_target": 0.10008512437343597
+      }
+    },
+    {
+      "kind": "prefix",
+      "repeat": 1,
+      "max_errors": {
+        "actions": 0.002932608127593994,
+        "ema_factor": 0.0,
+        "task_prop_gains": 0.0,
+        "pos_threshold": 0.0,
+        "rot_threshold": 0.0,
+        "dead_zone_thresholds": 0.0,
+        "init_fixed_pos_obs_noise": 0.0,
+        "fingertip_midpoint_pos": 0.00017091818153858185,
+        "joint_pos": 0.0017254352569580078,
+        "joint_vel": 0.0050972700119018555,
+        "held_pos": 0.00016477890312671661,
+        "held_quat": 0.00033462047576904297,
+        "force_sensor_world_smooth": 0.005860477685928345,
+        "noise_tick": 0.0,
+        "interval": 0.6000003218650818,
+        "mass": 0.0,
+        "joint_position_target": 3.855675458908081e-07,
+        "joint_velocity_target": 0.3198036253452301,
+        "joint_effort_target": 0.026563525199890137
+      }
+    },
+    {
+      "kind": "restore_before_step",
+      "repeat": 1,
+      "max_errors": {
+        "actions": 0.0,
+        "ema_factor": 0.0,
+        "task_prop_gains": 0.0,
+        "pos_threshold": 0.0,
+        "rot_threshold": 0.0,
+        "dead_zone_thresholds": 0.0,
+        "init_fixed_pos_obs_noise": 0.0,
+        "fingertip_midpoint_pos": 0.0,
+        "joint_pos": 0.0,
+        "joint_vel": 0.0,
+        "held_pos": 0.0,
+        "held_quat": 0.0,
+        "force_sensor_world_smooth": 0.0,
+        "noise_tick": 0.0,
+        "interval": 0.0,
+        "mass": 0.0,
+        "joint_position_target": 0.4569754898548126,
+        "joint_velocity_target": 0.0050972700119018555,
+        "joint_effort_target": 0.685379683971405
+      }
+    },
+    {
+      "kind": "restore_one_step",
+      "repeat": 1,
+      "max_errors": {
+        "position_m": 8.025765419006348e-05,
+        "rotation_matrix": 0.018037021160125732,
+        "joint_rad": 0.00022834539413452148,
+        "gripper_m": 3.630761057138443e-06,
+        "linear_velocity_m_s": 0.022736806422472,
+        "angular_velocity_rad_s": 1.7141573429107666,
+        "joint_velocity_rad_s": 0.02402794361114502,
+        "gripper_velocity_m_s": 1.047282239596825e-06
+      }
+    },
+    {
+      "kind": "reset",
+      "repeat": 2,
+      "max_errors": {
+        "actions": 0.006421208381652832,
+        "ema_factor": 0.0,
+        "task_prop_gains": 0.0,
+        "pos_threshold": 0.0,
+        "rot_threshold": 0.0,
+        "dead_zone_thresholds": 0.0,
+        "init_fixed_pos_obs_noise": 0.0,
+        "fingertip_midpoint_pos": 0.0003210604190826416,
+        "joint_pos": 0.00046962499618530273,
+        "joint_vel": 0.006497547030448914,
+        "held_pos": 0.0003181248903274536,
+        "held_quat": 0.00032913387985900044,
+        "force_sensor_world_smooth": 0.0,
+        "noise_tick": 0.0,
+        "interval": 1.2000007629394531,
+        "mass": 0.0,
+        "joint_position_target": 3.241002559661865e-07,
+        "joint_velocity_target": 0.3231202960014343,
+        "joint_effort_target": 0.10008184611797333
+      }
+    },
+    {
+      "kind": "prefix",
+      "repeat": 2,
+      "max_errors": {
+        "actions": 0.002961397171020508,
+        "ema_factor": 0.0,
+        "task_prop_gains": 0.0,
+        "pos_threshold": 0.0,
+        "rot_threshold": 0.0,
+        "dead_zone_thresholds": 0.0,
+        "init_fixed_pos_obs_noise": 0.0,
+        "fingertip_midpoint_pos": 0.0001685861498117447,
+        "joint_pos": 0.0017232894897460938,
+        "joint_vel": 0.005092620849609375,
+        "held_pos": 0.00016090832650661469,
+        "held_quat": 0.00033473968505859375,
+        "force_sensor_world_smooth": 0.006037965416908264,
+        "noise_tick": 0.0,
+        "interval": 1.200000286102295,
+        "mass": 0.0,
+        "joint_position_target": 3.241002559661865e-07,
+        "joint_velocity_target": 0.3231202960014343,
+        "joint_effort_target": 0.025901734828948975
+      }
+    },
+    {
+      "kind": "restore_before_step",
+      "repeat": 2,
+      "max_errors": {
+        "actions": 0.0,
+        "ema_factor": 0.0,
+        "task_prop_gains": 0.0,
+        "pos_threshold": 0.0,
+        "rot_threshold": 0.0,
+        "dead_zone_thresholds": 0.0,
+        "init_fixed_pos_obs_noise": 0.0,
+        "fingertip_midpoint_pos": 0.0,
+        "joint_pos": 0.0,
+        "joint_vel": 0.0,
+        "held_pos": 0.0,
+        "held_quat": 0.0,
+        "force_sensor_world_smooth": 0.0,
+        "noise_tick": 0.0,
+        "interval": 0.0,
+        "mass": 0.0,
+        "joint_position_target": 0.4569716453552246,
+        "joint_velocity_target": 4.9054622650146484e-05,
+        "joint_effort_target": 0.5938847064971924
+      }
+    },
+    {
+      "kind": "restore_one_step",
+      "repeat": 2,
+      "max_errors": {
+        "position_m": 0.0005829334259033203,
+        "rotation_matrix": 0.025809764862060547,
+        "joint_rad": 0.0013808608055114746,
+        "gripper_m": 2.9356218874454498e-05,
+        "linear_velocity_m_s": 0.016568511724472046,
+        "angular_velocity_rad_s": 0.670845627784729,
+        "joint_velocity_rad_s": 0.057291317731142044,
+        "gripper_velocity_m_s": 0.0003621244977694005
+      }
+    }
+  ],
+  "phase": "finished",
+  "time": 1793004039.3138363,
+  "accounting": {
+    "physics_substeps": {
+      "restore": 201,
+      "interaction": 0,
+      "branch": 48,
+      "prefix": 192,
+      "evaluation": 0
+    },
+    "decimation": 8,
+    "num_envs": 1,
+    "control_step_cap": 5000.0,
+    "individual_control_step_equivalents": {
+      "restore": 26,
+      "interaction": 0,
+      "branch": 6,
+      "prefix": 24,
+      "evaluation": 0
+    },
+    "charged_before_step": true
+  }
+}

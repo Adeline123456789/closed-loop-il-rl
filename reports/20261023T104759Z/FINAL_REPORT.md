@@ -39,7 +39,7 @@ Expert download integrity: `VERIFIED`; safe tensor-shape inspection: `PASSED`. M
 
 1. Critic → ACT: implemented in `training/updates.py`; CPU tests change critic slope on fixed ACT/data, observe changed ACT output, and verify nonzero Q-only gradients with critic parameters fixed.
 2. Ordinary direct update: see B1-B0 matched-parent comparison; causal/continuation decisions require all diagnostic gates.
-3. Replay fidelity rows: 36; diagnostic stage status: FAILED_IMPLEMENTATION. Row count alone is not evidence of equivalence.
+3. Replay fidelity rows: 0; diagnostic stage status: FAILED_IMPLEMENTATION. Row count alone is not evidence of equivalence.
 4. B2 vs B1 filtering: see matched-parent comparison and independent diagnostic evidence.
 5. B3 vs B2 calibration: see matched-parent comparison; endpoint labels already contain contrast information.
 6. Recorded continuation decision: **NOT_RUN** — P0 accepted and current smoke-1/smoke-8 passed. ACT pretraining is running; no diagnostic continuation decision has been measured yet. See training_progress.json..
@@ -56,8 +56,8 @@ Expert download integrity: `VERIFIED`; safe tensor-shape inspection: `PASSED`. M
 
 ## Cost and artifacts
 
-Individual simulator transitions by category: `{"interaction": 71539, "branch": 5909, "prefix": 337, "restore": 7111, "evaluation": 4412}`.
-Total accounted simulator transitions: 89308. CPU unit fixtures are excluded from robot metrics.
+Individual simulator transitions by category: `{"interaction": 71539, "branch": 5921, "prefix": 385, "restore": 7163, "evaluation": 4412}`.
+Total accounted simulator transitions: 89420. CPU unit fixtures are excluded from robot metrics.
 Checkpoint index entries: 0. Publication is not implied by a local checkpoint; only verified Release entries may be used as download links.
 Header-only fidelity/pair/actor/episode CSV files mean NOT_RUN, not zero success.
 

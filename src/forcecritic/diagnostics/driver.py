@@ -4,13 +4,15 @@ import json
 from pathlib import Path
 import numpy as np
 import torch
-from ..runtime import atomic_json, digest
+from ..runtime import digest
+from .artifacts import atomic_json
 from ..models.critic import condition_features
 from ..training.live import LivePolicy
 from ..training.pretrain import baseline_actor
 from ..training.baseline import accepted_limits
 from .live import NoiseSchedule, snapshot, fidelity_checkpoint
 from .pairs import candidates
+from .progress import DiagnosticProgress, progress
 
 
 def sample_checkpoints(adapter, policy, noise, ledger, thresholds, *, hard_count, normal_count, seed_start):
@@ -23,9 +25,11 @@ def sample_checkpoints(adapter, policy, noise, ledger, thresholds, *, hard_count
     for seed in range(seed_start, seed_start + 128):
         if counts == wanted:
             break
+        progress(ledger, seed=seed, selected_hard=counts[True], selected_normal=counts[False],
+                 wanted_hard=hard_count, wanted_normal=normal_count)
         noise.seed, noise.tick = seed, 0
         adapter.reset(seed=seed)
-        prefix, progress = [], []
+        prefix, rewards = [], []
         ended = False
         selected = False
         while not ended and not selected:
@@ -34,16 +38,16 @@ def sample_checkpoints(adapter, policy, noise, ledger, thresholds, *, hard_count
                 with ledger.using('prefix'):
                     row = adapter.step(plan[:,k])
                 prefix.append(plan[0,k].copy())
-                progress.append(float(row['reward'][0]))
+                rewards.append(float(row['reward'][0]))
                 ended = bool(row['terminated'][0] or row['truncated'][0] or row['success'][0] or row['unsafe'][0])
                 if ended:
                     break
             if ended or len(prefix) not in candidate_steps:
                 continue
             load = float(np.linalg.norm(row['substep_wrench'][:,0,:3],axis=-1).max())
-            gain = (np.mean(progress[-4:])-np.mean(progress[-8:-4]))/4
-            hard = load >= thresholds['hard_force_N'] and gain <= thresholds['hard_progress_per_step']
-            normal = gain > thresholds['normal_progress_per_step']
+            gain = float((np.mean(rewards[-4:])-np.mean(rewards[-8:-4]))/4)
+            hard = bool(load >= thresholds['hard_force_N'] and gain <= thresholds['hard_progress_per_step'])
+            normal = bool(gain > thresholds['normal_progress_per_step'])
             if counts[hard] >= wanted[hard] or (not hard and not normal):
                 continue
             observation = copy.deepcopy(adapter.observation[0])
@@ -68,7 +72,10 @@ def admit_checkpoints(adapter, policy, noise, checkpoints, ledger, thresholds, s
     direction = np.zeros((4,4),dtype=np.float32)
     direction[:,2] = .5
     summary = []
-    for checkpoint in checkpoints:
+    for point_index, checkpoint in enumerate(checkpoints):
+        progress(ledger, phase='D0_initial' if len(checkpoints)==8 else 'D0_additional',
+                 parent_id=checkpoint['parent_id'], point_index=point_index+1,
+                 points_completed=point_index, points_target=len(checkpoints))
         if used + 21 > 1500:
             raise RuntimeError('BUDGET_EXHAUSTED before D0 O/R/P continuations')
         # Establish the canonical checkpoint immediately before its unreset O
@@ -77,8 +84,8 @@ def admit_checkpoints(adapter, policy, noise, checkpoints, ledger, thresholds, s
         from .live import prefix_replay
         reached=prefix_replay(adapter,noise,checkpoint['seed'],checkpoint['prefix'],ledger)
         load=float(np.linalg.norm(reached['last']['substep_wrench'][:,0,:3],axis=-1).max())
-        rewards=reached['recent_rewards'];gain=(np.mean(rewards[-4:])-np.mean(rewards[-8:-4]))/4
-        hard=load>=thresholds['hard_force_N'] and gain<=thresholds['hard_progress_per_step']
+        rewards=reached['recent_rewards'];gain=float((np.mean(rewards[-4:])-np.mean(rewards[-8:-4]))/4)
+        hard=bool(load>=thresholds['hard_force_N'] and gain<=thresholds['hard_progress_per_step'])
         if hard!=checkpoint['hard'] or (not hard and gain<=thresholds['normal_progress_per_step']):
             return {'status':'INCONCLUSIVE','methods':[],'continuations_used':used,
                     'reason':'Checkpoint class changed during canonical prefix; original search state is not assumed reproduced'}
@@ -110,6 +117,14 @@ def admit_checkpoints(adapter, policy, noise, checkpoints, ledger, thresholds, s
             'accepted_methods':measured['accepted_methods'],
             'comparisons':[{k:v for k,v in r.items() if k not in ('original','repeated')} for r in measured['records']]})
         atomic_json(directory/'fidelity.json',{'checkpoints':summary,'continuations_used':used,'accounting':ledger.record()})
+        progress(ledger, points_completed=point_index+1)
+        if not measured['accepted_methods']:
+            # The gate is an intersection over parents. More parents cannot
+            # make an empty intersection nonempty; stop without claiming 8/8.
+            return {'status':'NO_GO_REPLAY','methods':[], 'continuations_used':used,
+                    'completed_points':point_index+1,'planned_points':len(checkpoints),
+                    'not_run_points':len(checkpoints)-point_index-1,
+                    'reason':'Neither replay method passed this parent; the all-parent admission intersection is empty. Remaining parents NOT_RUN.'}
     common = [method for method in ('snapshot_restore','prefix_replay')
               if all(method in c['accepted_methods'] for c in checkpoints)]
     return {'status':'PASSED' if common else 'NO_GO_REPLAY','methods':common,'continuations_used':used,
@@ -186,6 +201,13 @@ def diagnostic(run, manifest, make_adapter, device='cuda:0'):
     actor.load_state_dict(state['actor'])
     policy = LivePolicy(actor,state['identity']['normalizer'],device)
     adapter,ledger = make_adapter(1,accepted_limits(run.report/'p0_acceptance.json'))
+    import time
+    repair_path = run.report/'diagnostic_repair.json'
+    repair = json.loads(repair_path.read_text()) if repair_path.exists() else {}
+    # Engineering probes are charged in the shared diagnostic physical budget.
+    ledger.cap -= int(repair.get('engineering_control_steps',0))*ledger.decimation
+    observer = DiagnosticProgress(ledger,run.report,directory/f'diagnostic_attempt_{time.time_ns()}',
+                                  previous_continuations=repair.get('previous_continuations',0))
     adapter.diagnostic = True
     noise = NoiseSchedule(adapter,40000)
     try:
@@ -194,18 +216,22 @@ def diagnostic(run, manifest, make_adapter, device='cuda:0'):
         if selected['status']!='COLLECTED':
             return {'status':'INCONCLUSIVE','reason':selected['reason']}
         checkpoints = selected['checkpoints']
+        torch.save(checkpoints,observer.directory/'selected_initial.pt')
         d0 = admit_checkpoints(adapter,policy,noise,checkpoints,ledger,thresholds,fitted['scale'],
                               directory/'fidelity_initial',csv_path=run.result/'fidelity.csv',policy_sha=policy_sha)
         atomic_json(run.report/'d0_initial.json',d0)
         if (directory/'fidelity_initial/fidelity.json').exists():
             atomic_json(run.report/'fidelity_initial.json',json.loads((directory/'fidelity_initial/fidelity.json').read_text()))
         if d0['status']!='PASSED':
+            observer.mark(status=d0['status'], reason=d0['reason'])
             return d0
+        observer.mark(phase='D0_additional_sampling')
         selected = sample_checkpoints(adapter,policy,noise,ledger,thresholds,
             hard_count=12,normal_count=4,seed_start=50000)
         if selected['status']!='COLLECTED':
             return {'status':'INCONCLUSIVE','reason':selected['reason']}
         extra = selected['checkpoints']
+        torch.save(extra,observer.directory/'selected_additional.pt')
         extra_admission = admit_checkpoints(adapter,policy,noise,extra,ledger,thresholds,fitted['scale'],
             directory/'fidelity_additional',used=d0['continuations_used'],csv_path=run.result/'fidelity.csv',policy_sha=policy_sha)
         if (directory/'fidelity_additional/fidelity.json').exists():
@@ -224,6 +250,7 @@ def diagnostic(run, manifest, make_adapter, device='cuda:0'):
                     c['split'] = split
                 offset += count
         torch.save(checkpoints,directory/'diagnostic_checkpoints.pt')
+        observer.mark(phase='D1_screening')
         screening = collect_pairs(adapter,policy,noise,checkpoints,method,ledger,
             run.result/'paired_screening.csv',policy_sha=policy_sha,
             already_used=extra_admission['continuations_used'])
@@ -245,6 +272,8 @@ def diagnostic(run, manifest, make_adapter, device='cuda:0'):
         return {'status':'INCONCLUSIVE','reason':'Diagnostic physical interaction/continuation budget exhausted'}
     finally:
         atomic_json(run.report/'diagnostic_accounting.json',ledger.record())
+        observer.mark(producer_finished=True)
+        observer.close()
         noise.close()
         adapter.close()
         ledger.close()
@@ -256,6 +285,7 @@ def confirm_and_transfer(run,manifest,adapter,policy,noise,ledger,checkpoints,me
     from .live import restore,prefix_replay,continuation,diagnose_transfer
     from ..models.critic import TwinCritic
     from ..data.demonstrations import Demonstrations
+    progress(ledger, phase='D1_confirmation')
     from ..training.live import evaluate
     from torch.utils.data import default_collate
     by_parent = {c['parent_id']:c for c in checkpoints}
@@ -332,6 +362,7 @@ def confirm_and_transfer(run,manifest,adapter,policy,noise,ledger,checkpoints,me
     obs,actions,valid = default_collate([dataset[int(i)] for i in rng.integers(len(dataset),size=run.config['algorithm']['batch_size'])])
     demo = ({k:v.to(policy.device) for k,v in obs.items()},actions.to(policy.device),valid.to(policy.device))
     if used+4>1500:raise RuntimeError('BUDGET_EXHAUSTED before D2')
+    progress(ledger, phase='D2_transfer')
     transfer = diagnose_transfer(adapter,policy,critic,checkpoint,checkpoint['improving_action'],demo,noise,ledger,method=method)
     used += 4
     directory = Path('checkpoints')/run.run_id
@@ -350,7 +381,10 @@ def finish_transfer(run,adapter,policy,noise,ledger,checkpoints,endpoints,pairs,
         seeds = [int(r['seed']) for r in csv.DictReader(f) if int(r['stable_success'])]
     if len(seeds)<thresholds['minimum_normal_success_starts']:
         return {'status':'INCONCLUSIVE','reason':'Insufficient fixed successful validation starts to measure forgetting'}
-    if used+3*len(seeds)>1500:raise RuntimeError('BUDGET_EXHAUSTED before forgetting evaluation')
+    observer=getattr(ledger,'progress',None)
+    previous=observer.data['previous_continuations'] if observer else 0
+    if used+previous+3*len(seeds)>1500:raise RuntimeError('BUDGET_EXHAUSTED before forgetting evaluation')
+    progress(ledger,phase='D2_forgetting')
     outcomes = {}
     for name in ('baseline','q_only','q_bc_step'):
         actor = copy.deepcopy(policy.actor)

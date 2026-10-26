@@ -170,7 +170,10 @@ def main():
         stages = stages[next(i for i,(name,_) in enumerate(stages) if name==args.adopt_stage)+1:]
     for name, args in stages:
         state('RUNNING', name)
-        rc = command([PYTHON, '-m', 'forcecritic.cli', *args, '--run-id', RUN])
+        invocation = [PYTHON, '-m', 'forcecritic.cli', *args, '--run-id', RUN]
+        if name == 'diagnostic':
+            invocation = [PYTHON, 'scripts/watch_diagnostic.py', *invocation]
+        rc = command(invocation)
         state('STAGE_FINISHED' if rc == 0 else 'STOPPED', name, returncode=rc)
         if rc or name in ('smoke-8','baseline','diagnostic','short-ablation'):
             publish()

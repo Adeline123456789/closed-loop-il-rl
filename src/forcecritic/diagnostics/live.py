@@ -5,6 +5,7 @@ import json
 from contextlib import contextmanager
 import numpy as np
 import torch
+from .progress import progress
 
 
 class NoiseSchedule:
@@ -24,8 +25,26 @@ class NoiseSchedule:
         self.origin = self._clock()
         self.intermediate = self.raw._compute_intermediate_values
         self.event_apply = self.raw.event_manager.apply
+        self.adapter = adapter
+        self.adapter_reset = adapter.reset
         self.raw._compute_intermediate_values = self._intermediate
         self.raw.event_manager.apply = self._event
+        adapter.reset = self._reset
+
+    def _reset(self, seed=None):
+        # reset_to writes measured joint velocities into actuator velocity targets.
+        # Stock FORGE reset never clears those targets, contaminating later P runs.
+        robot = self.raw._robot
+        robot.set_joint_velocity_target(torch.zeros_like(robot.data.joint_vel_target))
+        robot.set_joint_effort_target(torch.zeros_like(robot.data.joint_effort_target))
+        if seed is not None:
+            self.seed, self.tick = int(seed), 0
+        result = self.adapter_reset(seed=seed)
+        # DirectRLEnv._reset_idx does not reset the interval-event countdown.
+        # Same seed alone therefore does not align the dead-zone event schedule.
+        with self.stream('interval_reset'):
+            self.raw.event_manager.reset()
+        return result
 
     def _clock(self):
         return sum(self.ledger.counts.values()) // self.ledger.num_envs
@@ -63,6 +82,7 @@ class NoiseSchedule:
     def close(self):
         self.raw._compute_intermediate_values = self.intermediate
         self.raw.event_manager.apply = self.event_apply
+        self.adapter.reset = self.adapter_reset
 
 
 def snapshot(adapter, noise):
@@ -75,7 +95,10 @@ def snapshot(adapter, noise):
         view = asset.root_physx_view
         properties[name] = {key: getattr(view, f'get_{key}')().clone()
                             for key in ('masses', 'inertias', 'material_properties')}
-    return dict(scene=copy.deepcopy(r.scene.get_state()), tensors=tensors, properties=properties,
+    targets = {name: {kind: getattr(asset.data, f'joint_{kind}_target').clone()
+                     for kind in ('pos', 'vel', 'effort')}
+               for name, asset in r.scene.articulations.items()}
+    return dict(scene=copy.deepcopy(r.scene.get_state()), tensors=tensors, properties=properties, targets=targets,
         counters={k: getattr(r,k) for k in ('common_step_counter','_sim_step_counter')},
         intervals=copy.deepcopy(r.event_manager._interval_term_time_left),
         adapter={k: copy.deepcopy(getattr(adapter,k)) for k in
@@ -93,6 +116,14 @@ def restore(adapter, noise, state, ledger):
                 indices = torch.arange(len(value), device='cpu', dtype=torch.int32)
                 getattr(view, f'set_{key}')(value, indices)
         r.scene.reset_to(state['scene'])
+        # Isaac Lab reset_to assumes PD position control and replaces targets
+        # with measured joint states. FORGE is effort controlled: restore the
+        # actual actuator commands, including finger position/velocity targets.
+        for name, targets in state['targets'].items():
+            asset = r.scene.articulations[name]
+            asset.set_joint_position_target(targets['pos'])
+            asset.set_joint_velocity_target(targets['vel'])
+            asset.set_joint_effort_target(targets['effort'])
         r.scene.write_data_to_sim()
         r.sim.forward()
         r.scene.update(0.)
@@ -126,6 +157,8 @@ def continuation(adapter, policy, first_plan, ledger, *, category='branch', coll
     """Execute candidate then the frozen ACT to true success/finite horizon."""
     if adapter.n != 1 or adapter.limits is None or not adapter.diagnostic:
         raise ValueError('Single real environment and accepted costs required')
+    observer = getattr(ledger, 'progress', None)
+    if observer is not None: observer.begin()
     plan = np.asarray(first_plan, dtype=np.float32).reshape(1,4,4)
     trajectory = {k: [] for k in ('position_m','rotation_matrix','joint_rad','gripper_m','gripper_velocity_m_s','linear_velocity_m_s',
         'angular_velocity_rad_s','joint_velocity_rad_s','force_N','torque_Nm','controller')}
@@ -147,6 +180,7 @@ def continuation(adapter, policy, first_plan, ledger, *, category='branch', coll
             returns += .99**step * np.array([row['reward'][0], row['cost'][0]])
             if collect_td:block_return += .99**k * np.array([row['reward'][0],row['cost'][0]])
             step += 1
+            if observer is not None: observer.data['trajectory_step'] = step
             for key,value in row['physical'].items():trajectory[key].append(value[0].copy())
             trajectory['force_N'].append(row['substep_wrench'][:,0,:3].copy())
             trajectory['torque_Nm'].append(row['substep_wrench'][:,0,3:].copy())
@@ -166,9 +200,11 @@ def continuation(adapter, policy, first_plan, ledger, *, category='branch', coll
                 valid=np.arange(4)<=k,gamma_k=.99**(k+1),bootstrap=not done,source='real_forge'))
         if not done:
             plan = policy(adapter.observation)
-    return {'trajectory': {k: np.stack(v) for k,v in trajectory.items()}, 'returns':returns,
+    result = {'trajectory': {k: np.stack(v) for k,v in trajectory.items()}, 'returns':returns,
             'success':success, 'steps':step, 'source':'real_forge_full_remaining_horizon',
             'unsafe':bool(row['unsafe'][0]),'transitions':transitions}
+    if observer is not None: observer.finish(result)
+    return result
 
 
 def compare(original, replayed, tolerances, return_scale):
@@ -193,6 +229,7 @@ def fidelity_checkpoint(adapter, policy, noise, seed, prefix, candidates, ledger
     """O then R/P for each candidate, no reset between original checkpoint and O."""
     records = []
     for candidate_id, action in enumerate(candidates):
+        progress(ledger, candidate=candidate_id, method='original', repeat=0)
         original_before=sum(ledger.counts.values())
         if candidate_id!=0 or not first_at_checkpoint:
             prefix_replay(adapter, noise, seed, prefix, ledger)
@@ -201,6 +238,7 @@ def fidelity_checkpoint(adapter, policy, noise, seed, prefix, candidates, ledger
         original_steps=(sum(ledger.counts.values())-original_before)/ledger.decimation
         for method in ('snapshot_restore', 'prefix_replay'):
             for repeat in range(3):
+                progress(ledger, candidate=candidate_id, method=method, repeat=repeat)
                 before=sum(ledger.counts.values())
                 if method == 'snapshot_restore':
                     restore(adapter, noise, state, ledger)

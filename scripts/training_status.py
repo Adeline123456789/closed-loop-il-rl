@@ -53,6 +53,7 @@ def detailed_progress(stage):
     transfer=4 if (CHECKPOINT/'d2_transfer.pt').exists() else 0
     forgetting=sum(len(rows(f'd2_{arm}_normal_validation.csv')) for arm in ('baseline','q_only','q_bc_step'))
     seeds=sum(int(r['stable_success']) for r in rows('act0_validation.csv'))
+    diagnostic=read(REPORT/'diagnostic_live_progress.json')
     if stage=='diagnostic':
         if (REPORT/'d2_transfer.json').exists():detail='D2 已测量，正在判断是否允许最小消融'
         elif transfer:detail='D2：已完成4条更新对照轨迹，正在检查原有成功行为是否退化'
@@ -66,12 +67,26 @@ def detailed_progress(stage):
         current=read(REPORT/'short_live_progress.json').get('current',{})
         detail='最小消融：'+str(current.get('arm','准备'))+' / '+{'critic':'训练Critic','actor':'更新ACT','evaluation':'真实仿真评估','prepare':'加载相同起点和数据'}.get(current.get('phase'),'等待首次遥测')
     else:detail='诊断与消融按前置门槛推进；没有结果的项目不计为完成'
+    if stage=='diagnostic' and diagnostic:
+        names={'D0_sampling':'D0 采样检查点','D0_initial':'D0 初始回放',
+               'D0_additional_sampling':'D0 扩展采样','D0_additional':'D0 扩展回放',
+               'D1_screening':'D1 动作初筛','D1_confirmation':'D1 独立确认',
+               'D2_transfer':'D2 ACT 更新对照','D2_forgetting':'D2 遗忘评估'}
+        detail=names.get(diagnostic.get('phase'),diagnostic.get('phase','未知'))
+        if 'sampling' in diagnostic.get('phase',''):
+            detail+=f"：困难 {diagnostic.get('selected_hard',0)}/{diagnostic.get('wanted_hard','?')}，正常 {diagnostic.get('selected_normal',0)}/{diagnostic.get('wanted_normal','?')}；seed {diagnostic.get('seed','?')}"
+        else:
+            detail+=f"：{diagnostic.get('parent_id','')}；{diagnostic.get('method','')}；动作 {diagnostic.get('candidate','?')}，重复 {diagnostic.get('repeat','?')}；本条完成 {diagnostic.get('trajectory_step',0)} 步"
+    job=read(REPORT/'background_job.json')
+    if not alive(job.get('pid')) or job.get('status') in ('STOPPED','FAILED'):
+        detail='已停止，最后执行位置：'+detail
     return dict(shared_episodes=baseline.get('real_complete_episodes',live.get('completed_episodes',0)),
         shared_steps=baseline.get('accounting',{}).get('individual_control_step_equivalents',{}).get('interaction',live.get('individual_transitions',0)),
         critic_updates=baseline.get('critic_updates',live.get('completed_updates',0) if live.get('phase')=='critic_training' else 0),
         initial_points=initial_n,extra_points=extra_n,screening_runs=screening,confirmation_runs=confirmation,
         transfer_runs=transfer,forgetting_runs=forgetting,forgetting_target=3*seeds,
-        arms=read(REPORT/'short_live_progress.json').get('arms',{}),diagnostic_detail=detail)
+        arms=read(REPORT/'short_live_progress.json').get('arms',{}),diagnostic_detail=detail,
+        diagnostic_live=diagnostic)
 
 
 def snapshot():
@@ -121,6 +136,9 @@ def snapshot():
     if logs:evidence.append(logs[-1])
     latest = max(evidence, key=lambda p:p.stat().st_mtime) if evidence else None
     evidence_age = round(time.time()-latest.stat().st_mtime,1) if latest else None
+    diagnostic=read(REPORT/'diagnostic_live_progress.json')
+    if stage=='diagnostic' and diagnostic.get('last_physics_step'):
+        evidence_age=round(time.time()-diagnostic['last_physics_step'],1)
     warning = None
     if running and job.get('status')=='RUNNING' and evidence_age is not None and evidence_age>300:
         warning=f'已 {evidence_age/60:.1f} 分钟没有新的可核实执行记录；疑似停滞或缺少阶段内遥测，不能估算完成时间。'
@@ -157,6 +175,8 @@ def snapshot():
 
 def display(data):
     view=data['detail']
+    diagnostic=view.get('diagnostic_live',{})
+    completed=diagnostic.get('phase_completed',{})
     phase_name={'diagnostic':'可信性诊断（D0 / D1 / D2）','short-ablation':'最小消融（B0 / B1 / B2 / B3）'}.get(data['phase'],data['phase'])
     translated={'RUNNING':'进行中','PASSED':'通过','WAITING_GATE':'等待前置门槛',
         'NOT_RUN':'尚未开始','FAILED_IMPLEMENTATION':'执行失败','INCONCLUSIVE':'证据不足',
@@ -168,8 +188,8 @@ def display(data):
         f" 2    ACT0 仿真评估：{data['real_baseline_episodes']}/32 回合；成功 {data['real_baseline_successes']} 回合",
         f" 3    共享真实交互：{view['shared_episodes']} 回合（每批8、上限100）；{view['shared_steps']} 控制步",
         f" 4    普通 Critic：{view['critic_updates']}/10000 次更新",
-        f" 5    D0 初始回放检查：{view['initial_points']}/8 点（已落盘 {21*view['initial_points']}/168 条轨迹）",
-        f" 6    D0 扩展回放检查：{view['extra_points']}/16 点（已落盘 {21*view['extra_points']}/336 条轨迹）",
+        f" 5    D0 初始回放检查：{view['initial_points']}/8 点（已落盘 {completed.get('D0_initial',21*view['initial_points'])}/168 条轨迹）",
+        f" 6    D0 扩展回放检查：{view['extra_points']}/16 点（已落盘 {completed.get('D0_additional',21*view['extra_points'])}/336 条轨迹）",
         f" 7    D1 动作配对初筛：{view['screening_runs']}/648 条真实轨迹完成",
         f" 8    D1 独立确认：{view['confirmation_runs']} 条轨迹；最多192，实际目标由初筛决定",
         f" 9    D2 ACT 更新验证：{view['transfer_runs']}/4 条对照轨迹；遗忘评估 {view['forgetting_runs']}/{view['forgetting_target']}",
@@ -180,10 +200,11 @@ def display(data):
         lines.append(f"      {arm}：{counts.get('critic_completed',0)}/2000 / {counts.get('actor_completed',0)}/200 / {data['ablation_episodes'][arm]}/32")
     lines.append('当前子步骤：'+view['diagnostic_detail'])
     if data['queue'].get('diagnostic')=='RUNNING':
-        lines.append('D0 每个点含21条轨迹；当前运行到整点结束才落盘，点内精确计数未提供。')
+        lines.append(f"仿真进程 PID {diagnostic.get('pid','初始化中')}；存活 {alive(diagnostic.get('pid'))}；本次完整轨迹 {diagnostic.get('completed_continuations',0)} 条。每条单独落盘。")
+        lines.append('守护规则：初始化最多5分钟；连续3分钟没有完成新物理步，抓栈并中断；不把日志或监控心跳算作进展。')
     lines.append('状态：'+' → '.join(f"{name}({translated.get(data['queue'][key],data['queue'][key])})"
         for key,name in [('baseline','基线'),('diagnostic','可信性诊断'),('short-ablation','最小消融')]))
-    lines.append(f"日志/产物更新距今 {data['execution_evidence_age_seconds']} 秒；有日志不等于新增成功结果。")
+    lines.append(f"最近执行证据距今 {data['execution_evidence_age_seconds']} 秒（诊断期间为实际完成的物理步；不是监控心跳）。")
     if data.get('progress_warning'):lines.append('注意：'+data['progress_warning'])
     if data.get('stop_reason'):lines.append('停止原因：'+data['stop_reason'])
     publication=data['publication']

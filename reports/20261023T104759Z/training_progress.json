@@ -1,22 +1,22 @@
 {
-  "time_utc": "2026-10-26T08:23:42.878720+00:00",
-  "phase": "diagnostic",
+  "time_utc": "2026-10-26T08:48:10.347827+00:00",
+  "phase": "initial-publication",
   "supervisor_alive": true,
   "supervisor_status": "RUNNING",
   "act_updates": 10000,
   "act_target": 10000,
   "act_percent": 100.0,
-  "checkpoint_age_seconds": 5823.6,
+  "checkpoint_age_seconds": 7291.1,
   "real_baseline_episodes": 32,
   "real_baseline_successes": 6,
   "queue": {
     "baseline": "PASSED",
-    "diagnostic": "RUNNING",
-    "short-ablation": "WAITING_GATE"
+    "diagnostic": "FAILED_IMPLEMENTATION",
+    "short-ablation": "NOT_RUN"
   },
   "stop_reason": null,
   "diagnostic_rows": {
-    "fidelity": 18,
+    "fidelity": 0,
     "paired_screening": 0,
     "paired_confirmation": 0,
     "actor_step": 0
@@ -35,14 +35,14 @@
     "act0_update_010000.pt"
   ],
   "publication": {
-    "time_utc": "2026-10-26T08:16:18.566439+00:00",
+    "time_utc": "2026-10-26T08:24:05.492787+00:00",
     "returncode": 0,
-    "head": "fd9fe1c4fc83286ba290e7fce7f929eadcf9f0e4"
+    "head": "67548c40d94e4273b38f81b8429866bc135e4450"
   },
-  "execution_evidence_age_seconds": 26.5,
+  "execution_evidence_age_seconds": 153.2,
   "progress_warning": null,
-  "latest_execution_evidence": "reports/20261023T104759Z/diagnostic_1793001458468229690.log",
-  "latest_stage_log": "reports/20261023T104759Z/diagnostic_1793001458468229690.log",
+  "latest_execution_evidence": "results/20261023T104759Z/fidelity.csv",
+  "latest_stage_log": null,
   "baseline_live": {
     "phase": "critic_training",
     "time": 1793001438.450562,
@@ -54,7 +54,7 @@
     "shared_episodes": 96,
     "shared_steps": 14304,
     "critic_updates": 10000,
-    "initial_points": 1,
+    "initial_points": 0,
     "extra_points": 0,
     "screening_runs": 0,
     "confirmation_runs": 0,
@@ -62,7 +62,8 @@
     "forgetting_runs": 0,
     "forgetting_target": 18,
     "arms": {},
-    "diagnostic_detail": "D0：初始8个检查点已选齐；当前第 2/8 个点，整点完成 1/8"
+    "diagnostic_detail": "诊断与消融按前置门槛推进；没有结果的项目不计为完成",
+    "diagnostic_live": {}
   },
   "loss": {
     "update": 10000,
