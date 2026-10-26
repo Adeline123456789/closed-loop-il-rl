@@ -6,20 +6,20 @@
       "bytes": 1371
     },
     "reports/20261023T104759Z/DIAGNOSTIC_REPAIR.md": {
-      "sha256": "555342f0ed8ea1bc7c144d8e3e7d77ae391a88fc0297a9734a7dc28d063202ba",
-      "bytes": 6272
+      "sha256": "fe22d0343c47a8e552fac6855bd165093844e79478d92dc1ff6e2d4bfb898255",
+      "bytes": 6898
     },
     "reports/20261023T104759Z/FINAL_REPORT.md": {
-      "sha256": "555342f0ed8ea1bc7c144d8e3e7d77ae391a88fc0297a9734a7dc28d063202ba",
-      "bytes": 6272
+      "sha256": "fe22d0343c47a8e552fac6855bd165093844e79478d92dc1ff6e2d4bfb898255",
+      "bytes": 6898
     },
     "reports/20261023T104759Z/INITIALIZATION_STALL.md": {
       "sha256": "219f9d668ba12af42e332c8a548b067b9f1445497cff65233b791281fd2071b6",
       "bytes": 3265
     },
     "reports/20261023T104759Z/PUBLICATION_STATUS.md": {
-      "sha256": "dca329bac5dc74d7f9d1591ea0a31b48df3bd81ba7f347f0b7f3cb535f9d96f0",
-      "bytes": 613
+      "sha256": "2b7aac7fe2dbbfd99a0f8f3c788bd62ff3617dc7836a0ed893896b220e3134b3",
+      "bytes": 868
     },
     "reports/20261023T104759Z/action_contract.md": {
       "sha256": "f40ff135863bfc922d1b08196280eebe45ed8b500e957ed4c03a5847c14ce124",
@@ -108,6 +108,10 @@
     "reports/20261023T104759Z/completion_audit.md": {
       "sha256": "4dc0226fa923558d5309067d745f2d9b9ef579989c53d488cde47f2d28191697",
       "bytes": 2511
+    },
+    "reports/20261023T104759Z/completion_summary.json": {
+      "sha256": "45ea110a396a7b936e8c4759d12998c0e8fad36704a5f2ee44bc2a5ee00e9e56",
+      "bytes": 903
     },
     "reports/20261023T104759Z/contract_probe_01/action_sensor_trace.npz": {
       "sha256": "0ed7b9075a28b76cc02c3299c05c242beac5e001c914f633ac836b33bf6f5b88",
@@ -234,7 +238,7 @@
       "bytes": 824
     },
     "reports/20261023T104759Z/diagnostic_repair.json": {
-      "sha256": "9c204642a984dfc080d317a1bd702c521c43dd21f3441656a3cd19fc4eefece6",
+      "sha256": "aa4319bf3885e081648d321afbc0e6f63158e4deec5c8e7ad2f39a882997ab5b",
       "bytes": 4852
     },
     "reports/20261023T104759Z/diagnostic_repair_result.json": {
@@ -281,6 +285,10 @@
       "sha256": "b8031af563dff11397a5ee70ffe55a31c89834aa9df9a64b086feddff3d71bf3",
       "bytes": 976
     },
+    "reports/20261023T104759Z/direct_q_integrity.json": {
+      "sha256": "b83af96caae0006dd54ecc06b5dee14574070899b0e72a46ca09cdba62e9cfb6",
+      "bytes": 1814
+    },
     "reports/20261023T104759Z/direct_q_job.json": {
       "sha256": "8535ccdb0f2a4a7b6451a48fe62b39f7d16973e0618dcfd9a7ea1e980bf88122",
       "bytes": 162
@@ -318,7 +326,7 @@
       "bytes": 5854
     },
     "reports/20261023T104759Z/engineering_job.json": {
-      "sha256": "ec26040b9c78e2284f715aa77a870d2fae2f99d55f84eab82ad3cf1ca8b4c233",
+      "sha256": "d7a5c246248db1759bf2b76a624b29691d9eeb96dd29dff700151177c7eca4fb",
       "bytes": 396
     },
     "reports/20261023T104759Z/episode_cohort.json": {
@@ -742,7 +750,7 @@
       "bytes": 595
     },
     "reports/20261023T104759Z/publication_snapshot/status.json": {
-      "sha256": "ef1a4d98e29159b6b7fe5cf85c747c92ad8f7a0c32afe51fa85f62ec376e495d",
+      "sha256": "69c5e951813014a243400e63289a38a43314eaecc4247e1d7f1b8de6b9096471",
       "bytes": 4969
     },
     "reports/20261023T104759Z/pyarrow_compatibility.json": {
@@ -985,8 +993,36 @@
       "sha256": "d9d9595ba07b12e2840652332d0411ec9a57cf3be95247070244a99e351f3c9c",
       "bytes": 3333
     },
+    "reports/20261023T104759Z/render_repair_1793012331501686161/FXAA_input_a.json": {
+      "sha256": "a86343a67618cb66b7dec8741556c3886e660fe71444390cde4a053df0062489",
+      "bytes": 15427
+    },
+    "reports/20261023T104759Z/render_repair_1793012331501686161/FXAA_input_a.log": {
+      "sha256": "8e2319f645196fb025a6110c973c7a61eee69b6b474a18daca0ea498bf607dc2",
+      "bytes": 6645
+    },
+    "reports/20261023T104759Z/render_repair_1793012331501686161/FXAA_input_a/diagnostic_live_progress.json": {
+      "sha256": "727d3ac592352a0c3582a5b0c90f9d3a052f612fa088194378ff64ae6a82355f",
+      "bytes": 804
+    },
+    "reports/20261023T104759Z/render_repair_1793012331501686161/FXAA_input_b.json": {
+      "sha256": "ab6cffbaa3c9553c5fa3dc22846e4e61b5d43b84c3573df14406ade0e98a2d84",
+      "bytes": 15428
+    },
+    "reports/20261023T104759Z/render_repair_1793012331501686161/FXAA_input_b.log": {
+      "sha256": "9dee950bae7ec96a6e94cc0bf0ec9fb590b68439ff8858bb6311955479dfcb97",
+      "bytes": 6645
+    },
+    "reports/20261023T104759Z/render_repair_1793012331501686161/FXAA_input_b/diagnostic_live_progress.json": {
+      "sha256": "585fbd412fbba1884eb5f1d20e46d6d1de804b635d7bd98cb1269c87822e5675",
+      "bytes": 803
+    },
+    "reports/20261023T104759Z/render_repair_1793012331501686161/result.json": {
+      "sha256": "73e018cf27c1ca9d792f55ea0ac769a7781697629cc3055dcdffaa54fc38dae4",
+      "bytes": 3394
+    },
     "reports/20261023T104759Z/render_repair_latest.json": {
-      "sha256": "51299704e076ef635c6c6e3be510bd2df55f80573c88a6cf22ce8a85e9b0d78d",
+      "sha256": "78c1d0d458b486049eeca786b7a93a3dc8e9d149e133f04540ffe3801c97eec1",
       "bytes": 130
     },
     "reports/20261023T104759Z/replay_input_audit.json": {
@@ -1050,7 +1086,7 @@
       "bytes": 7052
     },
     "reports/20261023T104759Z/run_manifest.json": {
-      "sha256": "af2eee7b92ca3dccf2f395760be9809f5bd8c4a069b999438cccf70ca078d607",
+      "sha256": "ca8a8eab989392a4cb31d5032cfcd0c15a10522317673fc19e5514d372656e8c",
       "bytes": 658425
     },
     "reports/20261023T104759Z/runtime_environment.lock.json": {

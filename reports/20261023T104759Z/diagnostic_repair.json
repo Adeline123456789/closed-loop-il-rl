@@ -3,7 +3,7 @@
   "previous_full_continuations": 42,
   "previous_engineering_one_step_branches": 12,
   "previous_continuations": 64,
-  "engineering_control_steps": 682,
+  "engineering_control_steps": 716,
   "recovered_summary": "reports/20261023T104759Z/fidelity_before_repair.json",
   "archived_csv": "results/20261023T104759Z/fidelity_before_repair.csv",
   "original_failure": "diagnostic_1793001458468229690_outcome.json",

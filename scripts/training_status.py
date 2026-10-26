@@ -170,6 +170,10 @@ def snapshot():
         warning='物理步超过180秒未更新，守护器正在处理中' if direct_live.get('last_physics_step') and evidence_age>180 else None
     elif direct.get('status')=='COMPLETED':
         phase='普通直接 Q 对照已完成；配对校准按 D0 门槛停止'
+        finished=read(REPORT/'direct_q_result.json').get('finished')
+        if finished:
+            evidence_age=round(time.time()-finished,1)
+            latest=REPORT/'direct_q_result.json'
     return dict(time_utc=datetime.now(timezone.utc).isoformat(), phase=phase,
                 direct_job=direct,direct_progress=direct_progress,direct_live=direct_live,
                 direct_counts={a:dict(episodes=len(r),successes=sum(int(x['stable_success']) for x in r)) for a,r in direct_counts.items()},

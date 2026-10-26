@@ -75,6 +75,10 @@ if direct:
         low,high=a['wilson95']
         text+=f"| {name} | {a['episodes']} | {a['successes']} | {100*a['success_rate']:.2f}% | {100*low:.1f}%–{100*high:.1f}% | {a['mean_cost']:.4f} |\n"
     text+='\n这是真实仿真中的批次结果。更新包含 Q、额外 BC 和 step 正则项，不能把组间差异单独归因于 Q，也不能据此证明配对校准有效。原 ACT0 6/32 结果属于原评估批次，未覆盖。\n'
+    text+='\n本批固定 ACT0 与更新 ACT 的成功次数只相差 1 回合；样本量小，区间较宽，结论为效果证据不足（INCONCLUSIVE），不据此进入 pilot/确认/泛化。两组触发物理保护均为 3 回合；更新组平均代价下降，但平均折扣回报也下降，完整数值保留在 `direct_q_result.json`。\n'
+    audit=read(report/'direct_q_integrity.json')
+    if audit.get('status')=='PASSED':
+        text+='\n最终产物一致性核验通过：200 次 ACT 更新记录、两个模型哈希、各组 32 个预注册种子、64 条真实 CSV、正常进程退出和全部物理步账本均已核对。见 `direct_q_integrity.json`。这是产物核验通过，不是算法有效性门槛通过。\n'
 else:
     text+='真实评估尚未全部完成；没有将梯度、loss 或训练完成当作插接成功率。\n'
     for name in ('direct_B0','direct_Q'):

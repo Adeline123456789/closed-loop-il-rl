@@ -1,6 +1,6 @@
 # Current measured publication snapshot
 
-UTC: 2026-10-26T10:18:18.614008+00:00. Collection: 20/20 runs, 376 episodes, 367 expert successes.
+UTC: 2026-10-26T11:00:11.524548+00:00. Collection: 20/20 runs, 376 episodes, 367 expert successes.
 
 ACT optimizer updates saved: 10000. This does not establish ACT insertion success.
 
@@ -19,3 +19,5 @@ ACT optimizer updates saved: 10000. This does not establish ACT insertion succes
 | installation | PASSED |
 
 See background_job.json for process status and FINAL_REPORT.md for measured results.
+
+Ordinary direct-Q fallback (explicitly permitted after D0 no-go): COMPLETED / real_evaluations_complete. See direct_q_plan.json, direct_q_result.json (only after both real evaluations), and direct_q_job.json. This is not completed paired D1/D2/B1/B2/B3.

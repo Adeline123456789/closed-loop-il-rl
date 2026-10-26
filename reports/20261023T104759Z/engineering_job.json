@@ -1,9 +1,9 @@
 {
-  "pid": 1288853,
+  "pid": 1312179,
   "status": "MEASURED",
   "phase": "finished",
-  "output": "reports/20261023T104759Z/render_repair_1793007388611133331/FXAA_input_b.json",
-  "progress": "reports/20261023T104759Z/render_repair_1793007388611133331/FXAA_input_b/diagnostic_live_progress.json",
-  "time": 1793007428.262151,
-  "log": "reports/20261023T104759Z/render_repair_1793007388611133331/FXAA_input_b.log"
+  "output": "reports/20261023T104759Z/render_repair_1793012331501686161/FXAA_input_b.json",
+  "progress": "reports/20261023T104759Z/render_repair_1793012331501686161/FXAA_input_b/diagnostic_live_progress.json",
+  "time": 1793012370.746656,
+  "log": "reports/20261023T104759Z/render_repair_1793012331501686161/FXAA_input_b.log"
 }
