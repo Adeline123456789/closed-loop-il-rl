@@ -1361,12 +1361,12 @@
       "bytes": 3998
     },
     "reports/PROJECT_STATUS.json": {
-      "sha256": "3a3beeb49e7cb64d318f6a05085a305369475cd4b25236ea6b7b430f730951d3",
-      "bytes": 72993
+      "sha256": "5e0da7a214f92416a9a97aa274e88b11faf45551a81dfd79d25e9b4846342dd6",
+      "bytes": 73535
     },
     "reports/publication_checks.json": {
-      "sha256": "4fe6c9acaf71b20b40df762b63ed654dc1bca4e1b57e6a5af5bbfcdc442657b3",
-      "bytes": 10918
+      "sha256": "1b1e4926e934c212380a296769cc3cdab5354e67bd7c4bb7a15230ac4db059fe",
+      "bytes": 11028
     },
     "reports/stage_v3_20261026/A1_batch_order.json": {
       "sha256": "f4fbd10ff18a75dbbcaf9293638a74cbddeed0dff64d2196f97218b2076e6095",
@@ -1381,8 +1381,8 @@
       "bytes": 6942
     },
     "reports/stage_v3_20261026/FINAL_REPORT.md": {
-      "sha256": "0cbb052fd311db145fe64dab7c2093bfde93e0ba0f73c3630401cd239e34d215",
-      "bytes": 4980
+      "sha256": "d0ae7449bc1abf17ef25382e5d920d91fb7c79785d0e9d9bc2f3e10f4d8263b2",
+      "bytes": 5342
     },
     "reports/stage_v3_20261026/a2_reproduction_audit.json": {
       "sha256": "5f892cbec76fc324acc5ba338142f10898a9c3b7fe7ba7935b799f9ecb43ed32",
@@ -1395,6 +1395,10 @@
     "reports/stage_v3_20261026/eval_A1_extension.log": {
       "sha256": "8b535795041735a58fb74a4801f436581b1533c7d58fb598410288e7d388d086",
       "bytes": 7591
+    },
+    "reports/stage_v3_20261026/eval_A1_extension.physics.jsonl.gz": {
+      "sha256": "f4881325d41d226a29b6240a843d108324513bc14cf40e6a6ad809604d824f03",
+      "bytes": 603564
     },
     "reports/stage_v3_20261026/eval_A1_extension.supervisor.json": {
       "sha256": "cb9a6f639affabf21b8394889a26150cee0d6d8f6acec9e2ccc54f475747c474",
@@ -1412,6 +1416,10 @@
       "sha256": "5142dd6626a1d79c6476a6ff363aa1d26884afaa93de8d165dd17f4245a11090",
       "bytes": 7591
     },
+    "reports/stage_v3_20261026/eval_A1_initial.physics.jsonl.gz": {
+      "sha256": "b37a066cccadf2b5b7ab0e5630a84c039753a13bd6fb01098042ce4ac73d73c1",
+      "bytes": 581333
+    },
     "reports/stage_v3_20261026/eval_A1_initial.supervisor.json": {
       "sha256": "3c3bf69421be31ff9fb531a024d2a5ab20d7f1f849875dd3aa756a539d47eedc",
       "bytes": 973
@@ -1420,21 +1428,33 @@
       "sha256": "3fdf3d0fa12e2616b994fff5736b55a8cf0ad6c4e36c6944dde6ad466216d167",
       "bytes": 843
     },
+    "reports/stage_v3_20261026/eval_A2_extension.json": {
+      "sha256": "cc0e8c84e2a948e44fc7ce1941a3592b6dfac43716e9c81cd02b5d0659539d7d",
+      "bytes": 11124
+    },
     "reports/stage_v3_20261026/eval_A2_extension.log": {
-      "sha256": "6c74d39b296d4a99d98fae58df052c5c505b5286b1fed3277e8de56828a593c8",
-      "bytes": 6990
+      "sha256": "ee5834d65502c1cecd7eeb12d94131f614625ef6162e1c8505dd4958daf2e732",
+      "bytes": 7590
+    },
+    "reports/stage_v3_20261026/eval_A2_extension.physics.jsonl.gz": {
+      "sha256": "f1e01061446d3da1ecc266a89b944e4ece87f300752f28da9fbd5c161e85b3b9",
+      "bytes": 627053
+    },
+    "reports/stage_v3_20261026/eval_A2_extension.supervisor.json": {
+      "sha256": "59d213213e388d341cdeed77a216a21cf57e72e4279720ad80b359c8e7585a73",
+      "bytes": 975
     },
     "reports/stage_v3_20261026/eval_A2_extension/diagnostic_live_progress.json": {
-      "sha256": "3bab121239785af48cbe48c375fa3201285ae2d2ebe527df0828f2b79ee24e26",
-      "bytes": 854
+      "sha256": "40a56f03531b13072a05ef4f19a2d62ddc60425f0032e6bf20dd77e150b145a8",
+      "bytes": 850
     },
     "reports/stage_v3_20261026/evaluation_admission.json": {
-      "sha256": "bae9c63e9698f305f0022eb956a388d33b3eb1061cc961677453a3e7bb1a55d0",
-      "bytes": 2265
+      "sha256": "b7052fff701933bec9dd013b012758cf0b62106ca57b4c84ea9ef3dcd117fc0a",
+      "bytes": 3398
     },
     "reports/stage_v3_20261026/execution_manifest.json": {
-      "sha256": "94daa16c97c0d01f0104f9542556d9bb879d706bebc7a76df5f50e026eef79d6",
-      "bytes": 2827
+      "sha256": "d5ec4933ab9ef598efc2521610ce3a2ea540302ec4758b0ec359a31d427827c9",
+      "bytes": 3980
     },
     "reports/stage_v3_20261026/gradient_evidence.json": {
       "sha256": "c94dc704ef9b3275ce1447c2e85f1ec15f200baeeb935ed566b3fd62c8a088f9",
@@ -1445,8 +1465,8 @@
       "bytes": 2485
     },
     "reports/stage_v3_20261026/job.json": {
-      "sha256": "39f56c591d95f1ec4830482071bf803c1cf011d2ee85c8b03af65d967e4768a5",
-      "bytes": 225
+      "sha256": "7de26c300ec46cec72b620e74fc167bfc5ec820c1abf8428ecc9fa80e519e45e",
+      "bytes": 727
     },
     "reports/stage_v3_20261026/objective_probe.json": {
       "sha256": "01f16fd85b5a1c07bddf5070e969fafceb5af7148f7e1dc0d45010756d131bd7",
@@ -1461,12 +1481,20 @@
       "bytes": 469
     },
     "reports/stage_v3_20261026/phase1_decision.json": {
-      "sha256": "7a35d255b227e4f2208c8646550e8f5db9db20148c90cd555cb75e4d15d65def",
-      "bytes": 556
+      "sha256": "3e8a3a2583dd5e1e3827bafca8ee4b21004395993a67170e059c5390c863b834",
+      "bytes": 568
     },
     "reports/stage_v3_20261026/phase1_look1.json": {
       "sha256": "7a35d255b227e4f2208c8646550e8f5db9db20148c90cd555cb75e4d15d65def",
       "bytes": 556
+    },
+    "reports/stage_v3_20261026/phase1_look2.json": {
+      "sha256": "3e8a3a2583dd5e1e3827bafca8ee4b21004395993a67170e059c5390c863b834",
+      "bytes": 568
+    },
+    "reports/stage_v3_20261026/physics_ledger_archives.json": {
+      "sha256": "8825b14ba0af868233c89cd1a9716d4e7c1e1a4dbe510157b8b7ac760206b5d7",
+      "bytes": 2148
     },
     "reports/stage_v3_20261026/plan_lock.json": {
       "sha256": "c739cf654660dc6c96e24ee889bb00f361c6ac80a57ece4f6a23aa6e3c7ff21f",
@@ -1477,8 +1505,8 @@
       "bytes": 998
     },
     "reports/stage_v3_20261026/stage_results.json": {
-      "sha256": "62ceb223cf3a398881832c83ebf35495de1e735ec8da4a5aaeb5cd2ef5cc3c2a",
-      "bytes": 13916
+      "sha256": "8f14b713c310718a53402c85aa492fc98e403c712a325d77b8424811e691705a",
+      "bytes": 18675
     },
     "reports/stage_v3_20261026/training_matching_audit.json": {
       "sha256": "5ef92ee6797386f4a9ef84c58d0eddd213f2cc7cb7aaa98ba467cae61af50da0",
@@ -1581,12 +1609,12 @@
       "bytes": 8839
     },
     "results/stage_v3_20261026/eval_A2_extension.csv": {
-      "sha256": "44ba10bb04e846feed710e3595d2bc1dc6628d151872e7db0441a281e0cc3e70",
-      "bytes": 449
+      "sha256": "e5f2b0d663d067c4703e21465b049c6e50628ee75b5b450aaf001e6439c5b785",
+      "bytes": 8807
     },
     "results/stage_v3_20261026/phase1_summary.csv": {
-      "sha256": "39656f347891f4e5ac44a1c0d32df443c0a950218d91fa50e08568b1f080da46",
-      "bytes": 841
+      "sha256": "ebae171ef814b14cf8b3b3f506b982d2520e18fad91add6e0aed7168a4f43586",
+      "bytes": 849
     }
   },
   "weights": []

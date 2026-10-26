@@ -3,20 +3,20 @@
   "config_sha": "d520e1f544db8a09be8252eabf6fa22e2ece8ef984b59a5cb32643ad2b72fe95",
   "phase1": {
     "status": "INCONCLUSIVE",
-    "look": 1,
-    "episodes_per_arm": 32,
-    "success_difference": -0.09375,
+    "look": 2,
+    "episodes_per_arm": 64,
+    "success_difference": -0.03125,
     "paired_seed_bootstrap_interval": [
-      -0.25,
-      0.0625
+      -0.140625,
+      0.078125
     ],
     "interval_level": 0.975,
-    "exact_discordant_p": 0.375,
-    "A2_only_success": 1,
-    "A1_only_success": 4,
+    "exact_discordant_p": 0.75390625,
+    "A2_only_success": 4,
+    "A1_only_success": 6,
     "paired_seed_caveat": "Pair assigned evaluation seed, not trusted D0 checkpoint replay; report marginal Wilson intervals too",
     "reason": "Locked success-effect/interval/exact-test rule applied; equal-seed pairing is not D0 contact-state recovery",
-    "extension_allowed": true
+    "extension_allowed": false
   },
   "arms": {
     "A0_historical": {
@@ -52,70 +52,70 @@
     },
     "A1": {
       "status": "PASSED",
-      "episodes": 32,
-      "successes": 9,
-      "success_rate": 0.28125,
+      "episodes": 64,
+      "successes": 15,
+      "success_rate": 0.234375,
       "wilson95": [
-        0.15564580497742764,
-        0.45374509425916565
+        0.1474989559392414,
+        0.35133257582568644
       ],
-      "mean_return": 30.4992791502536,
-      "mean_cost": 0.9243941794207304,
-      "mean_peak_force_N": 20.979050278663635,
-      "max_peak_force_N": 37.97411346435547,
-      "mean_peak_torque_Nm": 2.3307297453284264,
+      "mean_return": 30.64898088200771,
+      "mean_cost": 1.1013839656981945,
+      "mean_peak_force_N": 21.574813097715378,
+      "max_peak_force_N": 48.29697036743164,
+      "mean_peak_torque_Nm": 2.2616755394265056,
       "max_peak_torque_Nm": 4.6904449462890625,
-      "overload_episode_rate": 0.90625,
-      "overload_step_rate": 0.06969540526587506,
-      "protection_stop_rate": 0.03125,
+      "overload_episode_rate": 0.921875,
+      "overload_step_rate": 0.07076961961329457,
+      "protection_stop_rate": 0.078125,
       "termination_reason_counts": {
-        "finite_horizon": 22,
-        "stable_success": 9,
-        "unsafe": 1
+        "finite_horizon": 44,
+        "stable_success": 15,
+        "unsafe": 5
       },
       "failure_reasons": {
-        "finite_horizon": 22,
-        "unsafe": 1
+        "finite_horizon": 44,
+        "unsafe": 5
       },
-      "mean_first_stable_success_seconds": 3.6296296296296293,
+      "mean_first_stable_success_seconds": 4.066666666666666,
       "success_time_definition": "Time to first 3-step stable-success detection, conditional on success; failures censored",
-      "evaluation_control_steps": 3874
+      "evaluation_control_steps": 7913
     },
     "A2": {
       "status": "PASSED",
-      "episodes": 32,
-      "successes": 6,
-      "success_rate": 0.1875,
+      "episodes": 64,
+      "successes": 13,
+      "success_rate": 0.203125,
       "wilson95": [
-        0.08889544689565954,
-        0.3530915520137596
+        0.12273417819183653,
+        0.3171363573101416
       ],
-      "mean_return": 28.836791782782726,
-      "mean_cost": 1.431278389832685,
-      "mean_peak_force_N": 22.109564065933228,
+      "mean_return": 30.962149495757135,
+      "mean_cost": 1.5240924469715602,
+      "mean_peak_force_N": 21.5895087569952,
       "max_peak_force_N": 59.292884826660156,
-      "mean_peak_torque_Nm": 2.4421346373856068,
-      "max_peak_torque_Nm": 4.59008264541626,
-      "overload_episode_rate": 0.9375,
-      "overload_step_rate": 0.09392812887236679,
-      "protection_stop_rate": 0.09375,
+      "mean_peak_torque_Nm": 2.4250877909362316,
+      "max_peak_torque_Nm": 4.877686023712158,
+      "overload_episode_rate": 0.90625,
+      "overload_step_rate": 0.08867832847424684,
+      "protection_stop_rate": 0.078125,
       "termination_reason_counts": {
-        "finite_horizon": 23,
-        "stable_success": 6,
-        "unsafe": 3
+        "finite_horizon": 46,
+        "stable_success": 13,
+        "unsafe": 5
       },
       "failure_reasons": {
-        "finite_horizon": 23,
-        "unsafe": 3
+        "finite_horizon": 46,
+        "unsafe": 5
       },
-      "mean_first_stable_success_seconds": 4.0777777777777775,
+      "mean_first_stable_success_seconds": 4.820512820512821,
       "success_time_definition": "Time to first 3-step stable-success detection, conditional on success; failures censored",
-      "evaluation_control_steps": 4035
+      "evaluation_control_steps": 8232
     }
   },
   "extension_progress": {
     "A1": 32,
-    "A2": 1
+    "A2": 32
   },
   "phase2": {
     "status": "NOT_RUN",
@@ -260,6 +260,45 @@
         "--enable_cameras",
         "--kit_args=--/exts/omni.kit.registry.nucleus/registries/0/url=https://ovextensionsprod.blob.core.windows.net/exts/kit/prod/107/shared"
       ]
+    },
+    "eval_A2_extension": {
+      "status": "PASSED",
+      "episodes": 32,
+      "csv_sha": "e5f2b0d663d067c4703e21465b049c6e50628ee75b5b450aaf001e6439c5b785",
+      "policy_sha": "58737a7556c76d0fa5cace6aa2f97dfe5730960fe2133e7ae0c12557ae356452",
+      "accounting": {
+        "physics_substeps": {
+          "restore": 3752,
+          "interaction": 0,
+          "branch": 0,
+          "prefix": 0,
+          "evaluation": 33576
+        },
+        "decimation": 8,
+        "num_envs": 1,
+        "control_step_cap": 10000.0,
+        "individual_control_step_equivalents": {
+          "restore": 469,
+          "interaction": 0,
+          "branch": 0,
+          "prefix": 0,
+          "evaluation": 4197
+        },
+        "charged_before_step": true
+      },
+      "returncode": 0,
+      "command": [
+        "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/bin/python",
+        "-u",
+        "scripts/evaluate_stage_v3.py",
+        "--arm",
+        "A2",
+        "--batch",
+        "extension",
+        "--headless",
+        "--enable_cameras",
+        "--kit_args=--/exts/omni.kit.registry.nucleus/registries/0/url=https://ovextensionsprod.blob.core.windows.net/exts/kit/prod/107/shared"
+      ]
     }
   },
   "training_matching_audit": {
@@ -313,6 +352,62 @@
       "ACT0": "63433851d051fe4149d8f27deec600a438f146208eb5928782d56b9223dc8bb8",
       "A1": "b425a94d3e0d10d5ad5db558fe0f7d5aba47458329ead603803655d3aea313e6",
       "A2": "58737a7556c76d0fa5cace6aa2f97dfe5730960fe2133e7ae0c12557ae356452"
+    }
+  },
+  "physical_step_journal_archives": {
+    "eval_A1_initial": {
+      "status": "PASSED",
+      "entries": 69220,
+      "individual_physics_substeps": 34610,
+      "final_counts": {
+        "restore": 3618,
+        "interaction": 0,
+        "branch": 0,
+        "prefix": 0,
+        "evaluation": 30992
+      },
+      "source": "checkpoints/stage_v3_20261026/eval_A1_initial/physics_ledger.jsonl",
+      "source_sha": "05076b88797f0755f736f1ccfae0e3d5632333ec14b5863f71fef3bea1e63031",
+      "archive": "reports/stage_v3_20261026/eval_A1_initial.physics.jsonl.gz",
+      "archive_sha": "b37a066cccadf2b5b7ab0e5630a84c039753a13bd6fb01098042ce4ac73d73c1",
+      "archive_bytes": 581333,
+      "schema": "Only event, timestamp and five phase counters; no raw sensor data or images"
+    },
+    "eval_A1_extension": {
+      "status": "PASSED",
+      "entries": 71860,
+      "individual_physics_substeps": 35930,
+      "final_counts": {
+        "restore": 3618,
+        "interaction": 0,
+        "branch": 0,
+        "prefix": 0,
+        "evaluation": 32312
+      },
+      "source": "checkpoints/stage_v3_20261026/eval_A1_extension/physics_ledger.jsonl",
+      "source_sha": "ff0baa3093f93c262e166bf3973e2ab2f37e85e875db26566e2cd872dd7f99d1",
+      "archive": "reports/stage_v3_20261026/eval_A1_extension.physics.jsonl.gz",
+      "archive_sha": "f4881325d41d226a29b6240a843d108324513bc14cf40e6a6ad809604d824f03",
+      "archive_bytes": 603564,
+      "schema": "Only event, timestamp and five phase counters; no raw sensor data or images"
+    },
+    "eval_A2_extension": {
+      "status": "PASSED",
+      "entries": 74656,
+      "individual_physics_substeps": 37328,
+      "final_counts": {
+        "restore": 3752,
+        "interaction": 0,
+        "branch": 0,
+        "prefix": 0,
+        "evaluation": 33576
+      },
+      "source": "checkpoints/stage_v3_20261026/eval_A2_extension/physics_ledger.jsonl",
+      "source_sha": "3bf9009a16cd645b653bd8697fc28901170796c2906f15654b89905608c9e033",
+      "archive": "reports/stage_v3_20261026/eval_A2_extension.physics.jsonl.gz",
+      "archive_sha": "f1e01061446d3da1ecc266a89b944e4ece87f300752f28da9fbd5c161e85b3b9",
+      "archive_bytes": 627053,
+      "schema": "Only event, timestamp and five phase counters; no raw sensor data or images"
     }
   },
   "execution_manifest": {
@@ -405,6 +500,45 @@
             "branch": 0,
             "prefix": 0,
             "evaluation": 4039
+          },
+          "charged_before_step": true
+        }
+      },
+      "eval_A2_extension": {
+        "command": [
+          "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/bin/python",
+          "-u",
+          "scripts/evaluate_stage_v3.py",
+          "--arm",
+          "A2",
+          "--batch",
+          "extension",
+          "--headless",
+          "--enable_cameras",
+          "--kit_args=--/exts/omni.kit.registry.nucleus/registries/0/url=https://ovextensionsprod.blob.core.windows.net/exts/kit/prod/107/shared"
+        ],
+        "returncode": 0,
+        "started": 1793019512.141334,
+        "finished": 1793020568.242692,
+        "log": "reports/stage_v3_20261026/eval_A2_extension.log",
+        "status": "PASSED",
+        "accounting": {
+          "physics_substeps": {
+            "restore": 3752,
+            "interaction": 0,
+            "branch": 0,
+            "prefix": 0,
+            "evaluation": 33576
+          },
+          "decimation": 8,
+          "num_envs": 1,
+          "control_step_cap": 10000.0,
+          "individual_control_step_equivalents": {
+            "restore": 469,
+            "interaction": 0,
+            "branch": 0,
+            "prefix": 0,
+            "evaluation": 4197
           },
           "charged_before_step": true
         }

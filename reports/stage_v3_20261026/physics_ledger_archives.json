@@ -1,0 +1,56 @@
+{
+  "eval_A1_initial": {
+    "status": "PASSED",
+    "entries": 69220,
+    "individual_physics_substeps": 34610,
+    "final_counts": {
+      "restore": 3618,
+      "interaction": 0,
+      "branch": 0,
+      "prefix": 0,
+      "evaluation": 30992
+    },
+    "source": "checkpoints/stage_v3_20261026/eval_A1_initial/physics_ledger.jsonl",
+    "source_sha": "05076b88797f0755f736f1ccfae0e3d5632333ec14b5863f71fef3bea1e63031",
+    "archive": "reports/stage_v3_20261026/eval_A1_initial.physics.jsonl.gz",
+    "archive_sha": "b37a066cccadf2b5b7ab0e5630a84c039753a13bd6fb01098042ce4ac73d73c1",
+    "archive_bytes": 581333,
+    "schema": "Only event, timestamp and five phase counters; no raw sensor data or images"
+  },
+  "eval_A1_extension": {
+    "status": "PASSED",
+    "entries": 71860,
+    "individual_physics_substeps": 35930,
+    "final_counts": {
+      "restore": 3618,
+      "interaction": 0,
+      "branch": 0,
+      "prefix": 0,
+      "evaluation": 32312
+    },
+    "source": "checkpoints/stage_v3_20261026/eval_A1_extension/physics_ledger.jsonl",
+    "source_sha": "ff0baa3093f93c262e166bf3973e2ab2f37e85e875db26566e2cd872dd7f99d1",
+    "archive": "reports/stage_v3_20261026/eval_A1_extension.physics.jsonl.gz",
+    "archive_sha": "f4881325d41d226a29b6240a843d108324513bc14cf40e6a6ad809604d824f03",
+    "archive_bytes": 603564,
+    "schema": "Only event, timestamp and five phase counters; no raw sensor data or images"
+  },
+  "eval_A2_extension": {
+    "status": "PASSED",
+    "entries": 74656,
+    "individual_physics_substeps": 37328,
+    "final_counts": {
+      "restore": 3752,
+      "interaction": 0,
+      "branch": 0,
+      "prefix": 0,
+      "evaluation": 33576
+    },
+    "source": "checkpoints/stage_v3_20261026/eval_A2_extension/physics_ledger.jsonl",
+    "source_sha": "3bf9009a16cd645b653bd8697fc28901170796c2906f15654b89905608c9e033",
+    "archive": "reports/stage_v3_20261026/eval_A2_extension.physics.jsonl.gz",
+    "archive_sha": "f1e01061446d3da1ecc266a89b944e4ece87f300752f28da9fbd5c161e85b3b9",
+    "archive_bytes": 627053,
+    "schema": "Only event, timestamp and five phase counters; no raw sensor data or images"
+  }
+}

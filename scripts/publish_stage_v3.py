@@ -7,6 +7,7 @@ import sys
 from forcecritic.runtime import atomic_json
 
 report=Path('reports/stage_v3_20261026')
+subprocess.run([sys.executable,'scripts/export_stage_v3_ledgers.py'],check=True)
 subprocess.run([sys.executable,'scripts/report_stage_v3.py'],check=True)
 result=subprocess.run([sys.executable,'scripts/publish.py'])
 head=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()

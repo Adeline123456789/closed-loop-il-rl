@@ -48,3 +48,24 @@ def gradient_evidence(a1_path,a2_path):
         step_term_cancellation='Historical A2 did not log step-gradient vectors; exact Q/BC/step cancellation cannot be reconstructed from norms alone',
         no_bug_evidence='All 200 Q gradients and actual ACT action changes are finite and nonzero; first matched update reproduced exactly',
         a1_csv_sha=digest(a1_path),a2_csv_sha=digest(a2_path))
+
+def validate_physics_journal(path,expected_counts):
+    """Verify each real single-environment advance has before/after evidence."""
+    previous={k:0 for k in expected_counts};event='before';entries=0
+    with Path(path).open() as stream:
+        for line in stream:
+            row=json.loads(line);entries+=1
+            if set(row)!={'event','time','counts'} or row['event']!=event:raise ValueError('Missing/reordered physics event')
+            counts=row['counts']
+            if set(counts)!=set(previous) or any(type(v) is not int or v<0 for v in counts.values()):raise ValueError('Invalid physics counters')
+            if not math.isfinite(row['time']):raise ValueError('Invalid physical event timestamp')
+            difference=[counts[k]-previous[k] for k in counts]
+            if event=='before':
+                if sum(difference)!=1 or min(difference)<0:raise ValueError('Skipped/reversed individual physics step')
+                event='after'
+            else:
+                if any(difference):raise ValueError('Physical completion counter mismatch')
+                event='before'
+            previous=counts
+    if not entries or event!='before' or previous!=expected_counts:raise ValueError('Incomplete physics journal')
+    return dict(entries=entries,individual_physics_substeps=entries//2,final_counts=previous)

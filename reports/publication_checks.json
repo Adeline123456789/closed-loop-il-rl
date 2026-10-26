@@ -7,7 +7,7 @@
     "-q"
   ],
   "returncode": 0,
-  "output": ".....................................................................    [100%]\n69 passed in 1.89s\n",
+  "output": "......................................................................   [100%]\n70 passed in 1.92s\n",
   "source_hashes": {
     "src/forcecritic/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "src/forcecritic/cli.py": "847f2d6efc3227d8c0c9179999bee4b4fab0ab3ea918621a398fb5a43d819999",
@@ -42,7 +42,7 @@
     "src/forcecritic/models/critic.py": "b1f62c883982aa8c884c811743c5f7e5bac90574a335f219705ee5ce9db5ff05",
     "src/forcecritic/runtime.py": "c536d0a21a6998559c9fd9f2a58467156615ddf884a3202d6ffb0405b4e806bc",
     "src/forcecritic/staged/__init__.py": "0748ff0f55f02dc3fdd7ef58b83ce73dbab193bef0bc68c8117dcf2f563029a4",
-    "src/forcecritic/staged/audit.py": "a83975d2bcad491be4b3d2a90d97ea74f5afa3f92b5ca89761ad8ef479d6ac0c",
+    "src/forcecritic/staged/audit.py": "c7e7f98fc6dd387b0f218140655a330a7bad5e5832a5bc502b1903d534b6e881",
     "src/forcecritic/staged/common.py": "d62437117750d5e8923c2441bac95e0624f93e608b0be0c14a6d25d16b6837d1",
     "src/forcecritic/staged/results.py": "418a00a9c8db38e26b8d02a2823baf4b957d754de35655cbefced9fd60c12452",
     "src/forcecritic/training/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -67,6 +67,7 @@
     "scripts/download_expert.py": "edb418986cc7c4cdd2602d666965571da647af1f03f3cb0a42597ea076419802",
     "scripts/evaluate_direct_q.py": "fc7ed8be2a844baf882d7b83fc3ed7c198af66389d435dd98ba21f0cb9e7ca58",
     "scripts/evaluate_stage_v3.py": "cc6687f5b9184e92f122be1bc714d32e59c86e47793052f623f9778322a66694",
+    "scripts/export_stage_v3_ledgers.py": "c94dc758413f5186ec234965a03e8d8c46317cb498ed5fbb3be885f5b4a4af44",
     "scripts/finalize_diagnostic_repair.py": "9743ad54d67ba5e07b830a08f3b3065a16a8c02b77bf8038f1714d66f7eaf55c",
     "scripts/inspect_baseline.py": "d21261f28df3b39eb26c9acfdb059ac2e63057d5f7c59f9a7fbbf624bdbe1f61",
     "scripts/inspect_recording.py": "974e84daf4e83f8b261fde18a5d635de87dfa58fdb55a432b26d2a2475190b91",
@@ -76,12 +77,12 @@
     "scripts/probe_environment_recreation.py": "ec071837404721fdbc490a80050e9396c3caab4376d4e8cbe20a0500e3e4b692",
     "scripts/probe_stage_v3_objective.py": "0ee98a2d808ea10918be94eb016693c188924f5f1f6b5215b9e2b9e2cb0a4d87",
     "scripts/publish.py": "e5fe1a08a70f83b06007750a18f757302f0c2e775b98a5c9d7dfee3ae417dada",
-    "scripts/publish_stage_v3.py": "af213863392e4664c84bc261381227713a68f98b021fd1a8dd0835a20f9e94cc",
+    "scripts/publish_stage_v3.py": "638c4976f562faa4630862b533ee9fd1ba9dade1b1adb80ffa59ea6a64ed2863",
     "scripts/record_checks.py": "ce86e4526e0186430de8577fe87e3200fd662974a5c7bc33d18621e1c95fa2c7",
     "scripts/record_environment.py": "e05442fdab973348326841d92eb9864fc0750454dc9cfa31a6530ea4e6548439",
     "scripts/recover_diagnostic_attempt.py": "949e6fb22dfc875d42f5dfd0a5c9fce4cf7a2e5887521202e65d77930f3f9e5e",
     "scripts/repair_replay_rendering.py": "0925f2242baa3f7bbaad42296e1b25130cc985f9e28ae8acb4517635acfd1829",
-    "scripts/report_stage_v3.py": "cb6ff5e09589fdcddb04b0527136ea5ec6b2c707daf0c44d2b2a85451921387e",
+    "scripts/report_stage_v3.py": "7e205e3094619f3d73be62bb6046d11b522c37e0644d21e833423e832e1c4da0",
     "scripts/retain_act_checkpoints.py": "46b250e8049c2abc44f54994760e44f0ea07750483e9a742a8f78f7d9efa4eb1",
     "scripts/run_forge_probe.py": "b3ee7558aff19057d97e34965988b99fbdad45031228f31420cff9bf023e0475",
     "scripts/run_robot_stage.py": "1fffee4f2dd6646f7f3eea0371219f8bece1f6763e35667bdd809bee46053590",
@@ -107,6 +108,6 @@
     "tests/test_live_fidelity.py": "c02cc976425f31f9c2012d2d2cb04ccd851cea3ed7858ab7854fe5d5d3717ef9",
     "tests/test_metrics.py": "786a02405e7001d261e2751f22a9bc4a80d118553d173563dff6cf7d68b85fc8",
     "tests/test_stage_recovery.py": "67252e9a87c4889ad91d934373ca93ba396114c39f3ff7a595b922bff24aab61",
-    "tests/test_staged_results.py": "e116f84fc023f71b31e3f515935124533f118b444d4415dee9433e34c1e68cee"
+    "tests/test_staged_results.py": "41a0ff2fb20e7e9a379b71e6e45a4a8fcf018ceaf2f5e8cdd279a7f2f9307154"
   }
 }

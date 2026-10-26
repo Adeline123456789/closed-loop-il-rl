@@ -91,6 +91,45 @@
         },
         "charged_before_step": true
       }
+    },
+    "eval_A2_extension": {
+      "command": [
+        "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/bin/python",
+        "-u",
+        "scripts/evaluate_stage_v3.py",
+        "--arm",
+        "A2",
+        "--batch",
+        "extension",
+        "--headless",
+        "--enable_cameras",
+        "--kit_args=--/exts/omni.kit.registry.nucleus/registries/0/url=https://ovextensionsprod.blob.core.windows.net/exts/kit/prod/107/shared"
+      ],
+      "returncode": 0,
+      "started": 1793019512.141334,
+      "finished": 1793020568.242692,
+      "log": "reports/stage_v3_20261026/eval_A2_extension.log",
+      "status": "PASSED",
+      "accounting": {
+        "physics_substeps": {
+          "restore": 3752,
+          "interaction": 0,
+          "branch": 0,
+          "prefix": 0,
+          "evaluation": 33576
+        },
+        "decimation": 8,
+        "num_envs": 1,
+        "control_step_cap": 10000.0,
+        "individual_control_step_equivalents": {
+          "restore": 469,
+          "interaction": 0,
+          "branch": 0,
+          "prefix": 0,
+          "evaluation": 4197
+        },
+        "charged_before_step": true
+      }
     }
   }
 }

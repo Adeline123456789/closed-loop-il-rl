@@ -75,3 +75,17 @@ def test_completed_batch_requires_provenance_and_every_physics_step(tmp_path,mon
     (report/'eval_A1_initial.json').write_text(json.dumps(record))
     (report/'eval_A1_initial.supervisor.json').write_text(json.dumps(supervisor))
     with pytest.raises(ValueError,match='counts disagree'):validate_completed_batch(report,result,'eval_A1_initial',plan,'policy')
+
+def test_physics_journal_rejects_missing_and_skipped_steps(tmp_path):
+    import json
+    from forcecritic.staged.audit import validate_physics_journal
+    path=tmp_path/'physics.jsonl'
+    events=[dict(event=e,time=float(i),counts=dict(restore=n,evaluation=0))
+            for i,(e,n) in enumerate([('before',1),('after',1),('before',2),('after',2)])]
+    save=lambda values:path.write_text(''.join(json.dumps(v)+'\n' for v in values))
+    save(events)
+    assert validate_physics_journal(path,dict(restore=2,evaluation=0))['individual_physics_substeps']==2
+    save(events[:-1])
+    with pytest.raises(ValueError,match='Incomplete'):validate_physics_journal(path,dict(restore=2,evaluation=0))
+    save(events[2:])
+    with pytest.raises(ValueError,match='Skipped'):validate_physics_journal(path,dict(restore=2,evaluation=0))

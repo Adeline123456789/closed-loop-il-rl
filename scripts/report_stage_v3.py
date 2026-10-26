@@ -24,6 +24,7 @@ for name in ('eval_A1_initial','eval_A1_extension','eval_A2_extension'):
         admission[name]=validate_completed_batch(report,result,name,p,sha)
 gradients=gradient_evidence(result/'A1_updates.csv','results/20261023T104759Z/direct_Q_actor_updates.csv')
 objective_probe=json.loads((report/'objective_probe.json').read_text()) if (report/'objective_probe.json').exists() else {'status':'NOT_RUN'}
+physics_archives=json.loads((report/'physics_ledger_archives.json').read_text()) if (report/'physics_ledger_archives.json').exists() else {}
 atomic_json(report/'gradient_evidence.json',gradients)
 atomic_json(report/'evaluation_admission.json',admission)
 decision=dict(status='NOT_RUN',reason='Matched A1 evaluation incomplete',extension_allowed=False)
@@ -52,6 +53,7 @@ summary=dict(protocol=p['protocol'],config_sha=digest(CONFIG),phase1=decision,ar
     phase4=dict(status='NOT_RUN',reason='Requires phase3 GO'),phase5=dict(status='NOT_RUN',reason='Requires confirmation GO'),
     provenance=dict(historical_A2_already_observed=True,a2_first_update_audit=audit.get('status','NOT_RUN')),
     gradient_evidence=gradients,final_policy_objective_probe=objective_probe,evaluation_admission=admission,training_matching_audit=matching,
+    physical_step_journal_archives=physics_archives,
     execution_manifest=json.loads((report/'execution_manifest.json').read_text()))
 atomic_json(report/'phase1_decision.json',decision);atomic_json(report/'stage_results.json',summary)
 with (result/'phase1_summary.csv').open('w',newline='') as stream:
@@ -109,5 +111,6 @@ for name,record in summary['execution_manifest'].get('new_evaluations',{}).items
     text+=f"| {name} | {record['returncode']} | {counts.get('restore','UNKNOWN')} | {counts.get('evaluation','UNKNOWN')} | {amount if counts else 'UNKNOWN'} |\n"
 text+=f'\n已结束新批次合计 {total} 个 individual control-step equivalents；仍运行的批次见实时物理步日志。历史复用回合不重复收费。A1 新增 200 次优化；另有 1 次预注册 A2 首步实现复算，模型丢弃且从未部署。没有新增 Critic 训练。\n'
 text+='\nA1 训练的早期 detached 启动未保留 OS 退出码（null），不补造 0；完成依据是完整 200 行训练记录、最终 checkpoint 和匹配审计。所有本轮仿真由管理进程保存实际退出码。旧 D0 原生崩溃有未知尾部，仍保留原预算限制，不把未知交互计为零。\n'
+text+=f'\n逐物理步证据：已验证并归档 {len(physics_archives)} 个完整批次的 before/after 日志，见 `physics_ledger_archives.json` 及同目录 `.physics.jsonl.gz`；可用 `gzip -dc 文件名.physics.jsonl.gz` 查看。归档仅含时间戳和阶段计数，不含图像、原始传感器数组或模型权重。\n'
 (report/'FINAL_REPORT.md').write_text(text)
 print(decision['status'],decision.get('extension_allowed'))

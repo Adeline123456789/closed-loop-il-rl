@@ -774,20 +774,20 @@
   "staged_v3": {
     "phase1": {
       "status": "INCONCLUSIVE",
-      "look": 1,
-      "episodes_per_arm": 32,
-      "success_difference": -0.09375,
+      "look": 2,
+      "episodes_per_arm": 64,
+      "success_difference": -0.03125,
       "paired_seed_bootstrap_interval": [
-        -0.25,
-        0.0625
+        -0.140625,
+        0.078125
       ],
       "interval_level": 0.975,
-      "exact_discordant_p": 0.375,
-      "A2_only_success": 1,
-      "A1_only_success": 4,
+      "exact_discordant_p": 0.75390625,
+      "A2_only_success": 4,
+      "A1_only_success": 6,
       "paired_seed_caveat": "Pair assigned evaluation seed, not trusted D0 checkpoint replay; report marginal Wilson intervals too",
       "reason": "Locked success-effect/interval/exact-test rule applied; equal-seed pairing is not D0 contact-state recovery",
-      "extension_allowed": true
+      "extension_allowed": false
     },
     "phase2": {
       "status": "NOT_RUN",
@@ -807,12 +807,26 @@
     }
   },
   "staged_v3_execution": {
-    "status": "RUNNING",
-    "phase": "eval_A2_extension",
+    "status": "INCONCLUSIVE",
+    "phase": "phase1_complete",
     "pid": 1331113,
-    "updated": 1793019512.1422703,
-    "child_pid": 1342543,
-    "started": 1793019512.141334,
-    "log": "reports/stage_v3_20261026/eval_A2_extension.log"
+    "updated": 1793020571.3384235,
+    "decision": {
+      "status": "INCONCLUSIVE",
+      "look": 2,
+      "episodes_per_arm": 64,
+      "success_difference": -0.03125,
+      "paired_seed_bootstrap_interval": [
+        -0.140625,
+        0.078125
+      ],
+      "interval_level": 0.975,
+      "exact_discordant_p": 0.75390625,
+      "A2_only_success": 4,
+      "A1_only_success": 6,
+      "paired_seed_caveat": "Pair assigned evaluation seed, not trusted D0 checkpoint replay; report marginal Wilson intervals too",
+      "reason": "Locked success-effect/interval/exact-test rule applied; equal-seed pairing is not D0 contact-state recovery",
+      "extension_allowed": false
+    }
   }
 }
