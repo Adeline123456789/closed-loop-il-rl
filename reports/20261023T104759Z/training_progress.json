@@ -1,22 +1,31 @@
 {
-  "time_utc": "2026-10-26T08:53:41.196317+00:00",
+  "time_utc": "2026-10-26T09:20:25.095847+00:00",
   "phase": "diagnostic",
-  "supervisor_alive": true,
-  "supervisor_status": "RUNNING",
+  "engineering": {
+    "pid": 1277690,
+    "status": "MEASURED",
+    "phase": "finished",
+    "output": "reports/20261023T104759Z/replay_probe_inputs_b.json",
+    "progress": "reports/20261023T104759Z/replay_probe_inputs_b/diagnostic_live_progress.json",
+    "time": 1793005541.903724,
+    "log": "reports/20261023T104759Z/replay_probe_inputs_b.log"
+  },
+  "supervisor_alive": false,
+  "supervisor_status": "STOPPED",
   "act_updates": 10000,
   "act_target": 10000,
   "act_percent": 100.0,
-  "checkpoint_age_seconds": 7621.9,
+  "checkpoint_age_seconds": 9225.8,
   "real_baseline_episodes": 32,
   "real_baseline_successes": 6,
   "queue": {
     "baseline": "PASSED",
-    "diagnostic": "RUNNING",
-    "short-ablation": "WAITING_GATE"
+    "diagnostic": "NO_GO_REPLAY",
+    "short-ablation": "NOT_RUN"
   },
-  "stop_reason": null,
+  "stop_reason": "Saved real original and three repeats of each replay method all violate locked tolerances for candidate A0. This already falsifies all-comparisons admission. Other candidates/parents and D1/D2/B1-B3 remain NOT_RUN; the native crash is a separate implementation failure, not a scientific result.",
   "diagnostic_rows": {
-    "fidelity": 0,
+    "fidelity": 6,
     "paired_screening": 0,
     "paired_confirmation": 0,
     "actor_step": 0
@@ -35,13 +44,13 @@
     "act0_update_010000.pt"
   ],
   "publication": {
-    "time_utc": "2026-10-26T08:48:46.180631+00:00",
+    "time_utc": "2026-10-26T08:54:05.566453+00:00",
     "returncode": 0,
-    "head": "5eba5b9e862c5171f7c2c506031ae7606467d3ab"
+    "head": "26e8c42d74005a3afa418f3f8253c15443b81896"
   },
-  "execution_evidence_age_seconds": 1.1,
+  "execution_evidence_age_seconds": 1593.0,
   "progress_warning": null,
-  "latest_execution_evidence": "reports/20261023T104759Z/diagnostic_1793004526346629461.log",
+  "latest_execution_evidence": "results/20261023T104759Z/fidelity.csv",
   "latest_stage_log": "reports/20261023T104759Z/diagnostic_1793004526346629461.log",
   "baseline_live": {
     "phase": "critic_training",
@@ -62,35 +71,35 @@
     "forgetting_runs": 0,
     "forgetting_target": 18,
     "arms": {},
-    "diagnostic_detail": "D0 初始回放：diagnostic-40000；prefix_replay；动作 0，重复 2；本条完成 109 步",
+    "diagnostic_detail": "D0 \u6309\u95e8\u69db\u505c\u6b62\uff1a\u9996\u4e2a\u7236\u72b6\u6001 A0 \u7684 R/P \u54043\u6b21\u5747\u672a\u901a\u8fc7\uff1b\u5176\u4f59\u5019\u9009\u3001D1/D2\u53ca\u6d88\u878d\u672a\u8fd0\u884c\u3002\u539f\u751f\u5d29\u6e83\u53e6\u884c\u4fdd\u7559\uff0c\u4e0d\u80fd\u79f0\u5168\u90e8\u8dd1\u901a\u3002",
     "diagnostic_live": {
       "pid": 1272853,
       "started": 1793004539.9466631,
       "phase": "D0_initial",
-      "completed_continuations": 6,
+      "completed_continuations": 7,
       "previous_continuations": 54,
       "phase_completed": {
-        "D0_initial": 6
+        "D0_initial": 7
       },
       "status": "RUNNING",
-      "last_physics_step": 1793004820.049953,
-      "updated": 1793004820.0499554,
+      "last_physics_step": 1793004832.0828652,
+      "updated": 1793004832.1036649,
       "accounting": {
         "physics_substeps": {
-          "restore": 1206,
+          "restore": 1340,
           "interaction": 0,
-          "branch": 7643,
-          "prefix": 1120,
+          "branch": 7896,
+          "prefix": 1184,
           "evaluation": 0
         },
         "decimation": 8,
         "num_envs": 1,
         "control_step_cap": 293022.0,
         "individual_control_step_equivalents": {
-          "restore": 151,
+          "restore": 168,
           "interaction": 0,
-          "branch": 956,
-          "prefix": 140,
+          "branch": 987,
+          "prefix": 148,
           "evaluation": 0
         },
         "charged_before_step": true
@@ -104,16 +113,11 @@
       "point_index": 1,
       "points_completed": 0,
       "points_target": 8,
-      "candidate": 0,
-      "method": "prefix_replay",
-      "repeat": 2,
-      "trajectory_step": 109,
-      "last_trajectory": "checkpoints/20261023T104759Z/diagnostic_attempt_1793004539946602860/trajectory_0006.pt"
+      "candidate": 1,
+      "method": "original",
+      "repeat": 0,
+      "trajectory_step": 0,
+      "last_trajectory": "checkpoints/20261023T104759Z/diagnostic_attempt_1793004539946602860/trajectory_0007.pt"
     }
-  },
-  "loss": {
-    "update": 10000,
-    "last": 0.033908627927303314,
-    "mean_last_100": 0.032876249384135005
   }
 }

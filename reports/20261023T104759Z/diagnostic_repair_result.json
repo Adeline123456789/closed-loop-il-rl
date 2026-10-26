@@ -1,0 +1,193 @@
+{
+  "status": "NO_GO_REPLAY",
+  "methods": [],
+  "continuations_used": 7,
+  "measured_parent_ids": [
+    "diagnostic-40000"
+  ],
+  "parents_fully_completed": 0,
+  "parents_with_failed_admission": 1,
+  "planned_parents": 8,
+  "candidates_measured": 1,
+  "candidates_planned": 3,
+  "comparisons": [
+    {
+      "method": "snapshot_restore",
+      "repeat": 0,
+      "candidate": 0,
+      "passed": false,
+      "errors": {
+        "gripper_velocity_m_s": 0.034124236553907394,
+        "gripper_m": 3.278814256191254e-05,
+        "force_N": 19.957094192504883,
+        "joint_velocity_rad_s": 0.5122767686843872,
+        "torque_Nm": 2.8470988273620605,
+        "angular_velocity_rad_s": 14.395495414733887,
+        "rotation_matrix": 0.18513107299804688,
+        "controller": 0.15059113502502441,
+        "position_m": 0.007117182016372681,
+        "linear_velocity_m_s": 0.04980868473649025,
+        "joint_rad": 0.1882127970457077,
+        "scaled_return": 0.05032267244906007,
+        "scaled_cost": 0.007443882096920935,
+        "success": 0.0,
+        "steps": 0
+      },
+      "source": "checkpoints/20261023T104759Z/diagnostic_attempt_1793004539946602860/trajectory_0002.pt",
+      "sha256": "631ed5ad0243d451d559822915e9dfbeccfbac40d467ab70d4117946bd62a64a"
+    },
+    {
+      "method": "snapshot_restore",
+      "repeat": 1,
+      "candidate": 0,
+      "passed": false,
+      "errors": {
+        "gripper_velocity_m_s": 0.03087025322020054,
+        "gripper_m": 2.9525719583034515e-05,
+        "force_N": 19.574939727783203,
+        "joint_velocity_rad_s": 0.2493584156036377,
+        "torque_Nm": 1.639824390411377,
+        "angular_velocity_rad_s": 15.112637519836426,
+        "rotation_matrix": 0.10433214157819748,
+        "controller": 0.17320820689201355,
+        "position_m": 0.008741430938243866,
+        "linear_velocity_m_s": 0.0657435730099678,
+        "joint_rad": 0.1113264188170433,
+        "scaled_return": 0.029282645877803985,
+        "scaled_cost": 0.0185120112522844,
+        "success": 0.0,
+        "steps": 0
+      },
+      "source": "checkpoints/20261023T104759Z/diagnostic_attempt_1793004539946602860/trajectory_0003.pt",
+      "sha256": "0cb6927b75526420a6277f7ad43cc982719dbea2773febbe633a96018cc451be"
+    },
+    {
+      "method": "snapshot_restore",
+      "repeat": 2,
+      "candidate": 0,
+      "passed": false,
+      "errors": {
+        "gripper_velocity_m_s": 0.00044280244037508965,
+        "gripper_m": 3.267684951424599e-05,
+        "force_N": 19.45976448059082,
+        "joint_velocity_rad_s": 0.41710931062698364,
+        "torque_Nm": 2.8130602836608887,
+        "angular_velocity_rad_s": 8.617612838745117,
+        "rotation_matrix": 0.23420724272727966,
+        "controller": 0.15531562268733978,
+        "position_m": 0.007179379463195801,
+        "linear_velocity_m_s": 0.08807474374771118,
+        "joint_rad": 0.24115115404129028,
+        "scaled_return": 0.0033323204568165604,
+        "scaled_cost": 0.016613043446291893,
+        "success": 0.0,
+        "steps": 0
+      },
+      "source": "checkpoints/20261023T104759Z/diagnostic_attempt_1793004539946602860/trajectory_0004.pt",
+      "sha256": "f9bde86efb07d56175f51d4a29bbc92165666a64a68bcf0aff9864c20eed4a56"
+    },
+    {
+      "method": "prefix_replay",
+      "repeat": 0,
+      "candidate": 0,
+      "passed": false,
+      "errors": {
+        "gripper_velocity_m_s": 0.033843304961919785,
+        "gripper_m": 1.7135869711637497e-05,
+        "force_N": 7.264498233795166,
+        "joint_velocity_rad_s": 0.42778342962265015,
+        "torque_Nm": 2.0489821434020996,
+        "angular_velocity_rad_s": 6.561376094818115,
+        "rotation_matrix": 0.2496902346611023,
+        "controller": 0.147363543510437,
+        "position_m": 0.005605757236480713,
+        "linear_velocity_m_s": 0.02551155723631382,
+        "joint_rad": 0.2478867471218109,
+        "scaled_return": 0.006819422841297745,
+        "scaled_cost": 0.006603463660566232,
+        "success": 0.0,
+        "steps": 0
+      },
+      "source": "checkpoints/20261023T104759Z/diagnostic_attempt_1793004539946602860/trajectory_0005.pt",
+      "sha256": "f176828c6be8cba141b0cdd5092720fffacab517e1492158bd28913f99f417df"
+    },
+    {
+      "method": "prefix_replay",
+      "repeat": 1,
+      "candidate": 0,
+      "passed": false,
+      "errors": {
+        "gripper_velocity_m_s": 0.0004434322763700038,
+        "gripper_m": 2.441229298710823e-05,
+        "force_N": 8.272762298583984,
+        "joint_velocity_rad_s": 0.40866121649742126,
+        "torque_Nm": 1.8708670139312744,
+        "angular_velocity_rad_s": 6.965681076049805,
+        "rotation_matrix": 0.15667209029197693,
+        "controller": 0.1661943793296814,
+        "position_m": 0.005193192511796951,
+        "linear_velocity_m_s": 0.026040755212306976,
+        "joint_rad": 0.16153210401535034,
+        "scaled_return": 0.006400993810220158,
+        "scaled_cost": 0.02044375687163406,
+        "success": 0.0,
+        "steps": 0
+      },
+      "source": "checkpoints/20261023T104759Z/diagnostic_attempt_1793004539946602860/trajectory_0006.pt",
+      "sha256": "eb8647e4341e9d17e1797b3e595576d5e93c847e260ecc34d25e2df62ef5e597"
+    },
+    {
+      "method": "prefix_replay",
+      "repeat": 2,
+      "candidate": 0,
+      "passed": false,
+      "errors": {
+        "gripper_velocity_m_s": 0.00044341114698909223,
+        "gripper_m": 2.641277387738228e-05,
+        "force_N": 7.573554515838623,
+        "joint_velocity_rad_s": 0.4489840269088745,
+        "torque_Nm": 3.122771978378296,
+        "angular_velocity_rad_s": 7.727555274963379,
+        "rotation_matrix": 0.24111145734786987,
+        "controller": 0.1495000571012497,
+        "position_m": 0.007361948490142822,
+        "linear_velocity_m_s": 0.12156587094068527,
+        "joint_rad": 0.2371290922164917,
+        "scaled_return": 0.0012115533539941619,
+        "scaled_cost": 0.0167914920731264,
+        "success": 0.0,
+        "steps": 0
+      },
+      "source": "checkpoints/20261023T104759Z/diagnostic_attempt_1793004539946602860/trajectory_0007.pt",
+      "sha256": "8dc60b6e868d0768974c806938d0f8388a1ea048df8f35626fa491a008d8094a"
+    }
+  ],
+  "thresholds_sha256": "3ffb367d23f39b8ad1cbcfbdcfd07cd5be750b52fc7a3bdae621e855b6d07bf5",
+  "raw_original": {
+    "path": "checkpoints/20261023T104759Z/diagnostic_attempt_1793004539946602860/trajectory_0001.pt",
+    "sha256": "d63a1998db1d13bea81ad9163b4fb3247aa0ca8fb2c5aee69cd04a3b62ababa7"
+  },
+  "native_failure_preserved": "diagnostic_1793004526346629461_outcome.json",
+  "accounting": {
+    "status": "LOWER_BOUND_ONLY",
+    "physics_substeps": {
+      "restore": 1340,
+      "interaction": 0,
+      "branch": 7896,
+      "prefix": 1184,
+      "evaluation": 0
+    },
+    "individual_control_step_equivalents": {
+      "restore": 168,
+      "interaction": 0,
+      "branch": 987,
+      "prefix": 148,
+      "evaluation": 0
+    },
+    "pending_physics_substeps": null,
+    "unresolved_unflushed_steps": true,
+    "note": "Before-step journal charges a possibly incomplete final substep. Without that journal, unflushed work remains unknown; zero is not inferred."
+  },
+  "reason": "Saved real original and three repeats of each replay method all violate locked tolerances for candidate A0. This already falsifies all-comparisons admission. Other candidates/parents and D1/D2/B1-B3 remain NOT_RUN; the native crash is a separate implementation failure, not a scientific result.",
+  "scope": "Reanalysis of real saved trajectories, not new simulator execution or CPU-gradient validation"
+}

@@ -4,9 +4,12 @@ import faulthandler
 import json
 from pathlib import Path
 import time
+import os
 
 p = argparse.ArgumentParser(description=__doc__)
 p.add_argument('--output', required=True)
+p.add_argument('--fresh-full', action='store_true', help='One fresh-process prefix and full ACT continuation, engineering evidence only')
+p.add_argument('--only-prefix', action='store_true', help='Inspect real input determinism before an expensive continuation')
 from isaaclab.app import AppLauncher
 AppLauncher.add_app_launcher_args(p)
 args = p.parse_args()
@@ -23,7 +26,7 @@ from forcecritic.envs.accounting import PhysicsLedger
 from forcecritic.training.baseline import accepted_limits
 from forcecritic.training.pretrain import baseline_actor
 from forcecritic.training.live import LivePolicy
-from forcecritic.diagnostics.live import NoiseSchedule, snapshot, restore, prefix_replay
+from forcecritic.diagnostics.live import NoiseSchedule, snapshot, restore, prefix_replay, continuation
 from forcecritic.diagnostics.artifacts import atomic_json
 from forcecritic.runtime import source_hashes
 
@@ -37,6 +40,9 @@ result = dict(status='RUNNING', purpose='Engineering reset/restore probe, not sc
 def save(phase):
     result.update(phase=phase, time=time.time(), accounting=ledger.record())
     atomic_json(out, result)
+    atomic_json(report/'engineering_job.json',dict(pid=os.getpid(),status=result['status'],
+        phase=phase,output=str(out),progress=str(out.parent/out.stem/'diagnostic_live_progress.json'),
+        time=time.time(),log=str(out.with_suffix('.log'))))
     print('REPLAY_PROBE', phase, flush=True)
 
 def capture(adapter, noise):
@@ -64,12 +70,22 @@ try:
     actor = baseline_actor().to(args.device)
     actor.load_state_dict(state['actor'])
     policy = LivePolicy(actor,state['identity']['normalizer'],args.device)
+    if args.fresh_full:
+        from forcecritic.diagnostics.progress import DiagnosticProgress
+        observer=DiagnosticProgress(ledger,out.parent/out.stem,Path('checkpoints/20261023T104759Z')/out.stem)
+        observer.mark(phase='engineering_fresh_prefix')
     reference = None
     prefix = []
     for repeat in range(3):
         noise.seed,noise.tick = 60000,0
         adapter.reset(seed=60000)
         data = capture(adapter,noise)
+        if repeat==0:
+            raw_inputs=Path('checkpoints/20261023T104759Z')/(out.stem+'_inputs.pt')
+            plan_a=policy(adapter.observation)
+            plan_b=policy(adapter.observation)
+            torch.save(dict(observation=adapter.observation,plan=plan_a),raw_inputs)
+            result.update(raw_inputs=str(raw_inputs),same_input_action_max_error=float(np.max(abs(plan_a-plan_b))))
         result['observations'].append(data)
         if reference is None: reference = data
         result['comparisons'].append(dict(kind='reset',repeat=repeat,
@@ -88,6 +104,18 @@ try:
         if repeat == 0: reached_ref = reached
         result['comparisons'].append(dict(kind='prefix',repeat=repeat,
             max_errors={k:float(np.max(np.abs(v-reached_ref[k]))) for k,v in reached.items()}))
+        if args.only_prefix:
+            result['prefix_actions']=prefix
+            break
+        if args.fresh_full:
+            result['prefix_actions']=prefix
+            result['checkpoint_observation']={k:v for k,v in reached.items()}
+            actual=continuation(adapter,policy,policy(adapter.observation)[0],ledger)
+            raw=Path('checkpoints/20261023T104759Z')/(out.stem+'.pt')
+            torch.save(actual,raw)
+            result.update(raw_trajectory=str(raw),returns=actual['returns'],
+                          success=actual['success'],steps=actual['steps'])
+            break
         saved = snapshot(adapter,noise)
         action = policy(adapter.observation)[:,0]
         with ledger.using('branch'): original=adapter.step(action)
@@ -105,6 +133,7 @@ except BaseException as error:
     raise
 finally:
     save('finished')
+    if 'observer' in globals(): observer.close()
     if 'noise' in globals(): noise.close()
     if 'adapter' in globals(): adapter.close()
     ledger.close()

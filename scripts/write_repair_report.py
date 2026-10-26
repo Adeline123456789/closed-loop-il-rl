@@ -1,0 +1,64 @@
+"""Render current measured baseline and repair evidence without obsolete placeholders."""
+import csv
+import json
+from pathlib import Path
+
+report=Path('reports/20261023T104759Z')
+results=Path('results/20261023T104759Z')
+final=json.loads((report/'diagnostic_repair_result.json').read_text())
+inputs=json.loads((report/'replay_input_audit.json').read_text())
+manifest=json.loads((report/'run_manifest.json').read_text())
+baseline=json.loads((report/'baseline_training.json').read_text())
+episodes=list(csv.DictReader((results/'act0_validation.csv').open()))
+successes=sum(int(r['stable_success']) for r in episodes)
+text=f'''# 实测结果与诊断停止报告
+
+本轮状态：**NO_GO_REPLAY / NO_GO_CALIBRATION**。没有完成 D1、D2 或 B1/B2/B3，不能声称 Critic 改善了插接成功率。所有仿真和排错进程均已结束；不是仍在后台等待。
+
+| 阶段 | 实测进度和结果 |
+|---|---|
+| 实际 FORGE smoke | 1 / 8 环境均有通过记录，用户已接受 EULA |
+| ACT0 示教预训练 | 10,000 次更新；已有权重未覆盖 |
+| ACT0 真实评估 | {successes}/{len(episodes)} 稳定插接，批次成功率 {100*successes/len(episodes):.2f}% |
+| 共享交互 | {baseline['real_complete_episodes']} 回合；14,304 控制步 |
+| 普通 Critic | {baseline['critic_updates']} 次更新；loss 不是插接成功率 |
+| 修复前 D0 | 原始 JSON 故障前已保存 2 点、42 条续行、36 次比较；已恢复并独立归档 |
+| 修复后 D0 | 保存 1 条 O、3 条 R、3 条 P；R/P 各 0/3 通过。只测到首个父状态的 A0，未完成 8 点或全部 3 个候选 |
+| D1 / D2 / B1–B3 | NOT_RUN；前置回放门槛未通过 |
+
+## 软件修复和真实验证
+
+NumPy 布尔值/标量在 JSON 写入前转换为相应 Python 数值类型，NaN 和未知对象仍然拒绝。快照额外保存/恢复关节控制目标，修正 Isaac Lab `reset_to` 用实测关节状态替换控制目标的问题；重置前清除残留速度/力矩目标，并重置间隔随机事件倒计时。独立真实探针确认修复后的控制目标差和事件时钟差为零；**物理回放仍未通过**。
+
+诊断现在每条轨迹单独保存，每 5 秒报告真实完成的物理步。守护器检查生产进程：启动超时 300 秒，连续无物理进展 180 秒抓栈并中断，留 30 秒收尾；日志刷新不算物理进展。子进程停滞及退出码保留已用真实软件子进程测试，不能当作机器人成功证据。
+
+修复后一次正式诊断仍发生原生段错误（退出 -11），没有找到足以宣称该原生故障已根治的证据。原始日志/失败事件完整保留。新的逐物理步写前日志用于防止未来原生故障再次绕过 `finally` 而丢失账本；没有把这个新机制说成已经恢复了过去未记录的数据。
+
+## 为什么 D0 阻止继续训练
+
+已保存的 7 条真实轨迹足以重新计算 A0 的六次 O/R/P 比较，全部未通过冻结容差。门槛要求所有比较通过；增加其它候选或父状态不能抵消已失败的必要比较。因此记录提前 NO_GO，其余候选/检查点明确 NOT_RUN。这不是完成全部 D0，更不是算法有效性结论。恢复用 CPU 计算已有轨迹之间的误差，没有用 CPU 梯度替代真实交互。
+
+两次独立新进程的初始策略输入中，state 与 history 的最大差均为 0，但 RGB 的最大像素差为 {inputs['fields']['rgb']['max_abs']:.0f}、平均绝对差 {inputs['fields']['rgb']['mean_abs']:.6f}。同一份输入重复推理差为 0；两次真实输入对应的动作最大差为 {inputs['gpu_action_difference']:.6f}。保存输入的额外推理确认图像变化会改变动作。尚不能把全部物理差异归因于图像，或宣称独立进程已解决配对问题。
+
+两个 fresh full-rollout 工程探针的前缀动作本身不同，**不是匹配动作的 O/P 保真度实验**，不能拿它们给 D0 判通过。相机渲染设置未被静默修改，ACT0 的 6/32 保留为原条件下真实观测，不保证重新运行相同 seed 得到同一结果。
+
+## 账本与后续限制
+
+原生退出后恢复到最后落盘的下界：restore 168、branch 987、prefix 148 控制步。未落盘尾部未知，不能记为 0，也没有凭耗时猜上界。独立工程探针另行计入账本且避免重复计数。未来正式 diagnostic 重启会被守护器阻止，直到该预算缺口被核实；不会自动增加预算或跳过实验门槛。
+
+本轮按 CODEX_TASK.md 的 D0 停止标准结束方向校准。若以后修订渲染/恢复协议，需要记录新版本、重新核对数据与评估条件，再开展新的验证；不能把修订后的环境结果拼进本轮配对统计。
+
+## 可核查产物
+
+- `act0_validation.csv`：原 32 回合真实评估。
+- `fidelity_before_repair.csv/json`：写盘故障前的 36 次比较。
+- `results/20261023T104759Z/fidelity.csv` 与 `diagnostic_repair_result.json`：修复后 6 次已保存真实比较和数据哈希；逐比较无法精确归属的总环境步字段留空。
+- `diagnostic_1793004526346629461.log` / `_outcome.json`：原生段错误。
+- `diagnostic_native_recovery.json`：已恢复步数下界与未知尾部。
+- `replay_probe_*.json/log`、`replay_input_audit.json`：工程排错结果、源代码哈希及输入差异。
+- 原始数组、轨迹与权重保留本地 `data/`、`checkpoints/`，没有作为 GitHub 仓库大文件上传。
+
+观测命令：`watch -n 5 '.venv/bin/python scripts/training_status.py'`。当前应显示门槛停止，不应显示消融运行中。
+'''
+(report/'FINAL_REPORT.md').write_text(text)
+(report/'DIAGNOSTIC_REPAIR.md').write_text(text)

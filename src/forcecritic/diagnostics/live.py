@@ -250,9 +250,16 @@ def fidelity_checkpoint(adapter, policy, noise, seed, prefix, candidates, ledger
                     env_steps=(sum(ledger.counts.values())-before)/ledger.decimation,
                     original_env_steps=original_steps if method=='snapshot_restore' and repeat==0 else 0.,
                     original=original, repeated=actual))
+        if all(any(not r['passed'] for r in records if r['method']==method)
+               for method in ('snapshot_restore','prefix_replay')):
+            # Both methods already violate a required comparison. Further
+            # candidates cannot rescue an all-comparisons equivalence gate.
+            break
     accepted = [method for method in ('snapshot_restore','prefix_replay')
                 if all(r['passed'] for r in records if r['method'] == method)]
     return {'accepted_methods':accepted, 'records':records,
+            'continuations_used':len(records)+candidate_id+1,
+            'candidates_measured':candidate_id+1, 'candidates_planned':len(candidates),
             'status':'PASSED' if accepted else 'NO_GO_REPLAY'}
 
 

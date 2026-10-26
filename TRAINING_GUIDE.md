@@ -2,7 +2,9 @@
 
 项目目录：`/media/midea/F496AC8096AC4548/closed_loop_act`。分支：`codex/force-critic-act-v2`。运行 ID：`20261023T104759Z`。
 
-本次发布快照见 `reports/20261023T104759Z/publication_snapshot/status.json`。真实 smoke-1、smoke-8 和 24 步动作/六维力探针已通过；新契约的开发专家实测为 8/8 稳定成功。ACT、在线 Critic、Critic→ACT 和 B1/B2/B3 真实结果尚未产生。代码已接入真实环境，但这些后续阶段仍待实际执行验证。软件测试不代表插接成功率。
+本次发布快照见 `reports/20261023T104759Z/publication_snapshot/status.json`。真实 smoke-1、smoke-8 已通过；ACT 已训练 10,000 次并完成真实评估（6/32 稳定成功），共享交互 96 回合，普通 Critic 已更新 10,000 次。当前 D0 的真实回放门槛未通过，D1/D2 和 B1/B2/B3 未运行。
+
+**当前不是训练中，而是按协议停止。** 修复后的 7 条保存轨迹给出 R/P 各 0/3 通过；另有原生段错误及未落盘步数未知的问题。新的守护器会阻止在预算缺口未核实前再次启动正式诊断，不会自动改容差、扩大预算或跳过门槛。详见 [修复与停止报告](reports/20261023T104759Z/DIAGNOSTIC_REPAIR.md)。下面的启动命令是操作接口，不表示当前已允许继续消融。
 
 ## 数据在哪里
 

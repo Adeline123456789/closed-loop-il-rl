@@ -1,5 +1,5 @@
 {
-  "snapshot_time_utc": "2026-10-26T08:53:56.667178+00:00",
+  "snapshot_time_utc": "2026-10-26T09:20:25.563534+00:00",
   "completed_collection_runs": 20,
   "planned_collection_runs": 20,
   "completed_episodes": 376,
@@ -127,7 +127,7 @@
     "smoke-1": "PASSED",
     "smoke-8": "PASSED",
     "baseline": "PASSED",
-    "diagnostic": "FAILED_IMPLEMENTATION",
+    "diagnostic": "NO_GO_REPLAY",
     "short-ablation": "NOT_RUN",
     "pilot": "NOT_RUN",
     "confirm": "NOT_RUN",
@@ -142,7 +142,9 @@
     "pid": 1271400,
     "session": "forcecritic-training",
     "log": ".cache/background_training.log",
-    "returncode": 2
+    "returncode": 2,
+    "recorded_stage_status": "NO_GO_REPLAY",
+    "note": "No active training; D0 gate failed on saved real trajectories. Native crash separately retained. See DIAGNOSTIC_REPAIR.md."
   },
   "note": "Measured snapshot; expert success is not ACT performance. Raw arrays and weights remain local."
 }

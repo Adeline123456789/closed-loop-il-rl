@@ -98,7 +98,7 @@ def admit_checkpoints(adapter, policy, noise, checkpoints, ledger, thresholds, s
         plus,minus,_ = candidates(checkpoint['a0'],direction,.02)
         measured = fidelity_checkpoint(adapter,policy,noise,checkpoint['seed'],checkpoint['prefix'],
             [checkpoint['a0'],plus,minus],ledger,thresholds['fidelity_tolerances'],scale,first_at_checkpoint=True)
-        used += 21  # three candidates, each O plus three R plus three P
+        used += measured['continuations_used']
         checkpoint['accepted_methods'] = measured['accepted_methods']
         torch.save(measured,directory/f"{checkpoint['parent_id']}.pt")
         if csv_path is not None:
@@ -205,7 +205,7 @@ def diagnostic(run, manifest, make_adapter, device='cuda:0'):
     repair_path = run.report/'diagnostic_repair.json'
     repair = json.loads(repair_path.read_text()) if repair_path.exists() else {}
     # Engineering probes are charged in the shared diagnostic physical budget.
-    ledger.cap -= int(repair.get('engineering_control_steps',0))*ledger.decimation
+    ledger.cap -= int(repair.get('engineering_control_steps',0)+repair.get('native_control_steps',0))*ledger.decimation
     observer = DiagnosticProgress(ledger,run.report,directory/f'diagnostic_attempt_{time.time_ns()}',
                                   previous_continuations=repair.get('previous_continuations',0))
     adapter.diagnostic = True

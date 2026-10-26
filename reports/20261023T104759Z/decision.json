@@ -1,13 +1,9 @@
 {
-  "status": "NOT_RUN",
-  "from_stage": "baseline",
-  "next_stage": "diagnostic",
-  "reason": "P0 accepted and current smoke-1/smoke-8 passed. ACT pretraining is running; no diagnostic continuation decision has been measured yet. See training_progress.json.",
-  "protocol": "force_critic_act_v2_diagnostic_first",
-  "config_hash": "a355f6209f5049e01afb25d9cc196524ad577f11dee2d54404219f7f0e64eedb",
-  "supersedes": "reports/20261023T104759Z/decision_20261023_license_superseded.json",
-  "time_utc": "2026-10-26T06:45:10.887065+00:00",
+  "status": "NO_GO_CALIBRATION",
+  "from_stage": "diagnostic",
+  "reason": "D0 replay admission failed on saved real comparisons; D1/D2/short ablations not authorized by the scientific gate.",
   "evidence_hashes": {
-    "reports/20261023T104759Z/p0_acceptance.json": "806f2ee087086597157953de3ec8de75e22e93966671c274e8be9b3ea6981a0d"
-  }
+    "reports/20261023T104759Z/diagnostic_repair_result.json": "02f0427ab0f3549dccf13501456dbe6cdb1b737838fc874343c1cfe3f626f01d"
+  },
+  "config_hash": "a355f6209f5049e01afb25d9cc196524ad577f11dee2d54404219f7f0e64eedb"
 }

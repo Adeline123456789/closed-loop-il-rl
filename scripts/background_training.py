@@ -91,6 +91,8 @@ def snapshot():
 def publish(refresh_report=True):
     if refresh_report:
         command([PYTHON, '-m', 'forcecritic.cli', 'report', '--run-id', RUN])
+        if (REPORT/'diagnostic_repair_result.json').exists():
+            command([PYTHON, 'scripts/write_repair_report.py'])
     body = snapshot()
     rc = command([PYTHON, 'scripts/publish.py'])
     if rc:

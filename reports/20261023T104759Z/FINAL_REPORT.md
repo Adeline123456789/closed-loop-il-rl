@@ -1,93 +1,48 @@
-# Measured validation / stop report
+# 实测结果与诊断停止报告
 
-Protocol: `force_critic_act_v2_diagnostic_first`. Run: `20261023T104759Z`.
+本轮状态：**NO_GO_REPLAY / NO_GO_CALIBRATION**。没有完成 D1、D2 或 B1/B2/B3，不能声称 Critic 改善了插接成功率。所有仿真和排错进程均已结束；不是仍在后台等待。
 
-## Outcome
+| 阶段 | 实测进度和结果 |
+|---|---|
+| 实际 FORGE smoke | 1 / 8 环境均有通过记录，用户已接受 EULA |
+| ACT0 示教预训练 | 10,000 次更新；已有权重未覆盖 |
+| ACT0 真实评估 | 6/32 稳定插接，批次成功率 18.75% |
+| 共享交互 | 96 回合；14,304 控制步 |
+| 普通 Critic | 10000 次更新；loss 不是插接成功率 |
+| 修复前 D0 | 原始 JSON 故障前已保存 2 点、42 条续行、36 次比较；已恢复并独立归档 |
+| 修复后 D0 | 保存 1 条 O、3 条 R、3 条 P；R/P 各 0/3 通过。只测到首个父状态的 A0，未完成 8 点或全部 3 个候选 |
+| D1 / D2 / B1–B3 | NOT_RUN；前置回放门槛未通过 |
 
-Raw completed episodes are summarized separately by seed, split and checkpoint; no pooling across policy versions. See paired_comparisons.csv for matched-parent differences.
+## 软件修复和真实验证
 
-| Stage | Status | Reason |
-|---|---|---|
-| doctor | PASSED | Missing runtime: ;  |
-| audit-data | PASSED | Accepted hashed same-version recordings; HF semantics remain unresolved |
-| smoke-1 | PASSED | Real launcher attempted; see command log |
-| smoke-8 | PASSED | Real launcher attempted; see command log |
-| baseline | PASSED | ACT0 has measured insertions; ordinary critic fitted on actual chunk transitions |
-| diagnostic | FAILED_IMPLEMENTATION | single child exited -11; inspect phase log/outcome |
-| short-ablation | NOT_RUN | Not reached: same-version recollection is still running; all real predecessor gates remain required |
-| pilot | NOT_RUN | Not reached: same-version recollection is still running; all real predecessor gates remain required |
-| confirm | NOT_RUN | Not reached: same-version recollection is still running; all real predecessor gates remain required |
-| generalization | NOT_RUN | Not reached: same-version recollection is still running; all real predecessor gates remain required |
-| installation | PASSED | Candidate Python 3.11 / cu128 Torch / pinned Isaac Sim and Lab dependencies installed; camera/physics still require smoke |
+NumPy 布尔值/标量在 JSON 写入前转换为相应 Python 数值类型，NaN 和未知对象仍然拒绝。快照额外保存/恢复关节控制目标，修正 Isaac Lab `reset_to` 用实测关节状态替换控制目标的问题；重置前清除残留速度/力矩目标，并重置间隔随机事件倒计时。独立真实探针确认修复后的控制目标差和事件时钟差为零；**物理回放仍未通过**。
 
-## Runtime and inspected evidence
+诊断现在每条轨迹单独保存，每 5 秒报告真实完成的物理步。守护器检查生产进程：启动超时 300 秒，连续无物理进展 180 秒抓栈并中断，留 30 秒收尾；日志刷新不算物理进展。子进程停滞及退出码保留已用真实软件子进程测试，不能当作机器人成功证据。
 
-Hardware: NVIDIA GeForce RTX 3090, 24576 MiB, 575.51.03.
-Interpreter: `/media/midea/F496AC8096AC4548/closed_loop_act/.venv/bin/python`; Python `3.11.15`; Torch `2.7.0+cu128`; Torch CUDA `12.8`; Isaac Sim `5.0.0.0`.
-Isaac Lab checkout: `0f00ca2b4b2d54d5f90006a92abb1b00a72b2f20` (v2.2.1; distribution metadata version is a separate identifier).
-Omniverse acceptance indicators: `{"status": "ACCEPTED", "accepted": true, "acceptance_marker_exists": true, "environment_acceptance_flag": false, "agreement_url": "https://docs.omniverse.nvidia.com/enterprise/latest/common/NVIDIA_Omniverse_License_Agreement.html"}`. No acceptance is inferred from installation.
-Loaded assets, camera rendering, expert compatibility and robot efficacy require their own successful measured records. Package installation and the CUDA tensor check do not establish them.
+修复后一次正式诊断仍发生原生段错误（退出 -11），没有找到足以宣称该原生故障已根治的证据。原始日志/失败事件完整保留。新的逐物理步写前日志用于防止未来原生故障再次绕过 `finally` 而丢失账本；没有把这个新机制说成已经恢复了过去未记录的数据。
 
-- `cpu_tests`: return code `0`; 49 passed in 1.47s.
-- `diff_check`: return code `0`; see command log.
-- `angledusgar/forge-v1`: 984 PegInsert episodes in metadata; inspected 1 complete episode(s), 149 frames, at revision `0ebe4ff65ade3da8d2011d66cce0259870c95f78`.
-- `angledusgar/forge-failure-v1`: 26 PegInsert episodes in metadata; inspected 1 complete episode(s), 149 frames, at revision `820392e1167df4d6f5d60f985ec4f3b1b4fd6237`.
+## 为什么 D0 阻止继续训练
 
-Expert download integrity: `VERIFIED`; safe tensor-shape inspection: `PASSED`. Measured expert development episodes: 8; stable successes: 8. No expert model-card performance is counted as a project result.
+已保存的 7 条真实轨迹足以重新计算 A0 的六次 O/R/P 比较，全部未通过冻结容差。门槛要求所有比较通过；增加其它候选或父状态不能抵消已失败的必要比较。因此记录提前 NO_GO，其余候选/检查点明确 NOT_RUN。这不是完成全部 D0，更不是算法有效性结论。恢复用 CPU 计算已有轨迹之间的误差，没有用 CPU 梯度替代真实交互。
 
-## Questions
+两次独立新进程的初始策略输入中，state 与 history 的最大差均为 0，但 RGB 的最大像素差为 20、平均绝对差 0.480128。同一份输入重复推理差为 0；两次真实输入对应的动作最大差为 0.145648。保存输入的额外推理确认图像变化会改变动作。尚不能把全部物理差异归因于图像，或宣称独立进程已解决配对问题。
 
-1. Critic → ACT: implemented in `training/updates.py`; CPU tests change critic slope on fixed ACT/data, observe changed ACT output, and verify nonzero Q-only gradients with critic parameters fixed.
-2. Ordinary direct update: see B1-B0 matched-parent comparison; causal/continuation decisions require all diagnostic gates.
-3. Replay fidelity rows: 0; diagnostic stage status: FAILED_IMPLEMENTATION. Row count alone is not evidence of equivalence.
-4. B2 vs B1 filtering: see matched-parent comparison and independent diagnostic evidence.
-5. B3 vs B2 calibration: see matched-parent comparison; endpoint labels already contain contrast information.
-6. Recorded continuation decision: **NOT_RUN** — P0 accepted and current smoke-1/smoke-8 passed. ACT pretraining is running; no diagnostic continuation decision has been measured yet. See training_progress.json..
-7. Stages not passed/completed: diagnostic, short-ablation, pilot, confirm, generalization. Reasons are listed above; an environment block is not an algorithm negative result.
+两个 fresh full-rollout 工程探针的前缀动作本身不同，**不是匹配动作的 O/P 保真度实验**，不能拿它们给 D0 判通过。相机渲染设置未被静默修改，ACT0 的 6/32 保留为原条件下真实观测，不保证重新运行相同 seed 得到同一结果。
 
-## Raw result summary
+## 账本与后续限制
 
-| Arm / seed / split / policy | Status | Episodes | Success | Overload |
-|---|---|---:|---|---|
-| B0 / 0 / validation / 6343385 | COMPLETED | 32 | 0.1875 | 0.90625 |
-| B1 / NA / NA / NA | NOT_RUN | 0 | NA | NA |
-| B2 / NA / NA / NA | NOT_RUN | 0 | NA | NA |
-| B3 / NA / NA / NA | NOT_RUN | 0 | NA | NA |
+原生退出后恢复到最后落盘的下界：restore 168、branch 987、prefix 148 控制步。未落盘尾部未知，不能记为 0，也没有凭耗时猜上界。独立工程探针另行计入账本且避免重复计数。未来正式 diagnostic 重启会被守护器阻止，直到该预算缺口被核实；不会自动增加预算或跳过实验门槛。
 
-## Cost and artifacts
+本轮按 CODEX_TASK.md 的 D0 停止标准结束方向校准。若以后修订渲染/恢复协议，需要记录新版本、重新核对数据与评估条件，再开展新的验证；不能把修订后的环境结果拼进本轮配对统计。
 
-Individual simulator transitions by category: `{"interaction": 71539, "branch": 5921, "prefix": 385, "restore": 7163, "evaluation": 4412}`.
-Total accounted simulator transitions: 89420. CPU unit fixtures are excluded from robot metrics.
-Checkpoint index entries: 0. Publication is not implied by a local checkpoint; only verified Release entries may be used as download links.
-Header-only fidelity/pair/actor/episode CSV files mean NOT_RUN, not zero success.
+## 可核查产物
 
-## Reproduce / resume
+- `act0_validation.csv`：原 32 回合真实评估。
+- `fidelity_before_repair.csv/json`：写盘故障前的 36 次比较。
+- `results/20261023T104759Z/fidelity.csv` 与 `diagnostic_repair_result.json`：修复后 6 次已保存真实比较和数据哈希；逐比较无法精确归属的总环境步字段留空。
+- `diagnostic_1793004526346629461.log` / `_outcome.json`：原生段错误。
+- `diagnostic_native_recovery.json`：已恢复步数下界与未知尾部。
+- `replay_probe_*.json/log`、`replay_input_audit.json`：工程排错结果、源代码哈希及输入差异。
+- 原始数组、轨迹与权重保留本地 `data/`、`checkpoints/`，没有作为 GitHub 仓库大文件上传。
 
-```bash
-FORCECRITIC_PYTHON=.venv/bin/python bash scripts/run_end_to_end.sh --config configs/minimal_validation.yaml --resume auto --demonstrations data/act_demonstrations/manifest.json --publish
-```
-
-This resumes audit artifacts, rechecks blocked prerequisites, and reports/publishes even when a gate stops training.
-Current doctor and actual smoke records determine runtime status. Historical license failures do not supersede later successful real launches. The new P0 contract does not retroactively validate old HF action/sensor/camera semantics.
-
-## Scope still unverified
-
-Consult the stage table and implementation_audit.md for unresolved interfaces and unimplemented orchestration; CPU software tests never establish robot efficacy.
-Stage execution deliberately fails closed while P0 is incomplete. Higher-stage robot orchestration is not presented as experimentally validated.
-See `data_audit.json`, `doctor.json`, `action_contract.md`, `sensor_contract.md`, `implementation_audit.md`, and command logs for exact evidence.
-
-## Accounting uncertainty
-
-The accounted total above is a measured lower bound. A terminated lifecycle debugging probe lacked its final counter dump; its bounded unobserved advances are recorded separately, not invented as zero or mixed into measured counts.
-```json
-[
-  {
-    "source": "reports/20261023T104759Z/recreation_after_fix.json",
-    "phase": "second environment reset in rejected cleanup-only probe",
-    "category": "restore",
-    "additional_individual_control_steps_min": 0,
-    "additional_individual_control_steps_max": 10000,
-    "basis": "Last saved ledger is before reset; PhysicsLedger enforces a 10000 individual-control-step cap. Process terminated without a final counter snapshot."
-  }
-]
-```
+观测命令：`watch -n 5 '.venv/bin/python scripts/training_status.py'`。当前应显示门槛停止，不应显示消融运行中。

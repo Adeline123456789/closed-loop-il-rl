@@ -5,5 +5,7 @@
   "pid": 1271400,
   "session": "forcecritic-training",
   "log": ".cache/background_training.log",
-  "returncode": 2
+  "returncode": 2,
+  "recorded_stage_status": "NO_GO_REPLAY",
+  "note": "No active training; D0 gate failed on saved real trajectories. Native crash separately retained. See DIAGNOSTIC_REPAIR.md."
 }

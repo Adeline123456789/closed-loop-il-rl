@@ -52,3 +52,26 @@ def test_diagnostic_reset_clears_actuator_velocity_and_restarts_event_clock():
     assert noise.seed==7 and noise.tick==0
     noise.close()
     assert adapter.reset is old
+
+
+def test_fidelity_stops_only_when_both_methods_have_failed(monkeypatch):
+    from types import SimpleNamespace
+    import forcecritic.diagnostics.live as live
+    keys=('position_m','rotation_matrix','joint_rad','gripper_m','gripper_velocity_m_s',
+          'linear_velocity_m_s','angular_velocity_rad_s','joint_velocity_rad_s','force_N','torque_Nm','controller')
+    tolerance={k:0. for k in (*keys,'scaled_return','scaled_cost','success','steps')}
+    monkeypatch.setattr(live,'snapshot',lambda *a:{})
+    monkeypatch.setattr(live,'restore',lambda *a:None)
+    monkeypatch.setattr(live,'prefix_replay',lambda *a:None)
+    calls=[]
+    def continuation(*args):
+        calls.append(None)
+        value=0. if len(calls)==1 else 1.
+        return dict(trajectory={k:np.full((1,1),value) for k in keys},returns=np.zeros(2),success=False,steps=1)
+    monkeypatch.setattr(live,'continuation',continuation)
+    ledger=SimpleNamespace(counts={'branch':0},decimation=8)
+    result=live.fidelity_checkpoint(None,None,None,0,[],[None]*3,ledger,tolerance,[1,1])
+    assert len(calls)==7 and result['continuations_used']==7
+    assert result['status']=='NO_GO_REPLAY'
+    assert result['candidates_measured']==1 and result['candidates_planned']==3
+    assert result['accepted_methods']==[]

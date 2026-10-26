@@ -1,0 +1,25 @@
+{
+  "accounting": {
+    "status": "LOWER_BOUND_ONLY",
+    "physics_substeps": {
+      "restore": 1340,
+      "interaction": 0,
+      "branch": 7896,
+      "prefix": 1184,
+      "evaluation": 0
+    },
+    "individual_control_step_equivalents": {
+      "restore": 168,
+      "interaction": 0,
+      "branch": 987,
+      "prefix": 148,
+      "evaluation": 0
+    },
+    "pending_physics_substeps": null,
+    "unresolved_unflushed_steps": true,
+    "note": "Before-step journal charges a possibly incomplete final substep. Without that journal, unflushed work remains unknown; zero is not inferred."
+  },
+  "producer_pid": 1272853,
+  "outcome_accounting": "diagnostic_1793004526346629461_outcome.accounting.json",
+  "reason": "Native exit -11 bypassed finally. The original zero aggregate was missing evidence, not zero work."
+}

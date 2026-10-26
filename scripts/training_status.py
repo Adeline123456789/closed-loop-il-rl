@@ -80,6 +80,9 @@ def detailed_progress(stage):
     job=read(REPORT/'background_job.json')
     if not alive(job.get('pid')) or job.get('status') in ('STOPPED','FAILED'):
         detail='已停止，最后执行位置：'+detail
+        recovered=read(REPORT/'diagnostic_repair_result.json')
+        if stage=='diagnostic' and recovered.get('status')=='NO_GO_REPLAY':
+            detail='D0 按门槛停止：首个父状态 A0 的 R/P 各3次均未通过；其余候选、D1/D2及消融未运行。原生崩溃另行保留，不能称全部跑通。'
     return dict(shared_episodes=baseline.get('real_complete_episodes',live.get('completed_episodes',0)),
         shared_steps=baseline.get('accounting',{}).get('individual_control_step_equivalents',{}).get('interaction',live.get('individual_transitions',0)),
         critic_updates=baseline.get('critic_updates',live.get('completed_updates',0) if live.get('phase')=='critic_training' else 0),
@@ -99,6 +102,7 @@ def snapshot():
     target = progress.get('requested_updates', 10000)
     evaluations = rows('act0_validation.csv')
     phase = job.get('stage', 'UNKNOWN')
+    engineering=read(REPORT/'engineering_job.json')
     if phase == 'baseline' and job.get('status') == 'RUNNING' and running:
         if done < target:
             phase = 'ACT 示教预训练'
@@ -155,6 +159,7 @@ def snapshot():
                'shared_collection':'共享真实仿真交互',
                'critic_training':'在线 Critic 训练'}.get(live.get('phase'),phase)
     return dict(time_utc=datetime.now(timezone.utc).isoformat(), phase=phase,
+                engineering=engineering,
                 supervisor_alive=running, supervisor_status=job.get('status'),
                 act_updates=done, act_target=target, act_percent=round(100*done/target, 1),
                 checkpoint_age_seconds=round(time.time()-(CHECKPOINT/'act0.json').stat().st_mtime,1)
@@ -194,6 +199,9 @@ def display(data):
         f" 8    D1 独立确认：{view['confirmation_runs']} 条轨迹；最多192，实际目标由初筛决定",
         f" 9    D2 ACT 更新验证：{view['transfer_runs']}/4 条对照轨迹；遗忘评估 {view['forgetting_runs']}/{view['forgetting_target']}",
         '10    最小消融（Critic更新 / ACT更新 / 真实评估）：']
+    engineering=data.get('engineering',{})
+    if engineering and alive(engineering.get('pid')) and engineering.get('status')=='RUNNING':
+        lines.insert(2,f"正在修复验证：{engineering.get('phase')}；独立仿真 PID {engineering.get('pid')}；日志 {engineering.get('log')}")
     lines.append(f"      B0 固定ACT：无需更新 / 无需更新 / {data['ablation_episodes']['B0']}/32")
     for arm in ('B1','B2','B3'):
         counts=view['arms'].get(arm,{})
