@@ -1,7 +1,7 @@
 {
   "status": "PASSED",
   "missing_packages": [],
-  "code_sha": "572faf9f9c38e7c1d4599b5c318d076e9e2b149e",
+  "code_sha": "1e10b1d6a520deadb3d6da98229d94893ff65772",
   "config_hash": "a355f6209f5049e01afb25d9cc196524ad577f11dee2d54404219f7f0e64eedb",
   "upstream_lock_sha256": "bf5d172f1d39becd72bbc1799d0e23cf37c5d857b5cff41fd5d076092bb0a0b9",
   "hf_sources": {
@@ -80,7 +80,7 @@
     "numpy": "1.26.0",
     "pyarrow": "21.0.0"
   },
-  "disk_free_bytes": 104019959808,
+  "disk_free_bytes": 100488589312,
   "asset_loading": "NOT_RUN",
   "camera_rendering": "NOT_RUN",
   "git_read": {

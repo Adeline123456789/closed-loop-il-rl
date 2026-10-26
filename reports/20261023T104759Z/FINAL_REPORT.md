@@ -56,8 +56,8 @@ Expert download integrity: `VERIFIED`; safe tensor-shape inspection: `PASSED`. M
 
 ## Cost and artifacts
 
-Individual simulator transitions by category: `{"interaction": 57235, "branch": 0, "prefix": 0, "restore": 5544, "evaluation": 4376}`.
-Total accounted simulator transitions: 67155. CPU unit fixtures are excluded from robot metrics.
+Individual simulator transitions by category: `{"interaction": 57235, "branch": 0, "prefix": 0, "restore": 5620, "evaluation": 4412}`.
+Total accounted simulator transitions: 67267. CPU unit fixtures are excluded from robot metrics.
 Checkpoint index entries: 0. Publication is not implied by a local checkpoint; only verified Release entries may be used as download links.
 Header-only fidelity/pair/actor/episode CSV files mean NOT_RUN, not zero success.
 
