@@ -1,9 +1,9 @@
 {
-  "status": "STAGE_FINISHED",
-  "stage": "smoke-8",
-  "time_utc": "2026-10-26T06:15:35.806446+00:00",
-  "pid": 1226491,
+  "status": "RUNNING",
+  "stage": "baseline",
+  "time_utc": "2026-10-26T06:17:27.416868+00:00",
+  "pid": 1228835,
   "session": "forcecritic-training",
   "log": ".cache/background_training.log",
-  "returncode": 0
+  "adopted_cli_pid": 1228174
 }

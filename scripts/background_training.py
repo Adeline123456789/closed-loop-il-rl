@@ -1,5 +1,6 @@
 """User-authorized managed continuation; publish measured evidence at stage boundaries."""
 import csv
+import argparse
 import fcntl
 import json
 import os
@@ -7,6 +8,7 @@ from pathlib import Path
 import shutil
 import subprocess
 import sys
+import time
 from datetime import datetime, timezone
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -86,8 +88,9 @@ def snapshot():
     return text
 
 
-def publish():
-    command([PYTHON, '-m', 'forcecritic.cli', 'report', '--run-id', RUN])
+def publish(refresh_report=True):
+    if refresh_report:
+        command([PYTHON, '-m', 'forcecritic.cli', 'report', '--run-id', RUN])
     body = snapshot()
     rc = command([PYTHON, 'scripts/publish.py'])
     if rc:
@@ -102,25 +105,56 @@ def publish():
             'Pilot/confirmation/generalization are not automatically run.\n\n'
             'Data schema and monitoring: DATA_FORMAT.md and TRAINING_GUIDE.md. '
             'Raw datasets, replay, simulator caches and model weights are local.\n')
-        rc = command(['gh', 'pr', 'edit', '1', '--repo', 'Adeline123456789/closed-loop-il-rl',
-                      '--body-file', str(body_path)], timeout=90)
+        # REST avoids older gh pr edit querying the removed classic Projects API.
+        request_path = ROOT / '.cache/background_pr_request.json'
+        request_path.write_text(json.dumps({'body': body_path.read_text()}))
+        rc = command(['gh', 'api', '--method', 'PATCH',
+                      'repos/Adeline123456789/closed-loop-il-rl/pulls/1',
+                      '--input', str(request_path), '--jq', '.html_url'], timeout=90)
     atomic_json(ROOT / '.cache/background_publication.json',
                 dict(time_utc=now(), returncode=rc, head=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()))
     return rc
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--adopt-pid', type=int)
+    parser.add_argument('--adopt-stage', choices=('baseline','diagnostic','short-ablation'))
+    args = parser.parse_args()
+    if bool(args.adopt_pid) != bool(args.adopt_stage):
+        parser.error('--adopt-pid and --adopt-stage must be supplied together')
     lock = (ROOT / '.cache/background_training.lock').open('w')
     fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
     if not (DATA / 'manifest.json').exists():
         raise RuntimeError('Completed demonstration manifest required; no duplicate collection launched')
-    state('RUNNING', 'initial-publication')
-    publish()
+    if not args.adopt_pid:
+        state('RUNNING', 'initial-publication')
+        publish()
     stages = [('doctor', ['doctor']),
               ('audit-data', ['audit-data', '--demonstrations', str(DATA / 'manifest.json')]),
               ('smoke-1', ['smoke', '--num-envs', '1']), ('smoke-8', ['smoke', '--num-envs', '8'])]
     stages += [(s, ['run','--stage',s,'--demonstrations',str(DATA/'manifest.json')])
                for s in ('baseline','diagnostic','short-ablation')]
+    if args.adopt_pid:
+        # Replace only the supervisor while its already-authorized CLI child runs.
+        # No second simulator or optimizer is started, and no failed stage is retried.
+        state('RUNNING', args.adopt_stage, adopted_cli_pid=args.adopt_pid)
+        process = Path(f'/proc/{args.adopt_pid}/stat')
+        while process.exists():
+            try:
+                if process.read_text().split(') ',1)[1].split()[0] == 'Z':
+                    break
+            except FileNotFoundError:
+                break
+            time.sleep(10)
+        measured = json.loads((REPORT / 'run_manifest.json').read_text())['stages'][args.adopt_stage]
+        passed = measured['status'] == 'PASSED'
+        state('STAGE_FINISHED' if passed else 'STOPPED', args.adopt_stage,
+              recorded_stage_status=measured['status'])
+        publish()
+        if not passed:
+            return 2
+        stages = stages[next(i for i,(name,_) in enumerate(stages) if name==args.adopt_stage)+1:]
     for name, args in stages:
         state('RUNNING', name)
         rc = command([PYTHON, '-m', 'forcecritic.cli', *args, '--run-id', RUN])
