@@ -14,6 +14,7 @@ p.add_argument('--render-aa', choices=['FXAA','Off','DLSS'], help='Engineering-o
 p.add_argument('--reference', help='Replay this measured fixed prefix and first candidate action in a fresh process')
 p.add_argument('--reset-render-history', action='store_true', help='Engineering probe for full temporal renderer reset before each render')
 p.add_argument('--spatial-render', action='store_true', help='Engineering-only non-temporal, non-sampled lighting settings')
+p.add_argument('--fixed-shadow-seed', action='store_true', help='Engineering-only installed RTX constant shadow RNG option')
 from isaaclab.app import AppLauncher
 AppLauncher.add_app_launcher_args(p)
 args = p.parse_args()
@@ -46,12 +47,15 @@ if args.spatial_render:
     cfg.sim.render.carb_settings={'/rtx/directLighting/sampledLighting/enabled':False,
                                  '/rtx/raytracing/cached/enabled':False,
                                  '/rtx/post/tonemap/dither':0.0}
+if args.fixed_shadow_seed:
+    cfg.sim.render.carb_settings=dict(cfg.sim.render.carb_settings or {},**{'/rtx/shadows/constantSeed':True})
 ledger = PhysicsLedger(1, cfg.decimation, 5000)
 result = dict(status='RUNNING', purpose='Engineering reset/restore probe, not scientific admission',
               source_hashes=source_hashes(), observations=[], comparisons=[],render_aa=args.render_aa,
               reference=args.reference)
 result['reset_render_history']=args.reset_render_history
 result['spatial_render']=args.spatial_render
+result['fixed_shadow_seed']=args.fixed_shadow_seed
 def save(phase):
     result.update(phase=phase, time=time.time(), accounting=ledger.record())
     atomic_json(out, result)
@@ -94,7 +98,7 @@ try:
     settings=carb.settings.get_settings()
     result['actual_render_settings']={key:settings.get(key) for key in (
         '/rtx/post/aa/op','/rtx/post/dlss/execMode','/rtx-transient/dldenoiser/enabled',
-        '/rtx/directLighting/sampledLighting/enabled','/rtx/rendermode')}
+        '/rtx/directLighting/sampledLighting/enabled','/rtx/rendermode','/rtx/shadows/constantSeed')}
     result['actual_render_settings']['/rtx/domeLight/upperLowerStrategy']=settings.get('/rtx/domeLight/upperLowerStrategy')
     adapter = ForgeAdapter(env, limits=accepted_limits(report/'p0_acceptance.json'),
         hard_limits=json.loads((report/'p0_acceptance.json').read_text())['physical_protection_limits'],

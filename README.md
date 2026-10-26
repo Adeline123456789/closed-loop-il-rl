@@ -8,6 +8,8 @@ Implemented components and boundaries are documented in each run's `implementati
 
 Local data paths, managed background continuation and progress monitoring: [TRAINING_GUIDE.md](TRAINING_GUIDE.md). Actual NumPy image/force/pose schema and video export: [DATA_FORMAT.md](DATA_FORMAT.md).
 
+After D0 failed replay admission, the explicitly permitted **ordinary direct-Q fallback** completed 2,000 additional TD critic updates and 200 Q+BC+step ACT updates. Its separate real FORGE evaluation uses fixed ACT0 and the updated ACT on 32 preregistered starts each. Check [live job](reports/20261023T104759Z/direct_q_job.json) and [measured report](reports/20261023T104759Z/FINAL_REPORT.md) for actual completion, counts and limitations. This is not the paired-endpoint B1/B2/B3 ablation; additional BC prevents attributing a performance difference to Q alone. No successful update or loss is substituted for insertion results.
+
 ## Commands actually exercised on this machine
 
 The installed candidate `.venv/bin/python` uses Python 3.11, Torch 2.7.0+cu128, Isaac Sim 5.0.0 and the pinned Isaac Lab v2.2.1 checkout. Its GPU tensor checks, software tests and real rendered 1-env/8-env smoke checks passed after the user accepted the EULA. Kit registry 107 is selected for Sim 5.0; USD environment cloning fixes camera buffer enumeration for 8 environments. `.venv-cpu` is the separate historical Python 3.12 / Torch 2.10 verification environment; its logs are retained.

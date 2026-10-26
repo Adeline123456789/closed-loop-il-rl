@@ -6,20 +6,20 @@
       "bytes": 1371
     },
     "reports/20261023T104759Z/DIAGNOSTIC_REPAIR.md": {
-      "sha256": "bb73b423b8e0a200fd044bb00b98bb88529feccaa88d5795a777fe0b25c5bbc4",
-      "bytes": 5885
+      "sha256": "e98e8f92448627542b60a75a6d82ec63efe88a4af38ba2f0c7d5684aaff9c9c9",
+      "bytes": 6126
     },
     "reports/20261023T104759Z/FINAL_REPORT.md": {
-      "sha256": "bb73b423b8e0a200fd044bb00b98bb88529feccaa88d5795a777fe0b25c5bbc4",
-      "bytes": 5885
+      "sha256": "e98e8f92448627542b60a75a6d82ec63efe88a4af38ba2f0c7d5684aaff9c9c9",
+      "bytes": 6126
     },
     "reports/20261023T104759Z/INITIALIZATION_STALL.md": {
       "sha256": "219f9d668ba12af42e332c8a548b067b9f1445497cff65233b791281fd2071b6",
       "bytes": 3265
     },
     "reports/20261023T104759Z/PUBLICATION_STATUS.md": {
-      "sha256": "ab56ef38c14a68384ac4e3bbd5966d3c85766b035a057fc47f96ee43ae484dfa",
-      "bytes": 850
+      "sha256": "c19eb76f549348114bb4d11c66004957fad425a352303b4b008d82b00132bce3",
+      "bytes": 849
     },
     "reports/20261023T104759Z/action_contract.md": {
       "sha256": "f40ff135863bfc922d1b08196280eebe45ed8b500e957ed4c03a5847c14ce124",
@@ -250,16 +250,32 @@
       "bytes": 0
     },
     "reports/20261023T104759Z/direct_B0/diagnostic_live_progress.json": {
-      "sha256": "d22f629b1a5f9d14af42709133b8aff86b6a84ec7f686b64717ee44f41c0e8fb",
-      "bytes": 856
+      "sha256": "46aaef2d23d4444d5b7d064229959b858379fb267792461f28221ddbfe4efe99",
+      "bytes": 852
+    },
+    "reports/20261023T104759Z/direct_B0_evaluation.json": {
+      "sha256": "b217104a655b255994ff8019a962c08582208ac791025788447e0392c97c2347",
+      "bytes": 9351
     },
     "reports/20261023T104759Z/direct_B0_evaluation.log": {
-      "sha256": "4d36619a5d3dda3ce3d93bae0a752a86854d4d4554eebb45fe369c92f969a9e0",
-      "bytes": 7130
+      "sha256": "c5a3c00465e639d8cd11e6ce1c10f55ec2c4ab1721665bda47bb57afb8d95c26",
+      "bytes": 7590
+    },
+    "reports/20261023T104759Z/direct_B0_supervisor.json": {
+      "sha256": "75659a356ee13370e39756ca391dce18179fa8af0d0285d5740a1470ae746a96",
+      "bytes": 978
+    },
+    "reports/20261023T104759Z/direct_Q/diagnostic_live_progress.json": {
+      "sha256": "5917beb3d4e3aa8e593fe3b1ca2d071733e3de7a04f48e66719bdad43b08b16c",
+      "bytes": 852
+    },
+    "reports/20261023T104759Z/direct_Q_evaluation.log": {
+      "sha256": "4ba1595e07c48d5fff92524a77473f567b518a28e06d5bfb1a9b1f39194f9f8e",
+      "bytes": 7031
     },
     "reports/20261023T104759Z/direct_q_job.json": {
-      "sha256": "f3557afae0f5ab6ea97c367e00592cf3aa402c6b2956134b028f8e545a5cc3df",
-      "bytes": 269
+      "sha256": "136e9b5fbbf31a398ba01bfaf90e22001066c594bf97cae3a817c4a269c94c83",
+      "bytes": 266
     },
     "reports/20261023T104759Z/direct_q_plan.json": {
       "sha256": "bdbe2fb6f0d420ad60817c2d5807c7423bfe70d3a9bcd1781344d4d0ba2e2794",
@@ -714,7 +730,7 @@
       "bytes": 595
     },
     "reports/20261023T104759Z/publication_snapshot/status.json": {
-      "sha256": "c472be82726d6d2d6d0f88a0b496f892e4fa7904dac8db09d9fed6941f93ae8a",
+      "sha256": "5dffc948f609aa212b82e6ca48b7757a4983d7d1e99fc2f8c2d01bca726f6b48",
       "bytes": 4969
     },
     "reports/20261023T104759Z/pyarrow_compatibility.json": {
@@ -1022,8 +1038,8 @@
       "bytes": 7052
     },
     "reports/20261023T104759Z/run_manifest.json": {
-      "sha256": "3e8675684ee41777fad7e262026b9f6caff7e78b209a8f4bf0ddd56e25c0d7fb",
-      "bytes": 656123
+      "sha256": "ea956adec5e25e8bb4d0898ae841151ce08d8bc6f6aff0015113c54897a912a9",
+      "bytes": 657295
     },
     "reports/20261023T104759Z/runtime_environment.lock.json": {
       "sha256": "4369859c936845a3b50df0df2b47ffd6df82ba0d1ce9a0a581171466d3a9c9ed",
@@ -1314,12 +1330,16 @@
       "bytes": 110
     },
     "results/20261023T104759Z/direct_B0_validation.csv": {
-      "sha256": "338fbc4b8261d7ab0db908240c42fc88835f0eb7cbac5fd03f7b5b8e08249697",
-      "bytes": 2406
+      "sha256": "1e7b2713349f1c7ef0011e0f9165b7b9cf6443dfac76045bcf850e46c5230e3a",
+      "bytes": 9091
     },
     "results/20261023T104759Z/direct_Q_actor_updates.csv": {
       "sha256": "ce82c848c0dacc171dfd36e7146de22cd677bebd7e3a53aea3b002dc1ba2e4e7",
       "bytes": 27531
+    },
+    "results/20261023T104759Z/direct_Q_validation.csv": {
+      "sha256": "bd1508c8c43b850803e2abd33674822a218fafaf13f0cbc6ec91f78d8be45edd",
+      "bytes": 1013
     },
     "results/20261023T104759Z/episode_metrics.csv": {
       "sha256": "180477f0472ac61d0874cd34c19ffc4cc03682ae4311aebf886b6c578878b91b",

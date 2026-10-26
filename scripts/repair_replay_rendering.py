@@ -16,6 +16,7 @@ run_id='20261023T104759Z'
 parser=argparse.ArgumentParser()
 parser.add_argument('--reset-render-history',action='store_true')
 parser.add_argument('--spatial-render',action='store_true')
+parser.add_argument('--fixed-shadow-seed',action='store_true')
 args=parser.parse_args()
 report=Path('reports')/run_id
 tag='render_repair_'+str(time.time_ns())
@@ -33,6 +34,7 @@ def execute(name,mode,full=False,reference=None):
     if reference:cmd+=['--reference',str(reference)]
     if args.reset_render_history:cmd+=['--reset-render-history']
     if args.spatial_render:cmd+=['--spatial-render']
+    if args.fixed_shadow_seed:cmd+=['--fixed-shadow-seed']
     started=time.time()
     with output.with_suffix('.log').open('w') as f:
         p=subprocess.Popen(cmd,stdout=f,stderr=subprocess.STDOUT,start_new_session=True)

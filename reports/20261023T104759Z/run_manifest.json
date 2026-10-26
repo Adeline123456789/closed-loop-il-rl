@@ -7326,8 +7326,8 @@
     "interaction": 71539,
     "branch": 7190,
     "prefix": 661,
-    "restore": 7491,
-    "evaluation": 4412
+    "restore": 7960,
+    "evaluation": 8683
   },
   "checkpoints": [],
   "p0_probes": [
@@ -8137,5 +8137,45 @@
   ],
   "accounting_recoveries": [
     "reports/20261023T104759Z/diagnostic_native_recovery.json"
+  ],
+  "ordinary_direct_q_evaluations": [
+    {
+      "arm": "direct_B0",
+      "returncode": 0,
+      "started": 1793007786.3275082,
+      "finished": 1793008868.429105,
+      "log": "reports/20261023T104759Z/direct_B0_evaluation.log",
+      "command": [
+        "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/bin/python",
+        "-u",
+        "scripts/evaluate_direct_q.py",
+        "--arm",
+        "direct_B0",
+        "--headless",
+        "--enable_cameras",
+        "--kit_args=--/exts/omni.kit.registry.nucleus/registries/0/url=https://ovextensionsprod.blob.core.windows.net/exts/kit/prod/107/shared"
+      ],
+      "accounting": {
+        "physics_substeps": {
+          "restore": 3752,
+          "interaction": 0,
+          "branch": 0,
+          "prefix": 0,
+          "evaluation": 34168
+        },
+        "decimation": 8,
+        "num_envs": 1,
+        "control_step_cap": 10000.0,
+        "individual_control_step_equivalents": {
+          "restore": 469,
+          "interaction": 0,
+          "branch": 0,
+          "prefix": 0,
+          "evaluation": 4271
+        },
+        "charged_before_step": true
+      },
+      "status": "COMPLETED"
+    }
   ]
 }

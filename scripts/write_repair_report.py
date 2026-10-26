@@ -77,6 +77,10 @@ if direct:
     text+='\n这是真实仿真中的批次结果。更新包含 Q、额外 BC 和 step 正则项，不能把组间差异单独归因于 Q，也不能据此证明配对校准有效。原 ACT0 6/32 结果属于原评估批次，未覆盖。\n'
 else:
     text+='真实评估尚未全部完成；没有将梯度、loss 或训练完成当作插接成功率。\n'
+    for name in ('direct_B0','direct_Q'):
+        path=results/f'{name}_validation.csv'
+        measured=list(csv.DictReader(path.open())) if path.exists() else []
+        text+=f"\n- {name}：已完成 {len(measured)}/32 回合，已完成回合中稳定成功 {sum(int(v['stable_success']) for v in measured)} 次。未完成批次不报告最终成功率。\n"
 text+='\n使用原基线相机设置，两组均使用相同的控制目标/随机事件重置修复。各组在独立 Isaac 进程执行，逐物理步写前日志、180 秒无进展中断和退出状态均保留。真实 CSV 每回合刷新。\n'
 text+=f"\n渲染工程检查最新记录：`{render.get('result','无')}`，状态 `{render.get('status','未运行')}`。AA、历史清空、性能预设和抖动设置探针均未证明像素/动作完全一致；没有作为 D0 通过证据，也没有把探针相机设置应用到普通对照。\n"
 (report/'FINAL_REPORT.md').write_text(text)

@@ -220,7 +220,7 @@ def display(data):
     for arm in ('B1','B2','B3'):
         counts=view['arms'].get(arm,{})
         lines.append(f"      {arm}：{counts.get('critic_completed',0)}/2000 / {counts.get('actor_completed',0)}/200 / {data['ablation_episodes'][arm]}/32")
-    lines.append('当前子步骤：'+view['diagnostic_detail'])
+    lines.append(('配对诊断位置：' if data.get('direct_progress') else '当前子步骤：')+view['diagnostic_detail'])
     direct=data.get('direct_progress',{})
     if direct:
         job=data.get('direct_job',{})
@@ -235,6 +235,12 @@ def display(data):
         if job.get('status')=='RUNNING':
             counts=real.get('accounting',{}).get('individual_control_step_equivalents',{})
             lines.append(f"      本组已计实际控制步 {sum(counts.values())}/10000（含初始化/重置）；物理步更新距今 {data['execution_evidence_age_seconds']} 秒")
+            current=data['direct_counts'].get(job.get('phase'),{})
+            n=current.get('episodes',0)
+            if n>=3 and job.get('started') and (data.get('execution_evidence_age_seconds') or 0)<180:
+                remaining=64-sum(v['episodes'] for v in data['direct_counts'].values())
+                estimate=(time.time()-job['started'])*remaining/n/60
+                lines.append(f"      按本组已完成回合速度估算，两组评估剩余约 {estimate*.75:.0f}–{estimate*1.25:.0f} 分钟；不含上传，不是完成保证")
     if data['queue'].get('diagnostic')=='RUNNING':
         lines.append(f"仿真进程 PID {diagnostic.get('pid','初始化中')}；存活 {alive(diagnostic.get('pid'))}；本次完整轨迹 {diagnostic.get('completed_continuations',0)} 条。每条单独落盘。")
         lines.append('守护规则：初始化最多5分钟；连续3分钟没有完成新物理步，抓栈并中断；不把日志或监控心跳算作进展。')
@@ -242,7 +248,7 @@ def display(data):
         for key,name in [('baseline','基线'),('diagnostic','可信性诊断'),('short-ablation','最小消融')]))
     lines.append(f"最近执行证据距今 {data['execution_evidence_age_seconds']} 秒（诊断期间为实际完成的物理步；不是监控心跳）。")
     if data.get('progress_warning'):lines.append('注意：'+data['progress_warning'])
-    if data.get('stop_reason'):lines.append('停止原因：'+data['stop_reason'])
+    if data.get('stop_reason'):lines.append('配对校准停止原因：'+data['stop_reason'])
     publication=data['publication']
     lines.append(f"上传：{publication.get('time_utc','无')}；退出码 {publication.get('returncode')}；{publication.get('head','')[:8]}")
     lines.append('D0=回放是否可信；D1=动作改动是否有真实效果；D2=Critic能否有效更新ACT。')
