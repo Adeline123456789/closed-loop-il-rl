@@ -10,8 +10,8 @@
       "bytes": 6158
     },
     "reports/20261023T104759Z/PUBLICATION_STATUS.md": {
-      "sha256": "8306bef180414e4d472ba39ef90eed5b22ba935178256f9b214d77707902722f",
-      "bytes": 1628
+      "sha256": "7de6e77d053a04542519c7845761a751ddf7dacea21059ca322f23b857136db4",
+      "bytes": 1650
     },
     "reports/20261023T104759Z/action_contract.md": {
       "sha256": "f40ff135863bfc922d1b08196280eebe45ed8b500e957ed4c03a5847c14ce124",
@@ -333,9 +333,25 @@
       "sha256": "4165b747b98888801964a43b34bbad96021e3ae172ceb840462c10aa9d0b255a",
       "bytes": 8334
     },
+    "reports/20261023T104759Z/p0_collect_1792985548331369609.command.json": {
+      "sha256": "06ef73fd91796b17b42ba7eda8d412e63464ae97d73b3bcddcd7b978187efbcf",
+      "bytes": 15559
+    },
     "reports/20261023T104759Z/p0_collect_1792985548331369609.log": {
       "sha256": "b20a7602b7fccae8f5ec79012809d3db07470633cfd377af1b7c88c086344d8e",
       "bytes": 8334
+    },
+    "reports/20261023T104759Z/p0_collect_1792985700447390153.command.json": {
+      "sha256": "e35fab2e80a263e42bc74ae1a2a5d7373d7be0967aa43117a2805202416b299f",
+      "bytes": 15568
+    },
+    "reports/20261023T104759Z/p0_collect_1792985700447390153.log": {
+      "sha256": "8b997d668749b98def7e563c9094bc9089b7edd79bd557d8f63fd06d58acdbea",
+      "bytes": 8333
+    },
+    "reports/20261023T104759Z/p0_collect_1792985807979553648.log": {
+      "sha256": "1313c15508aa99c4685d47ae4e4edc6c26c179ef3d7c3be9ad194670c55214bf",
+      "bytes": 4334
     },
     "reports/20261023T104759Z/physical_calibration.json": {
       "sha256": "4f40a58215f7ca8238751f46a4959108bd93df3ee37942bf7e44a64a0a12c9f5",
@@ -401,9 +417,21 @@
       "sha256": "7e92a56c4dcf05d1d579f0b6f34b474f832825650bc1a577fa3a2c20183f87ab",
       "bytes": 47757
     },
+    "reports/20261023T104759Z/publication_snapshot/12_train_1112_manifest.json": {
+      "sha256": "dd94d3af98e294cc51b63d9a44150a66f78c1b14e8c4af0afc2bd71c5665520f",
+      "bytes": 47757
+    },
+    "reports/20261023T104759Z/publication_snapshot/13_train_1113_manifest.json": {
+      "sha256": "1eb456e85bf3e4b64088d97ce79d191def092827d5485734931c079894d16428",
+      "bytes": 70742
+    },
+    "reports/20261023T104759Z/publication_snapshot/14_validation_1114_manifest.json": {
+      "sha256": "dba5c5f3551d7160a68be885593580c307c6506417a9b35062565e14580d8ac5",
+      "bytes": 49202
+    },
     "reports/20261023T104759Z/publication_snapshot/collect_demonstrations_20261026.log": {
-      "sha256": "9d82c361c6194c97e5269c260f603b97e2bf79f43ea1c8f26a2139fb9694ee49",
-      "bytes": 1935
+      "sha256": "e0e56f3f4b907adb4ac32c04ce9269505eebd9879122eb6f540cbc7ea5c4ef25",
+      "bytes": 2426
     },
     "reports/20261023T104759Z/publication_snapshot/collection_plan.json": {
       "sha256": "04e96bc166d94b9a9887c90ae88f801b01241f65634f5558004a0bbb6c37fbd9",
@@ -418,8 +446,8 @@
       "bytes": 307
     },
     "reports/20261023T104759Z/publication_snapshot/live_logs.json": {
-      "sha256": "5f0f83ecabf8cd0c3147a5d916efa54310f0d2b333cd14ed0c6fb298bace20f8",
-      "bytes": 264
+      "sha256": "666c7d09c77f6e2297ce4161aca15a7c2cc1d3584411d580fb83f79b138e5005",
+      "bytes": 258
     },
     "reports/20261023T104759Z/publication_snapshot/publish_checks_20261026.log": {
       "sha256": "6229af9cc9f4887cb4a352f216978f8a7c17b75eb83c7fbc17c628b9b1c22175",
@@ -430,8 +458,8 @@
       "bytes": 595
     },
     "reports/20261023T104759Z/publication_snapshot/status.json": {
-      "sha256": "f9757195e865b5cb03fde0003cc1c2aa14a2f255786467e3a929440f7c069aec",
-      "bytes": 4028
+      "sha256": "823fad32f13422627b36c5ae322a2a29d3c3b050228f0f2050dca0cf58150719",
+      "bytes": 4531
     },
     "reports/20261023T104759Z/pyarrow_compatibility.json": {
       "sha256": "10eefbdb173831d61930683f12af95c89c88b9dca110465f5b196a8749708db8",
@@ -458,8 +486,8 @@
       "bytes": 2665
     },
     "reports/20261023T104759Z/run_manifest.json": {
-      "sha256": "125e69ad3f8064261c39cb2393902119fc96a2d6c30c5b3ec13f9c32a4ff5c47",
-      "bytes": 442389
+      "sha256": "d5195cdf663d267452ca2b87fffc1a59aae62872d19e5077e706ac1a32b542e3",
+      "bytes": 444461
     },
     "reports/20261023T104759Z/runtime_environment.lock.json": {
       "sha256": "4369859c936845a3b50df0df2b47ffd6df82ba0d1ce9a0a581171466d3a9c9ed",
@@ -706,8 +734,8 @@
       "bytes": 198
     },
     "results/20261023T104759Z/recollection_episodes.csv": {
-      "sha256": "20ac4dbe7444bee05db2bcc3499ce06322c70690d1e265793c759aba9037d651",
-      "bytes": 14132
+      "sha256": "4b9db79dffcd096611e28ec24e3e63c3281309ecf22c7105f6109819c3bd102e",
+      "bytes": 18012
     },
     "results/20261023T104759Z/summary.csv": {
       "sha256": "75216c5a867ed8487b678b5341ceae00b1479162201e7c83e859fa4402f53fd7",
@@ -715,5 +743,5 @@
     }
   },
   "weights": [],
-  "note": "Hashes refer to staged publication bytes. Raw datasets/large checkpoints remain local. Live logs are marked as in-progress prefixes."
+  "note": "Exact staged publication bytes; live local files may advance after this cutoff. Raw arrays and large checkpoints remain local."
 }

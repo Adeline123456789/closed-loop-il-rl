@@ -22,3 +22,9 @@ Completed 10/20 collection runs
 Completed 11/20 collection runs
 {"name": "p0_collect_1792985330065408355", "returncode": 0, "measurement": "data/act_demonstrations/11_train_1111/manifest.json"}
 Completed 12/20 collection runs
+{"name": "p0_collect_1792985438964012631", "returncode": 0, "measurement": "data/act_demonstrations/12_train_1112/manifest.json"}
+Completed 13/20 collection runs
+{"name": "p0_collect_1792985548331369609", "returncode": 0, "measurement": "data/act_demonstrations/13_train_1113/manifest.json"}
+Completed 14/20 collection runs
+{"name": "p0_collect_1792985700447390153", "returncode": 0, "measurement": "data/act_demonstrations/14_validation_1114/manifest.json"}
+Completed 15/20 collection runs
