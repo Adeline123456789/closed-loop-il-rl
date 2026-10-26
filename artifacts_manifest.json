@@ -6,8 +6,8 @@
       "bytes": 1371
     },
     "reports/20261023T104759Z/FINAL_REPORT.md": {
-      "sha256": "c4bd9e56695d36c2ec3876ade439f5c9c6f7b04def9a064ddb483a27889e72e9",
-      "bytes": 5963
+      "sha256": "7e917f8af78976b396dacb7f5e6ba750914ed937a93aa938dad86debd175c76c",
+      "bytes": 5897
     },
     "reports/20261023T104759Z/action_contract.md": {
       "sha256": "d89a8c8835bf84dcb1ed4123f10d84fbaa2a2e96827e80d3dad658d43d44166f",
@@ -62,8 +62,8 @@
       "bytes": 0
     },
     "reports/20261023T104759Z/doctor.json": {
-      "sha256": "181e010f48b2681d5a2b1c4f3b9dcd6065829c772774b5b6808c5411952d0509",
-      "bytes": 3728
+      "sha256": "aa68a0f26f6f902d8bf57185e0a3c2bda5cde88cc2e8fad695689b9a481248b8",
+      "bytes": 3722
     },
     "reports/20261023T104759Z/end_to_end.log": {
       "sha256": "092af0529121a389c448f909f7aefebb4cee3a14c48b3a5b3f29104a07d6fc79",
@@ -166,8 +166,8 @@
       "bytes": 99
     },
     "reports/20261023T104759Z/run_manifest.json": {
-      "sha256": "2330a4855ba6b227c29ae386b578c5bcfcd0e86f48a05d1aca0fcc2d476bd0ac",
-      "bytes": 318781
+      "sha256": "ed6d6196e0a8436c38a0e827212262c331faef8e7d9bcc7c08c11fa1bc4ccbd8",
+      "bytes": 340463
     },
     "reports/20261023T104759Z/sensor_contract.md": {
       "sha256": "a382e0d209d55ae447cd4279bb7805582b8f70b8c031c7e4402059fecfb0c879",
@@ -212,6 +212,14 @@
     "reports/20261023T104759Z/smoke-1_1792759668095898884_command.json": {
       "sha256": "5e233ae56a83d90986593085a25bd50914b8c8801e541966f631bec45fbc56e3",
       "bytes": 2158
+    },
+    "reports/20261023T104759Z/smoke-1_1792976664863599627.log": {
+      "sha256": "e966ad1a2f4c1c3099dc72482ae72bad5605045815b4d31dbcc1ee83d2f7beac",
+      "bytes": 2986
+    },
+    "reports/20261023T104759Z/smoke-1_1792976664863599627_command.json": {
+      "sha256": "a163a29a2fc423e65cbc9477c81330d838b8ab66f47c9abc528adf0f2974be95",
+      "bytes": 3495
     },
     "reports/20261023T104759Z/smoke-1_command.json": {
       "sha256": "9aa6d68e82e3d715455c728cea9890f6f5222953e8a328b424cd3d181f1bd43f",

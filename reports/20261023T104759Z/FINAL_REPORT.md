@@ -10,7 +10,7 @@ P0 has not passed. No ACT pretraining or robot-method experiment is claimed. The
 |---|---|---|
 | doctor | PASSED | Missing runtime: ;  |
 | audit-data | BLOCKED | BLOCKED_DATA_ALIGNMENT: collection code/SHA and pre/post EMA action stage unavailable; BLOCKED_SENSOR_CONTRACT: data-card EE frame differs from pinned stock source; sign/reference/baseline unverified; BLOCKED_CAMERA_ALIGNMENT: collection camera extrinsics/intrinsics not supplied |
-| smoke-1 | BLOCKED | BLOCKED_LICENSE: Omniverse Kit requested EULA acceptance; no user acceptance was supplied and no scene was created |
+| smoke-1 | FAILED_IMPLEMENTATION | Real launcher attempted; see command log |
 | smoke-8 | NOT_RUN | Predecessor gate not passed |
 | baseline | BLOCKED | Preconditions not passed: audit-data, smoke-1, smoke-8 |
 | diagnostic | BLOCKED | Preconditions not passed: audit-data, smoke-1, smoke-8, baseline |
@@ -25,7 +25,7 @@ P0 has not passed. No ACT pretraining or robot-method experiment is claimed. The
 Hardware: NVIDIA GeForce RTX 3090, 24576 MiB, 575.51.03.
 Interpreter: `/media/midea/F496AC8096AC4548/closed_loop_act/.venv/bin/python`; Python `3.11.15`; Torch `2.7.0+cu128`; Torch CUDA `12.8`; Isaac Sim `5.0.0.0`.
 Isaac Lab checkout: `0f00ca2b4b2d54d5f90006a92abb1b00a72b2f20` (v2.2.1; distribution metadata version is a separate identifier).
-Omniverse acceptance indicators: `{"status": "NOT_ACCEPTED", "accepted": false, "acceptance_marker_exists": false, "environment_acceptance_flag": false, "agreement_url": "https://docs.omniverse.nvidia.com/enterprise/latest/common/NVIDIA_Omniverse_License_Agreement.html"}`. No acceptance is inferred from installation.
+Omniverse acceptance indicators: `{"status": "ACCEPTED", "accepted": true, "acceptance_marker_exists": true, "environment_acceptance_flag": false, "agreement_url": "https://docs.omniverse.nvidia.com/enterprise/latest/common/NVIDIA_Omniverse_License_Agreement.html"}`. No acceptance is inferred from installation.
 Loaded assets, camera rendering, expert compatibility and robot efficacy require their own successful measured records. Package installation and the CUDA tensor check do not establish them.
 
 - `cpu_tests`: return code `0`; 39 passed in 1.40s.

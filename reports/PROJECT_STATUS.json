@@ -15,7 +15,7 @@
         "--config",
         "configs/minimal_validation.yaml"
       ],
-      "code_sha": "b0e7dbb0454ee27a3be1ad975662fda4808d67e5",
+      "code_sha": "5e378b995ef9766998a3cf19df07c4a352958a41",
       "dirty": true,
       "source_hashes": {
         "scripts/audit_expert.py": "8bb4e278e0eddd70b07604d2fee6ed8f95a70561e7c76f8f21835780463f9d26",
@@ -61,9 +61,9 @@
         "src/forcecritic/training/updates.py": "3d14d304d29483132f9d86098fe835ba61f3e16e5fcc035236f970522aad6d7e"
       },
       "config_hash": "a355f6209f5049e01afb25d9cc196524ad577f11dee2d54404219f7f0e64eedb",
-      "time": "2026-10-23T12:47:47.562181+00:00",
+      "time": "2026-10-26T01:04:24.338380+00:00",
       "artifacts": {
-        "reports/20261023T104759Z/doctor.json": "181e010f48b2681d5a2b1c4f3b9dcd6065829c772774b5b6808c5411952d0509"
+        "reports/20261023T104759Z/doctor.json": "aa68a0f26f6f902d8bf57185e0a3c2bda5cde88cc2e8fad695689b9a481248b8"
       }
     },
     "audit-data": {
@@ -79,7 +79,7 @@
         "--config",
         "configs/minimal_validation.yaml"
       ],
-      "code_sha": "b0e7dbb0454ee27a3be1ad975662fda4808d67e5",
+      "code_sha": "5e378b995ef9766998a3cf19df07c4a352958a41",
       "dirty": true,
       "source_hashes": {
         "scripts/audit_expert.py": "8bb4e278e0eddd70b07604d2fee6ed8f95a70561e7c76f8f21835780463f9d26",
@@ -125,15 +125,15 @@
         "src/forcecritic/training/updates.py": "3d14d304d29483132f9d86098fe835ba61f3e16e5fcc035236f970522aad6d7e"
       },
       "config_hash": "a355f6209f5049e01afb25d9cc196524ad577f11dee2d54404219f7f0e64eedb",
-      "time": "2026-10-23T12:47:47.966360+00:00",
+      "time": "2026-10-26T01:04:24.733482+00:00",
       "artifacts": {
         "reports/20261023T104759Z/data_audit.json": "3319550832fcc627ef2a7cd82f4a2fef368efa3ff181c88e99ffb27017e0a7fa"
       }
     },
     "smoke-1": {
       "stage": "smoke-1",
-      "status": "BLOCKED",
-      "reason": "BLOCKED_LICENSE: Omniverse Kit requested EULA acceptance; no user acceptance was supplied and no scene was created",
+      "status": "FAILED_IMPLEMENTATION",
+      "reason": "Real launcher attempted; see command log",
       "returncode": 2,
       "command": [
         "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/bin/python",
@@ -145,7 +145,7 @@
         "--config",
         "configs/minimal_validation.yaml"
       ],
-      "code_sha": "b0e7dbb0454ee27a3be1ad975662fda4808d67e5",
+      "code_sha": "5e378b995ef9766998a3cf19df07c4a352958a41",
       "dirty": true,
       "source_hashes": {
         "scripts/audit_expert.py": "8bb4e278e0eddd70b07604d2fee6ed8f95a70561e7c76f8f21835780463f9d26",
@@ -191,11 +191,11 @@
         "src/forcecritic/training/updates.py": "3d14d304d29483132f9d86098fe835ba61f3e16e5fcc035236f970522aad6d7e"
       },
       "config_hash": "a355f6209f5049e01afb25d9cc196524ad577f11dee2d54404219f7f0e64eedb",
-      "time": "2026-10-23T12:47:48.136877+00:00",
+      "time": "2026-10-26T01:04:32.573708+00:00",
       "artifacts": {
-        "reports/20261023T104759Z/smoke-1_1792759668095898884_command.json": "5e233ae56a83d90986593085a25bd50914b8c8801e541966f631bec45fbc56e3",
-        "reports/20261023T104759Z/smoke-1_1792759668095898884.log": "41e0c1570ebd2f4199003e4e415fc828a3e24a14c5d0ed0180b2b353265099bc",
-        "environment.lock.json": "181e010f48b2681d5a2b1c4f3b9dcd6065829c772774b5b6808c5411952d0509"
+        "reports/20261023T104759Z/smoke-1_1792976664863599627_command.json": "a163a29a2fc423e65cbc9477c81330d838b8ab66f47c9abc528adf0f2974be95",
+        "reports/20261023T104759Z/smoke-1_1792976664863599627.log": "e966ad1a2f4c1c3099dc72482ae72bad5605045815b4d31dbcc1ee83d2f7beac",
+        "environment.lock.json": "aa68a0f26f6f902d8bf57185e0a3c2bda5cde88cc2e8fad695689b9a481248b8"
       }
     },
     "smoke-8": {
@@ -216,7 +216,7 @@
         "--config",
         "configs/minimal_validation.yaml"
       ],
-      "code_sha": "b0e7dbb0454ee27a3be1ad975662fda4808d67e5",
+      "code_sha": "5e378b995ef9766998a3cf19df07c4a352958a41",
       "dirty": true,
       "source_hashes": {
         "scripts/audit_expert.py": "8bb4e278e0eddd70b07604d2fee6ed8f95a70561e7c76f8f21835780463f9d26",
@@ -262,7 +262,7 @@
         "src/forcecritic/training/updates.py": "3d14d304d29483132f9d86098fe835ba61f3e16e5fcc035236f970522aad6d7e"
       },
       "config_hash": "a355f6209f5049e01afb25d9cc196524ad577f11dee2d54404219f7f0e64eedb",
-      "time": "2026-10-23T12:47:48.259719+00:00",
+      "time": "2026-10-26T01:04:32.705436+00:00",
       "artifacts": {}
     },
     "diagnostic": {
