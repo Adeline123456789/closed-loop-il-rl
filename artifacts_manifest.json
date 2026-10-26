@@ -6,20 +6,20 @@
       "bytes": 1371
     },
     "reports/20261023T104759Z/DIAGNOSTIC_REPAIR.md": {
-      "sha256": "e98e8f92448627542b60a75a6d82ec63efe88a4af38ba2f0c7d5684aaff9c9c9",
-      "bytes": 6126
+      "sha256": "555342f0ed8ea1bc7c144d8e3e7d77ae391a88fc0297a9734a7dc28d063202ba",
+      "bytes": 6272
     },
     "reports/20261023T104759Z/FINAL_REPORT.md": {
-      "sha256": "e98e8f92448627542b60a75a6d82ec63efe88a4af38ba2f0c7d5684aaff9c9c9",
-      "bytes": 6126
+      "sha256": "555342f0ed8ea1bc7c144d8e3e7d77ae391a88fc0297a9734a7dc28d063202ba",
+      "bytes": 6272
     },
     "reports/20261023T104759Z/INITIALIZATION_STALL.md": {
       "sha256": "219f9d668ba12af42e332c8a548b067b9f1445497cff65233b791281fd2071b6",
       "bytes": 3265
     },
     "reports/20261023T104759Z/PUBLICATION_STATUS.md": {
-      "sha256": "c19eb76f549348114bb4d11c66004957fad425a352303b4b008d82b00132bce3",
-      "bytes": 849
+      "sha256": "dca329bac5dc74d7f9d1591ea0a31b48df3bd81ba7f347f0b7f3cb535f9d96f0",
+      "bytes": 613
     },
     "reports/20261023T104759Z/action_contract.md": {
       "sha256": "f40ff135863bfc922d1b08196280eebe45ed8b500e957ed4c03a5847c14ce124",
@@ -266,16 +266,24 @@
       "bytes": 978
     },
     "reports/20261023T104759Z/direct_Q/diagnostic_live_progress.json": {
-      "sha256": "5917beb3d4e3aa8e593fe3b1ca2d071733e3de7a04f48e66719bdad43b08b16c",
+      "sha256": "c5926f67b5d509c58121b461cd963161ca5c885de6b7df895977e99b6fe535d8",
       "bytes": 852
     },
+    "reports/20261023T104759Z/direct_Q_evaluation.json": {
+      "sha256": "9c77afa5fb659c70c80bbc9702362511b8eafb95200112a2d80db0eca9c88adc",
+      "bytes": 9453
+    },
     "reports/20261023T104759Z/direct_Q_evaluation.log": {
-      "sha256": "4ba1595e07c48d5fff92524a77473f567b518a28e06d5bfb1a9b1f39194f9f8e",
-      "bytes": 7031
+      "sha256": "655eafc8f83c2f0eb410c1d30ecebda8f0d84bc600e2e912b8519f1d50dc110b",
+      "bytes": 7591
+    },
+    "reports/20261023T104759Z/direct_Q_supervisor.json": {
+      "sha256": "b8031af563dff11397a5ee70ffe55a31c89834aa9df9a64b086feddff3d71bf3",
+      "bytes": 976
     },
     "reports/20261023T104759Z/direct_q_job.json": {
-      "sha256": "136e9b5fbbf31a398ba01bfaf90e22001066c594bf97cae3a817c4a269c94c83",
-      "bytes": 266
+      "sha256": "8535ccdb0f2a4a7b6451a48fe62b39f7d16973e0618dcfd9a7ea1e980bf88122",
+      "bytes": 162
     },
     "reports/20261023T104759Z/direct_q_plan.json": {
       "sha256": "bdbe2fb6f0d420ad60817c2d5807c7423bfe70d3a9bcd1781344d4d0ba2e2794",
@@ -284,6 +292,10 @@
     "reports/20261023T104759Z/direct_q_progress.json": {
       "sha256": "0d0523dad5aadf80ced98ccb37465f03bb964d7edf1e5502c5b42e943127174d",
       "bytes": 121
+    },
+    "reports/20261023T104759Z/direct_q_result.json": {
+      "sha256": "fdf0a149f612ec2599c053bd960aaf7f2818eab1f0859d36184ecdefdfd7df62",
+      "bytes": 1353
     },
     "reports/20261023T104759Z/direct_q_training.json": {
       "sha256": "7fbb06f9222ffb59f4663a0f6e6a1c1a842e64087f266fffdeeb6d6164f71b85",
@@ -730,7 +742,7 @@
       "bytes": 595
     },
     "reports/20261023T104759Z/publication_snapshot/status.json": {
-      "sha256": "5dffc948f609aa212b82e6ca48b7757a4983d7d1e99fc2f8c2d01bca726f6b48",
+      "sha256": "ef1a4d98e29159b6b7fe5cf85c747c92ad8f7a0c32afe51fa85f62ec376e495d",
       "bytes": 4969
     },
     "reports/20261023T104759Z/pyarrow_compatibility.json": {
@@ -1038,8 +1050,8 @@
       "bytes": 7052
     },
     "reports/20261023T104759Z/run_manifest.json": {
-      "sha256": "ea956adec5e25e8bb4d0898ae841151ce08d8bc6f6aff0015113c54897a912a9",
-      "bytes": 657295
+      "sha256": "af2eee7b92ca3dccf2f395760be9809f5bd8c4a069b999438cccf70ca078d607",
+      "bytes": 658425
     },
     "reports/20261023T104759Z/runtime_environment.lock.json": {
       "sha256": "4369859c936845a3b50df0df2b47ffd6df82ba0d1ce9a0a581171466d3a9c9ed",
@@ -1338,8 +1350,12 @@
       "bytes": 27531
     },
     "results/20261023T104759Z/direct_Q_validation.csv": {
-      "sha256": "bd1508c8c43b850803e2abd33674822a218fafaf13f0cbc6ec91f78d8be45edd",
-      "bytes": 1013
+      "sha256": "ca025c06d00bc3a3ffce0ae7a58d7fe27dc3a6e7757bc5425e310a4a43f96b6f",
+      "bytes": 9025
+    },
+    "results/20261023T104759Z/direct_q_summary.csv": {
+      "sha256": "c089a31c4002c164e3fd7f9689c71fe81f120eb2ee6a2cc952d3ceeba487e3a0",
+      "bytes": 199
     },
     "results/20261023T104759Z/episode_metrics.csv": {
       "sha256": "180477f0472ac61d0874cd34c19ffc4cc03682ae4311aebf886b6c578878b91b",

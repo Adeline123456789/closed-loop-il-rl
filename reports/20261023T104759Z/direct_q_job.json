@@ -1,10 +1,7 @@
 {
-  "status": "RUNNING",
-  "phase": "direct_Q",
+  "status": "COMPLETED",
+  "phase": "real_evaluations_complete",
   "pid": 1290640,
-  "updated": 1793008868.449056,
-  "log": ".cache/direct_q_background.log",
-  "child_pid": 1295377,
-  "stage_log": "reports/20261023T104759Z/direct_Q_evaluation.log",
-  "started": 1793008868.4487448
+  "updated": 1793009898.5759208,
+  "log": ".cache/direct_q_background.log"
 }

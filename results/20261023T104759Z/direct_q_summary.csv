@@ -1,0 +1,3 @@
+arm,episodes,successes,success_rate,mean_cost,mean_return,unsafe_episodes
+direct_B0,32,5,0.15625,2.091412264577186,31.328741461374317,3
+direct_Q,32,6,0.1875,1.431278389832685,28.836791782782733,3
