@@ -3,3 +3,8 @@ torch==2.7.0+cu128
 torchvision==0.22.0+cu128
 # PyArrow 26 requires NumPy 2 at import, while Isaac Sim 5.0 pins NumPy 1.26.0.
 pyarrow==21.0.0
+# Preserve exact Isaac Sim 5.0 runtime requirements when adding the expert player.
+numpy==1.26.0
+packaging==23.0
+click==8.1.7
+typing-extensions==4.12.2

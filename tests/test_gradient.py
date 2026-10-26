@@ -95,3 +95,18 @@ def test_same_data_same_mask_independent_copies(setup):
     assert torch.equal(arms['B2']['rng'],arms['B3']['rng'])
     arms['B2']['whitelist'].clear()
     assert len(arms['B3']['whitelist'])==1
+
+
+def test_frozen_next_action_cache_keeps_dynamic_critic_targets(setup):
+    actor,obs=setup
+    q=LinearCritic(1)
+    with torch.no_grad():action=actor(obs)
+    args=(torch.zeros(3,2),torch.ones(3,2),torch.tensor([.99**4]*3),torch.tensor([1.,0.,1.]))
+    direct=td_target(actor,q,obs,*args)
+    def forbidden(_):raise AssertionError('cached frozen actor should not run')
+    cached=td_target(forbidden,q,None,*args,next_action=action)
+    assert torch.equal(direct,cached)
+    with torch.no_grad():q.slope.mul_(2)
+    updated=td_target(forbidden,q,None,*args,next_action=action)
+    assert not torch.equal(cached[[0,2]],updated[[0,2]])
+    assert torch.equal(updated[1],torch.ones(2))  # terminal does not bootstrap

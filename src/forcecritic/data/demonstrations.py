@@ -57,6 +57,17 @@ class Demonstrations(Dataset):
                 if file_hash(path)!=entry['sha256']:raise ValueError('recording content changed')
                 arrays[field]=np.load(path,mmap_mode='r',allow_pickle=False)
             t=len(arrays['action'])
+            # The live task terminates an ACT rollout on its first stable
+            # success. Retain full raw expert episodes for audit, but do not
+            # teach post-terminal holding/unseating as future BC actions.
+            terminal=row['files'].get('stable_success')
+            if terminal is not None:
+                path=self.path.parent/terminal['path']
+                if file_hash(path)!=terminal['sha256']:raise ValueError('success marker changed')
+                stable=np.load(path,allow_pickle=False)
+                if stable.shape!=(t,) or not stable.any():raise ValueError('successful recording lacks stable success')
+                t=int(np.flatnonzero(stable)[0])+1
+                arrays={k:v[:t] for k,v in arrays.items()}
             shapes={'state':(t,8),'wrench':(t,6),'motion':(t,6),'previous_command':(t,4),'action':(t,4)}
             for field,shape in shapes.items():
                 if arrays[field].shape!=shape or not np.isfinite(arrays[field]).all():raise ValueError(f'invalid {field}')

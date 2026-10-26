@@ -22,6 +22,36 @@ def source_hashes():
     return {str(p):digest(p) for p in sorted(paths)}
 
 
+def verification_sources(stage, sources=None):
+    all_sources=source_hashes() if sources is None else sources
+    # Early environment/data checks do not execute training or diagnostics code.
+    # Retain full provenance separately, but invalidate evidence on its actual
+    # executable dependencies rather than an unrelated later-stage implementation.
+    if stage in ('doctor','audit-data','smoke-1','smoke-8'):
+        common={'src/forcecritic/__init__.py','src/forcecritic/cli.py','src/forcecritic/runtime.py',
+                'src/forcecritic/evaluation/report.py','src/forcecritic/evaluation/metrics.py'}
+        if stage=='doctor':common.add('src/forcecritic/doctor.py')
+        if stage=='audit-data':
+            common.update(p for p in all_sources if p.startswith('src/forcecritic/data/'))
+        if stage.startswith('smoke-'):
+            common.update(p for p in all_sources if p.startswith('scripts/smoke'))
+        return {p:h for p,h in all_sources.items() if p in common}
+    if stage in ('baseline','diagnostic','short-ablation'):
+        shared={'src/forcecritic/__init__.py','src/forcecritic/cli.py','src/forcecritic/runtime.py',
+                'scripts/train_forge.py','src/forcecritic/training/__init__.py',
+                'src/forcecritic/training/baseline.py','src/forcecritic/training/pretrain.py',
+                'src/forcecritic/training/live.py','src/forcecritic/training/updates.py',
+                'src/forcecritic/training/replay.py','src/forcecritic/training/checkpoint.py'}
+        shared.update(p for p in all_sources if any(p.startswith(prefix) for prefix in
+            ('src/forcecritic/envs/','src/forcecritic/models/','src/forcecritic/data/','src/forcecritic/evaluation/')))
+        if stage in ('diagnostic','short-ablation'):
+            shared.update(p for p in all_sources if p.startswith('src/forcecritic/diagnostics/'))
+        if stage=='short-ablation':
+            shared.update(('src/forcecritic/training/short_live.py','src/forcecritic/training/ablation.py'))
+        return {p:h for p,h in all_sources.items() if p in shared}
+    return all_sources
+
+
 def atomic_json(path, value):
     path=Path(path); path.parent.mkdir(parents=True, exist_ok=True)
     temp=path.with_suffix(path.suffix+'.tmp'); temp.write_text(json.dumps(value,indent=2,allow_nan=False)+'\n'); temp.replace(path)
@@ -72,19 +102,28 @@ class Run:
     def verified(self, stage):
         event=self.manifest['stages'].get(stage,{})
         if event.get('status')!='PASSED' or event.get('config_hash')!=self.config_hash:return False
-        if event.get('source_hashes')!=source_hashes():return False
-        for p,h in {**event.get('artifacts',{}),**event.get('source_hashes',{})}.items():
+        expected=event.get('verification_source_hashes',event.get('source_hashes',{}))
+        current=verification_sources(stage) if 'verification_source_hashes' in event else source_hashes()
+        if expected!=current:return False
+        for p,h in {**event.get('artifacts',{}),**expected}.items():
             if not Path(p).is_file() or digest(p)!=h:return False
         return bool(event.get('artifacts'))
 
-    def record(self, stage, status, reason='', returncode=0, artifacts=()):
+    def record(self, stage, status, reason='', returncode=0, artifacts=(), executed_sources=None):
+        sources=source_hashes() if executed_sources is None else executed_sources
+        current_scope=verification_sources(stage)
+        scope=verification_sources(stage,sources)
+        if executed_sources is not None and scope!=current_scope and status=='PASSED':
+            status='STALE_SOURCE';returncode=2
+            reason='Executable source changed during the measured run; repeat after source freeze. '+reason
         invocation=([sys.executable,'-m','forcecritic.cli',*sys.argv[1:]]
                     if Path(sys.argv[0]).name=='cli.py' else [sys.executable,*sys.argv])
         event={'stage':stage,'status':status,'reason':reason,'returncode':returncode,
                'command':invocation,
                'code_sha':command(['git','rev-parse','HEAD'])['stdout'].strip(),
                'dirty':bool(command(['git','status','--porcelain'])['stdout'].strip()),
-               'source_hashes':source_hashes(),
+               'source_hashes':sources,
+               'verification_source_hashes':scope,
                'config_hash':self.config_hash,'time':datetime.datetime.now(datetime.timezone.utc).isoformat(),
                'artifacts':{str(p):digest(p) for p in artifacts if Path(p).is_file()}}
         self.manifest['stages'][stage]=event;self.manifest['events'].append(event);self.save()

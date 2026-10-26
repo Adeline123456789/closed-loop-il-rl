@@ -58,5 +58,14 @@ def doctor(run):
           'license_acceptance':license_state(),
           'note':'doctor PASSED only means import prerequisites found; smoke and interface audits remain mandatory'}
     atomic_json(run.report/'doctor.json',data)
-    atomic_json('environment.lock.json',data)
+    atomic_json(run.report/'current_environment.lock.json',data)
+    # Once referenced by P0, the root lock is immutable historical evidence.
+    # Fresh doctor metadata (including changing disk space and Git SHA) lives
+    # in the current record; it must not invalidate accepted recordings.
+    acceptance=run.report/'p0_acceptance.json'
+    locked=json.loads(acceptance.read_text()).get('evidence_hashes',{}) if acceptance.exists() else {}
+    if 'environment.lock.json' not in locked:
+        atomic_json('environment.lock.json',data)
+    elif digest('environment.lock.json')!=locked['environment.lock.json']:
+        raise ValueError('Accepted environment lock changed; restore its recorded content before proceeding')
     return data

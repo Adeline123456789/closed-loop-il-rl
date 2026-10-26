@@ -50,12 +50,18 @@ def report(run):
     checks=json.loads(check_path.read_text()).get('checks',[]) if check_path.exists() else []
     expert_path=run.report/'expert_download.json'
     expert=json.loads(expert_path.read_text()) if expert_path.exists() else {}
+    acceptance_path=run.report/'p0_acceptance.json'
+    p0=json.loads(acceptance_path.read_text()).get('status')=='PASSED' if acceptance_path.exists() else False
+    expert_metrics_path=run.report/'expert_smoke.csv'
+    expert_rows=list(csv.DictReader(expert_metrics_path.open())) if expert_metrics_path.exists() else []
     if has_episodes:
         from .plots import plot_summary
         plot_summary(summary,run.result/'figures'/'episode_summary.png')
     lines=['# Measured validation / stop report', '',f'Protocol: `{run.config["protocol"]}`. Run: `{run.run_id}`.',
            '', '## Outcome', '',
-           ('Raw completed episodes are summarized separately by seed, split and checkpoint; no pooling across policy versions. See paired_comparisons.csv for matched-parent differences.' if has_episodes else 'P0 has not passed. No ACT pretraining or robot-method experiment is claimed. The software gradient path is tested separately; it is not evidence of improved insertion.'), '',
+           ('Raw completed episodes are summarized separately by seed, split and checkpoint; no pooling across policy versions. See paired_comparisons.csv for matched-parent differences.' if has_episodes else
+            'P0 has passed for same-version recollection; ACT robot outcomes have not been measured. Expert results and software gradients are not ACT insertion evidence.' if p0 else
+            'P0 has not passed. No ACT pretraining or robot-method experiment is claimed. The software gradient path is tested separately; it is not evidence of improved insertion.'), '',
            '| Stage | Status | Reason |','|---|---|---|']
     lines += [f'| {s} | {e["status"]} | {e.get("reason", "Predecessor gate not passed")} |' for s,e in stages.items()]
     packages=doctor.get('packages',{})
@@ -70,7 +76,7 @@ def report(run):
         lines.append(f'- `{check["name"]}`: return code `{check.get("returncode")}`; '+(output[-1] if output else 'see command log')+'.')
     for dataset in data.get('datasets',[]):
         lines.append(f'- `{dataset["repository"]}`: {dataset["peg_episodes"]} PegInsert episodes in metadata; inspected {len(dataset["samples"])} complete episode(s), {sum(s["rows"] for s in dataset["samples"])} frames, at revision `{dataset["revision"]}`.')
-    lines += ['',f'Expert download integrity: `{expert.get("download_status","NOT_RUN")}`; safe tensor-shape inspection: `{expert.get("safe_inspection","NOT_RUN")}`; official-player compatibility: `{expert.get("compatibility","NOT_RUN")}`. No expert model-card performance is counted as a project result.']
+    lines += ['',f'Expert download integrity: `{expert.get("download_status","NOT_RUN")}`; safe tensor-shape inspection: `{expert.get("safe_inspection","NOT_RUN")}`. Measured expert development episodes: {len(expert_rows)}; stable successes: {sum(int(r["stable_success"]) for r in expert_rows)}. No expert model-card performance is counted as a project result.']
     lines += ['', '## Questions', '',
               '1. Critic → ACT: implemented in `training/updates.py`; CPU tests change critic slope on fixed ACT/data, observe changed ACT output, and verify nonzero Q-only gradients with critic parameters fixed.',
               ('2. Ordinary direct update: see B1-B0 matched-parent comparison; causal/continuation decisions require all diagnostic gates.' if has_episodes else '2. Ordinary direct update improves insertion: **insufficient evidence**, B0/B1 not run.'),
@@ -86,9 +92,9 @@ def report(run):
               f'Checkpoint index entries: {checkpoint_count}. Publication is not implied by a local checkpoint; only verified Release entries may be used as download links.',
               'Header-only fidelity/pair/actor/episode CSV files mean NOT_RUN, not zero success.',
               '', '## Reproduce / resume', '', '```bash',
-              'FORCECRITIC_PYTHON=.venv/bin/python bash scripts/run_end_to_end.sh --config configs/minimal_validation.yaml --resume auto --publish',
+              'FORCECRITIC_PYTHON=.venv/bin/python bash scripts/run_end_to_end.sh --config configs/minimal_validation.yaml --resume auto --demonstrations data/act_demonstrations/manifest.json --publish',
               '```', '', 'This resumes audit artifacts, rechecks blocked prerequisites, and reports/publishes even when a gate stops training.',
-              'For the license boundary, run `bash scripts/resume_after_environment_fix.sh` in an interactive terminal. It displays the vendor prompt if needed and never supplies acceptance automatically. Acceptance alone does not resolve data/action/sensor/camera semantics.',
+              'Current doctor and actual smoke records determine runtime status. Historical license failures do not supersede later successful real launches. The new P0 contract does not retroactively validate old HF action/sensor/camera semantics.',
               '', '## Scope still unverified', '',
               'Consult the stage table and implementation_audit.md for unresolved interfaces and unimplemented orchestration; CPU software tests never establish robot efficacy.',
               'Stage execution deliberately fails closed while P0 is incomplete. Higher-stage robot orchestration is not presented as experimentally validated.',

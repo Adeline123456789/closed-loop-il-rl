@@ -40,7 +40,7 @@ def short_updates(actor,critic,actor_optimizer,critic_optimizer,*,td_batches,end
                 raise ValueError('non-training TD sample')
             # Recompute from the current target network; never freeze cached TD labels.
             target=td_target(target_actor,target_critic,td['next_obs'],td['next_condition'],
-                             td['returns'],td['gamma_k'],td['bootstrap'])
+                             td['returns'],td['gamma_k'],td['bootstrap'],td.get('next_action'))
             losses.append(critic_step(critic,critic_optimizer,td['condition'],td['action'],target,
                 endpoints=endpoint_batches[i%len(endpoint_batches)],pairs=pair_batches[i%len(pair_batches)],
                 lambda_pair=1. if arm=='B3' else 0.,policy_sha=policy_sha))

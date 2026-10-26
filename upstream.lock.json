@@ -43,7 +43,7 @@
         "filename": "forge_peginsert_2026-06-30.pth",
         "bytes": 213431615,
         "lfs_sha256": "10efdf802e8abfccaa13f6e7a18cc2887ca2f3f96b35526bc9984fde419e59f8",
-        "compatibility": "NOT_RUN"
+        "compatibility": "MEASURED: 8/8 development stable successes; see reports/20261023T104759Z/expert_smoke.csv"
       }
     }
   },
@@ -70,6 +70,7 @@
     "repository": "isaac-sim/rl_games",
     "ref": "python3.11",
     "sha": "6b3534f29568158e9e29ec8bf83cc88fce5f0cae",
-    "purpose": "candidate official expert player dependency; not yet installed or run"
+    "purpose": "Installed official expert player at pinned SHA; checkpoint restored and evaluated in real stock FORGE",
+    "installed_version": "1.6.1"
   }
 }

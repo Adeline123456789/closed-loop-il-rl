@@ -1,0 +1,109 @@
+{
+  "snapshot_time_utc": "2026-10-26T03:30:49.939276+00:00",
+  "collection_runs": [
+    {
+      "collection_run": "00_train_1100",
+      "status": "COLLECTED",
+      "successful_episodes": 22,
+      "individual_transitions": 3576,
+      "manifest_sha256": "4f1301afae5bbf45166954db321512f734b6825f23ede4c3e35017d87921f9da"
+    },
+    {
+      "collection_run": "01_train_1101",
+      "status": "COLLECTED",
+      "successful_episodes": 16,
+      "individual_transitions": 2384,
+      "manifest_sha256": "ee03bee9a309723a25d71a1798118cbbf263f9d43c85ddbf0d318a3d65d527f2"
+    },
+    {
+      "collection_run": "02_train_1102",
+      "status": "COLLECTED",
+      "successful_episodes": 16,
+      "individual_transitions": 2384,
+      "manifest_sha256": "18515ba33a986b2d34bf92c8a54cb61ed6d081a39012f215a413aa595e375df9"
+    },
+    {
+      "collection_run": "03_train_1103",
+      "status": "COLLECTED",
+      "successful_episodes": 16,
+      "individual_transitions": 2384,
+      "manifest_sha256": "b2e59dc216bd91366ed2b185b6e03d193e3452427df49ddef55a0499a070dbc1"
+    },
+    {
+      "collection_run": "04_train_1104",
+      "status": "COLLECTED",
+      "successful_episodes": 23,
+      "individual_transitions": 3576,
+      "manifest_sha256": "dbd5961ead83dfc66b6abee0dcd259ee3b1d179834c345ac33dd1cdd03e27409"
+    },
+    {
+      "collection_run": "05_train_1105",
+      "status": "COLLECTED",
+      "successful_episodes": 16,
+      "individual_transitions": 2384,
+      "manifest_sha256": "668050d77a403686c43a216f441fa504b9ccba9dbe48e898e8576f878fdfb54f"
+    },
+    {
+      "collection_run": "06_train_1106",
+      "status": "COLLECTED",
+      "successful_episodes": 16,
+      "individual_transitions": 2384,
+      "manifest_sha256": "1e3753e89b575040f85845f44932b7e4cf051e2df30ae5f5e35f77f251f28d5d"
+    },
+    {
+      "collection_run": "07_train_1107",
+      "status": "COLLECTED",
+      "successful_episodes": 16,
+      "individual_transitions": 2384,
+      "manifest_sha256": "224b87825b2b7139661b72bdcedab45f91b68d62c5c90da3d56db35cbac5dd43"
+    },
+    {
+      "collection_run": "08_train_1108",
+      "status": "COLLECTED",
+      "successful_episodes": 16,
+      "individual_transitions": 2384,
+      "manifest_sha256": "e916aa9aa7249fb523d3487366f73a5e3b44ea3e19be3889ff08769a508a1c5e"
+    },
+    {
+      "collection_run": "09_train_1109",
+      "status": "COLLECTED",
+      "successful_episodes": 23,
+      "individual_transitions": 3576,
+      "manifest_sha256": "1e4cae0bd5271ff332701d183c659980beb27bc86dd1c16ac3d0fdf7e78dffc6"
+    },
+    {
+      "collection_run": "10_train_1110",
+      "status": "COLLECTED",
+      "successful_episodes": 16,
+      "individual_transitions": 2384,
+      "manifest_sha256": "946696553fe0368c7f3ebe35f99f6e32b24ab13781fcdd9e544232ee408bebb6"
+    },
+    {
+      "collection_run": "11_train_1111",
+      "status": "COLLECTED",
+      "successful_episodes": 16,
+      "individual_transitions": 2384,
+      "manifest_sha256": "7e92a56c4dcf05d1d579f0b6f34b474f832825650bc1a577fa3a2c20183f87ab"
+    },
+    {
+      "collection_run": "12_train_1112",
+      "status": "RUNNING",
+      "successful_episodes": 0,
+      "individual_transitions": 0,
+      "manifest_sha256": "9f136585a6edd826b4dfdaf160b876b0fee0f84a86845fa5770993db103e0bfa"
+    }
+  ],
+  "completed_collection_runs": 12,
+  "planned_collection_runs": 20,
+  "completed_episodes": 216,
+  "completed_stable_successes": 212,
+  "development_expert_episodes": 8,
+  "development_stable_successes": 8,
+  "actor_pretraining_updates": 0,
+  "critic_updates": 0,
+  "real_critic_to_act_outcomes": "NOT_RUN",
+  "ablation_outcomes": "NOT_RUN",
+  "raw_dataset_location": "/media/midea/F496AC8096AC4548/closed_loop_act/data/act_demonstrations",
+  "live_collection_log": "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/collect_demonstrations_20261026.log",
+  "note": "Publication snapshot while the existing managed foreground collection is active. It does not automatically launch training. Newer local results may appear after this snapshot."
+}

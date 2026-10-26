@@ -22,6 +22,7 @@ cache=()
 "${UV[@]}" pip install --python .venv/bin/python "${cache[@]}" \
   --default-index https://pypi.org/simple --index https://pypi.nvidia.com \
   --index-strategy unsafe-best-match --constraint configs/isaac_constraints.txt \
-  --build-constraints configs/isaac_build_constraints.txt 'isaacsim[all]==5.0.0' \
+  --constraint configs/isaac_runtime_constraints.txt \
+  --build-constraints configs/isaac_build_constraints.txt 'isaacsim[all,extscache]==5.0.0' \
   -e .cache/IsaacLab/source/isaaclab -e .cache/IsaacLab/source/isaaclab_assets \
   -e .cache/IsaacLab/source/isaaclab_tasks -e .cache/IsaacLab/source/isaaclab_rl -e '.[test]'

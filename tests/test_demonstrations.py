@@ -53,6 +53,17 @@ class SmallBC(nn.Module):
         return ((self.value+torch.randn_like(self.value)*.01-actions).square()*valid[:,:,None]).mean()
 
 
+def test_expert_post_success_frames_never_enter_bc_or_normalization(tmp_path):
+    path=fixture_manifest(tmp_path);manifest=json.loads(path.read_text())
+    marker=tmp_path/'a_success.npy';np.save(marker,np.array([False,False,True,True,True]))
+    manifest['episodes'][0]['files']['stable_success']={'path':marker.name,'sha256':file_hash(marker)}
+    path.write_text(json.dumps(manifest))
+    ds=Demonstrations(path)
+    assert len(ds)==3
+    assert ds.normalizer['history']['mean'][0]==1  # only force samples 0,1,2
+    assert ds[2][2].tolist()==[True,False,False,False]
+
+
 def test_pretrain_restart_matches_uninterrupted_updates(tmp_path):
     ds=Demonstrations(fixture_manifest(tmp_path));base=SmallBC()
     full=copy.deepcopy(base);part=copy.deepcopy(base)

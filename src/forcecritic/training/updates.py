@@ -48,9 +48,12 @@ def actor_step(actor, critic, optimizer, obs, condition, mask, old_action,
             'saturation': float((after.abs() > .99).float().mean())}
 
 
-def td_target(target_actor, target_critic, next_obs, next_condition, returns, gamma_k, bootstrap):
+def td_target(target_actor, target_critic, next_obs, next_condition, returns, gamma_k, bootstrap, next_action=None):
     with torch.no_grad():
-        q = target_critic(next_condition, target_actor(next_obs)).mean(1)
+        # A cached action is valid only for the explicitly frozen continuation
+        # actor; live drivers enforce its policy SHA. Critic targets stay dynamic.
+        action = target_actor(next_obs) if next_action is None else next_action
+        q = target_critic(next_condition, action).mean(1)
         return returns + gamma_k[:, None] * bootstrap[:, None] * q
 
 

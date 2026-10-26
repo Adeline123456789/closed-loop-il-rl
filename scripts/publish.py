@@ -10,7 +10,7 @@ os.environ['PYTEST_DISABLE_PLUGIN_AUTOLOAD']='1'
 os.environ['CUDA_VISIBLE_DEVICES']=''
 os.environ['GIT_TERMINAL_PROMPT']='0'
 ROOTS=['src','scripts','tests','configs','reports','results','pyproject.toml','.gitignore',
-       'README.md','CODEX_TASK.md','AGENTS.md','THIRD_PARTY_NOTICES.md','third_party',
+       'README.md','TRAINING_GUIDE.md','CODEX_TASK.md','AGENTS.md','THIRD_PARTY_NOTICES.md','third_party',
        'environment.lock.json','upstream.lock.json','protocol_lock.json','artifacts_manifest.json']
 def run(args):return subprocess.run(args,text=True,capture_output=True)
 if run(['git','branch','--show-current']).stdout.strip()!='codex/force-critic-act-v2':
@@ -34,7 +34,7 @@ for root in paths:
 r=run(['git','add','--',*paths])
 if r.returncode:raise SystemExit(r.stderr)
 if run(['git','diff','--cached','--quiet']).returncode:
-    r=run(['git','commit','-m','Implement diagnostic-first force critic ACT and record measured P0 stop'])
+    r=run(['git','commit','-m','Record force critic ACT implementation and measured experiment evidence'])
     if r.returncode:raise SystemExit(r.stderr)
 r=run(['git','push','origin','HEAD:refs/heads/codex/force-critic-act-v2'])
 print(r.stdout+r.stderr)

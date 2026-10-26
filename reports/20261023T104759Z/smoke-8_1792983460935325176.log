@@ -1,0 +1,155 @@
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/apps/isaaclab.python.headless.rendering.kit
+[Warning] [simulation_app.simulation_app] Modules: ['omni.kit_app'] were loaded before SimulationApp was started and might not be loaded correctly.
+[Warning] [simulation_app.simulation_app] Please check to make sure no extra omniverse or pxr modules are imported before the call to SimulationApp(...)
+Loading user config located at: '/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/omni/data/Kit/Isaac-Sim/5.0/user.config.json'
+[Info] [carb] Logging to file: /media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/omni/logs/Kit/Isaac-Sim/5.0/kit_20261026_105741.log
+
+|---------------------------------------------------------------------------------------------|
+| Driver Version: 575.51.03     | Graphics API: Vulkan
+|=============================================================================================|
+| GPU | Name                             | Active | LDA | GPU Memory | Vendor-ID | LUID       |
+|     |                                  |        |     |            | Device-ID | UUID       |
+|     |                                  |        |     |            | Bus-ID    |            |
+|---------------------------------------------------------------------------------------------|
+| 0   | NVIDIA GeForce RTX 3090          | Yes: 0 |     | 24576   MB | 10de      | 0          |
+|     |                                  |        |     |            | 2204      | ffd9f1a6.. |
+|     |                                  |        |     |            | 1         |            |
+|=============================================================================================|
+| OS: 22.04.5 LTS (Jammy Jellyfish) ubuntu, Version: 22.04.5, Kernel: 6.8.0-138-generic
+| XServer Vendor: The X.Org Foundation, XServer Version: 12101004 (1.21.1.4)
+| Processor: 12th Gen Intel(R) Core(TM) i9-12900K
+| Cores: 16 | Logical Cores: 24
+|---------------------------------------------------------------------------------------------|
+| Total Memory (MB): 64057 | Free Memory: 43522
+| Total Page/Swap (MB): 2047 | Free Page/Swap: 1730
+|---------------------------------------------------------------------------------------------|
+2026-10-26T02:57:41Z [624ms] [Warning] [gpu.foundation.plugin] CPU performance profile is set to powersave. This profile sets the CPU to the lowest frequency reducing performance.
+2026-10-26T02:57:41Z [626ms] [Warning] [gpu.foundation.plugin] IOMMU is enabled.
+2026-10-26T02:57:43Z [2,021ms] [Warning] [omni.log] Source: omni.hydra was already registered.
+2026-10-26T02:57:43Z [2,190ms] [Warning] [omni.isaac.dynamic_control] omni.isaac.dynamic_control is deprecated as of Isaac Sim 4.5. No action is needed from end-users.
+2026-10-26T02:57:44Z [3,924ms] [Warning] [pxr.Semantics] pxr.Semantics is deprecated - please use Semantics instead
+2026-10-26T02:57:45Z [4,151ms] [Warning] [omni.replicator.core.scripts.extension] No material configuration file, adding configuration to material settings directly.
+2026-10-26T02:57:47Z [6,380ms] [Warning] [usdrt.population.plugin] using high frequency span is disabled
+2026-10-26T02:57:47Z [6,480ms] [Warning] [carb] Acquiring non optional plugin interface which is not listed as dependency: [carb::dictionary::ISerializer v1.1] (plugin: carb.dictionary.serializer-json.plugin), by client: carb.scenerenderer-rtx.plugin. Add it to CARB_PLUGIN_IMPL_DEPS() macro of a client.
+2026-10-26T02:57:48Z [7,897ms] [Warning] [usdrt.hydra.fabric_scene_delegate.plugin] using high frequency span is disabled
+2026-10-26T02:57:48Z [7,897ms] [Warning] [usdrt.hydra.fabric_scene_delegate.plugin] using high frequency span is disabled
+2026-10-26T02:57:48Z [7,897ms] [Warning] [usdrt.hydra.fabric_scene_delegate.plugin] using high frequency span with attrs is disabled
+2026-10-26T02:57:48Z [7,902ms] [Warning] [omni.fabric.plugin] Warning: attribute viewportHandle not found for bucket id 7
+
+2026-10-26T02:57:48Z [7,907ms] [Warning] [usdrt.hydra.fabric_scene_delegate.plugin] using high frequency span is disabled
+2026-10-26T02:57:48Z [7,907ms] [Warning] [usdrt.hydra.fabric_scene_delegate.plugin] using high frequency span is disabled
+[INFO]: Parsing configuration from: <class 'isaaclab_tasks.direct.forge.forge_env_cfg.ForgeTaskPegInsertCfg'>
+Setting seed: 0
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : 0
+	Physics step-size     : 0.008333333333333333
+	Rendering step-size   : 0.06666666666666667
+	Environment step-size : 0.06666666666666667
+2026-10-26T02:57:49Z [8,287ms] [Warning] [omni.fabric.plugin] Warning: input prim:attr `/World/envs/env_0:omni:rtx:skip` has no valid data.
+
+[INFO]: Time taken for scene creation : 2.598459 seconds
+[INFO]: Scene manager:  <class InteractiveScene>
+	Number of environments: 8
+	Environment spacing   : 2.0
+	Source prim name      : /World/envs/env_0
+	Global prim paths     : []
+	Replicate physics     : True
+[INFO]: Starting the simulation. This may take a few seconds. Please wait...
+2026-10-26T02:57:52Z [11,660ms] [Warning] [usdrt.hydra.fabric_scene_delegate.plugin] using high frequency span with attrs is disabled
+2026-10-26T02:57:52Z [11,672ms] [Warning] [usdrt.hydra.fabric_scene_delegate.plugin] using high frequency span with attrs is disabled
+2026-10-26T02:57:53Z [12,272ms] [Warning] [rtx.postprocessing.plugin] DLSS increasing input dimensions: Render resolution of (148, 148) is below minimal input resolution of 300.
+[INFO]: Time taken for simulation start : 1.518397 seconds
+[INFO] Event Manager:  <EventManager> contains 3 active terms.
++------------------------------------+
+| Active Event Terms in Mode: 'reset' |
++---------+--------------------------+
+|  Index  | Name                     |
++---------+--------------------------+
+|    0    | object_scale_mass        |
++---------+--------------------------+
++----------------------------------------+
+| Active Event Terms in Mode: 'startup'  |
++---------+------------------------------+
+|  Index  | Name                         |
++---------+------------------------------+
+|    0    | held_physics_material        |
+|    1    | fixed_physics_material       |
+|    2    | robot_physics_material       |
++---------+------------------------------+
++--------------------------------------------------------+
+|         Active Event Terms in Mode: 'interval'         |
++-------+----------------------+-------------------------+
+| Index | Name                 | Interval time range (s) |
++-------+----------------------+-------------------------+
+|   0   | dead_zone_thresholds |        (2.0, 2.0)       |
++-------+----------------------+-------------------------+
+
+[INFO]: Completed setting up the environment...
+/pytorch/aten/src/ATen/native/cuda/IndexKernel.cu:93: operator(): block: [0,0,0], thread: [1,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+/pytorch/aten/src/ATen/native/cuda/IndexKernel.cu:93: operator(): block: [0,0,0], thread: [2,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+/pytorch/aten/src/ATen/native/cuda/IndexKernel.cu:93: operator(): block: [0,0,0], thread: [3,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+/pytorch/aten/src/ATen/native/cuda/IndexKernel.cu:93: operator(): block: [0,0,0], thread: [4,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+/pytorch/aten/src/ATen/native/cuda/IndexKernel.cu:93: operator(): block: [0,0,0], thread: [5,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+/pytorch/aten/src/ATen/native/cuda/IndexKernel.cu:93: operator(): block: [0,0,0], thread: [6,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+/pytorch/aten/src/ATen/native/cuda/IndexKernel.cu:93: operator(): block: [0,0,0], thread: [7,0,0] Assertion `-sizes[i] <= index && index < sizes[i] && "index out of bounds"` failed.
+Traceback (most recent call last):
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/scripts/smoke_forge.py", line 48, in <module>
+    obs,info=env.reset()
+             ^^^^^^^^^^^
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/gymnasium/wrappers/common.py", line 400, in reset
+    return super().reset(seed=seed, options=options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/gymnasium/core.py", line 333, in reset
+    return self.env.reset(seed=seed, options=options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab/isaaclab/envs/direct_rl_env.py", line 296, in reset
+    self._reset_idx(indices)
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/direct/forge/forge_env.py", line 269, in _reset_idx
+    super()._reset_idx(env_ids)
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/direct/factory/factory_env.py", line 490, in _reset_idx
+    super()._reset_idx(env_ids)
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab/isaaclab/envs/direct_rl_env.py", line 595, in _reset_idx
+    self.scene.reset(env_ids)
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab/isaaclab/scene/interactive_scene.py", line 461, in reset
+    sensor.reset(env_ids)
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab/isaaclab/sensors/camera/camera.py", line 367, in reset
+    super().reset(env_ids)
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab/isaaclab/sensors/sensor_base.py", line 178, in reset
+    self._timestamp[env_ids] = 0.0
+    ~~~~~~~~~~~~~~~^^^^^^^^^
+RuntimeError: CUDA error: device-side assert triggered
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+2026-10-26T02:57:53Z [12,360ms] [Error] [omni.physx.tensors.plugin] CUDA error: device-side assert triggered: ../../../extensions/runtime/source/omni.physx.tensors/plugins/gpu/GpuArticulationView.cpp: 217
+2026-10-26T02:57:53Z [12,360ms] [Error] [omni.physx.tensors.plugin] CUDA error: device-side assert triggered: ../../../extensions/runtime/source/omni.physx.tensors/plugins/gpu/GpuArticulationView.cpp: 218
+2026-10-26T02:57:53Z [12,360ms] [Error] [omni.physx.tensors.plugin] CUDA error: device-side assert triggered: ../../../extensions/runtime/source/omni.physx.tensors/plugins/gpu/GpuArticulationView.cpp: 219
+2026-10-26T02:57:53Z [12,360ms] [Error] [omni.physx.tensors.plugin] CUDA error: device-side assert triggered: ../../../extensions/runtime/source/omni.physx.tensors/plugins/gpu/GpuArticulationView.cpp: 220
+2026-10-26T02:57:53Z [12,360ms] [Error] [omni.physx.tensors.plugin] CUDA error: device-side assert triggered: ../../../extensions/runtime/source/omni.physx.tensors/plugins/gpu/GpuArticulationView.cpp: 221
+2026-10-26T02:57:53Z [12,360ms] [Error] [omni.physx.tensors.plugin] CUDA error: device-side assert triggered: ../../../extensions/runtime/source/omni.physx.tensors/plugins/gpu/GpuArticulationView.cpp: 222
+2026-10-26T02:57:53Z [12,360ms] [Error] [omni.physx.tensors.plugin] CUDA error: device-side assert triggered: ../../../extensions/runtime/source/omni.physx.tensors/plugins/gpu/GpuArticulationView.cpp: 223
+2026-10-26T02:57:53Z [12,360ms] [Error] [omni.physx.tensors.plugin] CUDA error: device-side assert triggered: ../../../extensions/runtime/source/omni.physx.tensors/plugins/gpu/GpuArticulationView.cpp: 224
+2026-10-26T02:57:53Z [12,360ms] [Error] [omni.physx.tensors.plugin] CUDA error: device-side assert triggered: ../../../extensions/runtime/source/omni.physx.tensors/plugins/gpu/GpuArticulationView.cpp: 225
+2026-10-26T02:57:53Z [12,360ms] [Error] [omni.physx.tensors.plugin] CUDA error: device-side assert triggered: ../../../extensions/runtime/source/omni.physx.tensors/plugins/gpu/GpuArticulationView.cpp: 217
+2026-10-26T02:57:53Z [12,360ms] [Error] [omni.physx.tensors.plugin] CUDA error: device-side assert triggered: ../../../extensions/runtime/source/omni.physx.tensors/plugins/gpu/GpuArticulationView.cpp: 218
+2026-10-26T02:57:53Z [12,360ms] [Error] [omni.physx.tensors.plugin] CUDA error: device-side assert triggered: ../../../extensions/runtime/source/omni.physx.tensors/plugins/gpu/GpuArticulationView.cpp: 219
+2026-10-26T02:57:53Z [12,360ms] [Error] [omni.physx.tensors.plugin] CUDA error: device-side assert triggered: ../../../extensions/runtime/source/omni.physx.tensors/plugins/gpu/GpuArticulationView.cpp: 220
+2026-10-26T02:57:53Z [12,361ms] [Error] [omni.physx.tensors.plugin] CUDA error: device-side assert triggered: ../../../extensions/runtime/source/omni.physx.tensors/plugins/gpu/GpuArticulationView.cpp: 221
+2026-10-26T02:57:53Z [12,361ms] [Error] [omni.physx.tensors.plugin] CUDA error: device-side assert triggered: ../../../extensions/runtime/source/omni.physx.tensors/plugins/gpu/GpuArticulationView.cpp: 222
+2026-10-26T02:57:53Z [12,361ms] [Error] [omni.physx.tensors.plugin] CUDA error: device-side assert triggered: ../../../extensions/runtime/source/omni.physx.tensors/plugins/gpu/GpuArticulationView.cpp: 223
+2026-10-26T02:57:53Z [12,361ms] [Error] [omni.physx.tensors.plugin] CUDA error: device-side assert triggered: ../../../extensions/runtime/source/omni.physx.tensors/plugins/gpu/GpuArticulationView.cpp: 224
+2026-10-26T02:57:53Z [12,361ms] [Error] [omni.physx.tensors.plugin] CUDA error: device-side assert triggered: ../../../extensions/runtime/source/omni.physx.tensors/plugins/gpu/GpuArticulationView.cpp: 225
+2026-10-26T02:57:53Z [12,361ms] [Error] [omni.physx.tensors.plugin] CUDA error: device-side assert triggered: ../../../extensions/runtime/source/omni.physx.tensors/plugins/gpu/GpuArticulationView.cpp: 217
+2026-10-26T02:57:53Z [12,361ms] [Error] [omni.physx.tensors.plugin] CUDA error: device-side assert triggered: ../../../extensions/runtime/source/omni.physx.tensors/plugins/gpu/GpuArticulationView.cpp: 218
+2026-10-26T02:57:53Z [12,361ms] [Error] [omni.physx.tensors.plugin] CUDA error: device-side assert triggered: ../../../extensions/runtime/source/omni.physx.tensors/plugins/gpu/GpuArticulationView.cpp: 219
+2026-10-26T02:57:53Z [12,361ms] [Error] [omni.physx.tensors.plugin] CUDA error: device-side assert triggered: ../../../extensions/runtime/source/omni.physx.tensors/plugins/gpu/GpuArticulationView.cpp: 220
+2026-10-26T02:57:53Z [12,361ms] [Error] [omni.physx.tensors.plugin] CUDA error: device-side assert triggered: ../../../extensions/runtime/source/omni.physx.tensors/plugins/gpu/GpuArticulationView.cpp: 221
+2026-10-26T02:57:53Z [12,361ms] [Error] [omni.physx.tensors.plugin] CUDA error: device-side assert triggered: ../../../extensions/runtime/source/omni.physx.tensors/plugins/gpu/GpuArticulationView.cpp: 222
+2026-10-26T02:57:53Z [12,361ms] [Error] [omni.physx.tensors.plugin] CUDA error: device-side assert triggered: ../../../extensions/runtime/source/omni.physx.tensors/plugins/gpu/GpuArticulationView.cpp: 223
+2026-10-26T02:57:53Z [12,361ms] [Error] [omni.physx.tensors.plugin] CUDA error: device-side assert triggered: ../../../extensions/runtime/source/omni.physx.tensors/plugins/gpu/GpuArticulationView.cpp: 224
+2026-10-26T02:57:53Z [12,361ms] [Error] [omni.physx.tensors.plugin] CUDA error: device-side assert triggered: ../../../extensions/runtime/source/omni.physx.tensors/plugins/gpu/GpuArticulationView.cpp: 225
+2026-10-26T02:57:53Z [12,361ms] [Error] [omni.physx.fabric.plugin] CUDA error: device-side assert triggered: ../../../extensions/runtime/source/omni.physx.fabric/plugins/DirectGpuHelper.cpp: 687
+2026-10-26T02:57:53Z [12,361ms] [Error] [omni.physx.fabric.plugin] CUDA error: device-side assert triggered: ../../../extensions/runtime/source/omni.physx.fabric/plugins/DirectGpuHelper.cpp: 749
+2026-10-26T02:57:53Z [12,361ms] [Error] [omni.physx.fabric.plugin] CUDA error: device-side assert triggered: ../../../extensions/runtime/source/omni.physx.fabric/plugins/DirectGpuHelper.cpp: 894
+python: ../../../source/sharedlibs/cubric/lib/cubric_device.cu:58: bool cubricDeviceBufferMemcpyHtoD(cubricDeviceBuffer_st*, void*, size_t): Assertion `(cuerr) == (CUDA_SUCCESS)' failed.

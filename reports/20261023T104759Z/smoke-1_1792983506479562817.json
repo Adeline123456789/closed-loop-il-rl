@@ -1,0 +1,124 @@
+{
+  "status": "PASSED",
+  "purpose": "environment/camera smoke only; NOT expert evaluation",
+  "num_envs": 1,
+  "control_dt": 0.06666666666666667,
+  "physics_dt": 0.008333333333333333,
+  "decimation": 8,
+  "render_interval": 8,
+  "seed": 0,
+  "env_origins": [
+    [
+      0.0,
+      0.0,
+      0.0
+    ]
+  ],
+  "fixed_asset_positions_env_frame": [
+    [
+      0.6089493036270142,
+      0.03242415189743042,
+      0.08223685622215271
+    ]
+  ],
+  "records": [
+    {
+      "step": 0,
+      "rgb_shape": [
+        1,
+        256,
+        256,
+        3
+      ],
+      "rgb_min": 0,
+      "rgb_max": 248,
+      "rgb_min_per_env": [
+        0
+      ],
+      "rgb_max_per_env": [
+        248
+      ],
+      "wrench_finite": true,
+      "wrench_shape": [
+        1,
+        6
+      ],
+      "individual_transitions": 1
+    },
+    {
+      "step": 1,
+      "rgb_shape": [
+        1,
+        256,
+        256,
+        3
+      ],
+      "rgb_min": 0,
+      "rgb_max": 245,
+      "rgb_min_per_env": [
+        0
+      ],
+      "rgb_max_per_env": [
+        245
+      ],
+      "wrench_finite": true,
+      "wrench_shape": [
+        1,
+        6
+      ],
+      "individual_transitions": 1
+    },
+    {
+      "step": 2,
+      "rgb_shape": [
+        1,
+        256,
+        256,
+        3
+      ],
+      "rgb_min": 0,
+      "rgb_max": 243,
+      "rgb_min_per_env": [
+        0
+      ],
+      "rgb_max_per_env": [
+        243
+      ],
+      "wrench_finite": true,
+      "wrench_shape": [
+        1,
+        6
+      ],
+      "individual_transitions": 1
+    },
+    {
+      "step": 3,
+      "rgb_shape": [
+        1,
+        256,
+        256,
+        3
+      ],
+      "rgb_min": 0,
+      "rgb_max": 244,
+      "rgb_min_per_env": [
+        0
+      ],
+      "rgb_max_per_env": [
+        244
+      ],
+      "wrench_finite": true,
+      "wrench_shape": [
+        1,
+        6
+      ],
+      "individual_transitions": 1
+    }
+  ],
+  "time": 1792983522.3037245,
+  "physics_substeps": {
+    "initialization_restore": 67,
+    "evaluation": 32
+  },
+  "reset_control_step_equivalents": 8.375
+}

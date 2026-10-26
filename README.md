@@ -1,14 +1,16 @@
 # Force Critic → ACT: diagnostic-first implementation
 
-Protocol: `force_critic_act_v2_diagnostic_first`. This is a P0 **license-blocked stop delivery**: learning/control components, measured data/runtime audits and actual failed-launch evidence. **P0 has not passed; B0/B1/B2/B3 robot results are NOT_RUN.** See [project status](reports/PROJECT_STATUS.json) for the actual run and report paths.
+Protocol: `force_critic_act_v2_diagnostic_first`. The post-EULA real simulator now passes both 1-env and 8-env camera/physics smoke checks. The measured P0 contract is accepted for new same-version recollection; the legacy HF contract remains unresolved. **ACT/B1/B2/B3 results are not yet measured.** See [project status](reports/PROJECT_STATUS.json) for the actual run and report paths.
 
 ACT is the actor: single RGB + proprioception + four past wrench/motion/command frames → ACT-CVAE → full 4×4 native action chunk. Twin critics output return/cost; their action gradients directly update ACT. Critic weights and observation conditions stay fixed during actor updates. Deployment and Q actions use z=0. There is no residual SAC, teacher distillation, world model, recoverability head, or learned filter.
 
-Implemented components and boundaries are documented in each run's `implementation_audit.md`. In particular, a stage command returning a blocked prerequisite is **not** a completed robot training driver. Online collection, accepted simulator integration and complete later-stage orchestration still require P0 acceptance and implementation/validation. This repository does not claim the full research pipeline has run.
+Implemented components and boundaries are documented in each run's `implementation_audit.md`. In particular, a stage command returning a blocked prerequisite is **not** a completed robot training driver. Live FORGE integration, expert recollection, ACT pretraining, online chunk replay/critic fitting, O/R/P diagnostics and short B1/B2/B3 drivers are implemented. Only actually measured stages are accepted; conditional pilot/confirmation/generalization remain incomplete. This repository does not claim the full research pipeline has run.
+
+Local data paths, foreground continuation commands and progress monitoring: [TRAINING_GUIDE.md](TRAINING_GUIDE.md).
 
 ## Commands actually exercised on this machine
 
-The installed candidate `.venv/bin/python` uses Python 3.11, Torch 2.7.0+cu128, Isaac Sim 5.0.0 and the pinned Isaac Lab v2.2.1 checkout. Its GPU tensor check and CPU tests passed. The actual simulator import stopped at the Omniverse EULA prompt, before scene creation. `.venv-cpu` is the separate historical Python 3.12 / Torch 2.10 verification environment; its logs are retained.
+The installed candidate `.venv/bin/python` uses Python 3.11, Torch 2.7.0+cu128, Isaac Sim 5.0.0 and the pinned Isaac Lab v2.2.1 checkout. Its GPU tensor checks, software tests and real rendered 1-env/8-env smoke checks passed after the user accepted the EULA. Kit registry 107 is selected for Sim 5.0; USD environment cloning fixes camera buffer enumeration for 8 environments. `.venv-cpu` is the separate historical Python 3.12 / Torch 2.10 verification environment; its logs are retained.
 
 ```bash
 PYTHONPATH=src PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 CUDA_VISIBLE_DEVICES='' .venv/bin/python -m pytest -q
@@ -25,7 +27,7 @@ PYTHONPATH=src CUDA_VISIBLE_DEVICES='' .venv-cpu/bin/python scripts/inspect_base
 CUDA_VISIBLE_DEVICES='' .venv-cpu/bin/python scripts/audit_expert.py --output reports/20261023T104759Z/expert_download.json
 ```
 
-The baseline factory uses a pretrained frozen ResNet18, an 8×8 image feature grid, width 512, eight attention heads, four encoder layers and seven decoder layers. The checkpoint audit verifies the pinned expert file's size/hash and safely reads tensor shapes; compatibility and insertion performance still require the official player. Download the expert first with `.venv-cpu/bin/python scripts/download_expert.py` if its ignored cache is absent.
+The baseline factory uses a pretrained frozen ResNet18, an 8×8 image feature grid, width 512, eight attention heads, four encoder layers and seven decoder layers. The checkpoint audit verifies the pinned expert file's size/hash and safely reads tensor shapes; the official player subsequently completed eight development episodes with eight stable insertions (three consecutive geometric-success steps). This is expert compatibility evidence, not ACT performance. Download the expert first with `.venv-cpu/bin/python scripts/download_expert.py` if its ignored cache is absent.
 
 The unified entry records blockers, generates reports and attempts publication even after a stage stops:
 
@@ -49,17 +51,13 @@ PYTHONPATH=src .venv/bin/python -m forcecritic.cli smoke --num-envs 8
 
 The smoke subprocess uses `--headless --enable_cameras`, stock PegInsert, and a diagnostic camera. It checks rendered RGB and six-axis sensor finiteness, not expert insertion performance or HF camera equivalence. Its logs, not the command examples, determine what actually ran. Full dependencies and asset loading must succeed before this can pass.
 
-The next recovery command is:
+The user has already accepted the EULA. Historical failed-launch logs are retained but are not the current blocker. The measured new contract is in `reports/20261023T104759Z/p0_acceptance.json`; real command records and per-episode results are alongside it. The old HF files remain excluded because their collection SHA, pre/post-EMA action stage and camera/reference details cannot be verified.
 
-```bash
-bash scripts/resume_after_environment_fix.sh
-```
-
-Run it in an interactive terminal to review the [vendor agreement](https://docs.omniverse.nvidia.com/enterprise/latest/common/NVIDIA_Omniverse_License_Agreement.html). The script displays the vendor prompt and never supplies acceptance or writes its marker itself. If acceptance is declined or unavailable, it stops. Even after acceptance, P0 alignment and later robot orchestration still need resolution; no training capability is implied by accepting a license.
+The pinned official expert is installed by `bash scripts/install_expert.sh`. New recordings are collected with `scripts/collect_demonstrations.py` through `scripts/run_forge_probe.py`; the immutable collection plan reserves whole runs 70/15/15 and excludes development data. Raw arrays and checkpoints remain local and ignored by Git.
 
 ## Experimental discipline
 
-The [task specification](CODEX_TASK.md) and [frozen configuration](configs/minimal_validation.yaml) retain the diagnostic-first budgets. Physical limits/tolerances are unresolved and remain null. No long training can start before accepted P0 evidence. O/R/P equivalence precedes pair probing. All prefix/restore/branch/evaluation steps count. B2/B3 use identical data and training-only masks; B3 adds finite pair contrast, not derivative supervision. Test labels cannot release Actor masks. Checkpoints save optimizers and RNG along with model state.
+The [task specification](CODEX_TASK.md) and [frozen configuration](configs/minimal_validation.yaml) retain the diagnostic-first budgets. The base configuration keeps unresolved historical fields null. The versioned P0 acceptance resolves the new frame/camera/action contract and development-only empirical physical limits; these are simulation operating limits, not hardware damage thresholds. Replay tolerances must be separately locked before D0. O/R/P equivalence precedes pair probing. All prefix/restore/branch/evaluation steps count. B2/B3 use identical data and training-only masks; B3 adds finite pair contrast, not derivative supervision. Test labels cannot release Actor masks. Checkpoints save optimizers and RNG along with model state.
 
 B1/B2/B3 robot efficacy, replay fidelity, calibration benefit, confirmation and OOD generalization remain unmeasured. The direct gradient mechanism passing software tests supports only implementation correctness, not improved insertion. No learned weights have been published.
 

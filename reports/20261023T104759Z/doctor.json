@@ -1,7 +1,7 @@
 {
   "status": "PASSED",
   "missing_packages": [],
-  "code_sha": "5e378b995ef9766998a3cf19df07c4a352958a41",
+  "code_sha": "e8df1561611f0b756872d91c4e8989432ab6ce3d",
   "config_hash": "a355f6209f5049e01afb25d9cc196524ad577f11dee2d54404219f7f0e64eedb",
   "upstream_lock_sha256": "14fec4cc04dd18aa893011e01844ba450dee8192977706f7ce16a9287771aa67",
   "hf_sources": {
@@ -80,7 +80,7 @@
     "numpy": "1.26.0",
     "pyarrow": "21.0.0"
   },
-  "disk_free_bytes": 120160317440,
+  "disk_free_bytes": 109207740416,
   "asset_loading": "NOT_RUN",
   "camera_rendering": "NOT_RUN",
   "git_read": {
@@ -102,9 +102,9 @@
       "origin",
       "HEAD"
     ],
-    "returncode": 128,
+    "returncode": 0,
     "stdout": "",
-    "stderr": "fatal: could not read Username for 'https://github.com': terminal prompts disabled\n"
+    "stderr": "To https://github.com/Adeline123456789/closed-loop-il-rl.git\n   5e378b9..e8df156  HEAD -> codex/force-critic-act-v2\n"
   },
   "isaac_launcher": "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/isaaclab.sh",
   "license_acceptance": {

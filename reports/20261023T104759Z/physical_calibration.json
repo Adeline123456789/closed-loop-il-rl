@@ -1,0 +1,41 @@
+{
+  "status": "MEASURED",
+  "source_split": "development",
+  "successful_parents": 8,
+  "unique_physics_samples": 9536,
+  "raw_abs_q995": [
+    4.667553699016581,
+    4.421273601055149,
+    15.814950370788988,
+    0.5673797860741633,
+    0.5691216990351686,
+    1.2353296041488715
+  ],
+  "raw_abs_max": [
+    7.280994892120361,
+    7.769867420196533,
+    21.145082473754883,
+    0.8819437623023987,
+    0.7207728028297424,
+    3.727106809616089
+  ],
+  "physical_limits": [
+    5.834442123770726,
+    5.526592001318936,
+    19.768687963486236,
+    1.0,
+    1.0,
+    1.5441620051860894
+  ],
+  "physical_protection_limits": [
+    11.668884247541452,
+    11.654801368713379,
+    39.53737592697247,
+    2.0,
+    2.0,
+    5.590660095214844
+  ],
+  "source_manifest_sha256": "95b23788cdc1738a451d6a7149e84a24d68aacfa626a739a23e1c6021f66326b",
+  "rule_sha256": "44f6455d53f1c9014b91bd2dcbfefc33fab03983c5bef9ea718ffc35a7dd212b",
+  "raw_split_field_note": "Original collector called these train; all parents from this run are reserved exclusively for development by the precompletion calibration protocol. They are excluded from the later demonstration manifest."
+}

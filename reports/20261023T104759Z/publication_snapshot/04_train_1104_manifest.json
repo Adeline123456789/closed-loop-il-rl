@@ -1,0 +1,1738 @@
+{
+  "status": "COLLECTED",
+  "source": "same_version_recollection",
+  "episodes": [
+    {
+      "parent_id": "train-1104-000000",
+      "collection_run_id": "04_train_1104",
+      "split": "train",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "train-1104-000000/rgb.npy",
+          "sha256": "ffa41d64d53ea162b543f34b49a5359b35ff0c2ac2c89d663b9872523d8dfc2e"
+        },
+        "state": {
+          "path": "train-1104-000000/state.npy",
+          "sha256": "30a1db535304021b17c703fc218c2f56aaf636075ed0c2535ee97180399f0e1f"
+        },
+        "wrench": {
+          "path": "train-1104-000000/wrench.npy",
+          "sha256": "f93dd7b1475370c9845e4614d7b9fc69832df79adda3c2447de928e4983cbac8"
+        },
+        "motion": {
+          "path": "train-1104-000000/motion.npy",
+          "sha256": "d68abf33d7d5c81764766397c2075d5a954dbf9adae50e74a4d94cd865af9a56"
+        },
+        "previous_command": {
+          "path": "train-1104-000000/previous_command.npy",
+          "sha256": "7213c2ac9477268f7eabbe68772bb77f51592b14689b91022c564d82bb0341b5"
+        },
+        "action": {
+          "path": "train-1104-000000/action.npy",
+          "sha256": "76414ee49ef4d7713e72466099ff3337c42631f736e9e99e9fc1c566fd065786"
+        },
+        "raw_wrench": {
+          "path": "train-1104-000000/raw_wrench.npy",
+          "sha256": "c7422641c7f9153bf455190baa3eeb4e4f277db894ec3d1ae918b9d9b955fb43"
+        },
+        "substep_wrench": {
+          "path": "train-1104-000000/substep_wrench.npy",
+          "sha256": "6eaa24ee97a96413609907faa6bf321c4a02d041d3eb70a94986eac3d2bcaf5e"
+        },
+        "ema_action": {
+          "path": "train-1104-000000/ema_action.npy",
+          "sha256": "2db9d27ddae8369f979e096e1cb9ba83ec3f5ec65636e6968281afb1c065e900"
+        },
+        "target_position": {
+          "path": "train-1104-000000/target_position.npy",
+          "sha256": "b7219c95a283295ef4a69fffc136d27ccd27cf69e65abdf4e13a281a77dfbc7e"
+        },
+        "target_quaternion": {
+          "path": "train-1104-000000/target_quaternion.npy",
+          "sha256": "d2dfc9a60d1709d69fb426e84ca8bd65cd6dae5cd518d6d3fa2f76934cd7a7e3"
+        },
+        "observed_after_state": {
+          "path": "train-1104-000000/observed_after_state.npy",
+          "sha256": "2ca6326333a692997ea107928face7312266697dfd06f587a142773bd93086ce"
+        },
+        "terminated": {
+          "path": "train-1104-000000/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "train-1104-000000/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "train-1104-000000/stable_success.npy",
+          "sha256": "5d989091e333cb6f958a31bb378fb590000ed13ec1eb9bc7296b4122d327094f"
+        }
+      }
+    },
+    {
+      "parent_id": "train-1104-000001",
+      "collection_run_id": "04_train_1104",
+      "split": "train",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "train-1104-000001/rgb.npy",
+          "sha256": "268a441a65ffc673efa5f221c14871714bdd51766a37c48bf151c1700292fed8"
+        },
+        "state": {
+          "path": "train-1104-000001/state.npy",
+          "sha256": "e6c7fba2d670592316fae27de7cb4b6db3d9a5decb9de30f3ebad9d5da40870b"
+        },
+        "wrench": {
+          "path": "train-1104-000001/wrench.npy",
+          "sha256": "9038a950c5c59b956b23eae47fc64081052eaa5667b98869148bdf17ec3aa657"
+        },
+        "motion": {
+          "path": "train-1104-000001/motion.npy",
+          "sha256": "fedb738ad9f919cead60d713e2cb0d5fd20bef9eaf4f732425f08b033ff29cac"
+        },
+        "previous_command": {
+          "path": "train-1104-000001/previous_command.npy",
+          "sha256": "310d1c1d6ba30945894cfbc1e29ef32a114c35d47853de0fa943eef1b7c7e119"
+        },
+        "action": {
+          "path": "train-1104-000001/action.npy",
+          "sha256": "37c4555ffc93f7169e60cca4fb70f6cb86c01b53401d8dc37bb1b4cd071cd530"
+        },
+        "raw_wrench": {
+          "path": "train-1104-000001/raw_wrench.npy",
+          "sha256": "ebe7ef482fc0b69941b83309aae3e9806d349382db6211e2d6c097d029f883cd"
+        },
+        "substep_wrench": {
+          "path": "train-1104-000001/substep_wrench.npy",
+          "sha256": "042ce834f9b5bae38bb14b83437da494737d78d50cb2e42a28ad9a326993e362"
+        },
+        "ema_action": {
+          "path": "train-1104-000001/ema_action.npy",
+          "sha256": "7efc4edf4706c1634fdf0f1f208c7f64786e773f513bd15b99d5bb7ed1d9f709"
+        },
+        "target_position": {
+          "path": "train-1104-000001/target_position.npy",
+          "sha256": "3e0c722007737228f73431c5caaf2baa077223ebb0751a890fe90dc6d148bf99"
+        },
+        "target_quaternion": {
+          "path": "train-1104-000001/target_quaternion.npy",
+          "sha256": "5eb0b28d622dd680150bf337849ccea7a298592bbd82d0e84a3bcdac181a67db"
+        },
+        "observed_after_state": {
+          "path": "train-1104-000001/observed_after_state.npy",
+          "sha256": "4c93e9bfe4bb8ec7df2f9a3df1b5714e357fd9d5964a8ff50a8028b95f2d34ed"
+        },
+        "terminated": {
+          "path": "train-1104-000001/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "train-1104-000001/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "train-1104-000001/stable_success.npy",
+          "sha256": "bca37fb1f02b07f3be3d8d618718074ee9ab32b11d208112f77d61cfe44ed586"
+        }
+      }
+    },
+    {
+      "parent_id": "train-1104-000002",
+      "collection_run_id": "04_train_1104",
+      "split": "train",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "train-1104-000002/rgb.npy",
+          "sha256": "1748c436af1f8bee1bbdce562d4065c0caecc3f0b5e3d8afbcf90296a9e65c62"
+        },
+        "state": {
+          "path": "train-1104-000002/state.npy",
+          "sha256": "beb707cb15182d5fef6ae5b51bac7b2e949bd98421207002b86859098ace72cf"
+        },
+        "wrench": {
+          "path": "train-1104-000002/wrench.npy",
+          "sha256": "ecfe3fa6ac9955129d9b6da354d96c6c1dcdb8e9b9d6ba489318415ee0edab51"
+        },
+        "motion": {
+          "path": "train-1104-000002/motion.npy",
+          "sha256": "a9db8c7cc2c885c6fff82c37835006b011b17f88d48bb60efaafc42fba59d03c"
+        },
+        "previous_command": {
+          "path": "train-1104-000002/previous_command.npy",
+          "sha256": "e313c8b3beedae22a5f85d78b3885ca804772a462f87728605d53cc531c33e57"
+        },
+        "action": {
+          "path": "train-1104-000002/action.npy",
+          "sha256": "11f94ff8d026435d51b57564f47b1b5ad8e7a3e04d731e0bcd11dbd513b2420b"
+        },
+        "raw_wrench": {
+          "path": "train-1104-000002/raw_wrench.npy",
+          "sha256": "a36d69870e531344db786bf214a37d6c62dc8a6a61667145b778af0f31c57f31"
+        },
+        "substep_wrench": {
+          "path": "train-1104-000002/substep_wrench.npy",
+          "sha256": "eef129061a0c406be5450ce46804e8ba2c990d21d2c5c110ad4ab0aa75e552c3"
+        },
+        "ema_action": {
+          "path": "train-1104-000002/ema_action.npy",
+          "sha256": "f8392d521ea0fccc770e831d6410e3e4f2c578dae09affc9d64e1ff84e4c830d"
+        },
+        "target_position": {
+          "path": "train-1104-000002/target_position.npy",
+          "sha256": "68a532998a28c8c767746dfac330856876ccdc92094c59ba794a0f764d9de7f0"
+        },
+        "target_quaternion": {
+          "path": "train-1104-000002/target_quaternion.npy",
+          "sha256": "50279832ad74f6d25866c1836c2e6a5f3e5b7d027419707aba4792b3a36928d4"
+        },
+        "observed_after_state": {
+          "path": "train-1104-000002/observed_after_state.npy",
+          "sha256": "d9388cdf7c374b1298927553e66bf36f83c8c72926aaedc7cb4ea63ec41d8c30"
+        },
+        "terminated": {
+          "path": "train-1104-000002/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "train-1104-000002/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "train-1104-000002/stable_success.npy",
+          "sha256": "407253b21835d5ef7bc0eafacef3d9193c885d53ef7d88df03dad9bef74147ea"
+        }
+      }
+    },
+    {
+      "parent_id": "train-1104-000003",
+      "collection_run_id": "04_train_1104",
+      "split": "train",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "train-1104-000003/rgb.npy",
+          "sha256": "c8f18527319648d893b6d480430cd2cf5dfcd34cfe02a9a48048d530e45df99f"
+        },
+        "state": {
+          "path": "train-1104-000003/state.npy",
+          "sha256": "a4aa76d07069ac57f96ae15f05fdcd101adbcdc74361a179f9cb6b498e4a53a5"
+        },
+        "wrench": {
+          "path": "train-1104-000003/wrench.npy",
+          "sha256": "52147162b6a74968234272f6c7ce112a9b331b88ac1b28237fabd809dc52b6c8"
+        },
+        "motion": {
+          "path": "train-1104-000003/motion.npy",
+          "sha256": "05266f7ca9fb774cc43825809a95fe9e2d9220ddb7ab060b8db01d8b32730819"
+        },
+        "previous_command": {
+          "path": "train-1104-000003/previous_command.npy",
+          "sha256": "b7da130f785748165937faf16560c690b704e33b92bc56ce922e082db39fa8ef"
+        },
+        "action": {
+          "path": "train-1104-000003/action.npy",
+          "sha256": "5c6f738c5e0bc9042d96d1cb92f1b35f1f2feb62c9c10d6abd6aff84dbca2136"
+        },
+        "raw_wrench": {
+          "path": "train-1104-000003/raw_wrench.npy",
+          "sha256": "89da16b55cbd714397f4304bd43e702b854904083507233b48bcf3d5f15bcdb5"
+        },
+        "substep_wrench": {
+          "path": "train-1104-000003/substep_wrench.npy",
+          "sha256": "efc5f7e541c969acbfd022d56b9c7ac128f5df4a74254921245feb0423951761"
+        },
+        "ema_action": {
+          "path": "train-1104-000003/ema_action.npy",
+          "sha256": "a0927a876560d762b0801c9365af3c7bc1cf4187eb02ba4a3e0e46b43377024c"
+        },
+        "target_position": {
+          "path": "train-1104-000003/target_position.npy",
+          "sha256": "49b3656e793b16bbcb8ec575ce14c8d442ce857e898f579c08a516078422b613"
+        },
+        "target_quaternion": {
+          "path": "train-1104-000003/target_quaternion.npy",
+          "sha256": "3b925bf991b28e2371f39d6eb60d9bb096243a6091f3f3493cd6aaca24de97dd"
+        },
+        "observed_after_state": {
+          "path": "train-1104-000003/observed_after_state.npy",
+          "sha256": "a6f5abd5440c6829c3a0f58d88bed15c999f9b07e02c21d47a23c4747d6c5f30"
+        },
+        "terminated": {
+          "path": "train-1104-000003/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "train-1104-000003/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "train-1104-000003/stable_success.npy",
+          "sha256": "3623dbea277be9e9deeb67b31e0122dcd3b286b0b3ca691084f0fae13da882ff"
+        }
+      }
+    },
+    {
+      "parent_id": "train-1104-000004",
+      "collection_run_id": "04_train_1104",
+      "split": "train",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "train-1104-000004/rgb.npy",
+          "sha256": "8157b53547d397349c60d60bffe9aa20e84c3afaf0ff28d3e909a09a3d7cebaa"
+        },
+        "state": {
+          "path": "train-1104-000004/state.npy",
+          "sha256": "f14b6940a34630f7fa34df027e042a5a0dd407f0e4d923280dcb5d1107d40a5c"
+        },
+        "wrench": {
+          "path": "train-1104-000004/wrench.npy",
+          "sha256": "d233132948d74de81149c266d87bf29e01041036e26006dba39d47f9fa06a8f6"
+        },
+        "motion": {
+          "path": "train-1104-000004/motion.npy",
+          "sha256": "68e148bc7f082e55811c5894a2844e07ec098ff6734582a5225c653b84edbb01"
+        },
+        "previous_command": {
+          "path": "train-1104-000004/previous_command.npy",
+          "sha256": "cfe9fb1b5a2c31de359686d388c63e5a5f280cfb154265c680f1e3724335ec7c"
+        },
+        "action": {
+          "path": "train-1104-000004/action.npy",
+          "sha256": "0e027663938999210df8bdf149d3c17c1473f2a195037af73393b74e2d3f6046"
+        },
+        "raw_wrench": {
+          "path": "train-1104-000004/raw_wrench.npy",
+          "sha256": "00ff3ec8761e96c66c89082725c5acdaf2336cb29576d77ce97eafd3459dc0f9"
+        },
+        "substep_wrench": {
+          "path": "train-1104-000004/substep_wrench.npy",
+          "sha256": "d2f81ddc75bf01cef493c772a4e478a480e1016cb056a1deecdef5c719823e94"
+        },
+        "ema_action": {
+          "path": "train-1104-000004/ema_action.npy",
+          "sha256": "81da35a67e9dd3cde2ed5f645bac2c215d5520e38f30bc353eccdb38b484a974"
+        },
+        "target_position": {
+          "path": "train-1104-000004/target_position.npy",
+          "sha256": "28c2d4d786788fba31428dca75bb00374b83add9f03e6b4d292bb560819dba25"
+        },
+        "target_quaternion": {
+          "path": "train-1104-000004/target_quaternion.npy",
+          "sha256": "3072273115f3ab5e47481a7010236c45f67208e9572f58deab879f41225b6189"
+        },
+        "observed_after_state": {
+          "path": "train-1104-000004/observed_after_state.npy",
+          "sha256": "71e281e7a4d645af0b1a7ad87a6ab1ba4d9706ed9e0aef869240bd0ec3b3153a"
+        },
+        "terminated": {
+          "path": "train-1104-000004/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "train-1104-000004/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "train-1104-000004/stable_success.npy",
+          "sha256": "667b983b6a93e735be11ebbd23c17e61851f3d5d98687f5f7eb232f07615d713"
+        }
+      }
+    },
+    {
+      "parent_id": "train-1104-000005",
+      "collection_run_id": "04_train_1104",
+      "split": "train",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "train-1104-000005/rgb.npy",
+          "sha256": "278d722e595aa763d578b3e7e41ea9b3e2ca1aa3a9de369220171869d3e6bde1"
+        },
+        "state": {
+          "path": "train-1104-000005/state.npy",
+          "sha256": "c1e5949e34975ed260299da5795b59e5500a61dd7b196ac34adfb22f5b1b6c25"
+        },
+        "wrench": {
+          "path": "train-1104-000005/wrench.npy",
+          "sha256": "1d18caeffa66ceb0520404de3905984910e0c9bcc1a6d049c0af163a0609b303"
+        },
+        "motion": {
+          "path": "train-1104-000005/motion.npy",
+          "sha256": "f22dde6d445d94ee920e99d245b891e162f77e1de3a2860d2759c5f9e81f4eb2"
+        },
+        "previous_command": {
+          "path": "train-1104-000005/previous_command.npy",
+          "sha256": "9289b4f32e83f5dcbccdeed47e530a5b9e3a385dc2a953b1ab14c732e0230ea4"
+        },
+        "action": {
+          "path": "train-1104-000005/action.npy",
+          "sha256": "e63cebdb43a8c41bb7bb022f34a6c16fa037760792b64c89c2b250c47de1e4a0"
+        },
+        "raw_wrench": {
+          "path": "train-1104-000005/raw_wrench.npy",
+          "sha256": "774acd8d28549bc8d87ef676db30d4fbb00dfcebaf0c0e58373ae9202ecb7cb6"
+        },
+        "substep_wrench": {
+          "path": "train-1104-000005/substep_wrench.npy",
+          "sha256": "7838ae4023135e5628a312ad7060a82da44fd792617631d299027c541b492bc1"
+        },
+        "ema_action": {
+          "path": "train-1104-000005/ema_action.npy",
+          "sha256": "9a88ac2348c21a4268c0db768a9d99595a432ce55ccddf425e14d27ccc554c4e"
+        },
+        "target_position": {
+          "path": "train-1104-000005/target_position.npy",
+          "sha256": "438bb8cb08fa03747b8d7416d6abe403865583f45284d7883e35785c28169956"
+        },
+        "target_quaternion": {
+          "path": "train-1104-000005/target_quaternion.npy",
+          "sha256": "d458d57f7a4e3db68cba0a934d43204bf27054d4f8e5fffe83b6d87a5118cd10"
+        },
+        "observed_after_state": {
+          "path": "train-1104-000005/observed_after_state.npy",
+          "sha256": "c3f869382bbc0c36cefabc6c5b79898569f031a8ea7db78732f68879b352d3bf"
+        },
+        "terminated": {
+          "path": "train-1104-000005/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "train-1104-000005/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "train-1104-000005/stable_success.npy",
+          "sha256": "1ba9d69e5a2307f3a8b32abd3d163182e3e0e7ddc1df285db7380a0428ac474d"
+        }
+      }
+    },
+    {
+      "parent_id": "train-1104-000006",
+      "collection_run_id": "04_train_1104",
+      "split": "train",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "train-1104-000006/rgb.npy",
+          "sha256": "5ff4e9daaec3bc8fef7ca960367173fbdeb5a68b4f5fad87c12e180630644ecb"
+        },
+        "state": {
+          "path": "train-1104-000006/state.npy",
+          "sha256": "7a7226be0c8006e48b00b7b31e448971b61575138730eb2264d974f409566b02"
+        },
+        "wrench": {
+          "path": "train-1104-000006/wrench.npy",
+          "sha256": "2a833999e99521348c2ec70cdd9f505e17eecbfd2738c42583f3152ccfb67218"
+        },
+        "motion": {
+          "path": "train-1104-000006/motion.npy",
+          "sha256": "934a9289a004462ae98f14a36b2a238c78f1913926558655ac3b109984af0106"
+        },
+        "previous_command": {
+          "path": "train-1104-000006/previous_command.npy",
+          "sha256": "b2e5cccdc2a53f3196bc286064a654da61fcfc5fa792334f4bf80c0fe76550b3"
+        },
+        "action": {
+          "path": "train-1104-000006/action.npy",
+          "sha256": "a244cdc2759cde29406b6a33d3821405ddaa57620cf282a6577679a2395b99f3"
+        },
+        "raw_wrench": {
+          "path": "train-1104-000006/raw_wrench.npy",
+          "sha256": "35e83b82404cc7b95a7e1b6be461e26dd4c7eea8b85330ba169910c04888cee9"
+        },
+        "substep_wrench": {
+          "path": "train-1104-000006/substep_wrench.npy",
+          "sha256": "6e6150eb3429b18433d1cb673d90d5cc699b806dff6da7a7127b2a9376610a50"
+        },
+        "ema_action": {
+          "path": "train-1104-000006/ema_action.npy",
+          "sha256": "cd72b0142a8b4b35a084a03bef345be7274aad3f3e0feca48d3e4c2ea7eb2d4f"
+        },
+        "target_position": {
+          "path": "train-1104-000006/target_position.npy",
+          "sha256": "d09c548cd95d1309fb7b34b794dd42328f50c78329f5d099d943ee58bf0f1c70"
+        },
+        "target_quaternion": {
+          "path": "train-1104-000006/target_quaternion.npy",
+          "sha256": "9c0adc0b6c5ed5250f49881d6f0a75f962e5034fc8a3fb8923d9bd367a0d4d8c"
+        },
+        "observed_after_state": {
+          "path": "train-1104-000006/observed_after_state.npy",
+          "sha256": "0740cddf913b9818953036c30f628831d8fcd32d61fb1965f42fb251dd1befe4"
+        },
+        "terminated": {
+          "path": "train-1104-000006/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "train-1104-000006/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "train-1104-000006/stable_success.npy",
+          "sha256": "45f3be347fd0c1ab39790aede0c582f6a28dd356c3bedb4daf3eb62ea0b4e099"
+        }
+      }
+    },
+    {
+      "parent_id": "train-1104-000007",
+      "collection_run_id": "04_train_1104",
+      "split": "train",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "train-1104-000007/rgb.npy",
+          "sha256": "dd9860c839ac962b3663827f62a5391c06cc41c468f3f80fa4b9556a72fe40b9"
+        },
+        "state": {
+          "path": "train-1104-000007/state.npy",
+          "sha256": "917ff872eb5e8d28fedf648ede93eb4ac52ee4c27ef43798ec2d3f7f0ca7e8cd"
+        },
+        "wrench": {
+          "path": "train-1104-000007/wrench.npy",
+          "sha256": "5cdf3c7b7c2cc9d8344c02d991853be7ba9c7758ec4cad5802b4ca1cfaa87e9b"
+        },
+        "motion": {
+          "path": "train-1104-000007/motion.npy",
+          "sha256": "be0c619852793a5ea9500e1a910bfd2eb7efb38683d58c50863bc3dca33949f1"
+        },
+        "previous_command": {
+          "path": "train-1104-000007/previous_command.npy",
+          "sha256": "a0bd79c60a632b92a4da2a3ed0b7170737a9d1337a1606a95d66865140246000"
+        },
+        "action": {
+          "path": "train-1104-000007/action.npy",
+          "sha256": "1ef5f59ec951d91add19aac50439a95ec4e50d2831b2744e50e43691fba87e30"
+        },
+        "raw_wrench": {
+          "path": "train-1104-000007/raw_wrench.npy",
+          "sha256": "deb7187004d6d70c55ca8a337673a46008471a84894b38daa7339d5f1381205c"
+        },
+        "substep_wrench": {
+          "path": "train-1104-000007/substep_wrench.npy",
+          "sha256": "3893e64ace760b38f5956bb0537fe5a2d4abf6e2782b4bf9237a5d05426b8ec9"
+        },
+        "ema_action": {
+          "path": "train-1104-000007/ema_action.npy",
+          "sha256": "4a7c54bbec0b793b16721c65f578b13378758af4a29d00ce33db8671a7bffc08"
+        },
+        "target_position": {
+          "path": "train-1104-000007/target_position.npy",
+          "sha256": "b28180a5eca611aace3741d779264a189a497c4a00037ffb72511ca0f94932db"
+        },
+        "target_quaternion": {
+          "path": "train-1104-000007/target_quaternion.npy",
+          "sha256": "81504873c2ca268e11363e771f36aa57839d2e585727490d60fe30c5e816d543"
+        },
+        "observed_after_state": {
+          "path": "train-1104-000007/observed_after_state.npy",
+          "sha256": "166a97d2d9c069414ba76b7d2fe16e1efa52ab46805fb03235e0c85f24cefa8f"
+        },
+        "terminated": {
+          "path": "train-1104-000007/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "train-1104-000007/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "train-1104-000007/stable_success.npy",
+          "sha256": "9048f048a2752b14e17b0764ec479cfbb6c96849996ef5d3d774a8efc6fb072d"
+        }
+      }
+    },
+    {
+      "parent_id": "train-1104-000008",
+      "collection_run_id": "04_train_1104",
+      "split": "train",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "train-1104-000008/rgb.npy",
+          "sha256": "5f74bb56549bb482e832d69c27b88b3b9c2a1643331382af394a29c91ffe41d3"
+        },
+        "state": {
+          "path": "train-1104-000008/state.npy",
+          "sha256": "a50a497fe910b1e8a3ff8e11b9fb4a0f1986d584706ae39abb5915115e7b44d6"
+        },
+        "wrench": {
+          "path": "train-1104-000008/wrench.npy",
+          "sha256": "cc900631ec2eedd9c05aa2b317fe1f6d4263ece09ba18b58ce8cd4f3982b97ed"
+        },
+        "motion": {
+          "path": "train-1104-000008/motion.npy",
+          "sha256": "04f3c62bb9ae85c01eb536aaeac30f1af77183a9e009a9d5e5f47aeebf301980"
+        },
+        "previous_command": {
+          "path": "train-1104-000008/previous_command.npy",
+          "sha256": "6ace63802fb2b934da0ea0dff8029db0a02619e2e556d9d3226ae6a2c0ff2a43"
+        },
+        "action": {
+          "path": "train-1104-000008/action.npy",
+          "sha256": "b32cf9ace420a9377be24224e6cfd1dc6cc7ae5d01cb13cd60b8ac067a9363b2"
+        },
+        "raw_wrench": {
+          "path": "train-1104-000008/raw_wrench.npy",
+          "sha256": "ec4092910ea04c63ed757784a838b744c4ab86322820a093a2967acab1754929"
+        },
+        "substep_wrench": {
+          "path": "train-1104-000008/substep_wrench.npy",
+          "sha256": "027131b07347b59c5234cbc26de9858559e026476ebd407a3de0fd1b854100aa"
+        },
+        "ema_action": {
+          "path": "train-1104-000008/ema_action.npy",
+          "sha256": "bc7ec9e991fbe4c354d55f823a9536b80acf0eb4ed205c1052a55ecd2e475a71"
+        },
+        "target_position": {
+          "path": "train-1104-000008/target_position.npy",
+          "sha256": "28901838e6a5d2f3b7a07e21a6bc642b23c4c627ef69c562debe17883f38580f"
+        },
+        "target_quaternion": {
+          "path": "train-1104-000008/target_quaternion.npy",
+          "sha256": "be4a0c7eb8cc6e9f73c3d5a4f35f5e84d86cc1bbefbebd76d930eef8baed4d09"
+        },
+        "observed_after_state": {
+          "path": "train-1104-000008/observed_after_state.npy",
+          "sha256": "e47d933836426ea585793baeb31494f03d6f59345219f4707e930dd2bf3d70f8"
+        },
+        "terminated": {
+          "path": "train-1104-000008/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "train-1104-000008/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "train-1104-000008/stable_success.npy",
+          "sha256": "56023280e3380a9f5bde3d54ef889a4f132862ff2923d976acf1c0e6286d64eb"
+        }
+      }
+    },
+    {
+      "parent_id": "train-1104-000009",
+      "collection_run_id": "04_train_1104",
+      "split": "train",
+      "successful": false,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "train-1104-000009/rgb.npy",
+          "sha256": "02a6ec45402fecadad6f9e0bb9b589cb65ed4c1e8977a43126b5768da0efe41e"
+        },
+        "state": {
+          "path": "train-1104-000009/state.npy",
+          "sha256": "ffd4fb2e11220fb9fec6c4f84e12c61c6a3f19fa4e27895b3f545ef5519d2c2b"
+        },
+        "wrench": {
+          "path": "train-1104-000009/wrench.npy",
+          "sha256": "94cd2cd2229379f78030286646f2945154a4da0a66ba20395ed16680bfc232ac"
+        },
+        "motion": {
+          "path": "train-1104-000009/motion.npy",
+          "sha256": "04da40ca69009111e3fc4ed57b3359244f133f48efdde0a3a18af50047b03dec"
+        },
+        "previous_command": {
+          "path": "train-1104-000009/previous_command.npy",
+          "sha256": "0437dacc5c227e552ac05a31e25acb4d896d4e8bf45a915a1999d4e395e11aae"
+        },
+        "action": {
+          "path": "train-1104-000009/action.npy",
+          "sha256": "b4f77aa1fe6fe9861a1a61aea1ae47f79eeb3a5d638ed08f13fb48ab1d0c47e2"
+        },
+        "raw_wrench": {
+          "path": "train-1104-000009/raw_wrench.npy",
+          "sha256": "787fb64248212599ca7fc7e9ab7f578c7da7b6887020c7f3444b3fb1fd3dfa47"
+        },
+        "substep_wrench": {
+          "path": "train-1104-000009/substep_wrench.npy",
+          "sha256": "95106f128d6e75226a87b62146f659f1a3481c117d1d1b1e15ad0fa61872d4da"
+        },
+        "ema_action": {
+          "path": "train-1104-000009/ema_action.npy",
+          "sha256": "5c6b378fbd3c54c2e69af9c8f3c7ab609d9653a60f5234e8116a276e3383ace2"
+        },
+        "target_position": {
+          "path": "train-1104-000009/target_position.npy",
+          "sha256": "3605afacc6f97f06eb8109bfed80d8751fb9c617cfc22374a293a08e8472de66"
+        },
+        "target_quaternion": {
+          "path": "train-1104-000009/target_quaternion.npy",
+          "sha256": "6d40df15b89f361c0e5bedad916955b19bcd5429fb6f0634f5f655a22785ada3"
+        },
+        "observed_after_state": {
+          "path": "train-1104-000009/observed_after_state.npy",
+          "sha256": "96437e71fe681d66173575ed063271c715144b0d8cf7405bf42ae7b7cf4a0a3f"
+        },
+        "terminated": {
+          "path": "train-1104-000009/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "train-1104-000009/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "train-1104-000009/stable_success.npy",
+          "sha256": "45b286a45b3a1f748fabfc69c27971c8f48152189a137aeb82f337e8b6c0ca68"
+        }
+      }
+    },
+    {
+      "parent_id": "train-1104-000010",
+      "collection_run_id": "04_train_1104",
+      "split": "train",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "train-1104-000010/rgb.npy",
+          "sha256": "c95a2516ba4d8894a90f9a23ee0f8b97ce66a6900ea6d74c549559b55f3416bb"
+        },
+        "state": {
+          "path": "train-1104-000010/state.npy",
+          "sha256": "0a5edd9cf27ffe58d5a469d6dea3291f340df315f8ec30b19f1c87a82cf416a1"
+        },
+        "wrench": {
+          "path": "train-1104-000010/wrench.npy",
+          "sha256": "ff513d374fb9f49722e05dd67f741794efc2a103cfc0ec5a6810f8f432fbdf3f"
+        },
+        "motion": {
+          "path": "train-1104-000010/motion.npy",
+          "sha256": "93d230450ed5d4dc87ccc70d6d2df2d97cc1a192295c74f0af4d1a7c98bc83a6"
+        },
+        "previous_command": {
+          "path": "train-1104-000010/previous_command.npy",
+          "sha256": "c150dcdce96dcdd4ec6b270c2770425a25a0933ae56ee7170713540dc5117ab5"
+        },
+        "action": {
+          "path": "train-1104-000010/action.npy",
+          "sha256": "aac1d90153f1899ad8118ec6543c2819687bbcbb463e67a69e0dd1d5300f8b94"
+        },
+        "raw_wrench": {
+          "path": "train-1104-000010/raw_wrench.npy",
+          "sha256": "c9960071c6062b5809ef458a0ab7a2e892ec5d0d7bb9e2af61ac8f8fb280e2c5"
+        },
+        "substep_wrench": {
+          "path": "train-1104-000010/substep_wrench.npy",
+          "sha256": "b20d1fff37602f4e5bb04b2b3d2bf9eb0c9bdbc4440e979e35fdcfd75faa5ac7"
+        },
+        "ema_action": {
+          "path": "train-1104-000010/ema_action.npy",
+          "sha256": "c33e5bb14ee21f391045d6355840fbd9428a207baca28bdd7f85c36ca71d1b1c"
+        },
+        "target_position": {
+          "path": "train-1104-000010/target_position.npy",
+          "sha256": "9534bb437eb6909d196978e95cce62ae9e2ad3ea0605826e7368d8e792988f6e"
+        },
+        "target_quaternion": {
+          "path": "train-1104-000010/target_quaternion.npy",
+          "sha256": "2e8286944c383c7a61b4b5c71e30286bf326dad07bf8553040bbcbb6be09d899"
+        },
+        "observed_after_state": {
+          "path": "train-1104-000010/observed_after_state.npy",
+          "sha256": "ffc88d45e79072aea1ddddb3ee8d0a0feedf00e608c0cd7cf93987e40c8130a8"
+        },
+        "terminated": {
+          "path": "train-1104-000010/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "train-1104-000010/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "train-1104-000010/stable_success.npy",
+          "sha256": "c1d5ae79a430fb4d1a11828934526c005267c75c4ab268d34e1f7d3664024e64"
+        }
+      }
+    },
+    {
+      "parent_id": "train-1104-000011",
+      "collection_run_id": "04_train_1104",
+      "split": "train",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "train-1104-000011/rgb.npy",
+          "sha256": "bf0135b2499b25dec970684bfa3c5637ae0ec2914a5efb2cdfbf740037f3d9da"
+        },
+        "state": {
+          "path": "train-1104-000011/state.npy",
+          "sha256": "059b9e38f3be8cda0555beb2e745974e2b5224745f8c484b4f5c138b0b29001e"
+        },
+        "wrench": {
+          "path": "train-1104-000011/wrench.npy",
+          "sha256": "547df06f89e720fd11ab6f52d18a957771fd8054563f0462788ef8395c9f3b60"
+        },
+        "motion": {
+          "path": "train-1104-000011/motion.npy",
+          "sha256": "8fd977f55f60b12355ee695f1649aeb9f06e0d82d5f6a0ed7e3aea02ae076e0d"
+        },
+        "previous_command": {
+          "path": "train-1104-000011/previous_command.npy",
+          "sha256": "66020687ef4f74aa6c41f3cda84f837f418dd3a1819817d7a3b127e6a64acb1f"
+        },
+        "action": {
+          "path": "train-1104-000011/action.npy",
+          "sha256": "466b1d04f69572948a213922c49c039caacb9521491708c1faf19ecc8ef80dc9"
+        },
+        "raw_wrench": {
+          "path": "train-1104-000011/raw_wrench.npy",
+          "sha256": "1ee3345d38749583347aa2261c6150064038156ac9f385ff6948a651e11b8860"
+        },
+        "substep_wrench": {
+          "path": "train-1104-000011/substep_wrench.npy",
+          "sha256": "135b59297cac93f05d25a58623f0a7ea488870b6bf820dec0a43b9c6ae371f90"
+        },
+        "ema_action": {
+          "path": "train-1104-000011/ema_action.npy",
+          "sha256": "7c036e1c31e6628c0cd82f4224008461d3ab1331cc4a1429ab7e46e924f603d6"
+        },
+        "target_position": {
+          "path": "train-1104-000011/target_position.npy",
+          "sha256": "709473f8fe559bc47ed312268a7965c1501030183d009c0d12f4eee77ea5bf55"
+        },
+        "target_quaternion": {
+          "path": "train-1104-000011/target_quaternion.npy",
+          "sha256": "19d4b0cc251fe2867ffdd8c04370207d64e17dc36610e5d9d56b3b035ae0684f"
+        },
+        "observed_after_state": {
+          "path": "train-1104-000011/observed_after_state.npy",
+          "sha256": "1f304fce9ecd79ad7da1ef14257e21b134b88eb030e5783793b261c7dbb26b1d"
+        },
+        "terminated": {
+          "path": "train-1104-000011/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "train-1104-000011/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "train-1104-000011/stable_success.npy",
+          "sha256": "3b6c3c147f6a9804d0f10635a3a1d374d8c7eaec912c1054939b9de0a467e78b"
+        }
+      }
+    },
+    {
+      "parent_id": "train-1104-000012",
+      "collection_run_id": "04_train_1104",
+      "split": "train",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "train-1104-000012/rgb.npy",
+          "sha256": "d1317093c541d6e32520e9994f0d58ec8d43f8373802965089583233cc1575d4"
+        },
+        "state": {
+          "path": "train-1104-000012/state.npy",
+          "sha256": "41ee3713e04d8a28de54e104bb2bd2fe6561193bf17805d61a1d121530c281f8"
+        },
+        "wrench": {
+          "path": "train-1104-000012/wrench.npy",
+          "sha256": "692e68800bb07fedebfb83c7cc98fe6e19417a19225e1fdf770958207b8a6137"
+        },
+        "motion": {
+          "path": "train-1104-000012/motion.npy",
+          "sha256": "436af889c591d7e7a3e07a3527a589beed6d78f604fd60ab6cc72b45a2dfd667"
+        },
+        "previous_command": {
+          "path": "train-1104-000012/previous_command.npy",
+          "sha256": "bc0a7e2ebcfd607035663c0980b1b8e01cf283093ec08d2b7936797bc3a3375f"
+        },
+        "action": {
+          "path": "train-1104-000012/action.npy",
+          "sha256": "39591215a45014835652963660851f3f159a3be6285e0478cf2e51bc57a9a134"
+        },
+        "raw_wrench": {
+          "path": "train-1104-000012/raw_wrench.npy",
+          "sha256": "080d84aad4f32eef179974e0acddd4f5ab297575d081cf2bf08772b3c7305b4c"
+        },
+        "substep_wrench": {
+          "path": "train-1104-000012/substep_wrench.npy",
+          "sha256": "2b0a4668f4d555c18a6e825ec45083ce3a81604e917121e29167b9ac8c7f3d8b"
+        },
+        "ema_action": {
+          "path": "train-1104-000012/ema_action.npy",
+          "sha256": "e21d7bdca9fbd1e5ba1613a63901bf57ad5332ba54357974943d7e2c3f4818a0"
+        },
+        "target_position": {
+          "path": "train-1104-000012/target_position.npy",
+          "sha256": "f08c63b7e3118cbeaa10e98d59dc418ee6a134c9306eff80ac70079d4049c144"
+        },
+        "target_quaternion": {
+          "path": "train-1104-000012/target_quaternion.npy",
+          "sha256": "e480de4d111c342e31ef6c1d342300555f928bd4f5456d1cb5442209bbe861e5"
+        },
+        "observed_after_state": {
+          "path": "train-1104-000012/observed_after_state.npy",
+          "sha256": "d7d90a073a81a3a1744aa5ab807ed6b3118caffe5f86ce0084b5a4f45053e9db"
+        },
+        "terminated": {
+          "path": "train-1104-000012/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "train-1104-000012/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "train-1104-000012/stable_success.npy",
+          "sha256": "2a550e0d8d08fb663f89e90dbbb026c67bdd8f894eaf7a3717cbc6010289e0ef"
+        }
+      }
+    },
+    {
+      "parent_id": "train-1104-000013",
+      "collection_run_id": "04_train_1104",
+      "split": "train",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "train-1104-000013/rgb.npy",
+          "sha256": "4c6b0b8851f5fdf5dbea60f9a28cda9313281375ae5c6e7cba04ca17a4c39e7d"
+        },
+        "state": {
+          "path": "train-1104-000013/state.npy",
+          "sha256": "c82d2bb6b53371d0cfecfba1f4ac4243a79aabc443f0aba65a3d3b716463a82b"
+        },
+        "wrench": {
+          "path": "train-1104-000013/wrench.npy",
+          "sha256": "e75f2aef431c632f804cf27da175856aab2ae6f4d82851d180f8d66682b3c803"
+        },
+        "motion": {
+          "path": "train-1104-000013/motion.npy",
+          "sha256": "ec66819b1c0a72fd851936b4c1a85f4b09bee6ff989a023afb1462f6f1ecc09f"
+        },
+        "previous_command": {
+          "path": "train-1104-000013/previous_command.npy",
+          "sha256": "e90dde1ca00a443b084cfb546ec10e8f35554be46a25770ce460d0442f3fd3c0"
+        },
+        "action": {
+          "path": "train-1104-000013/action.npy",
+          "sha256": "4c8ae9790ee95872f9435fc05180f5dd1e92046d1b5c8e2adcd3493979155578"
+        },
+        "raw_wrench": {
+          "path": "train-1104-000013/raw_wrench.npy",
+          "sha256": "f88ed2aa697fac099fd1b6cb7feaa81e2798bffc1a1910e9a24b7de81b4f05fa"
+        },
+        "substep_wrench": {
+          "path": "train-1104-000013/substep_wrench.npy",
+          "sha256": "d5ab525cf98e7964771eff14a17a354afb3b00a262d8ed640810fa64a1c8e38c"
+        },
+        "ema_action": {
+          "path": "train-1104-000013/ema_action.npy",
+          "sha256": "42b740a266e929ac597c2dad5fe10d430d40a63ceaabf52df4bc056bc8fb74f0"
+        },
+        "target_position": {
+          "path": "train-1104-000013/target_position.npy",
+          "sha256": "28f43c96a00ccc69c9c6bf9e0d2dba4fa9c46f5f2b4e3a47fd3da0fd0d417b38"
+        },
+        "target_quaternion": {
+          "path": "train-1104-000013/target_quaternion.npy",
+          "sha256": "ab9ee883b894a04c3d5f135dfceebbbf139de8203774c3148a5ecfe8394a0dc6"
+        },
+        "observed_after_state": {
+          "path": "train-1104-000013/observed_after_state.npy",
+          "sha256": "9630b8f0e3ecd340ca4e4eed0d66a2fb78db0d2dbd6a69c70f028dbfcd4a6b5d"
+        },
+        "terminated": {
+          "path": "train-1104-000013/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "train-1104-000013/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "train-1104-000013/stable_success.npy",
+          "sha256": "bca37fb1f02b07f3be3d8d618718074ee9ab32b11d208112f77d61cfe44ed586"
+        }
+      }
+    },
+    {
+      "parent_id": "train-1104-000014",
+      "collection_run_id": "04_train_1104",
+      "split": "train",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "train-1104-000014/rgb.npy",
+          "sha256": "b457f1705a53331e4e7cd6a427e760296cdf423f4351d61220ecbc90b72af7ce"
+        },
+        "state": {
+          "path": "train-1104-000014/state.npy",
+          "sha256": "60d42cb803f5ae8969ebc7c8941541672954a4aab4be1a3b549f2c0586bd8c27"
+        },
+        "wrench": {
+          "path": "train-1104-000014/wrench.npy",
+          "sha256": "ef6d09626e1e0991d60238b09412c2c3738f9cf449c5ba31c93881410f7b03ff"
+        },
+        "motion": {
+          "path": "train-1104-000014/motion.npy",
+          "sha256": "fd80cb574ed8b4937acaf52f8ca7859726d1a5e7a64ddc796dcdb0ccb12478bc"
+        },
+        "previous_command": {
+          "path": "train-1104-000014/previous_command.npy",
+          "sha256": "f38761ff78b98ddf7fb7c9d6d9328ec9948f91bffde6a89545546470909618c1"
+        },
+        "action": {
+          "path": "train-1104-000014/action.npy",
+          "sha256": "4bf68eb2e1206ccd8ce76a0e1c62de332d31c9d974b7f8c4ca6f155621bb7c9f"
+        },
+        "raw_wrench": {
+          "path": "train-1104-000014/raw_wrench.npy",
+          "sha256": "f99ceb151de140ddafca8633dad1af7aed4e4d0bcdea72e34edceac8aa0f7242"
+        },
+        "substep_wrench": {
+          "path": "train-1104-000014/substep_wrench.npy",
+          "sha256": "f3ba0baa6dafb4a0fbe1443374ef7317b50ff9dbf9bb61fc8d7f3b3c1fc48c15"
+        },
+        "ema_action": {
+          "path": "train-1104-000014/ema_action.npy",
+          "sha256": "8daf5b0d848232a6d0b8c4323bd6ce6cf5d2413143eacf0e1f682b5cdff34dd2"
+        },
+        "target_position": {
+          "path": "train-1104-000014/target_position.npy",
+          "sha256": "c78c277b7896714b3c67aea41ac385d093783df79037ba40681e3447c5016143"
+        },
+        "target_quaternion": {
+          "path": "train-1104-000014/target_quaternion.npy",
+          "sha256": "25d554a505ca00204750ed50887af4802d442c61bf10413ddf48e1ffb1dc7db7"
+        },
+        "observed_after_state": {
+          "path": "train-1104-000014/observed_after_state.npy",
+          "sha256": "85907eb9f751e57002e14fe0f66f1fbf730b445f64fceb66add95ef8d495a30d"
+        },
+        "terminated": {
+          "path": "train-1104-000014/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "train-1104-000014/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "train-1104-000014/stable_success.npy",
+          "sha256": "45f3be347fd0c1ab39790aede0c582f6a28dd356c3bedb4daf3eb62ea0b4e099"
+        }
+      }
+    },
+    {
+      "parent_id": "train-1104-000015",
+      "collection_run_id": "04_train_1104",
+      "split": "train",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "train-1104-000015/rgb.npy",
+          "sha256": "1294d6d17127688b958386e7e97075cac7deb4c1fc1aa0a1669b3a9e7dc21b80"
+        },
+        "state": {
+          "path": "train-1104-000015/state.npy",
+          "sha256": "b634bfdd544d895c94ebd20c01df1e989b7ce30a9ce9fd0f250c4ae12f22b4f0"
+        },
+        "wrench": {
+          "path": "train-1104-000015/wrench.npy",
+          "sha256": "c09492f48a18fae447ab49f7acadd57376338811d6c7f695fc3d3a986c428ee1"
+        },
+        "motion": {
+          "path": "train-1104-000015/motion.npy",
+          "sha256": "74b7a3fc6a4141a16acd017ad8af68021a43bf170bc28be62d9edc4b85a429cd"
+        },
+        "previous_command": {
+          "path": "train-1104-000015/previous_command.npy",
+          "sha256": "fdd9fbe4d987ea4477e9958649572bb86fb143e52e495931ae7baa2b6c3bb83c"
+        },
+        "action": {
+          "path": "train-1104-000015/action.npy",
+          "sha256": "762bbb6ed5c959dcee77ef941db2dff45e673d4a360a70d899cca1814022e033"
+        },
+        "raw_wrench": {
+          "path": "train-1104-000015/raw_wrench.npy",
+          "sha256": "eb0f3b14e93a4998d6abf4c6e3bdb7e2fd6d7a997e922ac7578c50fad36a6ad6"
+        },
+        "substep_wrench": {
+          "path": "train-1104-000015/substep_wrench.npy",
+          "sha256": "32678e41d9cb7295ade04c269ee0245c0b8475edca74788c3c9fba0dd4dea76c"
+        },
+        "ema_action": {
+          "path": "train-1104-000015/ema_action.npy",
+          "sha256": "cdf9180c96cc76e3ece27e143b4908dbcc554b3cd565a6d743ae3d0c35a28cc2"
+        },
+        "target_position": {
+          "path": "train-1104-000015/target_position.npy",
+          "sha256": "cff1a5d4ec42281dc04c2e7c43e6efd30b1f8e894e811adc9520d07dfcdee564"
+        },
+        "target_quaternion": {
+          "path": "train-1104-000015/target_quaternion.npy",
+          "sha256": "ba60f3571c274dc6f2a285ffc72e235dee86eebe40219ae331f67bae82b7ec96"
+        },
+        "observed_after_state": {
+          "path": "train-1104-000015/observed_after_state.npy",
+          "sha256": "c9bd6617538a862311e02c98847245347cca196a47a406ea0601f091640c8b3d"
+        },
+        "terminated": {
+          "path": "train-1104-000015/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "train-1104-000015/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "train-1104-000015/stable_success.npy",
+          "sha256": "407253b21835d5ef7bc0eafacef3d9193c885d53ef7d88df03dad9bef74147ea"
+        }
+      }
+    },
+    {
+      "parent_id": "train-1104-000016",
+      "collection_run_id": "04_train_1104",
+      "split": "train",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "train-1104-000016/rgb.npy",
+          "sha256": "db394d3936a4c2e9af8f55c9efa8e13c9154dca780403277d969b3323cd4f1d2"
+        },
+        "state": {
+          "path": "train-1104-000016/state.npy",
+          "sha256": "c4ded5de2ccd6527df6183e2415a3e800cfc698341f18b3960153ae79fbe8281"
+        },
+        "wrench": {
+          "path": "train-1104-000016/wrench.npy",
+          "sha256": "9af6ef040a7b8e2fa93982ec038c7d302341cc4523fb9e7c35f104194545f233"
+        },
+        "motion": {
+          "path": "train-1104-000016/motion.npy",
+          "sha256": "c5459da807b0c246f5606458a9d4dbe6a32429469f532168dbec79a534455f7c"
+        },
+        "previous_command": {
+          "path": "train-1104-000016/previous_command.npy",
+          "sha256": "a7b6a85360362fde964ab3ba3e556e72eb65dd6ba1ba9826851b23795c5477b8"
+        },
+        "action": {
+          "path": "train-1104-000016/action.npy",
+          "sha256": "e0542a25142e0b0cdb1699e3d33b99e6c99bd06d01c660f614d93883057c4c12"
+        },
+        "raw_wrench": {
+          "path": "train-1104-000016/raw_wrench.npy",
+          "sha256": "823faddd13468c25c85c96b97ca53f76a66c3f28a3ca92a1909dd2dcc85f7468"
+        },
+        "substep_wrench": {
+          "path": "train-1104-000016/substep_wrench.npy",
+          "sha256": "0bb16a34ca4cf76763cdfb7fa33a5919b8a1d60b14559f99c8d3275758bcb386"
+        },
+        "ema_action": {
+          "path": "train-1104-000016/ema_action.npy",
+          "sha256": "061bcbf7ad1faead87c7527e43502a9fde3171331295f7f6b728cdb08b6473e0"
+        },
+        "target_position": {
+          "path": "train-1104-000016/target_position.npy",
+          "sha256": "4ed6a96d7753d85b9e22d8d98a1deee2fdeda65ec92f16f1f0717a41456efbbc"
+        },
+        "target_quaternion": {
+          "path": "train-1104-000016/target_quaternion.npy",
+          "sha256": "381e6a286683b60b19f95b95679e7434d70d3c445a23ccea6c04ef3f070ec8bf"
+        },
+        "observed_after_state": {
+          "path": "train-1104-000016/observed_after_state.npy",
+          "sha256": "ce6293aee01eadb7af8c0a16ba7e75fd01d05df171a47c598730b20a2a95f1f9"
+        },
+        "terminated": {
+          "path": "train-1104-000016/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "train-1104-000016/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "train-1104-000016/stable_success.npy",
+          "sha256": "3b6c3c147f6a9804d0f10635a3a1d374d8c7eaec912c1054939b9de0a467e78b"
+        }
+      }
+    },
+    {
+      "parent_id": "train-1104-000017",
+      "collection_run_id": "04_train_1104",
+      "split": "train",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "train-1104-000017/rgb.npy",
+          "sha256": "e5bcae14a82f8858d0561e39648f48c72d5a55ab90e10cd8905d5420980f8ad5"
+        },
+        "state": {
+          "path": "train-1104-000017/state.npy",
+          "sha256": "95d960a45b7f35fb908ea11d784e4cf0c3b881b9ae39a67d7e23994fb764b62d"
+        },
+        "wrench": {
+          "path": "train-1104-000017/wrench.npy",
+          "sha256": "7c4147f21692202a8308b2832847f94c87e7febcbb0293c32f03670d9a2bcb30"
+        },
+        "motion": {
+          "path": "train-1104-000017/motion.npy",
+          "sha256": "d4d0dcbee43634ec604afd757b8afcf9a597f09b065bb1e2fed938f80c396bdb"
+        },
+        "previous_command": {
+          "path": "train-1104-000017/previous_command.npy",
+          "sha256": "799b5ba7029b1cbff17b55e36d5ed5695b850e3df00c2348e3f4fb84231abe7f"
+        },
+        "action": {
+          "path": "train-1104-000017/action.npy",
+          "sha256": "46f8a006c00d5a12dc781f65aa7bd410e82ebbe73b6b9865ae39d21b76a18523"
+        },
+        "raw_wrench": {
+          "path": "train-1104-000017/raw_wrench.npy",
+          "sha256": "439b4036b964628ab189d43dc9b28b1d6725d5170de7677a4bd2f47aa872ce4b"
+        },
+        "substep_wrench": {
+          "path": "train-1104-000017/substep_wrench.npy",
+          "sha256": "0e7d064f1e775880c1909f87feba0a08de9bb2fc2b088a6723b482192d61e6d9"
+        },
+        "ema_action": {
+          "path": "train-1104-000017/ema_action.npy",
+          "sha256": "1e7073317256103f3f48e2799853c46573fb68825800956e525925859d7da2fd"
+        },
+        "target_position": {
+          "path": "train-1104-000017/target_position.npy",
+          "sha256": "5c05efa8d2b15bf535226a19e9cf81cbb9d3a13aaffe14d5bb4a4cf612eae30f"
+        },
+        "target_quaternion": {
+          "path": "train-1104-000017/target_quaternion.npy",
+          "sha256": "44f4292b260bbbec7b37aea5f3edf02c10b3315b2c02c8881df983656b3a52e7"
+        },
+        "observed_after_state": {
+          "path": "train-1104-000017/observed_after_state.npy",
+          "sha256": "6fd2fae9501bf9cffe6854176e81b0da988370d143c20286af0607fa580bb277"
+        },
+        "terminated": {
+          "path": "train-1104-000017/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "train-1104-000017/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "train-1104-000017/stable_success.npy",
+          "sha256": "c54cf0c3f867deb63906030d6f2377bdcc3d3aa8a8c8dba6e0bb4ee80d13e322"
+        }
+      }
+    },
+    {
+      "parent_id": "train-1104-000018",
+      "collection_run_id": "04_train_1104",
+      "split": "train",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "train-1104-000018/rgb.npy",
+          "sha256": "2d953d372ed16542b693beff7aba8176977e025578afbe1c7fe3f7d7ae1fa483"
+        },
+        "state": {
+          "path": "train-1104-000018/state.npy",
+          "sha256": "006a256781f4211f3ad24ef2026feab33ab654c16ba756f3164fc03485d35289"
+        },
+        "wrench": {
+          "path": "train-1104-000018/wrench.npy",
+          "sha256": "7b6c101636a84fd88a84f4678734ebe4e6fa30d32c333122340b0a9d04f85bc6"
+        },
+        "motion": {
+          "path": "train-1104-000018/motion.npy",
+          "sha256": "d93f5edc765547b0650162834cbe7c27f6cd6be936a29d648fd11842f708e3ed"
+        },
+        "previous_command": {
+          "path": "train-1104-000018/previous_command.npy",
+          "sha256": "e414fc7c128ef4b211367a10d9e4929e7193bab1279b2842870b6eaadb72721b"
+        },
+        "action": {
+          "path": "train-1104-000018/action.npy",
+          "sha256": "68c2f52ac7cc318a225b112a52922b08cd66cb4871e3aa9378c97b49b533519a"
+        },
+        "raw_wrench": {
+          "path": "train-1104-000018/raw_wrench.npy",
+          "sha256": "8a8556ecb977c67bbf3caf2a129273ef433d90e8ac0d80bd2be34a49790307cd"
+        },
+        "substep_wrench": {
+          "path": "train-1104-000018/substep_wrench.npy",
+          "sha256": "cb69d80b02518c44d0b484b1c2a63946008020b7c25d27622186af0819c696e7"
+        },
+        "ema_action": {
+          "path": "train-1104-000018/ema_action.npy",
+          "sha256": "37bf5b1acf0340e3646c10632cc35b9d36eb00a9e602a867645f35326684949c"
+        },
+        "target_position": {
+          "path": "train-1104-000018/target_position.npy",
+          "sha256": "e9c1a3909720ec36b8dca157f33853e7c97613451ab2e395f662202e477526e1"
+        },
+        "target_quaternion": {
+          "path": "train-1104-000018/target_quaternion.npy",
+          "sha256": "04678e582c371fb5dfe8a01d3526e3f5bd08790a4a6298a9d835b4f226b11212"
+        },
+        "observed_after_state": {
+          "path": "train-1104-000018/observed_after_state.npy",
+          "sha256": "96b1be13dc899e10606bb15f11ec406850d4b9adecdd6b7f194dc96d8bf303c7"
+        },
+        "terminated": {
+          "path": "train-1104-000018/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "train-1104-000018/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "train-1104-000018/stable_success.npy",
+          "sha256": "7f81ca3fd28e72f1469b51658d1519aaf6d22cf3bdc05125f187488a40e41c22"
+        }
+      }
+    },
+    {
+      "parent_id": "train-1104-000019",
+      "collection_run_id": "04_train_1104",
+      "split": "train",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "train-1104-000019/rgb.npy",
+          "sha256": "a2f15bf03351097b7001e8759a211e5fbba565d52957c35055d568637ad68a5e"
+        },
+        "state": {
+          "path": "train-1104-000019/state.npy",
+          "sha256": "08dd36f8abca1b340a4f7ac35dc881f10d1e38de45d1ff0eb3e2697c2dd254b7"
+        },
+        "wrench": {
+          "path": "train-1104-000019/wrench.npy",
+          "sha256": "15f3ec6f6a63e9e6f346c4cde5afbe503380f83365b94677e2be7496a8a2cbd9"
+        },
+        "motion": {
+          "path": "train-1104-000019/motion.npy",
+          "sha256": "08cb212721c6c1df8bbae89c82d4aa5758ba4403665fb8906f18c9979a24549f"
+        },
+        "previous_command": {
+          "path": "train-1104-000019/previous_command.npy",
+          "sha256": "a915c7948a79c31777b00ad375e24c95fbcf9e91d83eddaeaba850bfacce87f1"
+        },
+        "action": {
+          "path": "train-1104-000019/action.npy",
+          "sha256": "a2b662c61dac4b02aae6e604bcff9943f9155e2a51820b404787e7de1b46075d"
+        },
+        "raw_wrench": {
+          "path": "train-1104-000019/raw_wrench.npy",
+          "sha256": "b82c326af4c8a3dccb3b67c5fa3955b77a7937504b8016b1061ee6d030d7bb10"
+        },
+        "substep_wrench": {
+          "path": "train-1104-000019/substep_wrench.npy",
+          "sha256": "291f536a46d8a265d8f0f2ad6f7f44dcb922cf29c9bcf8b0e32e678b745a8c94"
+        },
+        "ema_action": {
+          "path": "train-1104-000019/ema_action.npy",
+          "sha256": "3cfdd3eaab1e1a3860f79d10626f569373f871219edcf5e4e03536023396e75d"
+        },
+        "target_position": {
+          "path": "train-1104-000019/target_position.npy",
+          "sha256": "00c0c5319ea804cb752cb8027fc9dee3f7b080f2c2ab4ddf9ed70612dfe8bbc8"
+        },
+        "target_quaternion": {
+          "path": "train-1104-000019/target_quaternion.npy",
+          "sha256": "11b903822e851afae62c5237dc2cb85eeb89790faa257be16b4ed80b8c165bad"
+        },
+        "observed_after_state": {
+          "path": "train-1104-000019/observed_after_state.npy",
+          "sha256": "62d776f1478674dbe70048ed5ebd0d56319b6a2b37edf3251b3b4de933b6ed7f"
+        },
+        "terminated": {
+          "path": "train-1104-000019/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "train-1104-000019/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "train-1104-000019/stable_success.npy",
+          "sha256": "7aa2fdd1add4a73340adaead8355366b7f4c968406eae32b3d888d939af06c49"
+        }
+      }
+    },
+    {
+      "parent_id": "train-1104-000020",
+      "collection_run_id": "04_train_1104",
+      "split": "train",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "train-1104-000020/rgb.npy",
+          "sha256": "51cee3f7d40769ea5fb6abc9084363e5da8d39daee7b2bb2dd9a1bf9b5ce65d6"
+        },
+        "state": {
+          "path": "train-1104-000020/state.npy",
+          "sha256": "4a43685e32ea62e4aea48d4f10c353abc98b5c77b1cb5971d033d895fc38822d"
+        },
+        "wrench": {
+          "path": "train-1104-000020/wrench.npy",
+          "sha256": "4e613bee4ca94fc106b69e30fb589440cf09f1a6dd72ca52db60653eca1773e5"
+        },
+        "motion": {
+          "path": "train-1104-000020/motion.npy",
+          "sha256": "a34aa7b5af3ab8920baf384e77cb1d6796cd606e33e35d410e7d309f0f5e1ed8"
+        },
+        "previous_command": {
+          "path": "train-1104-000020/previous_command.npy",
+          "sha256": "3aa3726256fc69752ac2b89b1a33d6efe01f141c9a95c66da7789c19f417cdfc"
+        },
+        "action": {
+          "path": "train-1104-000020/action.npy",
+          "sha256": "7945792e491c01a534f87e8dd2b50e2393f9ec2a018f89a0e760be02dae884d3"
+        },
+        "raw_wrench": {
+          "path": "train-1104-000020/raw_wrench.npy",
+          "sha256": "507240b358aa7fa753b1f84869a04624b9b2323ee787f449c03bed9616fdac7f"
+        },
+        "substep_wrench": {
+          "path": "train-1104-000020/substep_wrench.npy",
+          "sha256": "584f73c125f00d1d537f48c93b2c6859da04c92e3dd54c9ad228b4db3da467c8"
+        },
+        "ema_action": {
+          "path": "train-1104-000020/ema_action.npy",
+          "sha256": "c4a988c43c2b746125223d0f13e7c9ac5af6b3123931e755f4a49c84a17e09e2"
+        },
+        "target_position": {
+          "path": "train-1104-000020/target_position.npy",
+          "sha256": "a16a0fb603228cd9c22e0a41194755b753e8841aca40e70cbf7c6791b89a42bd"
+        },
+        "target_quaternion": {
+          "path": "train-1104-000020/target_quaternion.npy",
+          "sha256": "5601640135d5dc50f81cbc6f7a3028bcd4251a41e89bd8218f4c5ee8f548092f"
+        },
+        "observed_after_state": {
+          "path": "train-1104-000020/observed_after_state.npy",
+          "sha256": "3b156d3ea08d1c3e16c93673693e568a3396c24a667d7533cf82b2fb585ff6bb"
+        },
+        "terminated": {
+          "path": "train-1104-000020/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "train-1104-000020/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "train-1104-000020/stable_success.npy",
+          "sha256": "3444ef99d93d419dabd19b7ee1a6ec45903da7f08d637610f50d8de3d1775da0"
+        }
+      }
+    },
+    {
+      "parent_id": "train-1104-000021",
+      "collection_run_id": "04_train_1104",
+      "split": "train",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "train-1104-000021/rgb.npy",
+          "sha256": "fc64bec38c116b05bf2d2e5abaa011ea334511de0019d35efbf65d8c6258e587"
+        },
+        "state": {
+          "path": "train-1104-000021/state.npy",
+          "sha256": "d0d0df6b857632bd42bf11b0ecda775af73a192710c8c31eb7c41e47c90efd25"
+        },
+        "wrench": {
+          "path": "train-1104-000021/wrench.npy",
+          "sha256": "13cca4eb6038248884ef414a87a919a2fdc2f409a6b685f857e4ff1b4fc7d0dc"
+        },
+        "motion": {
+          "path": "train-1104-000021/motion.npy",
+          "sha256": "2b5d936b77c2cc18216fa8c292f06f79f4b6ca3bd794ae58aceba211f99ad569"
+        },
+        "previous_command": {
+          "path": "train-1104-000021/previous_command.npy",
+          "sha256": "3874adc0c5b9ddeb5c90e61e1b3eda33f913bf66af90ac130558624b37d37b3f"
+        },
+        "action": {
+          "path": "train-1104-000021/action.npy",
+          "sha256": "afca27787b579e80bef5562e970f7c8ad3f0896bb65bf9687fcca6460a7fd900"
+        },
+        "raw_wrench": {
+          "path": "train-1104-000021/raw_wrench.npy",
+          "sha256": "359cefa460940d1e6a2e5051b6653654a325625e1e6ba161d00db9cd2887267b"
+        },
+        "substep_wrench": {
+          "path": "train-1104-000021/substep_wrench.npy",
+          "sha256": "c529504749cdc806d7f0f75444f1a9418e9f725d44ab29b6a3039d74aefa74f5"
+        },
+        "ema_action": {
+          "path": "train-1104-000021/ema_action.npy",
+          "sha256": "ce390799057b3b8f4e06b459d23a89730ea87f08698174da9aea59cb5704f37f"
+        },
+        "target_position": {
+          "path": "train-1104-000021/target_position.npy",
+          "sha256": "80a2dc0ef06634ab3231ab1beccf12ceca89b426354758603ee9511b3f44fa11"
+        },
+        "target_quaternion": {
+          "path": "train-1104-000021/target_quaternion.npy",
+          "sha256": "f50884cd1fb800a9c6db8772520ef164fe28c1b95a87489a4ecae2345b9f9dc6"
+        },
+        "observed_after_state": {
+          "path": "train-1104-000021/observed_after_state.npy",
+          "sha256": "1064f85f699886628e7f457116cb1bfd8c10c539114bfe0b468b962807dd8934"
+        },
+        "terminated": {
+          "path": "train-1104-000021/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "train-1104-000021/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "train-1104-000021/stable_success.npy",
+          "sha256": "1fbaefb6b3804e963d6d8f897bf4fe38eacd70926d600107bfa56438556e0849"
+        }
+      }
+    },
+    {
+      "parent_id": "train-1104-000022",
+      "collection_run_id": "04_train_1104",
+      "split": "train",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "train-1104-000022/rgb.npy",
+          "sha256": "b9fa1813732efbf3f477b23053248344d88d838f91bead455830e070e0a9f739"
+        },
+        "state": {
+          "path": "train-1104-000022/state.npy",
+          "sha256": "2cdb0148c679b644ebbe3e910972ba27467f7160b267428b99e3c62e3b6264f3"
+        },
+        "wrench": {
+          "path": "train-1104-000022/wrench.npy",
+          "sha256": "21b299f23d164af4c993ec4fa70430c147436a43d2a71bc0a42a27e0610eccf2"
+        },
+        "motion": {
+          "path": "train-1104-000022/motion.npy",
+          "sha256": "36784412e96f9fdc80842f2e09a4c0bf2650f11e6b9c32f8dd378df7e3c6cd72"
+        },
+        "previous_command": {
+          "path": "train-1104-000022/previous_command.npy",
+          "sha256": "d2d8f92da3c402bc13a52139fce65bb73bbb6f4b1810411eaef3c26060f694b0"
+        },
+        "action": {
+          "path": "train-1104-000022/action.npy",
+          "sha256": "16040403976444afabf6e44ce85717c5e6c94278099c17f8cba758af2bbf1062"
+        },
+        "raw_wrench": {
+          "path": "train-1104-000022/raw_wrench.npy",
+          "sha256": "4ea4beb3cd1b5e467b9395b1e85abef40621a5ac096bd951974e941bb22df5cd"
+        },
+        "substep_wrench": {
+          "path": "train-1104-000022/substep_wrench.npy",
+          "sha256": "3d0164aaffcf51234e61548a90c7d43335aeb6fc619077b462d52a310e7ab6de"
+        },
+        "ema_action": {
+          "path": "train-1104-000022/ema_action.npy",
+          "sha256": "16ae953a1d9ae7dc321a19bf5ea15b1869950324dccf53c28d9641d12b135dc8"
+        },
+        "target_position": {
+          "path": "train-1104-000022/target_position.npy",
+          "sha256": "1577662aad5950359c65cb6557b9a5dbc52cd5694c39fb9487d7a402d3252b74"
+        },
+        "target_quaternion": {
+          "path": "train-1104-000022/target_quaternion.npy",
+          "sha256": "77727e24056635a5eb6ccd560c300a4b0ca5e638151dac25c7efe12e31febe2e"
+        },
+        "observed_after_state": {
+          "path": "train-1104-000022/observed_after_state.npy",
+          "sha256": "8289ea6523667160d5099958da375d073397b8c6dd96940ea91a64ade1d5550c"
+        },
+        "terminated": {
+          "path": "train-1104-000022/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "train-1104-000022/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "train-1104-000022/stable_success.npy",
+          "sha256": "4d7e684e242a6124f72f99e05a0a8bd787f7b943cbd60b16b22822aab6cfb5df"
+        }
+      }
+    },
+    {
+      "parent_id": "train-1104-000023",
+      "collection_run_id": "04_train_1104",
+      "split": "train",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "train-1104-000023/rgb.npy",
+          "sha256": "640ad753caf48e097e87e3ba8350e505326dfb5b93481d67e5c1f0271706ed46"
+        },
+        "state": {
+          "path": "train-1104-000023/state.npy",
+          "sha256": "4445ebf0674a1aec7a858df358cbd085054f3dce537aff07fabd10de4d0a21ab"
+        },
+        "wrench": {
+          "path": "train-1104-000023/wrench.npy",
+          "sha256": "fcf3758467d705a99faf5b689fbad75844ff79a0859610fd527d74bb704bf672"
+        },
+        "motion": {
+          "path": "train-1104-000023/motion.npy",
+          "sha256": "e2bb1645f16d71fc0523ea730a4bc0f700906c000054f3ddfbee4095078186b5"
+        },
+        "previous_command": {
+          "path": "train-1104-000023/previous_command.npy",
+          "sha256": "5c6c9d529881bd4b35e9718420bdc18dc203725d6a72c603b2f701e2fb4de115"
+        },
+        "action": {
+          "path": "train-1104-000023/action.npy",
+          "sha256": "9a23e85433daedb3e8ce5c54fc679da2e6091288637824b359b389d289856064"
+        },
+        "raw_wrench": {
+          "path": "train-1104-000023/raw_wrench.npy",
+          "sha256": "b9e4146d6498919efca0b87ea9b3a715decbcc33c7a5c9673145bf9a68c0d25b"
+        },
+        "substep_wrench": {
+          "path": "train-1104-000023/substep_wrench.npy",
+          "sha256": "237b58c2a484dfe6459db7d3c21e4e82efa2bf62219636876eb51c992f0eddfd"
+        },
+        "ema_action": {
+          "path": "train-1104-000023/ema_action.npy",
+          "sha256": "1cf19f9db99a7e13e49c50a246d17c855c29f4f513c075b05c9070b2a04a3e66"
+        },
+        "target_position": {
+          "path": "train-1104-000023/target_position.npy",
+          "sha256": "b61194a635dd6cb04bcdc6fa9a5dfbe142cea39a39bee8c2d7e67e865106fff9"
+        },
+        "target_quaternion": {
+          "path": "train-1104-000023/target_quaternion.npy",
+          "sha256": "8f778c9c6b98c4170dc046e1496102b6c2e18b4ee569391e1ef5733a29011df1"
+        },
+        "observed_after_state": {
+          "path": "train-1104-000023/observed_after_state.npy",
+          "sha256": "efd45a3fbde6ad8c1b748d19ef9cbe3f7af6d0de6d31c55bfa10b65787eb154e"
+        },
+        "terminated": {
+          "path": "train-1104-000023/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "train-1104-000023/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "train-1104-000023/stable_success.npy",
+          "sha256": "4146cb4e34ab17bf37eda70ec4b4ab0919c643eac7ef84dd00210426025d2c48"
+        }
+      }
+    }
+  ],
+  "seed": 1104,
+  "split": "train",
+  "successful_episodes": 23,
+  "individual_transitions": 3576,
+  "contract": {
+    "task": "Isaac-Forge-PegInsert-Direct-v0",
+    "action_stage": "submitted_pre_ema",
+    "action_axes": [
+      "x",
+      "y",
+      "z",
+      "yaw"
+    ],
+    "observation_timing": "before_action",
+    "wrench_dim": 6,
+    "history_steps": 4,
+    "chunk_length": 4,
+    "wrench_frame": "incoming_joint",
+    "camera": {
+      "eye": [
+        0.95,
+        0.45,
+        0.45
+      ],
+      "target": [
+        0.6,
+        0.0,
+        0.12
+      ],
+      "width": 256,
+      "height": 256,
+      "focal_length": 24.0,
+      "horizontal_aperture": 20.955,
+      "clipping_range": [
+        0.1,
+        10.0
+      ]
+    },
+    "control_dt": 0.06666666666666667,
+    "expert_sha256": "10efdf802e8abfccaa13f6e7a18cc2887ca2f3f96b35526bc9984fde419e59f8",
+    "expert_seventh_action": "replaced_by_fixed_minus_one",
+    "acceptance_evidence": "acceptance.json",
+    "acceptance_sha256": "806f2ee087086597157953de3ec8de75e22e93966671c274e8be9b3ea6981a0d"
+  },
+  "accounting": {
+    "physics_substeps": {
+      "restore": 2144,
+      "interaction": 28608,
+      "branch": 0,
+      "prefix": 0,
+      "evaluation": 0
+    },
+    "decimation": 8,
+    "num_envs": 8,
+    "control_step_cap": 50000.0,
+    "individual_control_step_equivalents": {
+      "restore": 268,
+      "interaction": 3576,
+      "branch": 0,
+      "prefix": 0,
+      "evaluation": 0
+    },
+    "charged_before_step": true
+  },
+  "attempts": 24,
+  "partial_episode_lengths": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "note": "A collected manifest is not P0 acceptance or an ACT baseline result."
+}

@@ -1,0 +1,49 @@
+{
+  "status": "PASSED",
+  "config_hash": "a355f6209f5049e01afb25d9cc196524ad577f11dee2d54404219f7f0e64eedb",
+  "source": "real_forge",
+  "action_alignment": true,
+  "sensor_alignment": true,
+  "camera_alignment": true,
+  "causal_observations": true,
+  "old_hf_alignment": "UNRESOLVED; excluded",
+  "physical_limits": [
+    5.834442123770726,
+    5.526592001318936,
+    19.768687963486236,
+    1.0,
+    1.0,
+    1.5441620051860894
+  ],
+  "physical_protection_limits": [
+    11.668884247541452,
+    11.654801368713379,
+    39.53737592697247,
+    2.0,
+    2.0,
+    5.590660095214844
+  ],
+  "physical_limits_source_split": "development",
+  "sensor_sign_verification": "Pinned PhysX documentation plus actual USD joint-frame inspection; no empirical external-load sign test claimed",
+  "camera_review": "Actual PNG visually inspected: gripper, peg and hole in view",
+  "evidence_hashes": {
+    "reports/20261023T104759Z/contract_probe_02/contract_audit.json": "0269e9c433142d84ff15d3967fc800d8e9c7c7c2c6ab2ab5d2c25d4adad380bc",
+    "reports/20261023T104759Z/contract_probe_02/action_sensor_trace.npz": "0ed7b9075a28b76cc02c3299c05c242beac5e001c914f633ac836b33bf6f5b88",
+    "reports/20261023T104759Z/contract_probe_02/camera.png": "e6cc121db5c55d19cb80f923ee65d61f0ee98d91fbe4c7c7aa551ef074171ad3",
+    "reports/20261023T104759Z/sensor_contract.md": "c28cdd1744cdfcfb8c35d03959d8b41b355ffe9fcfb465771a1099d0be4262fe",
+    "reports/20261023T104759Z/action_contract.md": "f40ff135863bfc922d1b08196280eebe45ed8b500e957ed4c03a5847c14ce124",
+    "reports/20261023T104759Z/physical_calibration.json": "4f40a58215f7ca8238751f46a4959108bd93df3ee37942bf7e44a64a0a12c9f5",
+    "reports/20261023T104759Z/recollection_causality.json": "ee59bbab0a31db2a7400e4339e1fdc6353e94749abcdbc016bc1d8ea57778a60",
+    "reports/20261023T104759Z/expert_smoke.csv": "35fd1e4af6b5a8c1e78bd3fa2823b7c464b99cf5d7dae93ed7012bb3475870dd",
+    "reports/20261023T104759Z/development_manifest.json": "95b23788cdc1738a451d6a7149e84a24d68aacfa626a739a23e1c6021f66326b",
+    "configs/development_calibration.json": "44f6455d53f1c9014b91bd2dcbfefc33fab03983c5bef9ea718ffc35a7dd212b",
+    "reports/20261023T104759Z/smoke-1_1792983897256109441_command.json": "f3cdf28310a24733f985f78ff53cf0dc98223aa8c6edebfd5ec1e4f3c40f97a2",
+    "reports/20261023T104759Z/smoke-1_1792983897256109441.log": "654b040edebac8411adfe947ba72c976e5a18ced16c62be3ae5654989416425d",
+    "reports/20261023T104759Z/smoke-1_1792983897256109441.json": "836da8af13980e2376e18c2e0a55380a0a00940b5fef80c240407bfcf65f51d9",
+    "environment.lock.json": "14ed44b4900fa1261e4fcd515ef2a89d01aa1c0f1e980174bcc47764d0f7b1a0",
+    "configs/isaac_launcher.json": "d2d15fcdbc3a957b581464f7254015199ce1f4d9282c3b8593e5df4a791a2d19",
+    "reports/20261023T104759Z/smoke-8_1792983914690478915_command.json": "8c9029d0bd0cbb854c56d6b4186f94337c10471a1fcccaaffa1c39e8ad5c9564",
+    "reports/20261023T104759Z/smoke-8_1792983914690478915.log": "40094e99126135abf7d30b8ebf7b1364a72599e7730580d98e400a06498369e3",
+    "reports/20261023T104759Z/smoke-8_1792983914690478915.json": "7d6715a19c169cc5025267c52a41a832921ddd04bf0824009bfda0527463f9c4"
+  }
+}

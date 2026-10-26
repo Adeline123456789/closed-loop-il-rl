@@ -1,0 +1,118 @@
+{
+  "status": "PASSED",
+  "missing_packages": [],
+  "code_sha": "e8df1561611f0b756872d91c4e8989432ab6ce3d",
+  "config_hash": "a355f6209f5049e01afb25d9cc196524ad577f11dee2d54404219f7f0e64eedb",
+  "upstream_lock_sha256": "14fec4cc04dd18aa893011e01844ba450dee8192977706f7ce16a9287771aa67",
+  "hf_sources": {
+    "forge-v1": {
+      "repository": "angledusgar/forge-v1",
+      "revision": "0ebe4ff65ade3da8d2011d66cce0259870c95f78",
+      "license": "apache-2.0"
+    },
+    "forge-failure-v1": {
+      "repository": "angledusgar/forge-failure-v1",
+      "revision": "820392e1167df4d6f5d60f985ec4f3b1b4fd6237",
+      "license": "apache-2.0"
+    },
+    "forge-peginsert-v1": {
+      "repository": "angledusgar/forge-peginsert-v1",
+      "revision": "447a6109cec7c228763d1bfc8cf0ab73f6558a1b",
+      "license": "apache-2.0",
+      "checkpoint": {
+        "filename": "forge_peginsert_2026-06-30.pth",
+        "bytes": 213431615,
+        "lfs_sha256": "10efdf802e8abfccaa13f6e7a18cc2887ca2f3f96b35526bc9984fde419e59f8",
+        "compatibility": "NOT_RUN"
+      }
+    }
+  },
+  "asset_endpoint_checks": [
+    {
+      "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.0/Isaac/IsaacLab/Factory/factory_peg_8mm.usd",
+      "status": 200,
+      "bytes": "1690754"
+    },
+    {
+      "url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.0/Isaac/IsaacLab/Factory/factory_hole_8mm.usd",
+      "status": 200,
+      "bytes": "7508864"
+    }
+  ],
+  "asset_runtime_version": "NOT_RUN; endpoint probes are not loaded asset versions",
+  "compatibility_issues": [],
+  "isaaclab_checkout": {
+    "command": [
+      "git",
+      "-C",
+      ".cache/IsaacLab",
+      "rev-parse",
+      "HEAD"
+    ],
+    "returncode": 0,
+    "stdout": "0f00ca2b4b2d54d5f90006a92abb1b00a72b2f20\n",
+    "stderr": ""
+  },
+  "python": "3.11.15 | packaged by conda-forge | (main, Mar  5 2026, 16:45:40) [GCC 14.3.0]",
+  "executable": "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/bin/python",
+  "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+  "gpu": {
+    "command": [
+      "nvidia-smi",
+      "--query-gpu=name,memory.total,driver_version",
+      "--format=csv,noheader"
+    ],
+    "returncode": 0,
+    "stdout": "NVIDIA GeForce RTX 3090, 24576 MiB, 575.51.03\n",
+    "stderr": ""
+  },
+  "cuda": {
+    "torch_cuda": "12.8",
+    "available": true
+  },
+  "packages": {
+    "torch": "2.7.0+cu128",
+    "torchvision": "0.22.0+cu128",
+    "isaacsim": "5.0.0.0",
+    "isaacsim-kernel": "5.0.0.0",
+    "omniverse-kit": "107.3.1.206797",
+    "isaaclab": "0.45.9",
+    "numpy": "1.26.0",
+    "pyarrow": "21.0.0"
+  },
+  "disk_free_bytes": 109207740416,
+  "asset_loading": "NOT_RUN",
+  "camera_rendering": "NOT_RUN",
+  "git_read": {
+    "command": [
+      "git",
+      "ls-remote",
+      "origin",
+      "HEAD"
+    ],
+    "returncode": 0,
+    "stdout": "527da843bb6c42074a4d1c8d10d1742cd61b4ddf\tHEAD\n",
+    "stderr": ""
+  },
+  "git_push_dry_run": {
+    "command": [
+      "git",
+      "push",
+      "--dry-run",
+      "origin",
+      "HEAD"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": "To https://github.com/Adeline123456789/closed-loop-il-rl.git\n   5e378b9..e8df156  HEAD -> codex/force-critic-act-v2\n"
+  },
+  "isaac_launcher": "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/isaaclab.sh",
+  "license_acceptance": {
+    "status": "ACCEPTED",
+    "accepted": true,
+    "acceptance_marker_exists": true,
+    "environment_acceptance_flag": false,
+    "agreement_url": "https://docs.omniverse.nvidia.com/enterprise/latest/common/NVIDIA_Omniverse_License_Agreement.html"
+  },
+  "note": "doctor PASSED only means import prerequisites found; smoke and interface audits remain mandatory"
+}

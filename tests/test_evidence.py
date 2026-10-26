@@ -113,3 +113,37 @@ def test_live_command_log_preserves_nonzero_exit(tmp_path):
     assert result['returncode']==3
     assert log.read_text()=='launch failed\n'
     assert result['stdout']=='launch failed\n'
+
+
+def test_smoke_evidence_ignores_unexecuted_training_but_not_launcher(tmp_path,monkeypatch):
+    from forcecritic.runtime import Run
+    from pathlib import Path
+    monkeypatch.chdir(tmp_path)
+    Path('config.yaml').write_text('protocol: force_critic_act_v2_diagnostic_first\n')
+    Path('scripts').mkdir()
+    Path('src/forcecritic/training').mkdir(parents=True)
+    launcher=Path('scripts/smoke_forge.py');launcher.write_text('version=1\n')
+    training=Path('src/forcecritic/training/later.py');training.write_text('version=1\n')
+    evidence=Path('measured.json');evidence.write_text('{}')
+    run=Run('config.yaml','scope')
+    run.record('smoke-1','PASSED',artifacts=[evidence])
+    training.write_text('version=2\n')
+    assert run.verified('smoke-1')
+    launcher.write_text('version=2\n')
+    assert not run.verified('smoke-1')
+
+
+def test_edit_during_launch_cannot_be_recorded_as_current_pass(tmp_path,monkeypatch):
+    from forcecritic.runtime import Run,source_hashes
+    from pathlib import Path
+    monkeypatch.chdir(tmp_path)
+    Path('config.yaml').write_text('protocol: force_critic_act_v2_diagnostic_first\n')
+    Path('scripts').mkdir()
+    launcher=Path('scripts/smoke_forge.py');launcher.write_text('version=1\n')
+    evidence=Path('measured.json');evidence.write_text('{}')
+    run=Run('config.yaml','during-launch')
+    executed=source_hashes()
+    launcher.write_text('version=2\n')
+    run.record('smoke-1','PASSED',artifacts=[evidence],executed_sources=executed)
+    assert run.manifest['stages']['smoke-1']['status']=='STALE_SOURCE'
+    assert not run.verified('smoke-1')
