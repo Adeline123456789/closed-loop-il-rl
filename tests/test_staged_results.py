@@ -43,3 +43,35 @@ def test_same_successes_and_changed_or_fake_starts_rejected():
     bad=[dict(r) for r in good];bad[0]['seed']=1
     with pytest.raises(ValueError):matched_decision(good,bad,list(range(32)),1,PLAN)
     with pytest.raises(ValueError):decision([0]*32,[0]*32,3)
+
+def test_completed_batch_requires_provenance_and_every_physics_step(tmp_path,monkeypatch):
+    import csv,json
+    from forcecritic.runtime import digest
+    from forcecritic.staged.audit import validate_completed_batch
+    monkeypatch.chdir(tmp_path)
+    (tmp_path/'configs').mkdir();(tmp_path/'configs/stage_v3_phase1.json').write_text('{}')
+    report=tmp_path/'reports';report.mkdir();result=tmp_path/'results';result.mkdir()
+    path=result/'eval_A1_initial.csv'
+    row=dict(seed=17,source='real_forge',arm='A1',policy_sha='policy',stable_success=1,
+             steps=10,control_dt=.04,return_value=1,cost=0,peak_force_N=2,peak_torque_Nm=.1)
+    row['return']=row.pop('return_value')
+    with path.open('w') as f:
+        writer=csv.DictWriter(f,fieldnames=list(row));writer.writeheader();writer.writerow(row)
+    accounting=dict(control_step_cap=100,decimation=8,physics_substeps=dict(restore=16,evaluation=80),
+                    individual_control_step_equivalents=dict(restore=2,evaluation=10))
+    record=dict(status='PASSED',episodes=1,csv_sha=digest(path),policy_sha='policy',
+                config_sha=digest('configs/stage_v3_phase1.json'),accounting=accounting)
+    supervisor=dict(returncode=0,accounting=accounting,command=['real-evaluator'])
+    (report/'eval_A1_initial.json').write_text(json.dumps(record))
+    (report/'eval_A1_initial.supervisor.json').write_text(json.dumps(supervisor))
+    plan=dict(initial_evaluation_seeds=[17],extension_seeds=[18],evaluation_control_step_cap_per_batch=100)
+    assert validate_completed_batch(report,result,'eval_A1_initial',plan,'policy')['status']=='PASSED'
+    supervisor['returncode']=-11
+    (report/'eval_A1_initial.supervisor.json').write_text(json.dumps(supervisor))
+    with pytest.raises(ValueError,match='Incomplete'):validate_completed_batch(report,result,'eval_A1_initial',plan,'policy')
+    supervisor['returncode']=0
+    (report/'eval_A1_initial.supervisor.json').write_text(json.dumps(supervisor))
+    record['accounting']['individual_control_step_equivalents']['evaluation']=9
+    (report/'eval_A1_initial.json').write_text(json.dumps(record))
+    (report/'eval_A1_initial.supervisor.json').write_text(json.dumps(supervisor))
+    with pytest.raises(ValueError,match='counts disagree'):validate_completed_batch(report,result,'eval_A1_initial',plan,'policy')

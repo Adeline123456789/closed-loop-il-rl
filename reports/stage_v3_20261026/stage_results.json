@@ -25,9 +25,13 @@
       "overload_episode_rate": 0.96875,
       "overload_step_rate": 0.08944041208147975,
       "protection_stop_rate": 0.09375,
-      "failure_reasons": {
+      "termination_reason_counts": {
         "finite_horizon": 24,
         "stable_success": 5,
+        "unsafe": 3
+      },
+      "failure_reasons": {
+        "finite_horizon": 24,
         "unsafe": 3
       },
       "mean_first_stable_success_seconds": 4.68,
@@ -35,30 +39,34 @@
       "evaluation_control_steps": 4271
     },
     "A1": {
-      "status": "PASSED",
-      "episodes": 4,
-      "successes": 2,
-      "success_rate": 0.5,
-      "wilson95": [
-        0.15003898915214947,
-        0.8499610108478506
-      ],
-      "mean_return": 29.42426177526528,
-      "mean_cost": 0.5865535513686414,
-      "mean_peak_force_N": 21.107585906982422,
-      "max_peak_force_N": 22.011241912841797,
-      "mean_peak_torque_Nm": 2.51643106341362,
-      "max_peak_torque_Nm": 3.0816733837127686,
-      "overload_episode_rate": 1.0,
-      "overload_step_rate": 0.052742616033755275,
-      "protection_stop_rate": 0.0,
-      "failure_reasons": {
-        "finite_horizon": 2,
-        "stable_success": 2
+      "status": "INCONCLUSIVE",
+      "episodes": 23,
+      "successes": 7,
+      "success_rate": null,
+      "wilson95": null,
+      "mean_return": 30.796154123209625,
+      "mean_cost": 0.95114964206857,
+      "mean_peak_force_N": 21.12638689124066,
+      "max_peak_force_N": 37.97411346435547,
+      "mean_peak_torque_Nm": 2.276584345361461,
+      "max_peak_torque_Nm": 4.6904449462890625,
+      "overload_episode_rate": 0.9130434782608695,
+      "overload_step_rate": 0.06220614828209765,
+      "protection_stop_rate": 0.043478260869565216,
+      "termination_reason_counts": {
+        "finite_horizon": 15,
+        "stable_success": 7,
+        "unsafe": 1
       },
-      "mean_first_stable_success_seconds": 5.866666666666666,
+      "failure_reasons": {
+        "finite_horizon": 15,
+        "unsafe": 1
+      },
+      "mean_first_stable_success_seconds": 4.038095238095237,
       "success_time_definition": "Time to first 3-step stable-success detection, conditional on success; failures censored",
-      "evaluation_control_steps": 474
+      "evaluation_control_steps": 2765,
+      "complete": false,
+      "reason": "Evaluation still incomplete; counts are progress only"
     },
     "A2": {
       "status": "PASSED",
@@ -78,9 +86,13 @@
       "overload_episode_rate": 0.9375,
       "overload_step_rate": 0.09392812887236679,
       "protection_stop_rate": 0.09375,
-      "failure_reasons": {
+      "termination_reason_counts": {
         "finite_horizon": 23,
         "stable_success": 6,
+        "unsafe": 3
+      },
+      "failure_reasons": {
+        "finite_horizon": 23,
         "unsafe": 3
       },
       "mean_first_stable_success_seconds": 4.0777777777777775,
@@ -94,7 +106,7 @@
   },
   "phase2": {
     "status": "NOT_RUN",
-    "reason": "Requires phase1 GO; historical arms include force and cannot stand in for no-force B2"
+    "reason": "Phase1 is NOT_RUN; requires GO. Historical arms include force and cannot stand in for no-force B2"
   },
   "phase3": {
     "status": "NOT_RUN",
@@ -111,5 +123,95 @@
   "provenance": {
     "historical_A2_already_observed": true,
     "a2_first_update_audit": "PASSED"
+  },
+  "gradient_evidence": {
+    "status": "PASSED",
+    "scope": "Implementation evidence, not robot performance",
+    "updates_per_arm": 200,
+    "q_gradient_norm_range": [
+      0.45992353558540344,
+      0.9378982782363892
+    ],
+    "q_gradient_norm_mean": 0.6496151299774646,
+    "q_to_bc_gradient_norm_median": 0.9713021029240216,
+    "q_bc_cosine_mean": -0.10470001855797423,
+    "q_bc_negative_dot_fraction": 0.69,
+    "actual_mean_absolute_action_change_mean": 0.0035413183318451047,
+    "last_update_actual_action_change": 0.0031847816426306963,
+    "step_term_cancellation": "Historical A2 did not log step-gradient vectors; exact Q/BC/step cancellation cannot be reconstructed from norms alone",
+    "no_bug_evidence": "All 200 Q gradients and actual ACT action changes are finite and nonzero; first matched update reproduced exactly",
+    "a1_csv_sha": "d81aec707b590519a7023cd3a8e96e5c6ad86cbe3c03a520c49ecd0eb8398e94",
+    "a2_csv_sha": "ce82c848c0dacc171dfd36e7146de22cd677bebd7e3a53aea3b002dc1ba2e4e7"
+  },
+  "evaluation_admission": {},
+  "training_matching_audit": {
+    "status": "PASSED",
+    "scope": "Read-only artifact audit; no optimizer or simulation steps",
+    "batches_verified": 200,
+    "replay_train_rows": 2426,
+    "demonstration_episodes": 200,
+    "demonstration_windows": 6707,
+    "initialization_identity_equal": true,
+    "normalizer_equal": true,
+    "frozen_visual_encoder_equal": true,
+    "optimizer_settings": [
+      {
+        "lr": 1e-05,
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "eps": 1e-08,
+        "weight_decay": 0,
+        "amsgrad": false,
+        "maximize": false,
+        "foreach": null,
+        "capturable": false,
+        "differentiable": false,
+        "fused": null,
+        "decoupled_weight_decay": false
+      }
+    ],
+    "parameter_changes": {
+      "A1_vs_ACT0": {
+        "l2": 1.2142249296461702,
+        "maximum_absolute": 0.0010627247393131256,
+        "changed_elements": 52625775
+      },
+      "A2_vs_ACT0": {
+        "l2": 1.6982395896385472,
+        "maximum_absolute": 0.00138060562312603,
+        "changed_elements": 52630093
+      },
+      "A2_vs_A1": {
+        "l2": 1.6822271894622702,
+        "maximum_absolute": 0.0015680566430091858,
+        "changed_elements": 52421706
+      }
+    },
+    "first_update_reproduction": "reports/stage_v3_20261026/a2_reproduction_audit.json",
+    "rng_limit": "A2 final RNG was not saved historically; first update reproduced exactly, subsequent CVAE draw counts and sample order match source",
+    "act_sha": {
+      "ACT0": "63433851d051fe4149d8f27deec600a438f146208eb5928782d56b9223dc8bb8",
+      "A1": "b425a94d3e0d10d5ad5db558fe0f7d5aba47458329ead603803655d3aea313e6",
+      "A2": "58737a7556c76d0fa5cace6aa2f97dfe5730960fe2133e7ae0c12557ae356452"
+    }
+  },
+  "execution_manifest": {
+    "training": {
+      "command": "env PYTHONPATH=src .venv/bin/python -u scripts/train_stage_v3_a1.py",
+      "returncode": null,
+      "returncode_note": "Detached training launcher did not retain OS exit code; completion artifact and checkpoint audited",
+      "deployed_A1_updates": 200,
+      "discarded_A2_reproduction_updates": 1,
+      "new_environment_interactions": 0
+    },
+    "reused": {
+      "A2_actor_updates": 200,
+      "A2_critic_updates": 2000,
+      "A0_episodes": 32,
+      "A2_episodes": 32
+    },
+    "new_evaluations": {}
   }
 }

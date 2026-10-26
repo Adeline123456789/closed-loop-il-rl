@@ -1,0 +1,53 @@
+{
+  "status": "PASSED",
+  "scope": "Read-only artifact audit; no optimizer or simulation steps",
+  "batches_verified": 200,
+  "replay_train_rows": 2426,
+  "demonstration_episodes": 200,
+  "demonstration_windows": 6707,
+  "initialization_identity_equal": true,
+  "normalizer_equal": true,
+  "frozen_visual_encoder_equal": true,
+  "optimizer_settings": [
+    {
+      "lr": 1e-05,
+      "betas": [
+        0.9,
+        0.999
+      ],
+      "eps": 1e-08,
+      "weight_decay": 0,
+      "amsgrad": false,
+      "maximize": false,
+      "foreach": null,
+      "capturable": false,
+      "differentiable": false,
+      "fused": null,
+      "decoupled_weight_decay": false
+    }
+  ],
+  "parameter_changes": {
+    "A1_vs_ACT0": {
+      "l2": 1.2142249296461702,
+      "maximum_absolute": 0.0010627247393131256,
+      "changed_elements": 52625775
+    },
+    "A2_vs_ACT0": {
+      "l2": 1.6982395896385472,
+      "maximum_absolute": 0.00138060562312603,
+      "changed_elements": 52630093
+    },
+    "A2_vs_A1": {
+      "l2": 1.6822271894622702,
+      "maximum_absolute": 0.0015680566430091858,
+      "changed_elements": 52421706
+    }
+  },
+  "first_update_reproduction": "reports/stage_v3_20261026/a2_reproduction_audit.json",
+  "rng_limit": "A2 final RNG was not saved historically; first update reproduced exactly, subsequent CVAE draw counts and sample order match source",
+  "act_sha": {
+    "ACT0": "63433851d051fe4149d8f27deec600a438f146208eb5928782d56b9223dc8bb8",
+    "A1": "b425a94d3e0d10d5ad5db558fe0f7d5aba47458329ead603803655d3aea313e6",
+    "A2": "58737a7556c76d0fa5cace6aa2f97dfe5730960fe2133e7ae0c12557ae356452"
+  }
+}

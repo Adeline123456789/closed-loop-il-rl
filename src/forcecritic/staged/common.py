@@ -10,6 +10,7 @@ def locked_plan():
     if digest(CONFIG)!=lock['sha256']:raise ValueError('Locked plan changed')
     for path,expected in {**plan['inputs'],**plan['unchanged_artifacts'],
         plan['demonstration_manifest']:plan['demonstration_manifest_sha'],
+        plan['historical_plan']:plan['historical_plan_sha'],
         plan['historical_A2_csv']:plan['historical_A2_csv_sha'],
         plan['historical_A0_csv']:plan['historical_A0_csv_sha']}.items():
         if digest(path)!=expected:raise ValueError('Historical input changed: '+path)

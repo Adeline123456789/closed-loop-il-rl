@@ -24,7 +24,9 @@ def arm_metrics(rows):
         overload_episode_rate=float(np.mean(numeric('overload_steps')>0)),
         overload_step_rate=float(numeric('overload_steps').sum()/steps.sum()),
         protection_stop_rate=sum(r['termination_reason']=='unsafe' for r in rows)/n,
-        failure_reasons=reasons,mean_first_stable_success_seconds=float(np.mean(times)) if times else None,
+        termination_reason_counts=reasons,
+        failure_reasons={reason:sum(r['termination_reason']==reason and not int(r['stable_success']) for r in rows) for reason in reasons if any(r['termination_reason']==reason and not int(r['stable_success']) for r in rows)},
+        mean_first_stable_success_seconds=float(np.mean(times)) if times else None,
         success_time_definition='Time to first 3-step stable-success detection, conditional on success; failures censored',
         evaluation_control_steps=int(steps.sum()))
 

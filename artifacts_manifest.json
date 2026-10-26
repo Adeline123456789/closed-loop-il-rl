@@ -1361,8 +1361,8 @@
       "bytes": 3998
     },
     "reports/PROJECT_STATUS.json": {
-      "sha256": "90b8d4447b058090f369aa76b1e7a44dbf7d9361aacc2f82d0f60ac36e2c9cbe",
-      "bytes": 72472
+      "sha256": "4064c1a6b5a171724f222612d696e84f4b01633c949cc2016281ee40387e24f7",
+      "bytes": 72484
     },
     "reports/stage_v3_20261026/A1_batch_order.json": {
       "sha256": "f4fbd10ff18a75dbbcaf9293638a74cbddeed0dff64d2196f97218b2076e6095",
@@ -1377,24 +1377,32 @@
       "bytes": 6942
     },
     "reports/stage_v3_20261026/FINAL_REPORT.md": {
-      "sha256": "401b5cf099f1c12c6a70d4eec84e9936729b570a5a746ba6f4a3613ff54b48a2",
-      "bytes": 1933
+      "sha256": "4b2be164933798039aaa3f5f264f2a2463b2e17a0686f38dedc10496e75ed6db",
+      "bytes": 4087
     },
     "reports/stage_v3_20261026/a2_reproduction_audit.json": {
       "sha256": "5f892cbec76fc324acc5ba338142f10898a9c3b7fe7ba7935b799f9ecb43ed32",
       "bytes": 10088
     },
     "reports/stage_v3_20261026/eval_A1_initial.log": {
-      "sha256": "c8a9f9f98beba8975b70b859d6583ee706545876f136007d07f3acf55431f0e8",
-      "bytes": 7051
+      "sha256": "7bc5cdf8f770b9acf0047170a73392dc27f0ea448ee6bb089abe47bdd1d99d17",
+      "bytes": 7431
     },
     "reports/stage_v3_20261026/eval_A1_initial/diagnostic_live_progress.json": {
-      "sha256": "8d85d16878a9743012483eece8363e9a242e7a7a2ebbe047502647d4ab306c15",
-      "bytes": 849
+      "sha256": "f12d8eeaf891bfe16e20c02714183cd3c7e5841bec622fee93db4d73a9982b52",
+      "bytes": 852
+    },
+    "reports/stage_v3_20261026/evaluation_admission.json": {
+      "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+      "bytes": 3
     },
     "reports/stage_v3_20261026/execution_manifest.json": {
       "sha256": "d33c3b9c6f4276c9fc52eb8b4bfdc194a3f3d45aaae317a2b2dd137c329d75e4",
       "bytes": 522
+    },
+    "reports/stage_v3_20261026/gradient_evidence.json": {
+      "sha256": "c94dc704ef9b3275ce1447c2e85f1ec15f200baeeb935ed566b3fd62c8a088f9",
+      "bytes": 961
     },
     "reports/stage_v3_20261026/input_audit.json": {
       "sha256": "d2f3bae64dfee9c5fb2d7ba88d662d5d7dd895b7c1d2541919ac00c0712ba8a6",
@@ -1412,13 +1420,29 @@
       "sha256": "c739cf654660dc6c96e24ee889bb00f361c6ac80a57ece4f6a23aa6e3c7ff21f",
       "bytes": 216
     },
+    "reports/stage_v3_20261026/read_only_audit_commands.json": {
+      "sha256": "f149196ef9f330865ab7555b50f962a6d3d1ff78630bc3b6f17ce1c0225d977f",
+      "bytes": 657
+    },
     "reports/stage_v3_20261026/stage_results.json": {
-      "sha256": "7f24b6b8fd5a5fadc86cf92fe363fbc3d1e31b14efbfb47d69ae1c3acf8a3ac9",
-      "bytes": 3666
+      "sha256": "28454c0a73f89acb6ddf731f0d74e3e10519d529f3a8a776a3d20b6adfc5975b",
+      "bytes": 7450
+    },
+    "reports/stage_v3_20261026/training_matching_audit.json": {
+      "sha256": "5ef92ee6797386f4a9ef84c58d0eddd213f2cc7cb7aaa98ba467cae61af50da0",
+      "bytes": 1623
+    },
+    "reports/stage_v3_20261026/training_matching_audit.log": {
+      "sha256": "5ef92ee6797386f4a9ef84c58d0eddd213f2cc7cb7aaa98ba467cae61af50da0",
+      "bytes": 1623
+    },
+    "reports/stage_v3_20261026/training_matching_audit_attempt1.log": {
+      "sha256": "38aabc48fb4154f8b46330b9331511bdb83a37d6ae59afd63cd924e7f526ea7f",
+      "bytes": 656
     },
     "reports/stage_v3_20261026/training_progress.json": {
-      "sha256": "7f0dde4a658988844f2d381729edb4be1052c3ac239777215422028e1254e32e",
-      "bytes": 138
+      "sha256": "311f3dae6fc08737451fd06ba7bda694dfb17369a95366f389681dd64c04729a",
+      "bytes": 296
     },
     "results/20261023T104759Z/act0_validation.csv": {
       "sha256": "795a5ba45f9bf28f50c80ea96febe88512a4ddec2649e43bda140ae73afb06d7",
@@ -1497,8 +1521,12 @@
       "bytes": 29647
     },
     "results/stage_v3_20261026/eval_A1_initial.csv": {
-      "sha256": "607fa77e40d6b79cc4ffbf41f013823cec14270efeb35cfbd0eb4cc54798161c",
-      "bytes": 1265
+      "sha256": "648b6df17efc7ea3a7097f03bd67fda86767a5bbeeb6c250322af51dfb58c933",
+      "bytes": 6406
+    },
+    "results/stage_v3_20261026/phase1_summary.csv": {
+      "sha256": "7e0fd0b41d698346a8e872d3e7a380fdc075262cb67ed37632e0703c26c361bb",
+      "bytes": 861
     }
   },
   "weights": []

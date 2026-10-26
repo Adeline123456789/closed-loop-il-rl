@@ -22,7 +22,7 @@ p=locked_plan();report=Path(p['report']);result=Path(p['results']);result.mkdir(
 directory=Path(p['checkpoints']);directory.mkdir(parents=True,exist_ok=True)
 if (directory/'A1.pt').exists() or (result/'A1_updates.csv').exists():raise FileExistsError('Preserve existing training attempt')
 def progress(phase,**kw):
-    atomic_json(report/'training_progress.json',dict(status='RUNNING',phase=phase,pid=os.getpid(),updated=time.time(),**kw))
+    atomic_json(report/'training_progress.json',dict(status='PASSED' if phase=='A1_training_complete' else 'RUNNING',phase=phase,pid=os.getpid(),updated=time.time(),**kw))
     print('STAGE_V3',phase,json.dumps(kw),flush=True)
 progress('loading',actor_completed=0)
 old=Path('checkpoints/20261023T104759Z');device='cuda:0'

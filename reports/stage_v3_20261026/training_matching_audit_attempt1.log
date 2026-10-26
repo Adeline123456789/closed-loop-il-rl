@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/scripts/audit_stage_v3_training.py", line 15, in <module>
+    if any(r['source']!='real_forge' or r['policy_sha']!=p['inputs'][str(old/'act0.pt')] for r in train):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/scripts/audit_stage_v3_training.py", line 15, in <genexpr>
+    if any(r['source']!='real_forge' or r['policy_sha']!=p['inputs'][str(old/'act0.pt')] for r in train):
+                                        ~^^^^^^^^^^^^^^
+KeyError: 'policy_sha'

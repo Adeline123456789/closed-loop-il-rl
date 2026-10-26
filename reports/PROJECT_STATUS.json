@@ -779,7 +779,7 @@
     },
     "phase2": {
       "status": "NOT_RUN",
-      "reason": "Requires phase1 GO; historical arms include force and cannot stand in for no-force B2"
+      "reason": "Phase1 is NOT_RUN; requires GO. Historical arms include force and cannot stand in for no-force B2"
     },
     "phase3": {
       "status": "NOT_RUN",
