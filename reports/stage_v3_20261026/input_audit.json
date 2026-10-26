@@ -1,0 +1,49 @@
+{
+  "status": "PASSED",
+  "checks": {
+    "checkpoints/20261023T104759Z/act0.pt": {
+      "expected": "63433851d051fe4149d8f27deec600a438f146208eb5928782d56b9223dc8bb8",
+      "actual": "63433851d051fe4149d8f27deec600a438f146208eb5928782d56b9223dc8bb8"
+    },
+    "checkpoints/20261023T104759Z/critic0.pt": {
+      "expected": "47106d378d7b06b2cc7c914080d92d52de13974254c8e7677a8510376dc6ba42",
+      "actual": "47106d378d7b06b2cc7c914080d92d52de13974254c8e7677a8510376dc6ba42"
+    },
+    "checkpoints/20261023T104759Z/shared_replay.pt": {
+      "expected": "f8b76593febf6cec1f9feb9ba37490dd5e421008a7ae9eaab2b609b6ac7c44e9",
+      "actual": "f8b76593febf6cec1f9feb9ba37490dd5e421008a7ae9eaab2b609b6ac7c44e9"
+    },
+    "checkpoints/20261023T104759Z/direct_Q.pt": {
+      "expected": "58737a7556c76d0fa5cace6aa2f97dfe5730960fe2133e7ae0c12557ae356452",
+      "actual": "58737a7556c76d0fa5cace6aa2f97dfe5730960fe2133e7ae0c12557ae356452"
+    },
+    "scripts/train_direct_q_fallback.py": {
+      "expected": "f9454c574d131b82ea3757c4f5426d019d2c2b87e85d424be8c0497210a63c3b",
+      "actual": "f9454c574d131b82ea3757c4f5426d019d2c2b87e85d424be8c0497210a63c3b"
+    },
+    "src/forcecritic/models/act.py": {
+      "expected": "026c8142310fe81976cf5a5a215a6d316ae12bb35ae78bd6464156692a18c927",
+      "actual": "026c8142310fe81976cf5a5a215a6d316ae12bb35ae78bd6464156692a18c927"
+    },
+    "src/forcecritic/models/critic.py": {
+      "expected": "b1f62c883982aa8c884c811743c5f7e5bac90574a335f219705ee5ce9db5ff05",
+      "actual": "b1f62c883982aa8c884c811743c5f7e5bac90574a335f219705ee5ce9db5ff05"
+    },
+    "src/forcecritic/training/updates.py": {
+      "expected": "65961aa7ff318235095b1bd7b209123a5bd38da655a1a3a19bb2917ea65a0cbd",
+      "actual": "65961aa7ff318235095b1bd7b209123a5bd38da655a1a3a19bb2917ea65a0cbd"
+    },
+    "src/forcecritic/training/pretrain.py": {
+      "expected": "9a979017e908d9a42c43cf75ab6882ce39d910611f4b9fa6c96c9dc30b759da8",
+      "actual": "9a979017e908d9a42c43cf75ab6882ce39d910611f4b9fa6c96c9dc30b759da8"
+    },
+    "src/forcecritic/training/live.py": {
+      "expected": "f8b77b838237031855982a63968da30c13effaaa530a4ac726150dc89923cd72",
+      "actual": "f8b77b838237031855982a63968da30c13effaaa530a4ac726150dc89923cd72"
+    },
+    "src/forcecritic/data/demonstrations.py": {
+      "expected": "c61d70ae4fe27010a03e34895c7cd84223df1c46d03a249c25ad160187e92f6a",
+      "actual": "c61d70ae4fe27010a03e34895c7cd84223df1c46d03a249c25ad160187e92f6a"
+    }
+  }
+}

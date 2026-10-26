@@ -1,0 +1,17 @@
+{
+  "training": {
+    "command": "env PYTHONPATH=src .venv/bin/python -u scripts/train_stage_v3_a1.py",
+    "returncode": null,
+    "returncode_note": "Detached training launcher did not retain OS exit code; completion artifact and checkpoint audited",
+    "deployed_A1_updates": 200,
+    "discarded_A2_reproduction_updates": 1,
+    "new_environment_interactions": 0
+  },
+  "reused": {
+    "A2_actor_updates": 200,
+    "A2_critic_updates": 2000,
+    "A0_episodes": 32,
+    "A2_episodes": 32
+  },
+  "new_evaluations": {}
+}

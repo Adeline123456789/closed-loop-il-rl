@@ -1,5 +1,8 @@
 {
   "run_id": "20261023T104759Z",
+  "additional_runs": [
+    "stage_v3_20261026"
+  ],
   "artifacts": {
     "reports/20261023T104759Z/CONTINUATION.json": {
       "sha256": "425b6da1782f4ddbb464479da44aa97c984ebb411ce33f48fb402257e61843b1",
@@ -1358,8 +1361,64 @@
       "bytes": 3998
     },
     "reports/PROJECT_STATUS.json": {
-      "sha256": "43538d4f7e0dcfaa1931c856bc5c0f35fa8aae2e3d883e585d2793f4afb7a1b4",
-      "bytes": 71448
+      "sha256": "90b8d4447b058090f369aa76b1e7a44dbf7d9361aacc2f82d0f60ac36e2c9cbe",
+      "bytes": 72472
+    },
+    "reports/stage_v3_20261026/A1_batch_order.json": {
+      "sha256": "f4fbd10ff18a75dbbcaf9293638a74cbddeed0dff64d2196f97218b2076e6095",
+      "bytes": 615451
+    },
+    "reports/stage_v3_20261026/A1_training.json": {
+      "sha256": "f1bfe4359a12d818b57181957f753313a5dcd6a79cbc145f56b07114342b75d0",
+      "bytes": 9398
+    },
+    "reports/stage_v3_20261026/A1_training.log": {
+      "sha256": "86baba469fc0f090fccccb57f58816676c1c34e32cf64a3e55eeb1149991bf4f",
+      "bytes": 6942
+    },
+    "reports/stage_v3_20261026/FINAL_REPORT.md": {
+      "sha256": "401b5cf099f1c12c6a70d4eec84e9936729b570a5a746ba6f4a3613ff54b48a2",
+      "bytes": 1933
+    },
+    "reports/stage_v3_20261026/a2_reproduction_audit.json": {
+      "sha256": "5f892cbec76fc324acc5ba338142f10898a9c3b7fe7ba7935b799f9ecb43ed32",
+      "bytes": 10088
+    },
+    "reports/stage_v3_20261026/eval_A1_initial.log": {
+      "sha256": "c8a9f9f98beba8975b70b859d6583ee706545876f136007d07f3acf55431f0e8",
+      "bytes": 7051
+    },
+    "reports/stage_v3_20261026/eval_A1_initial/diagnostic_live_progress.json": {
+      "sha256": "8d85d16878a9743012483eece8363e9a242e7a7a2ebbe047502647d4ab306c15",
+      "bytes": 849
+    },
+    "reports/stage_v3_20261026/execution_manifest.json": {
+      "sha256": "d33c3b9c6f4276c9fc52eb8b4bfdc194a3f3d45aaae317a2b2dd137c329d75e4",
+      "bytes": 522
+    },
+    "reports/stage_v3_20261026/input_audit.json": {
+      "sha256": "d2f3bae64dfee9c5fb2d7ba88d662d5d7dd895b7c1d2541919ac00c0712ba8a6",
+      "bytes": 2485
+    },
+    "reports/stage_v3_20261026/job.json": {
+      "sha256": "8b941eef72d4cdea684f31d00bb633762b114ad33d9eb46c18971690f46af551",
+      "bytes": 221
+    },
+    "reports/stage_v3_20261026/phase1_decision.json": {
+      "sha256": "bcf72a7b89a220c783fcd058e1f7f0f48691ef30ffbe66bdcbb2ac1e3ff2adf6",
+      "bytes": 104
+    },
+    "reports/stage_v3_20261026/plan_lock.json": {
+      "sha256": "c739cf654660dc6c96e24ee889bb00f361c6ac80a57ece4f6a23aa6e3c7ff21f",
+      "bytes": 216
+    },
+    "reports/stage_v3_20261026/stage_results.json": {
+      "sha256": "7f24b6b8fd5a5fadc86cf92fe363fbc3d1e31b14efbfb47d69ae1c3acf8a3ac9",
+      "bytes": 3666
+    },
+    "reports/stage_v3_20261026/training_progress.json": {
+      "sha256": "7f0dde4a658988844f2d381729edb4be1052c3ac239777215422028e1254e32e",
+      "bytes": 138
     },
     "results/20261023T104759Z/act0_validation.csv": {
       "sha256": "795a5ba45f9bf28f50c80ea96febe88512a4ddec2649e43bda140ae73afb06d7",
@@ -1432,6 +1491,14 @@
     "results/20261023T104759Z/summary.csv": {
       "sha256": "8114722e22d2abfec8f1dd78aa833ced5765d74664e794fad5309f8fe21d9c61",
       "bytes": 1124
+    },
+    "results/stage_v3_20261026/A1_updates.csv": {
+      "sha256": "d81aec707b590519a7023cd3a8e96e5c6ad86cbe3c03a520c49ecd0eb8398e94",
+      "bytes": 29647
+    },
+    "results/stage_v3_20261026/eval_A1_initial.csv": {
+      "sha256": "607fa77e40d6b79cc4ffbf41f013823cec14270efeb35cfbd0eb4cc54798161c",
+      "bytes": 1265
     }
   },
   "weights": []

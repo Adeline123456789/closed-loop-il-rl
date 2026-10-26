@@ -285,6 +285,15 @@ def main():
     parser.add_argument('--daemon',action='store_true')
     parser.add_argument('--interval',type=float,default=30)
     args=parser.parse_args()
+    if (ROOT/'configs/stage_v3_phase1.json').exists():
+        from stage_v3_status import display as staged_display
+        if args.interval<1:parser.error('interval must be >= 1 second')
+        while True:
+            print(staged_display(),flush=True)
+            if not args.daemon:return
+            staged_job=read(ROOT/'reports/stage_v3_20261026/job.json')
+            if staged_job.get('status')!='RUNNING' or not alive(staged_job.get('pid')):return
+            time.sleep(args.interval)
     if not args.daemon:
         data=snapshot()
         cached=read(REPORT/'training_progress.json')

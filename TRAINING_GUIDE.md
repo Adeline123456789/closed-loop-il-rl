@@ -155,3 +155,23 @@ cat reports/20261023T104759Z/direct_q_job.json
 `direct_Q_validation.csv` 在第二组初始化完成后出现；每完成一回合刷新。新评估使用 21000–21031，原 ACT0 20000–20031 的结果保留。每组独立仿真进程，逐物理步日志保证进度不是监控心跳。初始化最多 300 秒；连续 180 秒无物理进展抓栈并中断，最多 30 秒收尾，错误会写盘并发布，绝不自动改门槛或无限重跑。
 
 后台入口为 `PYTHONPATH=src .venv/bin/python scripts/background_direct_q.py`；已有真实评估产物时会拒绝覆盖，不要重复启动。结束后后台作业自动更新最终报告、推送当前分支并更新 PR #1。原始图像、数据和权重仍在本地。
+# 当前 v3 分阶段执行
+
+```bash
+cd /media/midea/F496AC8096AC4548/closed_loop_act
+watch -n 5 .venv/bin/python scripts/training_status.py
+tail -f .cache/stage_v3_background.log
+tail -f reports/stage_v3_20261026/eval_A1_initial.log
+```
+
+第一阶段补 A1（BC＋同样步长约束），复用 A2（Q＋BC＋步长）以及 ACT0；不重新预训练。A1 初始 32 回合后按锁定规则判断，最多追加 A1/A2 各 32 回合，不增加训练。第一阶段未 GO 时，第二至第五阶段保持 NOT_RUN。阶段报告位于 `reports/stage_v3_20261026/FINAL_REPORT.md`。
+
+管理进程启动命令（已有 `forcecritic-stage-v3` 会话时不要重复启动）：
+
+```bash
+tmux new-session -d -s forcecritic-stage-v3 'env PYTHONPATH=src .venv/bin/python -u scripts/background_stage_v3.py > .cache/stage_v3_background.log 2>&1'
+```
+
+管理程序记录每次仿真的命令、返回码和物理步；重复启动只接纳已完成且哈希一致的批次，失败批次须先审计，不覆盖。A1 训练的早期 detached 启动未保留操作系统退出码，执行清单如实标记为空，以已完成训练产物、日志和 checkpoint SHA 验证，不伪造退出码。
+
+本文其余内容为历史训练与诊断命令；新执行顺序见 `PROTOCOL_STAGE_V3.md`。

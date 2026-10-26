@@ -768,5 +768,39 @@
       "command": null
     }
   },
-  "manifest": "reports/20261023T104759Z/run_manifest.json"
+  "manifest": "reports/20261023T104759Z/run_manifest.json",
+  "active_protocol": "forcecritic_staged_v3",
+  "active_stage_report": "reports/stage_v3_20261026/stage_results.json",
+  "staged_v3": {
+    "phase1": {
+      "status": "NOT_RUN",
+      "reason": "Matched A1 evaluation incomplete",
+      "extension_allowed": false
+    },
+    "phase2": {
+      "status": "NOT_RUN",
+      "reason": "Requires phase1 GO; historical arms include force and cannot stand in for no-force B2"
+    },
+    "phase3": {
+      "status": "NOT_RUN",
+      "reason": "Requires phase1/phase2 support and trustworthy replay; historical D0 NO_GO retained"
+    },
+    "phase4": {
+      "status": "NOT_RUN",
+      "reason": "Requires phase3 GO"
+    },
+    "phase5": {
+      "status": "NOT_RUN",
+      "reason": "Requires confirmation GO"
+    }
+  },
+  "staged_v3_execution": {
+    "status": "RUNNING",
+    "phase": "eval_A1_initial",
+    "pid": 1331113,
+    "updated": 1793017522.890693,
+    "child_pid": 1331142,
+    "started": 1793017522.8902552,
+    "log": "reports/stage_v3_20261026/eval_A1_initial.log"
+  }
 }

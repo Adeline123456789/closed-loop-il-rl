@@ -1,5 +1,9 @@
 # Force Critic → ACT: diagnostic-first implementation
 
+**Current execution protocol:** [staged v3](PROTOCOL_STAGE_V3.md), as revised by the user on 2026-10-26. The missing matched BC-only A1 has completed 200 updates; real A1/A2 evaluation is supervised by `scripts/background_stage_v3.py`. See the [generated current report](reports/stage_v3_20261026/FINAL_REPORT.md). The old D0 failure gates calibration (stage 3), not the matched direct-Q test (stage 1). Historical B1/B2/B3 below refer to the archived diagnostic-first protocol; v3 B1/B2/B3 mean the force-input controls.
+
+Current progress: `watch -n 5 .venv/bin/python scripts/training_status.py`. Execution log: `tail -f .cache/stage_v3_background.log`. Per-episode physics and batch logs live under `reports/stage_v3_20261026/`. Later stages run only when the preceding report supports their registered gate; NOT_RUN is not zero success.
+
 Protocol: `force_critic_act_v2_diagnostic_first`. The post-EULA real simulator passes both 1-env and 8-env camera/physics smoke checks. The measured P0 contract is accepted for new same-version recollection; the legacy HF contract remains unresolved. **ACT0 completed 10,000 updates and 32 real validation episodes: 6 stable insertions (18.75% in this batch). B1/B2/B3 remain unmeasured.** Replay diagnosis must pass before calibration/ablation. See [project status](reports/PROJECT_STATUS.json) for actual stage records and [progress guide](EXPERIMENT_PROGRESS.md) for producer counters and the stall watchdog.
 
 ACT is the actor: single RGB + proprioception + four past wrench/motion/command frames → ACT-CVAE → full 4×4 native action chunk. Twin critics output return/cost; their action gradients directly update ACT. Critic weights and observation conditions stay fixed during actor updates. Deployment and Q actions use z=0. There is no residual SAC, teacher distillation, world model, recoverability head, or learned filter.

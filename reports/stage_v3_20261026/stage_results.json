@@ -1,0 +1,115 @@
+{
+  "protocol": "forcecritic_staged_v3",
+  "config_sha": "d520e1f544db8a09be8252eabf6fa22e2ece8ef984b59a5cb32643ad2b72fe95",
+  "phase1": {
+    "status": "NOT_RUN",
+    "reason": "Matched A1 evaluation incomplete",
+    "extension_allowed": false
+  },
+  "arms": {
+    "A0_historical": {
+      "status": "PASSED",
+      "episodes": 32,
+      "successes": 5,
+      "success_rate": 0.15625,
+      "wilson95": [
+        0.0686442028250571,
+        0.3175414959753039
+      ],
+      "mean_return": 31.32874146137432,
+      "mean_cost": 2.091412264577186,
+      "mean_peak_force_N": 23.444302558898926,
+      "max_peak_force_N": 112.65003967285156,
+      "mean_peak_torque_Nm": 2.5509585570544004,
+      "max_peak_torque_Nm": 6.323617458343506,
+      "overload_episode_rate": 0.96875,
+      "overload_step_rate": 0.08944041208147975,
+      "protection_stop_rate": 0.09375,
+      "failure_reasons": {
+        "finite_horizon": 24,
+        "stable_success": 5,
+        "unsafe": 3
+      },
+      "mean_first_stable_success_seconds": 4.68,
+      "success_time_definition": "Time to first 3-step stable-success detection, conditional on success; failures censored",
+      "evaluation_control_steps": 4271
+    },
+    "A1": {
+      "status": "PASSED",
+      "episodes": 4,
+      "successes": 2,
+      "success_rate": 0.5,
+      "wilson95": [
+        0.15003898915214947,
+        0.8499610108478506
+      ],
+      "mean_return": 29.42426177526528,
+      "mean_cost": 0.5865535513686414,
+      "mean_peak_force_N": 21.107585906982422,
+      "max_peak_force_N": 22.011241912841797,
+      "mean_peak_torque_Nm": 2.51643106341362,
+      "max_peak_torque_Nm": 3.0816733837127686,
+      "overload_episode_rate": 1.0,
+      "overload_step_rate": 0.052742616033755275,
+      "protection_stop_rate": 0.0,
+      "failure_reasons": {
+        "finite_horizon": 2,
+        "stable_success": 2
+      },
+      "mean_first_stable_success_seconds": 5.866666666666666,
+      "success_time_definition": "Time to first 3-step stable-success detection, conditional on success; failures censored",
+      "evaluation_control_steps": 474
+    },
+    "A2": {
+      "status": "PASSED",
+      "episodes": 32,
+      "successes": 6,
+      "success_rate": 0.1875,
+      "wilson95": [
+        0.08889544689565954,
+        0.3530915520137596
+      ],
+      "mean_return": 28.836791782782726,
+      "mean_cost": 1.431278389832685,
+      "mean_peak_force_N": 22.109564065933228,
+      "max_peak_force_N": 59.292884826660156,
+      "mean_peak_torque_Nm": 2.4421346373856068,
+      "max_peak_torque_Nm": 4.59008264541626,
+      "overload_episode_rate": 0.9375,
+      "overload_step_rate": 0.09392812887236679,
+      "protection_stop_rate": 0.09375,
+      "failure_reasons": {
+        "finite_horizon": 23,
+        "stable_success": 6,
+        "unsafe": 3
+      },
+      "mean_first_stable_success_seconds": 4.0777777777777775,
+      "success_time_definition": "Time to first 3-step stable-success detection, conditional on success; failures censored",
+      "evaluation_control_steps": 4035
+    }
+  },
+  "extension_progress": {
+    "A1": 0,
+    "A2": 0
+  },
+  "phase2": {
+    "status": "NOT_RUN",
+    "reason": "Requires phase1 GO; historical arms include force and cannot stand in for no-force B2"
+  },
+  "phase3": {
+    "status": "NOT_RUN",
+    "reason": "Requires phase1/phase2 support and trustworthy replay; historical D0 NO_GO retained"
+  },
+  "phase4": {
+    "status": "NOT_RUN",
+    "reason": "Requires phase3 GO"
+  },
+  "phase5": {
+    "status": "NOT_RUN",
+    "reason": "Requires confirmation GO"
+  },
+  "provenance": {
+    "historical_A2_already_observed": true,
+    "a2_first_update_audit": "PASSED"
+  }
+}

@@ -1,5 +1,7 @@
 # Codex 实施任务书：力觉 Critic 直接更新 ACT 的最小验证
 
+> 2026-10-26 用户修订：当前执行顺序与停止规则以 [PROTOCOL_STAGE_V3.md](PROTOCOL_STAGE_V3.md) 为准。下文保留原始 diagnostic-first 协议，历史结果不覆盖。D0 失败限制第三阶段配对校准，不阻止第一阶段匹配 Q 对照；第二阶段须先有第一阶段支持。下文的旧阶段状态不是最新运行状态。
+
 协议：`force_critic_act_v2_diagnostic_first`。这是待执行的研究协议，不是已验证算法。
 目标仓库：https://github.com/Adeline123456789/closed-loop-il-rl
 当前状态：已增加 CPU 可验证的学习与控制组件及 P0 实测审计；P0 尚未验收，没有本项目机器人训练结果。具体执行状态见 reports/PROJECT_STATUS.json 和对应 implementation_audit.md。旧版 `prd_mvp_v1_prior_gap` 已作废，Git 历史保留，禁止继续按旧版执行。

@@ -11,7 +11,7 @@ os.environ['PYTEST_DISABLE_PLUGIN_AUTOLOAD']='1'
 os.environ['CUDA_VISIBLE_DEVICES']=''
 os.environ['GIT_TERMINAL_PROMPT']='0'
 ROOTS=['src','scripts','tests','configs','reports','results','pyproject.toml','.gitignore',
-       'README.md','TRAINING_GUIDE.md','DATA_FORMAT.md','EXPERIMENT_PROGRESS.md','CODEX_TASK.md','AGENTS.md','THIRD_PARTY_NOTICES.md','third_party',
+       'README.md','PROTOCOL_STAGE_V3.md','TRAINING_GUIDE.md','DATA_FORMAT.md','EXPERIMENT_PROGRESS.md','CODEX_TASK.md','AGENTS.md','THIRD_PARTY_NOTICES.md','third_party',
        'environment.lock.json','upstream.lock.json','protocol_lock.json','artifacts_manifest.json']
 def run(args, timeout=300):
     try:
@@ -45,7 +45,7 @@ for entry in subprocess.check_output(['git','ls-files','--stage','-z','--','repo
     metadata,path=entry.split(b'\t',1);blob=metadata.split()[1].decode()
     payload=subprocess.check_output(['git','cat-file','blob',blob])
     artifacts[path.decode()]={'sha256':hashlib.sha256(payload).hexdigest(),'bytes':len(payload)}
-Path('artifacts_manifest.json').write_text(json.dumps({'run_id':'20261023T104759Z','artifacts':artifacts,'weights':[]},indent=2)+'\n')
+Path('artifacts_manifest.json').write_text(json.dumps({'run_id':'20261023T104759Z','additional_runs':['stage_v3_20261026'] if Path('reports/stage_v3_20261026').exists() else [],'artifacts':artifacts,'weights':[]},indent=2)+'\n')
 r=run(['git','add','--','artifacts_manifest.json'])
 if r.returncode:raise SystemExit(r.stderr)
 if run(['git','diff','--cached','--quiet']).returncode:
