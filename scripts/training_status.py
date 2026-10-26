@@ -76,6 +76,27 @@ def snapshot():
               and job.get('stage') in order and order.index(stage)>order.index(job['stage'])):
             status = 'WAITING_GATE'
         queue[stage] = status
+    # Heartbeats prove only that this observer is alive. Track producer evidence
+    # independently, so a quiet/stuck simulator cannot masquerade as progress.
+    stage = job.get('stage', 'baseline')
+    logs = sorted(REPORT.glob(f'{stage}_*.log'), key=lambda p:p.stat().st_mtime)
+    evidence = [p for p in (CHECKPOINT/'act0.json', REPORT/'baseline_validation.json',
+                           REPORT/'baseline_training.json', CHECKPOINT/'shared_replay.pt',
+                           CHECKPOINT/'critic0.pt') if p.exists()]
+    evidence += [p for p in RESULT.glob('*.csv')
+                 if p.name not in ('act_pretraining_loss.csv','recollection_episodes.csv','summary.csv','paired_comparisons.csv')]
+    if logs:evidence.append(logs[-1])
+    latest = max(evidence, key=lambda p:p.stat().st_mtime) if evidence else None
+    evidence_age = round(time.time()-latest.stat().st_mtime,1) if latest else None
+    warning = None
+    if running and job.get('status')=='RUNNING' and evidence_age is not None and evidence_age>300:
+        warning=f'已 {evidence_age/60:.1f} 分钟没有新的可核实执行记录；疑似停滞或缺少阶段内遥测，不能估算完成时间。'
+    if (stage=='baseline' and running and job.get('status')=='RUNNING'
+            and len(evaluations)==32 and not (CHECKPOINT/'shared_replay.pt').exists() and logs):
+        text=logs[-1].read_text(errors='replace')
+        tail=text.rsplit('[INFO]: Parsing configuration from:',1)[-1]
+        if 'Setting seed: 0' in tail and '[INFO]: Base environment:' not in tail:
+            phase='切换到 8 环境：初始化完成尚未得到日志确认'
     return dict(time_utc=datetime.now(timezone.utc).isoformat(), phase=phase,
                 supervisor_alive=running, supervisor_status=job.get('status'),
                 act_updates=done, act_target=target, act_percent=round(100*done/target, 1),
@@ -88,7 +109,10 @@ def snapshot():
                 diagnostic_rows={n:len(rows(n+'.csv')) for n in ('fidelity','paired_screening','paired_confirmation','actor_step')},
                 ablation_episodes={a:len(rows(f'short_{a}_validation.csv')) for a in ('B0','B1','B2','B3')},
                 milestones=[p.name for p in sorted((CHECKPOINT/'act0_milestones').glob('*.pt'))],
-                publication=read(ROOT/'.cache/background_publication.json'))
+                publication=read(ROOT/'.cache/background_publication.json'),
+                execution_evidence_age_seconds=evidence_age, progress_warning=warning,
+                latest_execution_evidence=str(latest.relative_to(ROOT)) if latest else None,
+                latest_stage_log=str(logs[-1].relative_to(ROOT)) if logs else None)
 
 
 def display(data):
@@ -101,13 +125,22 @@ def display(data):
     eta = data.get('pretraining_eta_minutes')
     if eta is not None:
         lines.append(f'按近期实测速度，剩余预训练约 {eta:.1f} 分钟；不含后续仿真/Critic/消融')
-    lines += [f"真实 ACT0 评估：{data['real_baseline_episodes']} / 32 回合，已完成回合成功 {data['real_baseline_successes']}；未跑完不报最终成功率",
+    evaluation = f"真实 ACT0 评估：{data['real_baseline_episodes']} / 32 回合，已完成回合成功 {data['real_baseline_successes']}"
+    if data['real_baseline_episodes']==32:
+        evaluation+=f"；本批次成功率 {100*data['real_baseline_successes']/32:.2f}%"
+    else:
+        evaluation+='；未跑完不报最终成功率'
+    lines += [evaluation,
+        f"最近实际执行记录距今：{data['execution_evidence_age_seconds']} 秒（监控心跳不算实验进度）",
+        '执行日志：'+str(data['latest_stage_log']),
         '后续队列：' + ' → '.join(f'{k} [{v}]' for k,v in data['queue'].items()),
         'diagnostic = O/R/P 保真度 → 配对信号 → 真实 Critic→ACT 更新；short-ablation = B1/B2/B3 各 2000 Critic / 200 Actor 更新，B0–B3 各 32 回合评估',
         '前置门槛失败会停止并记录原因；pilot/confirm/generalization 不在自动队列中。',
         '诊断已记录行数：'+str(data['diagnostic_rows']),
         '消融已完成评估回合：'+str(data['ablation_episodes']),
         '独立 checkpoint：'+', '.join(data['milestones'])]
+    if data.get('progress_warning'):
+        lines.insert(2, '注意：'+data['progress_warning'])
     if data.get('stop_reason'):
         lines.append('停止原因：'+data['stop_reason'])
     publication=data['publication']
@@ -172,6 +205,7 @@ def main():
         atomic(REPORT/'training_progress.json',data)
         line=f"{data['time_utc']} LIVE {data['phase']} | ACT {data['act_updates']}/{data['act_target']} ({data['act_percent']}%) | real eval {data['real_baseline_episodes']}/32 | queue {data['queue']}"
         if loss:line+=f" | loss@{loss['update']}={loss['last']:.5f}"
+        if data.get('progress_warning'):line+=' | '+data['progress_warning']
         with (ROOT/'.cache/background_training.log').open('a') as stream:stream.write(line+'\n')
         print(line,flush=True)
         if not data['supervisor_alive']:

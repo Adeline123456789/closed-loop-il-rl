@@ -91,6 +91,8 @@ watch -n 5 '.venv/bin/python scripts/training_status.py'
 
 后台监控每 30 秒向 `.cache/background_training.log` 追加 `LIVE` 心跳，完整状态写入 `reports/20261023T104759Z/training_progress.json`，从真实 checkpoint 中导出损失到 `results/20261023T104759Z/act_pretraining_loss.csv`。它不改训练参数、不重启优化器。`background_job.json` 的时间是进入阶段的时间，不是训练更新的时间；`run_manifest.json` 的阶段结果通常在阶段结束后写入，不能将其中旧的 `NOT_RUN` 当作当前没有进程。
 
+面板另显示“最近实际执行记录距今”：只统计执行日志、checkpoint 与真实结果，排除监控心跳和派生损失 CSV。超过 5 分钟无执行记录会提示“疑似停滞或缺少遥测”，不会继续假装能估算完成时间。这个提示本身不是死锁的证明。ACT 100% 只表示预训练完成；只有 short-ablation 有实际完成结果、决策文件已写入，并且最近上传退出码为 0，才表示这一轮最小消融已完成并发布。STOPPED/FAILED 表示中途停止，必须看原因。
+
 队列为 baseline（ACT 10000 更新 → 32 回合评估 → 共享真实交互 → 普通 Critic 最多 10000 更新）、diagnostic（保真度/配对/真实 Critic→ACT）、short-ablation（B1/B2/B3 各 2000 Critic + 200 Actor 更新，B0–B3 各 32 回合真实评估）。门槛未通过就停止并显示原因。普通 Critic 循环尚无逐步遥测时面板会明确说明，不伪造更新进度。pilot/confirm/generalization 不在自动队列中。
 
 采集总日志、当前子进程日志和 GPU：

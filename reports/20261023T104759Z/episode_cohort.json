@@ -1,0 +1,12 @@
+{
+  "cohort": "baseline_32_validation",
+  "training_seed": 0,
+  "reset_conditions": "reset seed encoded in parent_episode; not independent training seeds",
+  "control_dt": [
+    0.06666666666666667
+  ],
+  "raw_evidence_hashes": {
+    "results/20261023T104759Z/act0_validation.csv": "795a5ba45f9bf28f50c80ea96febe88512a4ddec2649e43bda140ae73afb06d7"
+  },
+  "note": "One cohort only. Earlier raw CSVs remain separate; no pooling baseline and short-update parents."
+}

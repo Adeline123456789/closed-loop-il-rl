@@ -1,14 +1,14 @@
 {
-  "time_utc": "2026-10-26T06:45:47.161882+00:00",
-  "phase": "ACT 示教预训练",
+  "time_utc": "2026-10-26T07:18:02.752170+00:00",
+  "phase": "切换到 8 环境：初始化完成尚未得到日志确认",
   "supervisor_alive": true,
   "supervisor_status": "RUNNING",
-  "act_updates": 9700,
+  "act_updates": 10000,
   "act_target": 10000,
-  "act_percent": 97.0,
-  "checkpoint_age_seconds": 3.7,
-  "real_baseline_episodes": 0,
-  "real_baseline_successes": 0,
+  "act_percent": 100.0,
+  "checkpoint_age_seconds": 1883.5,
+  "real_baseline_episodes": 32,
+  "real_baseline_successes": 6,
   "queue": {
     "baseline": "RUNNING",
     "diagnostic": "WAITING_GATE",
@@ -31,16 +31,21 @@
     "act0_update_006800.pt",
     "act0_update_007000.pt",
     "act0_update_008000.pt",
-    "act0_update_009000.pt"
+    "act0_update_009000.pt",
+    "act0_update_010000.pt"
   ],
   "publication": {
-    "time_utc": "2026-10-26T06:38:02.008117+00:00",
+    "time_utc": "2026-10-26T06:45:54.561922+00:00",
     "returncode": 0,
-    "head": "5a9e497b4596dbe1424236e08ad8c4420086f8c8"
+    "head": "5c2a014e74ac00c09b2a1e93c4b9db21970ec02c"
   },
+  "execution_evidence_age_seconds": 851.0,
+  "progress_warning": "已 14.2 分钟没有新的可核实执行记录；疑似停滞或缺少阶段内遥测，不能估算完成时间。",
+  "latest_execution_evidence": "reports/20261023T104759Z/baseline_1792995342895319268.log",
+  "latest_stage_log": "reports/20261023T104759Z/baseline_1792995342895319268.log",
   "loss": {
-    "update": 9700,
-    "last": 0.03012901172041893,
-    "mean_last_100": 0.032691713534295556
+    "update": 10000,
+    "last": 0.033908627927303314,
+    "mean_last_100": 0.032876249384135005
   }
 }

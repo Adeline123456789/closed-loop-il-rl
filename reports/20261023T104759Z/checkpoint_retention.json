@@ -1,5 +1,5 @@
 {
-  "status": "RUNNING",
+  "status": "COMPLETED",
   "interval": 1000,
   "producer_pid": 1228198,
   "retained": [
@@ -74,6 +74,24 @@
         "history",
         "identity"
       ]
+    },
+    {
+      "update": 10000,
+      "path": "checkpoints/20261023T104759Z/act0_milestones/act0_update_010000.pt",
+      "sha256": "63433851d051fe4149d8f27deec600a438f146208eb5928782d56b9223dc8bb8",
+      "bytes": 705573017,
+      "reason": "scheduled_milestone",
+      "contains": [
+        "actor",
+        "optimizer",
+        "sampler_rng",
+        "torch_rng",
+        "cuda_rng",
+        "python_rng",
+        "numpy_rng",
+        "history",
+        "identity"
+      ]
     }
   ],
   "unavailable_before_activation": [
@@ -84,5 +102,5 @@
     5000,
     6000
   ],
-  "latest_observed_update": 9700
+  "latest_observed_update": 10000
 }
