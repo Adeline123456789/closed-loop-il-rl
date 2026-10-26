@@ -1,13 +1,13 @@
 # Current measured publication snapshot
 
-UTC: 2026-10-26T06:14:39.603542+00:00. Collection: 20/20 runs, 376 episodes, 367 expert successes.
+UTC: 2026-10-26T06:15:35.930763+00:00. Collection: 20/20 runs, 376 episodes, 367 expert successes.
 
 ACT optimizer updates saved: 0. This does not establish ACT insertion success.
 
 | Stage | Recorded status |
 |---|---|
 | doctor | PASSED |
-| audit-data | IN_PROGRESS |
+| audit-data | PASSED |
 | smoke-1 | PASSED |
 | smoke-8 | PASSED |
 | baseline | NOT_RUN |

@@ -9,7 +9,7 @@ P0 has passed for same-version recollection; ACT robot outcomes have not been me
 | Stage | Status | Reason |
 |---|---|---|
 | doctor | PASSED | Missing runtime: ;  |
-| audit-data | IN_PROGRESS | Legacy HF remains unaligned; same-version collection and final accepted manifest not yet complete |
+| audit-data | PASSED | Accepted hashed same-version recordings; HF semantics remain unresolved |
 | smoke-1 | PASSED | Real launcher attempted; see command log |
 | smoke-8 | PASSED | Real launcher attempted; see command log |
 | baseline | NOT_RUN | Not reached: same-version recollection is still running; all real predecessor gates remain required |
@@ -43,7 +43,7 @@ Expert download integrity: `VERIFIED`; safe tensor-shape inspection: `PASSED`. M
 4. B2 vs B1 filtering: **insufficient evidence**, NOT_RUN.
 5. B3 vs B2 calibration: **insufficient evidence**, NOT_RUN. Endpoint labels already contain contrast information.
 6. Recorded continuation decision: **BLOCKED** — BLOCKED_LICENSE: Omniverse Kit requested EULA acceptance; no user acceptance was supplied and no scene was created.
-7. Stages not passed/completed: audit-data, baseline, diagnostic, short-ablation, pilot, confirm, generalization. Reasons are listed above; an environment block is not an algorithm negative result.
+7. Stages not passed/completed: baseline, diagnostic, short-ablation, pilot, confirm, generalization. Reasons are listed above; an environment block is not an algorithm negative result.
 
 ## Raw result summary
 
@@ -56,8 +56,8 @@ Expert download integrity: `VERIFIED`; safe tensor-shape inspection: `PASSED`. M
 
 ## Cost and artifacts
 
-Individual simulator transitions by category: `{"interaction": 57224, "branch": 0, "prefix": 0, "restore": 4896, "evaluation": 136}`.
-Total accounted simulator transitions: 62256. CPU unit fixtures are excluded from robot metrics.
+Individual simulator transitions by category: `{"interaction": 57224, "branch": 0, "prefix": 0, "restore": 4972, "evaluation": 172}`.
+Total accounted simulator transitions: 62368. CPU unit fixtures are excluded from robot metrics.
 Checkpoint index entries: 0. Publication is not implied by a local checkpoint; only verified Release entries may be used as download links.
 Header-only fidelity/pair/actor/episode CSV files mean NOT_RUN, not zero success.
 
