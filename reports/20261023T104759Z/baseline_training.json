@@ -1,0 +1,32 @@
+{
+  "status": "PASSED",
+  "real_blocks": 3266,
+  "real_complete_episodes": 96,
+  "critic_updates": 10000,
+  "return_scale": [
+    12.303836486796504,
+    2.018863985033277
+  ],
+  "replay_sha256": "f8b76593febf6cec1f9feb9ba37490dd5e421008a7ae9eaab2b609b6ac7c44e9",
+  "policy_sha256": "63433851d051fe4149d8f27deec600a438f146208eb5928782d56b9223dc8bb8",
+  "accounting": {
+    "physics_substeps": {
+      "restore": 6968,
+      "interaction": 114432,
+      "branch": 0,
+      "prefix": 0,
+      "evaluation": 0
+    },
+    "decimation": 8,
+    "num_envs": 8,
+    "control_step_cap": 50000.0,
+    "individual_control_step_equivalents": {
+      "restore": 871,
+      "interaction": 14304,
+      "branch": 0,
+      "prefix": 0,
+      "evaluation": 0
+    },
+    "charged_before_step": true
+  }
+}

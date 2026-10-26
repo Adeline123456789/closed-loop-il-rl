@@ -12,7 +12,7 @@ Raw completed episodes are summarized separately by seed, split and checkpoint; 
 | audit-data | PASSED | Accepted hashed same-version recordings; HF semantics remain unresolved |
 | smoke-1 | PASSED | Real launcher attempted; see command log |
 | smoke-8 | PASSED | Real launcher attempted; see command log |
-| baseline | FAILED_IMPLEMENTATION | Robot driver failed |
+| baseline | PASSED | ACT0 has measured insertions; ordinary critic fitted on actual chunk transitions |
 | diagnostic | NOT_RUN | Not reached: same-version recollection is still running; all real predecessor gates remain required |
 | short-ablation | NOT_RUN | Not reached: same-version recollection is still running; all real predecessor gates remain required |
 | pilot | NOT_RUN | Not reached: same-version recollection is still running; all real predecessor gates remain required |
@@ -43,7 +43,7 @@ Expert download integrity: `VERIFIED`; safe tensor-shape inspection: `PASSED`. M
 4. B2 vs B1 filtering: see matched-parent comparison and independent diagnostic evidence.
 5. B3 vs B2 calibration: see matched-parent comparison; endpoint labels already contain contrast information.
 6. Recorded continuation decision: **NOT_RUN** — P0 accepted and current smoke-1/smoke-8 passed. ACT pretraining is running; no diagnostic continuation decision has been measured yet. See training_progress.json..
-7. Stages not passed/completed: baseline, diagnostic, short-ablation, pilot, confirm, generalization. Reasons are listed above; an environment block is not an algorithm negative result.
+7. Stages not passed/completed: diagnostic, short-ablation, pilot, confirm, generalization. Reasons are listed above; an environment block is not an algorithm negative result.
 
 ## Raw result summary
 
@@ -56,8 +56,8 @@ Expert download integrity: `VERIFIED`; safe tensor-shape inspection: `PASSED`. M
 
 ## Cost and artifacts
 
-Individual simulator transitions by category: `{"interaction": 57235, "branch": 0, "prefix": 0, "restore": 5620, "evaluation": 4412}`.
-Total accounted simulator transitions: 67267. CPU unit fixtures are excluded from robot metrics.
+Individual simulator transitions by category: `{"interaction": 71539, "branch": 0, "prefix": 0, "restore": 6491, "evaluation": 4412}`.
+Total accounted simulator transitions: 82442. CPU unit fixtures are excluded from robot metrics.
 Checkpoint index entries: 0. Publication is not implied by a local checkpoint; only verified Release entries may be used as download links.
 Header-only fidelity/pair/actor/episode CSV files mean NOT_RUN, not zero success.
 
