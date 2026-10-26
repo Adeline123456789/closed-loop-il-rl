@@ -1,0 +1,46 @@
+{
+  "time_utc": "2026-10-26T06:45:47.161882+00:00",
+  "phase": "ACT 示教预训练",
+  "supervisor_alive": true,
+  "supervisor_status": "RUNNING",
+  "act_updates": 9700,
+  "act_target": 10000,
+  "act_percent": 97.0,
+  "checkpoint_age_seconds": 3.7,
+  "real_baseline_episodes": 0,
+  "real_baseline_successes": 0,
+  "queue": {
+    "baseline": "RUNNING",
+    "diagnostic": "WAITING_GATE",
+    "short-ablation": "WAITING_GATE"
+  },
+  "stop_reason": null,
+  "diagnostic_rows": {
+    "fidelity": 0,
+    "paired_screening": 0,
+    "paired_confirmation": 0,
+    "actor_step": 0
+  },
+  "ablation_episodes": {
+    "B0": 0,
+    "B1": 0,
+    "B2": 0,
+    "B3": 0
+  },
+  "milestones": [
+    "act0_update_006800.pt",
+    "act0_update_007000.pt",
+    "act0_update_008000.pt",
+    "act0_update_009000.pt"
+  ],
+  "publication": {
+    "time_utc": "2026-10-26T06:38:02.008117+00:00",
+    "returncode": 0,
+    "head": "5a9e497b4596dbe1424236e08ad8c4420086f8c8"
+  },
+  "loss": {
+    "update": 9700,
+    "last": 0.03012901172041893,
+    "mean_last_100": 0.032691713534295556
+  }
+}

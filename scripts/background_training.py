@@ -127,6 +127,11 @@ def main():
     fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
     if not (DATA / 'manifest.json').exists():
         raise RuntimeError('Completed demonstration manifest required; no duplicate collection launched')
+    state('RUNNING', args.adopt_stage or 'initial-publication')
+    with (ROOT / '.cache/training_monitor.log').open('a') as monitor_log:
+        subprocess.Popen([PYTHON, 'scripts/training_status.py', '--daemon'],
+                         stdout=monitor_log, stderr=subprocess.STDOUT,
+                         env={**os.environ, 'CUDA_VISIBLE_DEVICES': ''})
     # Independent retention also works with a trainer already loaded in memory.
     # Its own lock prevents duplicates when the supervisor is replaced.
     with (ROOT / '.cache/checkpoint_retention.log').open('a') as retention_log:

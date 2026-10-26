@@ -1,5 +1,5 @@
 {
-  "snapshot_time_utc": "2026-10-26T06:37:56.011357+00:00",
+  "snapshot_time_utc": "2026-10-26T06:45:47.188441+00:00",
   "completed_collection_runs": 20,
   "planned_collection_runs": 20,
   "completed_episodes": 376,
@@ -18,7 +18,7 @@
       "successful": 61
     }
   },
-  "actor_pretraining_updates": 7100,
+  "actor_pretraining_updates": 9700,
   "collection_runs": [
     {
       "collection_run": "00_train_1100",

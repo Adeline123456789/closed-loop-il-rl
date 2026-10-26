@@ -82,6 +82,17 @@ PYTHONPATH=src .venv/bin/python scripts/collect_demonstrations.py \
 
 ## 查看进度
 
+推荐直接查看实时面板，显示 ACT 更新数/损失、真实评估回合数、后续诊断与消融队列、进程存活及上传状态：
+
+```bash
+cd /media/midea/F496AC8096AC4548/closed_loop_act
+watch -n 5 '.venv/bin/python scripts/training_status.py'
+```
+
+后台监控每 30 秒向 `.cache/background_training.log` 追加 `LIVE` 心跳，完整状态写入 `reports/20261023T104759Z/training_progress.json`，从真实 checkpoint 中导出损失到 `results/20261023T104759Z/act_pretraining_loss.csv`。它不改训练参数、不重启优化器。`background_job.json` 的时间是进入阶段的时间，不是训练更新的时间；`run_manifest.json` 的阶段结果通常在阶段结束后写入，不能将其中旧的 `NOT_RUN` 当作当前没有进程。
+
+队列为 baseline（ACT 10000 更新 → 32 回合评估 → 共享真实交互 → 普通 Critic 最多 10000 更新）、diagnostic（保真度/配对/真实 Critic→ACT）、short-ablation（B1/B2/B3 各 2000 Critic + 200 Actor 更新，B0–B3 各 32 回合真实评估）。门槛未通过就停止并显示原因。普通 Critic 循环尚无逐步遥测时面板会明确说明，不伪造更新进度。pilot/confirm/generalization 不在自动队列中。
+
 采集总日志、当前子进程日志和 GPU：
 
 ```bash

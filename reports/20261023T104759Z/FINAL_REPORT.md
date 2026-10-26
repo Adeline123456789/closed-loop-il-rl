@@ -12,12 +12,12 @@ P0 has passed for same-version recollection; ACT robot outcomes have not been me
 | audit-data | PASSED | Accepted hashed same-version recordings; HF semantics remain unresolved |
 | smoke-1 | PASSED | Real launcher attempted; see command log |
 | smoke-8 | PASSED | Real launcher attempted; see command log |
-| baseline | NOT_RUN | Not reached: same-version recollection is still running; all real predecessor gates remain required |
-| diagnostic | NOT_RUN | Not reached: same-version recollection is still running; all real predecessor gates remain required |
-| short-ablation | NOT_RUN | Not reached: same-version recollection is still running; all real predecessor gates remain required |
-| pilot | NOT_RUN | Not reached: same-version recollection is still running; all real predecessor gates remain required |
-| confirm | NOT_RUN | Not reached: same-version recollection is still running; all real predecessor gates remain required |
-| generalization | NOT_RUN | Not reached: same-version recollection is still running; all real predecessor gates remain required |
+| baseline | NOT_RUN | No completed stage outcome yet. Live process/optimizer progress and queued successors are in training_progress.json. |
+| diagnostic | NOT_RUN | No completed stage outcome yet. Live process/optimizer progress and queued successors are in training_progress.json. |
+| short-ablation | NOT_RUN | No completed stage outcome yet. Live process/optimizer progress and queued successors are in training_progress.json. |
+| pilot | NOT_RUN | No completed stage outcome yet. Live process/optimizer progress and queued successors are in training_progress.json. |
+| confirm | NOT_RUN | No completed stage outcome yet. Live process/optimizer progress and queued successors are in training_progress.json. |
+| generalization | NOT_RUN | No completed stage outcome yet. Live process/optimizer progress and queued successors are in training_progress.json. |
 | installation | PASSED | Candidate Python 3.11 / cu128 Torch / pinned Isaac Sim and Lab dependencies installed; camera/physics still require smoke |
 
 ## Runtime and inspected evidence
@@ -42,7 +42,7 @@ Expert download integrity: `VERIFIED`; safe tensor-shape inspection: `PASSED`. M
 3. Replay fidelity rows: 0; diagnostic stage status: NOT_RUN. Row count alone is not evidence of equivalence.
 4. B2 vs B1 filtering: **insufficient evidence**, NOT_RUN.
 5. B3 vs B2 calibration: **insufficient evidence**, NOT_RUN. Endpoint labels already contain contrast information.
-6. Recorded continuation decision: **BLOCKED** — BLOCKED_LICENSE: Omniverse Kit requested EULA acceptance; no user acceptance was supplied and no scene was created.
+6. Recorded continuation decision: **NOT_RUN** — P0 is accepted; ACT training is active. Diagnostic/ablation go/no-go has not yet been measured. See training_progress.json.
 7. Stages not passed/completed: baseline, diagnostic, short-ablation, pilot, confirm, generalization. Reasons are listed above; an environment block is not an algorithm negative result.
 
 ## Raw result summary

@@ -6,11 +6,11 @@
       "bytes": 1371
     },
     "reports/20261023T104759Z/FINAL_REPORT.md": {
-      "sha256": "69885786bd439cb4e108453d3c9597597480bab14476fd0f8aad3280ed86c955",
-      "bytes": 5807
+      "sha256": "845ff5ec59e1704c7c42f95655516c9d4a16101207836a3c22437504b2673916",
+      "bytes": 5917
     },
     "reports/20261023T104759Z/PUBLICATION_STATUS.md": {
-      "sha256": "c37a12a1178b9d837191a7df08daffe1e7ec09f714c0702cbecf00d34204b6c7",
+      "sha256": "02a8cff9d2e826b154bd61a2575acd9adde36c539ecd17d2c5f85a28dbb3190f",
       "bytes": 608
     },
     "reports/20261023T104759Z/action_contract.md": {
@@ -38,8 +38,8 @@
       "bytes": 5246
     },
     "reports/20261023T104759Z/checkpoint_retention.json": {
-      "sha256": "551d873b48fd4586b5e7c15c33c3cea7a36b73920a8f2ed99501e77f6a3b6496",
-      "bytes": 1186
+      "sha256": "deb25e166bbd8a2f2420b209bb277c2960944b5a2ec380c8af5f0d50fda2af21",
+      "bytes": 2144
     },
     "reports/20261023T104759Z/checks.json": {
       "sha256": "9599fad8ef9e8eb03e3be2cff7b40dc722ecb5c112e59a29ed56fdb985002ce8",
@@ -94,6 +94,10 @@
       "bytes": 1139
     },
     "reports/20261023T104759Z/decision.json": {
+      "sha256": "bd1429b4d43bbdad07587202a033b0ecd30e9b6b794b93ae77d36bd8552f9c3f",
+      "bytes": 683
+    },
+    "reports/20261023T104759Z/decision_20261023_license_superseded.json": {
       "sha256": "1954bf68cd94219442508a8af2bdcb198c3d5721a86af70476453e73bb841bc1",
       "bytes": 1581
     },
@@ -530,7 +534,7 @@
       "bytes": 595
     },
     "reports/20261023T104759Z/publication_snapshot/status.json": {
-      "sha256": "4a07b0374d9e04e43d8628251e23547afb1af97e5756539d4cb58cb76a57120b",
+      "sha256": "d3a9f608b611d00fa922c48961f94c215752628dca6f4e9dff714239743b88b0",
       "bytes": 4790
     },
     "reports/20261023T104759Z/pyarrow_compatibility.json": {
@@ -797,9 +801,17 @@
       "sha256": "64f95451b87713a89c3cd4353127f6b1612f1e4266247ef4409b96005bde31fc",
       "bytes": 529
     },
+    "reports/20261023T104759Z/training_progress.json": {
+      "sha256": "c0ba28262e5b9a655b0c99b8cca9b91c34416e1d01e22d806c723d358a551ebd",
+      "bytes": 1060
+    },
     "reports/PROJECT_STATUS.json": {
       "sha256": "5b4412fdd1f321cab45907649bee9875685fff27ee86dccf465367210b194b66",
       "bytes": 41519
+    },
+    "results/20261023T104759Z/act_pretraining_loss.csv": {
+      "sha256": "365c10edca5790951eaf936fc04ccbbaf76080cc60f4311e2805cd9a7041ecb7",
+      "bytes": 250772
     },
     "results/20261023T104759Z/actor_step.csv": {
       "sha256": "f77b7d7500cb7bf5bf392ba038ff62dd9c9e1e3994b39934f8ea7b64dd014b24",

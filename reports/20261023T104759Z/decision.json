@@ -1,31 +1,13 @@
 {
-  "status": "BLOCKED",
-  "stop_gate": "environment/license",
-  "reason": "BLOCKED_LICENSE: Omniverse Kit requested EULA acceptance; no user acceptance was supplied and no scene was created",
+  "status": "NOT_RUN",
+  "from_stage": "baseline",
+  "next_stage": "diagnostic",
+  "reason": "P0 accepted and current smoke-1/smoke-8 passed. ACT pretraining is running; no diagnostic continuation decision has been measured yet. See training_progress.json.",
   "protocol": "force_critic_act_v2_diagnostic_first",
   "config_hash": "a355f6209f5049e01afb25d9cc196524ad577f11dee2d54404219f7f0e64eedb",
-  "from_stage": "smoke-1",
-  "next_stage": "smoke-8",
-  "predeclared_basis": "User task section III.8: missing license permits CPU implementation/test and truthful blocked stop delivery",
+  "supersedes": "reports/20261023T104759Z/decision_20261023_license_superseded.json",
+  "time_utc": "2026-10-26T06:45:10.887065+00:00",
   "evidence_hashes": {
-    "reports/20261023T104759Z/smoke-1_1792759668095898884_command.json": "5e233ae56a83d90986593085a25bd50914b8c8801e541966f631bec45fbc56e3",
-    "reports/20261023T104759Z/smoke-1_1792759668095898884.log": "41e0c1570ebd2f4199003e4e415fc828a3e24a14c5d0ed0180b2b353265099bc",
-    "environment.lock.json": "181e010f48b2681d5a2b1c4f3b9dcd6065829c772774b5b6808c5411952d0509"
-  },
-  "simulator_steps": {
-    "interaction": 0,
-    "branch": 0,
-    "prefix": 0,
-    "restore": 0,
-    "evaluation": 0
-  },
-  "research_efficacy": "INCONCLUSIVE",
-  "license_accepted_by_agent": false,
-  "other_unresolved_contracts": [
-    "BLOCKED_DATA_ALIGNMENT: collection code/SHA and pre/post EMA action stage unavailable",
-    "BLOCKED_SENSOR_CONTRACT: data-card EE frame differs from pinned stock source; sign/reference/baseline unverified",
-    "BLOCKED_CAMERA_ALIGNMENT: collection camera extrinsics/intrinsics not supplied"
-  ],
-  "resume_command": "bash scripts/resume_after_environment_fix.sh",
-  "resume_requires_interactive_user_license_review": true
+    "reports/20261023T104759Z/p0_acceptance.json": "806f2ee087086597157953de3ec8de75e22e93966671c274e8be9b3ea6981a0d"
+  }
 }
