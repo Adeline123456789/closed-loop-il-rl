@@ -2,6 +2,7 @@
 import argparse
 from pathlib import Path
 import json
+import faulthandler
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--stage', choices=['baseline','diagnostic','short-ablation'], required=True)
@@ -10,12 +11,15 @@ parser.add_argument('--run-id', required=True)
 parser.add_argument('--demonstrations', required=True)
 parser.add_argument('--outcome', required=True)
 parser.add_argument('--paired-bundle')
+parser.add_argument('--baseline-phase',choices=['evaluation','shared'])
 from isaaclab.app import AppLauncher
 AppLauncher.add_app_launcher_args(parser)
 args = parser.parse_args()
 if not args.headless or not args.enable_cameras:
     parser.error('--headless --enable_cameras required')
 app = AppLauncher(args).app
+faulthandler.enable()
+faulthandler.dump_traceback_later(300,repeat=True)
 from forcecritic.runtime import Run, atomic_json
 run = Run(args.config, args.run_id)
 outcome = Path(args.outcome)
@@ -28,6 +32,8 @@ try:
     from forcecritic.envs.accounting import PhysicsLedger
     from forcecritic.training.baseline import baseline
     def make_adapter(num_envs, limits):
+        if ledgers:
+            raise RuntimeError('Second simulator construction in one process is forbidden; use process isolation or reuse the live adapter')
         cfg = configure_camera(parse_env_cfg(TASK, device=args.device, num_envs=num_envs))
         cfg.seed = run.config['seed']
         cap = (run.config['diagnostic']['all_diagnostic_transition_cap'] if args.stage=='diagnostic'
@@ -44,7 +50,7 @@ try:
         acceptance = json.loads((run.report/'p0_acceptance.json').read_text())
         return ForgeAdapter(env, limits=limits, hard_limits=acceptance['physical_protection_limits'], physics_ledger=ledger), ledger
     if args.stage=='baseline':
-        result = baseline(run, args.demonstrations, make_adapter, device=args.device)
+        result = baseline(run, args.demonstrations, make_adapter, device=args.device,phase=args.baseline_phase)
     elif args.stage=='diagnostic':
         from forcecritic.diagnostics.driver import diagnostic
         result = diagnostic(run,args.demonstrations,make_adapter,device=args.device)
@@ -66,3 +72,4 @@ finally:
         'individual_control_step_equivalents':{k:sum(r['individual_control_step_equivalents'][k] for r in records) for k in categories},
         'instances':records})
     app.close()
+    faulthandler.cancel_dump_traceback_later()

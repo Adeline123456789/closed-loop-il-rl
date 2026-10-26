@@ -1,9 +1,8 @@
 {
-  "status": "STOPPED",
-  "stage": "baseline",
-  "time_utc": "2026-10-26T07:32:37.501314+00:00",
-  "pid": 1228835,
+  "status": "RUNNING",
+  "stage": "initial-publication",
+  "time_utc": "2026-10-26T07:46:43.164123+00:00",
+  "pid": 1249544,
   "session": "forcecritic-training",
-  "log": ".cache/background_training.log",
-  "recorded_stage_status": "FAILED_IMPLEMENTATION"
+  "log": ".cache/background_training.log"
 }

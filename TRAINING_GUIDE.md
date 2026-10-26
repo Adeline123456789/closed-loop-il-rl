@@ -93,7 +93,9 @@ watch -n 5 '.venv/bin/python scripts/training_status.py'
 
 面板另显示“最近实际执行记录距今”：只统计执行日志、checkpoint 与真实结果，排除监控心跳和派生损失 CSV。超过 5 分钟无执行记录会提示“疑似停滞或缺少遥测”，不会继续假装能估算完成时间。这个提示本身不是死锁的证明。ACT 100% 只表示预训练完成；只有 short-ablation 有实际完成结果、决策文件已写入，并且最近上传退出码为 0，才表示这一轮最小消融已完成并发布。STOPPED/FAILED 表示中途停止，必须看原因。
 
-队列为 baseline（ACT 10000 更新 → 32 回合评估 → 共享真实交互 → 普通 Critic 最多 10000 更新）、diagnostic（保真度/配对/真实 Critic→ACT）、short-ablation（B1/B2/B3 各 2000 Critic + 200 Actor 更新，B0–B3 各 32 回合真实评估）。门槛未通过就停止并显示原因。普通 Critic 循环尚无逐步遥测时面板会明确说明，不伪造更新进度。pilot/confirm/generalization 不在自动队列中。
+队列为 baseline（ACT 10000 更新 → 32 回合评估 → 共享真实交互 → 普通 Critic 最多 10000 更新）、diagnostic（保真度/配对/真实 Critic→ACT）、short-ablation（B1/B2/B3 各 2000 Critic + 200 Actor 更新，B0–B3 各 32 回合真实评估）。门槛未通过就停止并显示原因。共享采集每个动作块输出已完成回合、独立环境控制步和物理账本；Critic 每 100 次更新输出计数和 loss，见 `baseline_live_progress.json`。pilot/confirm/generalization 不在自动队列中。
+
+2026-10-26 已定位同一 Isaac 进程重建第二个环境时的 STOP 回调等待循环；基线评估和共享采集现用独立进程，短消融各组复用同一个环境并按相同 seed 重置。原始 10000-update ACT 与 32 回合评估按 hash 恢复，不重新训练或重复计作新证据。完整诊断、失败尝试和计数不确定性见 `reports/20261023T104759Z/INITIALIZATION_STALL.md`。
 
 采集总日志、当前子进程日志和 GPU：
 

@@ -5990,11 +5990,11 @@
     }
   ],
   "steps": {
-    "interaction": 57224,
+    "interaction": 57235,
     "branch": 0,
     "prefix": 0,
-    "restore": 4972,
-    "evaluation": 172
+    "restore": 5544,
+    "evaluation": 4376
   },
   "checkpoints": [],
   "p0_probes": [
@@ -6750,5 +6750,41 @@
     "status": "PASSED",
     "path": "reports/20261023T104759Z/p0_acceptance.json",
     "sha256": "806f2ee087086597157953de3ec8de75e22e93966671c274e8be9b3ea6981a0d"
+  },
+  "accounting_uncertainties": [
+    {
+      "source": "reports/20261023T104759Z/recreation_after_fix.json",
+      "phase": "second environment reset in rejected cleanup-only probe",
+      "category": "restore",
+      "additional_individual_control_steps_min": 0,
+      "additional_individual_control_steps_max": 10000,
+      "basis": "Last saved ledger is before reset; PhysicsLedger enforces a 10000 individual-control-step cap. Process terminated without a final counter snapshot."
+    }
+  ],
+  "recovery_accounting": {
+    "initialization-stall-20261026": {
+      "measured_lower_bound_added": {
+        "interaction": 11,
+        "branch": 0,
+        "prefix": 0,
+        "restore": 572,
+        "evaluation": 4204
+      },
+      "uncertainty": {
+        "source": "reports/20261023T104759Z/recreation_after_fix.json",
+        "phase": "second environment reset in rejected cleanup-only probe",
+        "category": "restore",
+        "additional_individual_control_steps_min": 0,
+        "additional_individual_control_steps_max": 10000,
+        "basis": "Last saved ledger is before reset; PhysicsLedger enforces a 10000 individual-control-step cap. Process terminated without a final counter snapshot."
+      },
+      "evidence_hashes": {
+        "reports/20261023T104759Z/recreation_before_fix.json": "f8d39177843ad96a7be47b6d984309e848cd6f6dd912ed2344c29033dd18e284",
+        "reports/20261023T104759Z/recreation_after_fix.json": "8e8dc803619fae7c784ee624241d86810f9782a1d9e63cb72095d472aba949a1",
+        "reports/20261023T104759Z/recreation_isolated_1.json": "c7acdfd8546e0551f98cc047e29298157de96174f97e64854cd1f4b27c2801ca",
+        "reports/20261023T104759Z/recreation_isolated_8.json": "1df14c34c4a9587d34af7e4210ff4e61518fae7e73fe198e6751ccf3e3024c4e"
+      },
+      "reason": "Original interrupted evaluation and bounded lifecycle probes were not charged by the terminated CLI attempt; reconcile exactly once."
+    }
   }
 }

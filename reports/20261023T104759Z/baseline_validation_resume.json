@@ -1,0 +1,21 @@
+{
+  "status": "ACCEPTED_FOR_RESUME",
+  "config_hash": "a355f6209f5049e01afb25d9cc196524ad577f11dee2d54404219f7f0e64eedb",
+  "checkpoint_sha256": "63433851d051fe4149d8f27deec600a438f146208eb5928782d56b9223dc8bb8",
+  "evidence_hashes": {
+    "reports/20261023T104759Z/baseline_validation.json": "0251c9e91a160c7afdddc6f38c101f79f9653e69159f9cc55f06c4a3bad5807c",
+    "reports/20261023T104759Z/episode_cohort.json": "42967388982e83fd915a4e9b38a286ea72bda939eaf54eca835f17c115f39a25",
+    "reports/20261023T104759Z/p0_acceptance.json": "806f2ee087086597157953de3ec8de75e22e93966671c274e8be9b3ea6981a0d",
+    "results/20261023T104759Z/act0_validation.csv": "795a5ba45f9bf28f50c80ea96febe88512a4ddec2649e43bda140ae73afb06d7",
+    "reports/20261023T104759Z/baseline_1792995342895319268.command.json": "b9108cb1c61db45b41045500d433a395facc3d650332cd8b424cb95e76c1c866"
+  },
+  "behavior_comparison": {
+    "src/forcecritic/training/live.py:evaluate": "AST_UNCHANGED",
+    "src/forcecritic/training/live.py:LivePolicy": "AST_UNCHANGED",
+    "src/forcecritic/envs/forge.py:ForgeAdapter": "AST_UNCHANGED",
+    "src/forcecritic/training/pretrain.py": "BYTES_UNCHANGED",
+    "src/forcecritic/models/act.py": "BYTES_UNCHANGED",
+    "configs/minimal_validation.yaml": "BYTES_UNCHANGED"
+  },
+  "reason": "Original ACT and 32 measured episodes preserved; interrupted only during second context construction before any second-environment physics. Resume uses fresh processes; no gate waived."
+}

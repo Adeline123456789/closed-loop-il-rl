@@ -1,0 +1,46 @@
+{
+  "phase": "create_8_start",
+  "time": 1793000044.7816994,
+  "instances": [
+    {
+      "physics_substeps": {
+        "restore": 67,
+        "interaction": 8,
+        "branch": 0,
+        "prefix": 0,
+        "evaluation": 0
+      },
+      "decimation": 8,
+      "num_envs": 1,
+      "control_step_cap": 10000.0,
+      "individual_control_step_equivalents": {
+        "restore": 9,
+        "interaction": 1,
+        "branch": 0,
+        "prefix": 0,
+        "evaluation": 0
+      },
+      "charged_before_step": true
+    },
+    {
+      "physics_substeps": {
+        "restore": 0,
+        "interaction": 0,
+        "branch": 0,
+        "prefix": 0,
+        "evaluation": 0
+      },
+      "decimation": 8,
+      "num_envs": 8,
+      "control_step_cap": 10000.0,
+      "individual_control_step_equivalents": {
+        "restore": 0,
+        "interaction": 0,
+        "branch": 0,
+        "prefix": 0,
+        "evaluation": 0
+      },
+      "charged_before_step": true
+    }
+  ]
+}

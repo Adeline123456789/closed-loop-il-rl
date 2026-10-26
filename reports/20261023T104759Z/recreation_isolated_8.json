@@ -1,0 +1,26 @@
+{
+  "phase": "PASSED",
+  "time": 1793000617.8734038,
+  "instances": [
+    {
+      "physics_substeps": {
+        "restore": 536,
+        "interaction": 64,
+        "branch": 0,
+        "prefix": 0,
+        "evaluation": 0
+      },
+      "decimation": 8,
+      "num_envs": 8,
+      "control_step_cap": 10000.0,
+      "individual_control_step_equivalents": {
+        "restore": 67,
+        "interaction": 8,
+        "branch": 0,
+        "prefix": 0,
+        "evaluation": 0
+      },
+      "charged_before_step": true
+    }
+  ]
+}

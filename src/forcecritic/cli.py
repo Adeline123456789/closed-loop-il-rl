@@ -45,7 +45,7 @@ def run_stage(run,stage,require_go=None,demonstrations=None):
         launcher=json.loads(Path('configs/isaac_launcher.json').read_text())
         attempt=f'{stage}_{time.time_ns()}'
         outcome=run.report/f'{attempt}_outcome.json'
-        cmd=[sys.executable,'-u','scripts/train_forge.py','--stage',stage,'--config',str(run.config_path),
+        cmd=[sys.executable,'-u','scripts/run_robot_stage.py','--stage',stage,'--config',str(run.config_path),
              '--run-id',run.run_id,'--demonstrations',demonstrations,'--headless','--enable_cameras',
              '--outcome',str(outcome),
              '--kit_args='+launcher['kit_args']]
@@ -60,7 +60,7 @@ def run_stage(run,stage,require_go=None,demonstrations=None):
         status=measured['status'] if result.get('returncode')==0 else 'FAILED_IMPLEMENTATION'
         accounting=outcome.with_suffix('.accounting.json')
         artifacts=[outcome,accounting,log_path,log_path.with_suffix('.command.json'),Path(demonstrations)]
-        reports_by_stage={'baseline':['baseline_validation.json','baseline_training.json'],
+        reports_by_stage={'baseline':['baseline_validation.json','baseline_training.json','baseline_validation_resume.json'],
             'diagnostic':['d0_initial.json','paired_screening.json','paired_confirmation.json','d2_transfer.json','protocol_effect_thresholds.json'],
             'short-ablation':['short_sampling.json','short_ablation_outcomes.json']}
         artifacts += [run.report/name for name in reports_by_stage[stage]]

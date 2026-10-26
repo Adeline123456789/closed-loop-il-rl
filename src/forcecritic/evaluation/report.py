@@ -99,6 +99,10 @@ def report(run):
               'Consult the stage table and implementation_audit.md for unresolved interfaces and unimplemented orchestration; CPU software tests never establish robot efficacy.',
               'Stage execution deliberately fails closed while P0 is incomplete. Higher-stage robot orchestration is not presented as experimentally validated.',
               'See `data_audit.json`, `doctor.json`, `action_contract.md`, `sensor_contract.md`, `implementation_audit.md`, and command logs for exact evidence.']
+    if run.manifest.get('accounting_uncertainties'):
+        lines += ['', '## Accounting uncertainty', '',
+            'The accounted total above is a measured lower bound. A terminated lifecycle debugging probe lacked its final counter dump; its bounded unobserved advances are recorded separately, not invented as zero or mixed into measured counts.',
+            '```json',json.dumps(run.manifest['accounting_uncertainties'],indent=2),'```']
     (run.report/'FINAL_REPORT.md').write_text('\n'.join(lines)+'\n')
     artifacts={str(p):{'sha256':digest(p),'bytes':p.stat().st_size} for folder in (run.report,run.result)
                for p in sorted(folder.rglob('*')) if p.is_file()}

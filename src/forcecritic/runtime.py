@@ -38,7 +38,7 @@ def verification_sources(stage, sources=None):
         return {p:h for p,h in all_sources.items() if p in common}
     if stage in ('baseline','diagnostic','short-ablation'):
         shared={'src/forcecritic/__init__.py','src/forcecritic/cli.py','src/forcecritic/runtime.py',
-                'scripts/train_forge.py','src/forcecritic/training/__init__.py',
+                'scripts/train_forge.py','scripts/run_robot_stage.py','src/forcecritic/training/__init__.py',
                 'src/forcecritic/training/baseline.py','src/forcecritic/training/pretrain.py',
                 'src/forcecritic/training/live.py','src/forcecritic/training/updates.py',
                 'src/forcecritic/training/replay.py','src/forcecritic/training/checkpoint.py'}

@@ -47,6 +47,7 @@ def snapshot():
     job = read(REPORT / 'background_job.json')
     progress = read(CHECKPOINT / 'act0.json')
     stages = read(REPORT / 'run_manifest.json').get('stages', {})
+    live = read(REPORT / 'baseline_live_progress.json')
     running = alive(job.get('pid'))
     done = progress.get('completed_updates', 0)
     target = progress.get('requested_updates', 10000)
@@ -80,7 +81,7 @@ def snapshot():
     # independently, so a quiet/stuck simulator cannot masquerade as progress.
     stage = job.get('stage', 'baseline')
     logs = sorted(REPORT.glob(f'{stage}_*.log'), key=lambda p:p.stat().st_mtime)
-    evidence = [p for p in (CHECKPOINT/'act0.json', REPORT/'baseline_validation.json',
+    evidence = [p for p in (CHECKPOINT/'act0.json', REPORT/'baseline_validation.json',REPORT/'baseline_live_progress.json',
                            REPORT/'baseline_training.json', CHECKPOINT/'shared_replay.pt',
                            CHECKPOINT/'critic0.pt') if p.exists()]
     evidence += [p for p in RESULT.glob('*.csv')
@@ -97,6 +98,12 @@ def snapshot():
         tail=text.rsplit('[INFO]: Parsing configuration from:',1)[-1]
         if 'Setting seed: 0' in tail and '[INFO]: Base environment:' not in tail:
             phase='切换到 8 环境：初始化完成尚未得到日志确认'
+    if stage=='baseline' and running and job.get('status')=='RUNNING' and live:
+        phase={'act_pretraining':'ACT 权重加载 / 预训练恢复',
+               'act_validation':'ACT0 真实仿真评估',
+               'shared_environment_initialization':'独立进程：8 环境初始化',
+               'shared_collection':'共享真实仿真交互',
+               'critic_training':'在线 Critic 训练'}.get(live.get('phase'),phase)
     return dict(time_utc=datetime.now(timezone.utc).isoformat(), phase=phase,
                 supervisor_alive=running, supervisor_status=job.get('status'),
                 act_updates=done, act_target=target, act_percent=round(100*done/target, 1),
@@ -112,7 +119,8 @@ def snapshot():
                 publication=read(ROOT/'.cache/background_publication.json'),
                 execution_evidence_age_seconds=evidence_age, progress_warning=warning,
                 latest_execution_evidence=str(latest.relative_to(ROOT)) if latest else None,
-                latest_stage_log=str(logs[-1].relative_to(ROOT)) if logs else None)
+                latest_stage_log=str(logs[-1].relative_to(ROOT)) if logs else None,
+                baseline_live=live)
 
 
 def display(data):
@@ -141,6 +149,13 @@ def display(data):
         '独立 checkpoint：'+', '.join(data['milestones'])]
     if data.get('progress_warning'):
         lines.insert(2, '注意：'+data['progress_warning'])
+    live=data.get('baseline_live',{})
+    if live.get('phase')=='shared_collection':
+        lines.insert(3,f"共享采集：{live.get('completed_episodes',0)} 回合 / 上限 {live.get('episode_cap',100)}；"
+                     f"独立环境控制步 {live.get('individual_transitions',0)} / 上限 {live.get('transition_cap',50000)}；"
+                     f"已记录动作块 {live.get('real_blocks',0)}")
+    if live.get('phase')=='critic_training':
+        lines.insert(3,f"Critic 更新：{live.get('completed_updates',0)} / {live.get('requested_updates',10000)}；loss={live.get('loss','等待首次输出')}")
     if data.get('stop_reason'):
         lines.append('停止原因：'+data['stop_reason'])
     publication=data['publication']
@@ -206,6 +221,11 @@ def main():
         line=f"{data['time_utc']} LIVE {data['phase']} | ACT {data['act_updates']}/{data['act_target']} ({data['act_percent']}%) | real eval {data['real_baseline_episodes']}/32 | queue {data['queue']}"
         if loss:line+=f" | loss@{loss['update']}={loss['last']:.5f}"
         if data.get('progress_warning'):line+=' | '+data['progress_warning']
+        live=data.get('baseline_live',{})
+        if live.get('phase')=='shared_collection':
+            line+=f" | shared episodes={live.get('completed_episodes',0)} steps={live.get('individual_transitions',0)}"
+        if live.get('phase')=='critic_training':
+            line+=f" | critic={live.get('completed_updates',0)}/{live.get('requested_updates',10000)}"
         with (ROOT/'.cache/background_training.log').open('a') as stream:stream.write(line+'\n')
         print(line,flush=True)
         if not data['supervisor_alive']:

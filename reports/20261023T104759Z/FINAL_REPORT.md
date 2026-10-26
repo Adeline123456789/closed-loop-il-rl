@@ -56,8 +56,8 @@ Expert download integrity: `VERIFIED`; safe tensor-shape inspection: `PASSED`. M
 
 ## Cost and artifacts
 
-Individual simulator transitions by category: `{"interaction": 57224, "branch": 0, "prefix": 0, "restore": 4972, "evaluation": 172}`.
-Total accounted simulator transitions: 62368. CPU unit fixtures are excluded from robot metrics.
+Individual simulator transitions by category: `{"interaction": 57235, "branch": 0, "prefix": 0, "restore": 5544, "evaluation": 4376}`.
+Total accounted simulator transitions: 67155. CPU unit fixtures are excluded from robot metrics.
 Checkpoint index entries: 0. Publication is not implied by a local checkpoint; only verified Release entries may be used as download links.
 Header-only fidelity/pair/actor/episode CSV files mean NOT_RUN, not zero success.
 
@@ -75,3 +75,19 @@ Current doctor and actual smoke records determine runtime status. Historical lic
 Consult the stage table and implementation_audit.md for unresolved interfaces and unimplemented orchestration; CPU software tests never establish robot efficacy.
 Stage execution deliberately fails closed while P0 is incomplete. Higher-stage robot orchestration is not presented as experimentally validated.
 See `data_audit.json`, `doctor.json`, `action_contract.md`, `sensor_contract.md`, `implementation_audit.md`, and command logs for exact evidence.
+
+## Accounting uncertainty
+
+The accounted total above is a measured lower bound. A terminated lifecycle debugging probe lacked its final counter dump; its bounded unobserved advances are recorded separately, not invented as zero or mixed into measured counts.
+```json
+[
+  {
+    "source": "reports/20261023T104759Z/recreation_after_fix.json",
+    "phase": "second environment reset in rejected cleanup-only probe",
+    "category": "restore",
+    "additional_individual_control_steps_min": 0,
+    "additional_individual_control_steps_max": 10000,
+    "basis": "Last saved ledger is before reset; PhysicsLedger enforces a 10000 individual-control-step cap. Process terminated without a final counter snapshot."
+  }
+]
+```

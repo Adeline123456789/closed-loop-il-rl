@@ -1,18 +1,18 @@
 {
-  "time_utc": "2026-10-26T07:32:15.420600+00:00",
-  "phase": "切换到 8 环境：初始化完成尚未得到日志确认",
+  "time_utc": "2026-10-26T07:46:43.188219+00:00",
+  "phase": "initial-publication",
   "supervisor_alive": true,
   "supervisor_status": "RUNNING",
   "act_updates": 10000,
   "act_target": 10000,
   "act_percent": 100.0,
-  "checkpoint_age_seconds": 2736.1,
+  "checkpoint_age_seconds": 3603.9,
   "real_baseline_episodes": 32,
   "real_baseline_successes": 6,
   "queue": {
-    "baseline": "RUNNING",
-    "diagnostic": "WAITING_GATE",
-    "short-ablation": "WAITING_GATE"
+    "baseline": "FAILED_IMPLEMENTATION",
+    "diagnostic": "NOT_RUN",
+    "short-ablation": "NOT_RUN"
   },
   "stop_reason": null,
   "diagnostic_rows": {
@@ -35,14 +35,15 @@
     "act0_update_010000.pt"
   ],
   "publication": {
-    "time_utc": "2026-10-26T07:18:37.114660+00:00",
+    "time_utc": "2026-10-26T07:32:45.872605+00:00",
     "returncode": 0,
-    "head": "1e5f99a767e75ceec3383754e51d10715c1e60ad"
+    "head": "39c14b9a93c58d755b26eef57b776662bb604cc4"
   },
-  "execution_evidence_age_seconds": 1703.7,
-  "progress_warning": "已 28.4 分钟没有新的可核实执行记录；疑似停滞或缺少阶段内遥测，不能估算完成时间。",
-  "latest_execution_evidence": "reports/20261023T104759Z/baseline_1792995342895319268.log",
-  "latest_stage_log": "reports/20261023T104759Z/baseline_1792995342895319268.log",
+  "execution_evidence_age_seconds": 2571.9,
+  "progress_warning": "已 42.9 分钟没有新的可核实执行记录；疑似停滞或缺少阶段内遥测，不能估算完成时间。",
+  "latest_execution_evidence": "reports/20261023T104759Z/baseline_validation.json",
+  "latest_stage_log": null,
+  "baseline_live": {},
   "loss": {
     "update": 10000,
     "last": 0.033908627927303314,

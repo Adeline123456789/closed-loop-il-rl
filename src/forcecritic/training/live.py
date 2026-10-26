@@ -98,7 +98,7 @@ def evaluate(adapter, policy, seeds, ledger, csv_path, *, arm, policy_sha, phase
 
 
 def collect_shared(adapter, policy, frozen_features, ledger, *, policy_sha, seed=0,
-                   episode_cap=100, transition_cap=50000):
+                   episode_cap=100, transition_cap=50000, progress=None):
     """Complete ACT0 chunks, with preassigned whole-parent 70/15/15 splits."""
     rng = np.random.default_rng(seed)
     adapter.reset(seed=seed)
@@ -169,6 +169,10 @@ def collect_shared(adapter, policy, frozen_features, ledger, *, policy_sha, seed
             for i in range(adapter.n):
                 parent_numbers[i] = next_parent
                 next_parent += 1
+        if progress is not None:
+            progress(completed_episodes=episodes,episode_cap=episode_cap,
+                individual_transitions=transitions,transition_cap=transition_cap,
+                real_blocks=len(rows),accounting=ledger.record())
     return {'rows': rows, 'individual_transitions': transitions, 'complete_episodes': episodes,
             'source': 'real_forge', 'policy_sha': policy_sha, 'accounting': ledger.record()}
 
@@ -190,7 +194,7 @@ def replay_batch(rows, indices, policy, scale):
         splits=[r['split'] for r in batch])
 
 
-def fit_online_critic(bundle, policy, *, updates=10000, batch_size=128, seed=0):
+def fit_online_critic(bundle, policy, *, updates=10000, batch_size=128, seed=0, progress=None):
     if bundle['source'] != 'real_forge' or not 1 <= updates <= 10000:
         raise ValueError('Real bounded online collection required')
     rows = [r for r in bundle['rows'] if r['split']=='train']
@@ -224,6 +228,8 @@ def fit_online_critic(bundle, policy, *, updates=10000, batch_size=128, seed=0):
                            batch['returns'], batch['gamma_k'], batch['bootstrap'],batch['next_action'])
         losses.append(critic_step(critic, optimizer, batch['condition'], batch['action'], labels))
         polyak(critic, target)
+        if progress is not None and (len(losses)%100==0 or len(losses)==updates):
+            progress(completed_updates=len(losses),requested_updates=updates,loss=losses[-1])
     validation = [r for r in bundle['rows'] if r['split']=='validation']
     residuals=[]
     with torch.no_grad():

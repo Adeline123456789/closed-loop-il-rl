@@ -112,22 +112,28 @@ def short_ablation(run, manifest, paired_bundle, make_adapter, device='cuda:0'):
                     contrast_mse=float(np.mean((predicted-observed)**2))))
     atomic_json(run.report/'short_prediction_diagnostics.json',prediction_rows)
     outcomes = {}
-    for arm in ('B0','B1','B2','B3'):
-        actor.load_state_dict(act_state['actor'] if arm=='B0' else result[arm]['actor'])
-        path = directory / f'short_{arm}.pt'
-        torch.save({'actor':actor.state_dict(),'identity':act_state['identity'],
-                    'training':None if arm=='B0' else result[arm]}, path)
-        adapter, ledger = make_adapter(1, limits)
-        from ..diagnostics.live import NoiseSchedule
-        noise=NoiseSchedule(adapter,21000)
-        try:
+    # Keep one simulator for all matched-reset arms; never recreate Kit/PhysX
+    # inside this process. evaluate() resets each arm to the same seed schedule.
+    adapter, ledger = make_adapter(1, limits)
+    from ..diagnostics.live import NoiseSchedule
+    noise=NoiseSchedule(adapter,21000)
+    try:
+        for arm in ('B0','B1','B2','B3'):
+            actor.load_state_dict(act_state['actor'] if arm=='B0' else result[arm]['actor'])
+            path = directory / f'short_{arm}.pt'
+            torch.save({'actor':actor.state_dict(),'identity':act_state['identity'],
+                        'training':None if arm=='B0' else result[arm]}, path)
+            before=ledger.record()
             outcomes[arm] = evaluate(adapter, LivePolicy(actor,policy.normalizer,device), range(21000,21032), ledger,
                 run.result / f'short_{arm}_validation.csv', arm=arm, policy_sha=digest(path),noise=noise)
-            atomic_json(run.report / f'short_{arm}_accounting.json', ledger.record())
-        finally:
-            noise.close()
-            adapter.close()
-            ledger.close()
+            after=ledger.record()
+            atomic_json(run.report / f'short_{arm}_accounting.json',dict(before=before,after=after,
+                individual_control_step_equivalents={k:after['individual_control_step_equivalents'][k]-v
+                    for k,v in before['individual_control_step_equivalents'].items()}))
+    finally:
+        noise.close()
+        adapter.close()
+        ledger.close()
     atomic_json(run.report / 'short_ablation_outcomes.json', {'status':'MEASURED',
         'outcomes':outcomes, 'decision':'Requires pre-registered evidence gate; no automatic GO from training losses'})
     from ..evaluation.export import export_episodes
