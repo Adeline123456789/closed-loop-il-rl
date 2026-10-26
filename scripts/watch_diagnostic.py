@@ -14,8 +14,8 @@ def read(path):
     except (OSError,ValueError):return {}
 
 
-def main(command, *, startup_timeout=300, stall_timeout=180, grace=30):
-    report=Path('reports/20261023T104759Z')
+def main(command, *, startup_timeout=300, stall_timeout=180, grace=30, report=None, poll_interval=2):
+    report=Path(report or 'reports/20261023T104759Z')
     path=report/'diagnostic_live_progress.json'
     started=time.time()
     child=subprocess.Popen(command,start_new_session=True)
@@ -58,9 +58,10 @@ def main(command, *, startup_timeout=300, stall_timeout=180, grace=30):
             run.record('diagnostic','FAILED_IMPLEMENTATION','Watchdog: simulator made no physical progress; stack and lower-bound accounting retained',124,
                        [report/'diagnostic_watchdog.json',path] if fresh else [report/'diagnostic_watchdog.json'])
             return 124
-        time.sleep(2)
+        time.sleep(poll_interval)
     atomic_json(report/'diagnostic_watchdog.json',dict(status='FINISHED',
-        cli_returncode=child.returncode,interrupted=interrupted,started=started,finished=time.time()))
+        cli_returncode=child.returncode,interrupted=interrupted,started=started,finished=time.time(),
+        stall_record=record if interrupted else None))
     return child.returncode
 
 

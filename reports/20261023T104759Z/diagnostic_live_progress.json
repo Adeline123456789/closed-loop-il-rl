@@ -1,0 +1,47 @@
+{
+  "pid": 1272853,
+  "started": 1793004539.9466631,
+  "phase": "D0_initial",
+  "completed_continuations": 7,
+  "previous_continuations": 54,
+  "phase_completed": {
+    "D0_initial": 7
+  },
+  "status": "RUNNING",
+  "last_physics_step": 1793004832.0828652,
+  "updated": 1793004832.1036649,
+  "accounting": {
+    "physics_substeps": {
+      "restore": 1340,
+      "interaction": 0,
+      "branch": 7896,
+      "prefix": 1184,
+      "evaluation": 0
+    },
+    "decimation": 8,
+    "num_envs": 1,
+    "control_step_cap": 293022.0,
+    "individual_control_step_equivalents": {
+      "restore": 168,
+      "interaction": 0,
+      "branch": 987,
+      "prefix": 148,
+      "evaluation": 0
+    },
+    "charged_before_step": true
+  },
+  "seed": 40007,
+  "selected_hard": 3,
+  "selected_normal": 4,
+  "wanted_hard": 4,
+  "wanted_normal": 4,
+  "parent_id": "diagnostic-40000",
+  "point_index": 1,
+  "points_completed": 0,
+  "points_target": 8,
+  "candidate": 1,
+  "method": "original",
+  "repeat": 0,
+  "trajectory_step": 0,
+  "last_trajectory": "checkpoints/20261023T104759Z/diagnostic_attempt_1793004539946602860/trajectory_0007.pt"
+}

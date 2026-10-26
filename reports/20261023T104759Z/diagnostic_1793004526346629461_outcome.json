@@ -1,0 +1,31 @@
+{
+  "status": "FAILED_IMPLEMENTATION",
+  "reason": "single child exited -11; inspect phase log/outcome",
+  "isolated_phases": [
+    {
+      "phase": "single",
+      "command": [
+        "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/bin/python",
+        "-u",
+        "scripts/train_forge.py",
+        "--stage",
+        "diagnostic",
+        "--outcome",
+        "reports/20261023T104759Z/diagnostic_1793004526346629461_outcome.single.json",
+        "--config",
+        "configs/minimal_validation.yaml",
+        "--run-id",
+        "20261023T104759Z",
+        "--demonstrations",
+        "/media/midea/F496AC8096AC4548/closed_loop_act/data/act_demonstrations/manifest.json",
+        "--headless",
+        "--enable_cameras",
+        "--kit_args=--/exts/omni.kit.registry.nucleus/registries/0/url=https://ovextensionsprod.blob.core.windows.net/exts/kit/prod/107/shared"
+      ],
+      "returncode": -11,
+      "started": 1793004526.3751984,
+      "finished": 1793004835.6067295,
+      "outcome": "reports/20261023T104759Z/diagnostic_1793004526346629461_outcome.single.json"
+    }
+  ]
+}

@@ -13,7 +13,7 @@ Raw completed episodes are summarized separately by seed, split and checkpoint; 
 | smoke-1 | PASSED | Real launcher attempted; see command log |
 | smoke-8 | PASSED | Real launcher attempted; see command log |
 | baseline | PASSED | ACT0 has measured insertions; ordinary critic fitted on actual chunk transitions |
-| diagnostic | FAILED_IMPLEMENTATION | TypeError('Object of type bool_ is not JSON serializable') |
+| diagnostic | FAILED_IMPLEMENTATION | single child exited -11; inspect phase log/outcome |
 | short-ablation | NOT_RUN | Not reached: same-version recollection is still running; all real predecessor gates remain required |
 | pilot | NOT_RUN | Not reached: same-version recollection is still running; all real predecessor gates remain required |
 | confirm | NOT_RUN | Not reached: same-version recollection is still running; all real predecessor gates remain required |
