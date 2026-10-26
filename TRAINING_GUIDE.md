@@ -82,6 +82,8 @@ PYTHONPATH=src .venv/bin/python scripts/collect_demonstrations.py \
 
 ## 查看进度
 
+各子阶段的中文解释、目标数量和 B0/B1/B2/B3 的确切区别见 [EXPERIMENT_PROGRESS.md](EXPERIMENT_PROGRESS.md)。面板已改为逐项清单；正在运行的 D0 只能核实到完整检查点的完成数，点内未提供的精确轨迹计数不会猜测。后续短消融逐组输出 Critic/ACT 更新计数及每回合评估进度。
+
 推荐直接查看实时面板，显示 ACT 更新数/损失、真实评估回合数、后续诊断与消融队列、进程存活及上传状态：
 
 ```bash

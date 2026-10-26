@@ -1,5 +1,7 @@
 """B1/B2/B3 same-data optimizer execution followed by real frozen evaluation."""
 import copy
+import time
+import json
 from pathlib import Path
 import numpy as np
 import torch
@@ -23,6 +25,17 @@ class DeterministicBatches:
 
 
 def short_ablation(run, manifest, paired_bundle, make_adapter, device='cuda:0'):
+    telemetry={'arms':{a:{'critic_completed':0,'critic_target':2000,'actor_completed':0,'actor_target':200}
+                       for a in ('B1','B2','B3')}}
+    def progress(**record):
+        arm=record.get('arm');phase=record.get('phase')
+        if arm in telemetry['arms'] and phase in ('critic','actor'):
+            telemetry['arms'][arm][phase+'_completed']=record['completed_updates']
+            telemetry['arms'][arm][phase+'_target']=record['requested_updates']
+        telemetry.update(current=record,time=time.time())
+        atomic_json(run.report/'short_live_progress.json',telemetry)
+        print('SHORT_PROGRESS '+json.dumps(record),flush=True)
+    progress(phase='prepare')
     limits = accepted_limits(run.report / 'p0_acceptance.json')
     directory = Path('checkpoints') / run.run_id
     act_path = directory / 'act0.pt'
@@ -94,7 +107,7 @@ def short_ablation(run, manifest, paired_bundle, make_adapter, device='cuda:0'):
         'policy_sha':policy_sha, 'paired_bundle_sha256':digest(paired_bundle)})
     result = short_updates(actor, critic, actor_optimizer, critic_optimizer,
         td_batches=streams[0], endpoint_batches=streams[1], pair_batches=streams[2], actor_batches=streams[3],
-        whitelist=whitelist, data_hash=digest(paired_bundle), policy_sha=policy_sha)
+        whitelist=whitelist, data_hash=digest(paired_bundle), policy_sha=policy_sha,progress=progress)
     # Held-out labels are read only after every optimizer arm has completed.
     prediction_rows=[]
     with torch.no_grad():
@@ -119,6 +132,7 @@ def short_ablation(run, manifest, paired_bundle, make_adapter, device='cuda:0'):
     noise=NoiseSchedule(adapter,21000)
     try:
         for arm in ('B0','B1','B2','B3'):
+            progress(phase='evaluation',arm=arm,completed_episodes=0,requested_episodes=32)
             actor.load_state_dict(act_state['actor'] if arm=='B0' else result[arm]['actor'])
             path = directory / f'short_{arm}.pt'
             torch.save({'actor':actor.state_dict(),'identity':act_state['identity'],
@@ -126,6 +140,7 @@ def short_ablation(run, manifest, paired_bundle, make_adapter, device='cuda:0'):
             before=ledger.record()
             outcomes[arm] = evaluate(adapter, LivePolicy(actor,policy.normalizer,device), range(21000,21032), ledger,
                 run.result / f'short_{arm}_validation.csv', arm=arm, policy_sha=digest(path),noise=noise)
+            progress(phase='evaluation',arm=arm,completed_episodes=len(outcomes[arm]),requested_episodes=32)
             after=ledger.record()
             atomic_json(run.report / f'short_{arm}_accounting.json',dict(before=before,after=after,
                 individual_control_step_equivalents={k:after['individual_control_step_equivalents'][k]-v

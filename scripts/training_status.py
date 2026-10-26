@@ -43,6 +43,37 @@ def rows(name):
         return list(csv.DictReader(f))
 
 
+def detailed_progress(stage):
+    baseline=read(REPORT/'baseline_training.json')
+    live=read(REPORT/'baseline_live_progress.json')
+    initial=read(CHECKPOINT/'fidelity_initial/fidelity.json')
+    additional=read(CHECKPOINT/'fidelity_additional/fidelity.json')
+    initial_n=len(initial.get('checkpoints',[]));extra_n=len(additional.get('checkpoints',[]))
+    screening=len(rows('paired_screening.csv'));confirmation=len(rows('paired_confirmation.csv'))
+    transfer=4 if (CHECKPOINT/'d2_transfer.pt').exists() else 0
+    forgetting=sum(len(rows(f'd2_{arm}_normal_validation.csv')) for arm in ('baseline','q_only','q_bc_step'))
+    seeds=sum(int(r['stable_success']) for r in rows('act0_validation.csv'))
+    if stage=='diagnostic':
+        if (REPORT/'d2_transfer.json').exists():detail='D2 已测量，正在判断是否允许最小消融'
+        elif transfer:detail='D2：已完成4条更新对照轨迹，正在检查原有成功行为是否退化'
+        elif (REPORT/'paired_confirmation.json').exists() or confirmation:detail='D1：对初筛候选做独立重复确认'
+        elif screening:detail='D1：固定24个检查点，比较原动作和正/负扰动动作'
+        elif extra_n or (CHECKPOINT/'fidelity_additional').exists():detail=f'D0 扩展检查：当前第 {min(extra_n+1,16)}/16 个点'
+        elif read(REPORT/'d0_initial.json').get('status')=='PASSED':detail='初始D0已通过，正在采样额外16个检查点'
+        elif (CHECKPOINT/'fidelity_initial').exists():detail=f'D0：初始8个检查点已选齐；当前第 {min(initial_n+1,8)}/8 个点，整点完成 {initial_n}/8'
+        else:detail='D0：采样初始8个检查点（4个困难、4个正常）；尚无采样计数文件'
+    elif stage=='short-ablation':
+        current=read(REPORT/'short_live_progress.json').get('current',{})
+        detail='最小消融：'+str(current.get('arm','准备'))+' / '+{'critic':'训练Critic','actor':'更新ACT','evaluation':'真实仿真评估','prepare':'加载相同起点和数据'}.get(current.get('phase'),'等待首次遥测')
+    else:detail='诊断与消融按前置门槛推进；没有结果的项目不计为完成'
+    return dict(shared_episodes=baseline.get('real_complete_episodes',live.get('completed_episodes',0)),
+        shared_steps=baseline.get('accounting',{}).get('individual_control_step_equivalents',{}).get('interaction',live.get('individual_transitions',0)),
+        critic_updates=baseline.get('critic_updates',live.get('completed_updates',0) if live.get('phase')=='critic_training' else 0),
+        initial_points=initial_n,extra_points=extra_n,screening_runs=screening,confirmation_runs=confirmation,
+        transfer_runs=transfer,forgetting_runs=forgetting,forgetting_target=3*seeds,
+        arms=read(REPORT/'short_live_progress.json').get('arms',{}),diagnostic_detail=detail)
+
+
 def snapshot():
     job = read(REPORT / 'background_job.json')
     progress = read(CHECKPOINT / 'act0.json')
@@ -82,7 +113,8 @@ def snapshot():
     stage = job.get('stage', 'baseline')
     logs = sorted(REPORT.glob(f'{stage}_*.log'), key=lambda p:p.stat().st_mtime)
     evidence = [p for p in (CHECKPOINT/'act0.json', REPORT/'baseline_validation.json',REPORT/'baseline_live_progress.json',
-                           REPORT/'baseline_training.json', CHECKPOINT/'shared_replay.pt',
+                           REPORT/'baseline_training.json',REPORT/'short_live_progress.json',
+                           CHECKPOINT/'fidelity_initial/fidelity.json',CHECKPOINT/'fidelity_additional/fidelity.json',CHECKPOINT/'shared_replay.pt',
                            CHECKPOINT/'critic0.pt') if p.exists()]
     evidence += [p for p in RESULT.glob('*.csv')
                  if p.name not in ('act_pretraining_loss.csv','recollection_episodes.csv','summary.csv','paired_comparisons.csv')]
@@ -120,46 +152,44 @@ def snapshot():
                 execution_evidence_age_seconds=evidence_age, progress_warning=warning,
                 latest_execution_evidence=str(latest.relative_to(ROOT)) if latest else None,
                 latest_stage_log=str(logs[-1].relative_to(ROOT)) if logs else None,
-                baseline_live=live)
+                baseline_live=live,detail=detailed_progress(stage))
 
 
 def display(data):
-    lines = [f"更新时间 UTC：{data['time_utc']}",
-        f"当前：{data['phase']} | 后台进程存活：{data['supervisor_alive']}",
-        f"ACT 更新：{data['act_updates']:,} / {data['act_target']:,} ({data['act_percent']}%)；checkpoint 距今 {data['checkpoint_age_seconds']} 秒"]
-    loss = data.get('loss', {})
-    if loss:
-        lines.append(f"CVAE loss（第 {loss['update']} 次）：{loss['last']:.5f}；最近 100 次均值：{loss['mean_last_100']:.5f}（不是成功率）")
-    eta = data.get('pretraining_eta_minutes')
-    if eta is not None:
-        lines.append(f'按近期实测速度，剩余预训练约 {eta:.1f} 分钟；不含后续仿真/Critic/消融')
-    evaluation = f"真实 ACT0 评估：{data['real_baseline_episodes']} / 32 回合，已完成回合成功 {data['real_baseline_successes']}"
-    if data['real_baseline_episodes']==32:
-        evaluation+=f"；本批次成功率 {100*data['real_baseline_successes']/32:.2f}%"
-    else:
-        evaluation+='；未跑完不报最终成功率'
-    lines += [evaluation,
-        f"最近实际执行记录距今：{data['execution_evidence_age_seconds']} 秒（监控心跳不算实验进度）",
-        '执行日志：'+str(data['latest_stage_log']),
-        '后续队列：' + ' → '.join(f'{k} [{v}]' for k,v in data['queue'].items()),
-        'diagnostic = O/R/P 保真度 → 配对信号 → 真实 Critic→ACT 更新；short-ablation = B1/B2/B3 各 2000 Critic / 200 Actor 更新，B0–B3 各 32 回合评估',
-        '前置门槛失败会停止并记录原因；pilot/confirm/generalization 不在自动队列中。',
-        '诊断已记录行数：'+str(data['diagnostic_rows']),
-        '消融已完成评估回合：'+str(data['ablation_episodes']),
-        '独立 checkpoint：'+', '.join(data['milestones'])]
-    if data.get('progress_warning'):
-        lines.insert(2, '注意：'+data['progress_warning'])
-    live=data.get('baseline_live',{})
-    if live.get('phase')=='shared_collection':
-        lines.insert(3,f"共享采集：{live.get('completed_episodes',0)} 回合 / 上限 {live.get('episode_cap',100)}；"
-                     f"独立环境控制步 {live.get('individual_transitions',0)} / 上限 {live.get('transition_cap',50000)}；"
-                     f"已记录动作块 {live.get('real_blocks',0)}")
-    if live.get('phase')=='critic_training':
-        lines.insert(3,f"Critic 更新：{live.get('completed_updates',0)} / {live.get('requested_updates',10000)}；loss={live.get('loss','等待首次输出')}")
-    if data.get('stop_reason'):
-        lines.append('停止原因：'+data['stop_reason'])
+    view=data['detail']
+    phase_name={'diagnostic':'可信性诊断（D0 / D1 / D2）','short-ablation':'最小消融（B0 / B1 / B2 / B3）'}.get(data['phase'],data['phase'])
+    translated={'RUNNING':'进行中','PASSED':'通过','WAITING_GATE':'等待前置门槛',
+        'NOT_RUN':'尚未开始','FAILED_IMPLEMENTATION':'执行失败','INCONCLUSIVE':'证据不足',
+        'NO_GO_REPLAY':'回放门槛未通过','NO_GO_CALIBRATION':'不进入校准'}
+    lines=[f"更新时间 UTC：{data['time_utc']}",
+        f"当前：{phase_name}；管理进程存活：{data['supervisor_alive']}",
+        '序号  阶段 / 已完成数量 / 状态',
+        f" 1    ACT 示教预训练：{data['act_updates']}/{data['act_target']} 次更新",
+        f" 2    ACT0 仿真评估：{data['real_baseline_episodes']}/32 回合；成功 {data['real_baseline_successes']} 回合",
+        f" 3    共享真实交互：{view['shared_episodes']} 回合（每批8、上限100）；{view['shared_steps']} 控制步",
+        f" 4    普通 Critic：{view['critic_updates']}/10000 次更新",
+        f" 5    D0 初始回放检查：{view['initial_points']}/8 点（已落盘 {21*view['initial_points']}/168 条轨迹）",
+        f" 6    D0 扩展回放检查：{view['extra_points']}/16 点（已落盘 {21*view['extra_points']}/336 条轨迹）",
+        f" 7    D1 动作配对初筛：{view['screening_runs']}/648 条真实轨迹完成",
+        f" 8    D1 独立确认：{view['confirmation_runs']} 条轨迹；最多192，实际目标由初筛决定",
+        f" 9    D2 ACT 更新验证：{view['transfer_runs']}/4 条对照轨迹；遗忘评估 {view['forgetting_runs']}/{view['forgetting_target']}",
+        '10    最小消融（Critic更新 / ACT更新 / 真实评估）：']
+    lines.append(f"      B0 固定ACT：无需更新 / 无需更新 / {data['ablation_episodes']['B0']}/32")
+    for arm in ('B1','B2','B3'):
+        counts=view['arms'].get(arm,{})
+        lines.append(f"      {arm}：{counts.get('critic_completed',0)}/2000 / {counts.get('actor_completed',0)}/200 / {data['ablation_episodes'][arm]}/32")
+    lines.append('当前子步骤：'+view['diagnostic_detail'])
+    if data['queue'].get('diagnostic')=='RUNNING':
+        lines.append('D0 每个点含21条轨迹；当前运行到整点结束才落盘，点内精确计数未提供。')
+    lines.append('状态：'+' → '.join(f"{name}({translated.get(data['queue'][key],data['queue'][key])})"
+        for key,name in [('baseline','基线'),('diagnostic','可信性诊断'),('short-ablation','最小消融')]))
+    lines.append(f"日志/产物更新距今 {data['execution_evidence_age_seconds']} 秒；有日志不等于新增成功结果。")
+    if data.get('progress_warning'):lines.append('注意：'+data['progress_warning'])
+    if data.get('stop_reason'):lines.append('停止原因：'+data['stop_reason'])
     publication=data['publication']
-    lines.append(f"最近上传：{publication.get('time_utc','尚无记录')}；退出码 {publication.get('returncode')}；提交 {publication.get('head','')[:8]}")
+    lines.append(f"上传：{publication.get('time_utc','无')}；退出码 {publication.get('returncode')}；{publication.get('head','')[:8]}")
+    lines.append('D0=回放是否可信；D1=动作改动是否有真实效果；D2=Critic能否有效更新ACT。')
+    lines.append('B1=直接Q更新；B2=加可信状态筛选；B3=再加配对价值差校准。详见 EXPERIMENT_PROGRESS.md')
     return '\n'.join(lines)
 
 

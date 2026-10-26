@@ -12,7 +12,8 @@ from .updates import actor_step,critic_step,clone_arms,td_target,polyak
 
 def short_updates(actor,critic,actor_optimizer,critic_optimizer,*,td_batches,endpoint_batches,
                   pair_batches,actor_batches,whitelist,data_hash,policy_sha,
-                  critic_updates=2000,actor_updates=200,alpha_bc=1.,eta_step=1.,target_tau=.005):
+                  critic_updates=2000,actor_updates=200,alpha_bc=1.,eta_step=1.,target_tau=.005,
+                  progress=None):
     if not 0<=critic_updates<=2000 or not 0<=actor_updates<=200:
         raise ValueError('short update protocol budget exceeded')
     if not 0<target_tau<=1:raise ValueError('invalid target tau')
@@ -24,6 +25,7 @@ def short_updates(actor,critic,actor_optimizer,critic_optimizer,*,td_batches,end
     states=clone_arms(actor,critic,actor_optimizer,critic_optimizer,data_hash,whitelist)
     results={}
     for arm,start in states.items():
+        if progress:progress(arm=arm,phase='critic',completed_updates=0,requested_updates=critic_updates)
         actor.load_state_dict(start['actor']);critic.load_state_dict(start['critic'])
         actor_optimizer.load_state_dict(start['actor_optimizer']);critic_optimizer.load_state_dict(start['critic_optimizer'])
         torch.set_rng_state(start['rng'])
@@ -45,9 +47,12 @@ def short_updates(actor,critic,actor_optimizer,critic_optimizer,*,td_batches,end
                 endpoints=endpoint_batches[i%len(endpoint_batches)],pairs=pair_batches[i%len(pair_batches)],
                 lambda_pair=1. if arm=='B3' else 0.,policy_sha=policy_sha))
             polyak(critic,target_critic,target_tau)
+            if progress and ((i+1)%20==0 or i+1==critic_updates):
+                progress(arm=arm,phase='critic',completed_updates=i+1,requested_updates=critic_updates,loss=losses[-1])
         reference=copy.deepcopy(actor).eval().requires_grad_(False)
         accepted={r['checkpoint_id'] for r in whitelist}
         actor_logs=[]
+        if progress:progress(arm=arm,phase='actor',completed_updates=0,requested_updates=actor_updates)
         for i in range(actor_updates):
             batch=actor_batches[i%len(actor_batches)]
             if any(s!='train' for s in batch['splits']):raise ValueError('actor label leakage')
@@ -56,6 +61,8 @@ def short_updates(actor,critic,actor_optimizer,critic_optimizer,*,td_batches,end
             with torch.no_grad():old=reference(batch['obs'])
             actor_logs.append(actor_step(actor,critic,actor_optimizer,batch['obs'],batch['condition'],mask,old,
                 demo=batch['demo'],alpha_bc=alpha_bc,eta_step=eta_step))
+            if progress and ((i+1)%10==0 or i+1==actor_updates):
+                progress(arm=arm,phase='actor',completed_updates=i+1,requested_updates=actor_updates)
         results[arm]={'actor':copy.deepcopy(actor.state_dict()),'critic':copy.deepcopy(critic.state_dict()),
                       'target_critic':copy.deepcopy(target_critic.state_dict()),
                       'critic_losses':losses,'actor_logs':actor_logs,'data_hash':data_hash,

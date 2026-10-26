@@ -28,9 +28,13 @@ def test_short_updates_recompute_targets_and_reset_each_arm(monkeypatch):
         captured.append(args[4].clone())
         return original(*args,**kwargs)
     monkeypatch.setattr(ablation,'critic_step',record)
+    progress=[]
     result=ablation.short_updates(a,q,torch.optim.SGD(a.parameters(),lr=.001),torch.optim.SGD(q.parameters(),lr=.01),
         td_batches=[td],endpoint_batches=[end],pair_batches=[pairs],actor_batches=[],whitelist=[],
-        data_hash='same',policy_sha='fixed',critic_updates=2,actor_updates=0,target_tau=.5)
+        data_hash='same',policy_sha='fixed',critic_updates=2,actor_updates=0,target_tau=.5,
+        progress=lambda **record:progress.append(record))
+    assert [(r['arm'],r['completed_updates']) for r in progress
+            if r['phase']=='critic' and r['completed_updates']>0]==[('B1',2),('B2',2),('B3',2)]
     assert not torch.equal(captured[0],captured[1])
     torch.testing.assert_close(captured[0],captured[2])
     torch.testing.assert_close(captured[0],captured[4])

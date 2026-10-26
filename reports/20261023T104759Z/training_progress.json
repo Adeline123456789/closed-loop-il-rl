@@ -1,22 +1,22 @@
 {
-  "time_utc": "2026-10-26T07:57:14.006286+00:00",
-  "phase": "在线 Critic 训练",
+  "time_utc": "2026-10-26T08:16:12.061185+00:00",
+  "phase": "diagnostic",
   "supervisor_alive": true,
   "supervisor_status": "RUNNING",
   "act_updates": 10000,
   "act_target": 10000,
   "act_percent": 100.0,
-  "checkpoint_age_seconds": 4234.7,
+  "checkpoint_age_seconds": 5372.8,
   "real_baseline_episodes": 32,
   "real_baseline_successes": 6,
   "queue": {
-    "baseline": "RUNNING",
-    "diagnostic": "WAITING_GATE",
+    "baseline": "PASSED",
+    "diagnostic": "RUNNING",
     "short-ablation": "WAITING_GATE"
   },
   "stop_reason": null,
   "diagnostic_rows": {
-    "fidelity": 0,
+    "fidelity": 18,
     "paired_screening": 0,
     "paired_confirmation": 0,
     "actor_step": 0
@@ -35,20 +35,34 @@
     "act0_update_010000.pt"
   ],
   "publication": {
-    "time_utc": "2026-10-26T07:49:49.121575+00:00",
+    "time_utc": "2026-10-26T07:57:38.355327+00:00",
     "returncode": 0,
-    "head": "34c3f60f00f25d312f0890aa36819249e220ba68"
+    "head": "112c4eb6879b78e4fb8591125033b3c6b9e16003"
   },
-  "execution_evidence_age_seconds": 0.1,
+  "execution_evidence_age_seconds": 44.4,
   "progress_warning": null,
-  "latest_execution_evidence": "reports/20261023T104759Z/baseline_live_progress.json",
-  "latest_stage_log": "reports/20261023T104759Z/baseline_1793000863716694112.log",
+  "latest_execution_evidence": "reports/20261023T104759Z/diagnostic_1793001458468229690.log",
+  "latest_stage_log": "reports/20261023T104759Z/diagnostic_1793001458468229690.log",
   "baseline_live": {
     "phase": "critic_training",
-    "time": 1793001433.9236615,
-    "completed_updates": 7400,
+    "time": 1793001438.450562,
+    "completed_updates": 10000,
     "requested_updates": 10000,
-    "loss": 0.004392754752188921
+    "loss": 0.0032240678556263447
+  },
+  "detail": {
+    "shared_episodes": 96,
+    "shared_steps": 14304,
+    "critic_updates": 10000,
+    "initial_points": 1,
+    "extra_points": 0,
+    "screening_runs": 0,
+    "confirmation_runs": 0,
+    "transfer_runs": 0,
+    "forgetting_runs": 0,
+    "forgetting_target": 18,
+    "arms": {},
+    "diagnostic_detail": "D0：初始8个检查点已选齐；当前第 2/8 个点，整点完成 1/8"
   },
   "loss": {
     "update": 10000,
