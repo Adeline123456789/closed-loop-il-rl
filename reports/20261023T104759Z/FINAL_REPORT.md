@@ -1,6 +1,6 @@
 # 实测结果与诊断停止报告
 
-本轮状态：**NO_GO_REPLAY / NO_GO_CALIBRATION**。没有完成 D1、D2 或 B1/B2/B3，不能声称 Critic 改善了插接成功率。所有仿真和排错进程均已结束；不是仍在后台等待。
+配对校准状态：**NO_GO_REPLAY / NO_GO_CALIBRATION**。没有完成 D1、D2 或 B1/B2/B3。普通直接 Q 对照按任务书允许的独立路径执行，实时状态和结果见本文末尾；不能将其当作配对消融完成。
 
 | 阶段 | 实测进度和结果 |
 |---|---|
@@ -45,4 +45,16 @@ NumPy 布尔值/标量在 JSON 写入前转换为相应 Python 数值类型，Na
 - `replay_probe_*.json/log`、`replay_input_audit.json`：工程排错结果、源代码哈希及输入差异。
 - 原始数组、轨迹与权重保留本地 `data/`、`checkpoints/`，没有作为 GitHub 仓库大文件上传。
 
-观测命令：`watch -n 5 '.venv/bin/python scripts/training_status.py'`。当前应显示门槛停止，不应显示消融运行中。
+观测命令：`watch -n 5 '.venv/bin/python scripts/training_status.py'`。配对消融保持门槛停止，普通直接 Q 对照单独显示。
+
+## 本次继续执行：普通直接 Q 与渲染排错
+
+CODEX_TASK.md 第 D0 节允许在回放失败后保留普通直接 Q 基线。本对照不使用任何未验证 MC/pair 标签，不冒充 B1/B2/B3。初始模型、数据、优化参数、随机种子和评估种子先写入 `direct_q_plan.json`。
+
+Critic 更新 2000/2000，ACT 更新 200/200。作业记录：RUNNING / direct_B0；是否仍存活以实时监控为准。
+
+真实评估尚未全部完成；没有将梯度、loss 或训练完成当作插接成功率。
+
+使用原基线相机设置，两组均使用相同的控制目标/随机事件重置修复。各组在独立 Isaac 进程执行，逐物理步写前日志、180 秒无进展中断和退出状态均保留。真实 CSV 每回合刷新。
+
+渲染工程检查最新记录：`reports/20261023T104759Z/render_repair_1793007388611133331/result.json`，状态 `ENGINEERING_INPUTS_DIFFER`。AA、历史清空、性能预设和抖动设置探针均未证明像素/动作完全一致；没有作为 D0 通过证据，也没有把探针相机设置应用到普通对照。

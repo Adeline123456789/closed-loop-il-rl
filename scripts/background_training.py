@@ -84,6 +84,11 @@ def snapshot():
             '| Stage | Recorded status |\n|---|---|\n' +
             ''.join(f'| {k} | {v} |\n' for k,v in info['stages'].items()) +
             '\nSee background_job.json for process status and FINAL_REPORT.md for measured results.\n')
+    direct_path=REPORT/'direct_q_job.json'
+    if direct_path.exists():
+        direct=json.loads(direct_path.read_text())
+        text+='\nOrdinary direct-Q fallback (explicitly permitted after D0 no-go): '+direct['status']+' / '+direct['phase']+'. '
+        text+='See direct_q_plan.json, direct_q_result.json (only after both real evaluations), and direct_q_job.json. This is not completed paired D1/D2/B1/B2/B3.\n'
     (REPORT / 'PUBLICATION_STATUS.md').write_text(text)
     return text
 

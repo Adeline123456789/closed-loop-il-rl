@@ -58,3 +58,8 @@ D0 每个点的 21 条轨迹＝3 个动作候选 ×（原始续跑 1 次＋快�
 这轮没有做“去掉力传感器”的消融，也不能仅凭 B1 对 B0 的差异把全部收益归因于 Q 梯度，因为 B1 还有额外 BC 更新。Q-only 与带 BC 更新的作用另由 D2 的真实执行诊断检查。最终结论仍以独立状态上的实测成功、成本、载荷及配对区间为准。
 
 `WAITING_GATE`＝等待前置门槛；`PASSED`＝该阶段门槛通过；`INCONCLUSIVE`＝证据不足；`STOPPED/FAILED`＝已停止，查看具体原因。ACT 100% 不表示诊断或消融已经完成。更大规模 pilot、确认和泛化不在当前自动队列中。
+# D0 后允许的普通直接 Q 对照
+
+进度命令新增第 11 项，独立显示 2,000 次 Critic / 200 次 ACT 更新，以及 `direct_B0`、`direct_Q` 各 32 回合真实评估。它使用真实共享 replay 的 TD 标签，不使用未通过回放验证的配对标签。普通对照的运行不改变 D0 的 NO_GO，也不将 D1/D2/B1–B3 标记完成。
+
+实时状态为 `reports/20261023T104759Z/direct_q_job.json`，优化进度为 `direct_q_progress.json`，真实评估逐回合保存到 `results/20261023T104759Z/direct_*_validation.csv`。两组完成后才生成 `direct_q_result.json`。比较包含额外 BC 的影响，不能据此单独证明 Q 或配对校准的收益。

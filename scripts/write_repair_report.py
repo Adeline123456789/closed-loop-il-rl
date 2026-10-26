@@ -13,7 +13,7 @@ episodes=list(csv.DictReader((results/'act0_validation.csv').open()))
 successes=sum(int(r['stable_success']) for r in episodes)
 text=f'''# 实测结果与诊断停止报告
 
-本轮状态：**NO_GO_REPLAY / NO_GO_CALIBRATION**。没有完成 D1、D2 或 B1/B2/B3，不能声称 Critic 改善了插接成功率。所有仿真和排错进程均已结束；不是仍在后台等待。
+配对校准状态：**NO_GO_REPLAY / NO_GO_CALIBRATION**。没有完成 D1、D2 或 B1/B2/B3。普通直接 Q 对照按任务书允许的独立路径执行，实时状态和结果见本文末尾；不能将其当作配对消融完成。
 
 | 阶段 | 实测进度和结果 |
 |---|---|
@@ -58,7 +58,26 @@ NumPy 布尔值/标量在 JSON 写入前转换为相应 Python 数值类型，Na
 - `replay_probe_*.json/log`、`replay_input_audit.json`：工程排错结果、源代码哈希及输入差异。
 - 原始数组、轨迹与权重保留本地 `data/`、`checkpoints/`，没有作为 GitHub 仓库大文件上传。
 
-观测命令：`watch -n 5 '.venv/bin/python scripts/training_status.py'`。当前应显示门槛停止，不应显示消融运行中。
+观测命令：`watch -n 5 '.venv/bin/python scripts/training_status.py'`。配对消融保持门槛停止，普通直接 Q 对照单独显示。
 '''
+def read(path):
+    return json.loads(path.read_text()) if path.exists() else {}
+direct=read(report/'direct_q_result.json')
+job=read(report/'direct_q_job.json')
+training=read(report/'direct_q_progress.json')
+render=read(report/'render_repair_latest.json')
+text+='\n## 本次继续执行：普通直接 Q 与渲染排错\n\n'
+text+='CODEX_TASK.md 第 D0 节允许在回放失败后保留普通直接 Q 基线。本对照不使用任何未验证 MC/pair 标签，不冒充 B1/B2/B3。初始模型、数据、优化参数、随机种子和评估种子先写入 `direct_q_plan.json`。\n\n'
+text+=f"Critic 更新 {training.get('critic_completed',0)}/2000，ACT 更新 {training.get('actor_completed',0)}/200。作业记录：{job.get('status','未启动评估')} / {job.get('phase','')}；是否仍存活以实时监控为准。\n\n"
+if direct:
+    text+='| 普通对照 | 真实回合 | 稳定成功 | 批次成功率 | Wilson 95% 区间 | 平均代价 |\n|---|---|---|---|---|---|\n'
+    for name,a in direct['arms'].items():
+        low,high=a['wilson95']
+        text+=f"| {name} | {a['episodes']} | {a['successes']} | {100*a['success_rate']:.2f}% | {100*low:.1f}%–{100*high:.1f}% | {a['mean_cost']:.4f} |\n"
+    text+='\n这是真实仿真中的批次结果。更新包含 Q、额外 BC 和 step 正则项，不能把组间差异单独归因于 Q，也不能据此证明配对校准有效。原 ACT0 6/32 结果属于原评估批次，未覆盖。\n'
+else:
+    text+='真实评估尚未全部完成；没有将梯度、loss 或训练完成当作插接成功率。\n'
+text+='\n使用原基线相机设置，两组均使用相同的控制目标/随机事件重置修复。各组在独立 Isaac 进程执行，逐物理步写前日志、180 秒无进展中断和退出状态均保留。真实 CSV 每回合刷新。\n'
+text+=f"\n渲染工程检查最新记录：`{render.get('result','无')}`，状态 `{render.get('status','未运行')}`。AA、历史清空、性能预设和抖动设置探针均未证明像素/动作完全一致；没有作为 D0 通过证据，也没有把探针相机设置应用到普通对照。\n"
 (report/'FINAL_REPORT.md').write_text(text)
 (report/'DIAGNOSTIC_REPAIR.md').write_text(text)

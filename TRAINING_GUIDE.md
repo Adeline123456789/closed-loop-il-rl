@@ -138,3 +138,20 @@ cat reports/20261023T104759Z/decision.json
 ```
 
 文件只在相应阶段启动后出现。阶段实际命令、退出码和源文件 hash 在 `reports/20261023T104759Z/*command.json` 或 `*_command.json`，仿真输出在同目录 `.log`，各类别的真实物理步数在 `run_manifest.json` 与阶段 `.accounting.json`。查看这些文件时，无需改动任何协议或阈值。
+
+## D0 停止后的普通直接 Q 对照
+
+任务书允许保留普通直接 Q 路径。当前新增对照从原 ACT0、普通 Critic 和真实共享 replay 开始，完成 2,000 次 TD Critic、200 次 Q+BC+step ACT 更新；随后固定 ACT0 与更新后 ACT 各做 32 回合真实评估。配置在 `reports/20261023T104759Z/direct_q_plan.json`，完整结果只在两组评估完成后生成 `direct_q_result.json`。这不等于配对 D2 或 B1/B2/B3 通过；额外 BC 也使它不能单独归因 Q 的效果。
+
+现有作业使用 tmux 会话 `forcecritic-direct-q`。查看进度无需重新启动：
+
+```bash
+watch -n 5 '.venv/bin/python scripts/training_status.py'
+tail -f .cache/direct_q_background.log
+tail -f results/20261023T104759Z/direct_Q_validation.csv
+cat reports/20261023T104759Z/direct_q_job.json
+```
+
+`direct_Q_validation.csv` 在第二组初始化完成后出现；每完成一回合刷新。新评估使用 21000–21031，原 ACT0 20000–20031 的结果保留。每组独立仿真进程，逐物理步日志保证进度不是监控心跳。初始化最多 300 秒；连续 180 秒无物理进展抓栈并中断，最多 30 秒收尾，错误会写盘并发布，绝不自动改门槛或无限重跑。
+
+后台入口为 `PYTHONPATH=src .venv/bin/python scripts/background_direct_q.py`；已有真实评估产物时会拒绝覆盖，不要重复启动。结束后后台作业自动更新最终报告、推送当前分支并更新 PR #1。原始图像、数据和权重仍在本地。

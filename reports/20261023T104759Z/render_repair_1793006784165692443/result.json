@@ -1,0 +1,200 @@
+{
+  "status": "ENGINEERING_INPUTS_DIFFER",
+  "purpose": "Development-only engineering repair; unchanged scientific gates",
+  "attempts": [
+    {
+      "name": "FXAA_input_a",
+      "returncode": 0,
+      "command": [
+        "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/bin/python",
+        "-u",
+        "scripts/probe_diagnostic_replay.py",
+        "--output",
+        "reports/20261023T104759Z/render_repair_1793006784165692443/FXAA_input_a.json",
+        "--headless",
+        "--enable_cameras",
+        "--kit_args=--/exts/omni.kit.registry.nucleus/registries/0/url=https://ovextensionsprod.blob.core.windows.net/exts/kit/prod/107/shared",
+        "--render-aa",
+        "FXAA",
+        "--only-prefix"
+      ],
+      "output": "reports/20261023T104759Z/render_repair_1793006784165692443/FXAA_input_a.json",
+      "elapsed": 22.002577543258667
+    },
+    {
+      "name": "FXAA_input_b",
+      "returncode": 0,
+      "command": [
+        "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/bin/python",
+        "-u",
+        "scripts/probe_diagnostic_replay.py",
+        "--output",
+        "reports/20261023T104759Z/render_repair_1793006784165692443/FXAA_input_b.json",
+        "--headless",
+        "--enable_cameras",
+        "--kit_args=--/exts/omni.kit.registry.nucleus/registries/0/url=https://ovextensionsprod.blob.core.windows.net/exts/kit/prod/107/shared",
+        "--render-aa",
+        "FXAA",
+        "--only-prefix"
+      ],
+      "output": "reports/20261023T104759Z/render_repair_1793006784165692443/FXAA_input_b.json",
+      "elapsed": 20.00329303741455
+    },
+    {
+      "name": "Off_input_a",
+      "returncode": 0,
+      "command": [
+        "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/bin/python",
+        "-u",
+        "scripts/probe_diagnostic_replay.py",
+        "--output",
+        "reports/20261023T104759Z/render_repair_1793006784165692443/Off_input_a.json",
+        "--headless",
+        "--enable_cameras",
+        "--kit_args=--/exts/omni.kit.registry.nucleus/registries/0/url=https://ovextensionsprod.blob.core.windows.net/exts/kit/prod/107/shared",
+        "--render-aa",
+        "Off",
+        "--only-prefix"
+      ],
+      "output": "reports/20261023T104759Z/render_repair_1793006784165692443/Off_input_a.json",
+      "elapsed": 20.0022873878479
+    },
+    {
+      "name": "Off_input_b",
+      "returncode": 0,
+      "command": [
+        "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/bin/python",
+        "-u",
+        "scripts/probe_diagnostic_replay.py",
+        "--output",
+        "reports/20261023T104759Z/render_repair_1793006784165692443/Off_input_b.json",
+        "--headless",
+        "--enable_cameras",
+        "--kit_args=--/exts/omni.kit.registry.nucleus/registries/0/url=https://ovextensionsprod.blob.core.windows.net/exts/kit/prod/107/shared",
+        "--render-aa",
+        "Off",
+        "--only-prefix"
+      ],
+      "output": "reports/20261023T104759Z/render_repair_1793006784165692443/Off_input_b.json",
+      "elapsed": 20.003148555755615
+    }
+  ],
+  "comparisons": [
+    {
+      "mode": "FXAA",
+      "input_max_errors": {
+        "rgb": 21.0,
+        "state": 0.0,
+        "history": 0.0
+      },
+      "action_max_error": 0.07063142210245132
+    },
+    {
+      "mode": "Off",
+      "input_max_errors": {
+        "rgb": 10.0,
+        "state": 0.0,
+        "history": 0.0
+      },
+      "action_max_error": 0.06159538775682449
+    }
+  ],
+  "accounting": [
+    {
+      "path": "reports/20261023T104759Z/render_repair_1793006784165692443/FXAA_input_a.json",
+      "sha256": "1bcdc569446872804e3401eea1e4b0384ca519658a37a7363e52fa4a2bf91934",
+      "accounting": {
+        "physics_substeps": {
+          "restore": 67,
+          "interaction": 0,
+          "branch": 0,
+          "prefix": 64,
+          "evaluation": 0
+        },
+        "decimation": 8,
+        "num_envs": 1,
+        "control_step_cap": 5000.0,
+        "individual_control_step_equivalents": {
+          "restore": 9,
+          "interaction": 0,
+          "branch": 0,
+          "prefix": 8,
+          "evaluation": 0
+        },
+        "charged_before_step": true
+      }
+    },
+    {
+      "path": "reports/20261023T104759Z/render_repair_1793006784165692443/FXAA_input_b.json",
+      "sha256": "733c339e32a414412d97cb2c94b8ce753873c3f27c0a6209946172902e6698cf",
+      "accounting": {
+        "physics_substeps": {
+          "restore": 67,
+          "interaction": 0,
+          "branch": 0,
+          "prefix": 64,
+          "evaluation": 0
+        },
+        "decimation": 8,
+        "num_envs": 1,
+        "control_step_cap": 5000.0,
+        "individual_control_step_equivalents": {
+          "restore": 9,
+          "interaction": 0,
+          "branch": 0,
+          "prefix": 8,
+          "evaluation": 0
+        },
+        "charged_before_step": true
+      }
+    },
+    {
+      "path": "reports/20261023T104759Z/render_repair_1793006784165692443/Off_input_a.json",
+      "sha256": "7147e05df45d3095ac9322a1806c0a5d6b024bc275a5426fff2b3c8393d79ad0",
+      "accounting": {
+        "physics_substeps": {
+          "restore": 67,
+          "interaction": 0,
+          "branch": 0,
+          "prefix": 64,
+          "evaluation": 0
+        },
+        "decimation": 8,
+        "num_envs": 1,
+        "control_step_cap": 5000.0,
+        "individual_control_step_equivalents": {
+          "restore": 9,
+          "interaction": 0,
+          "branch": 0,
+          "prefix": 8,
+          "evaluation": 0
+        },
+        "charged_before_step": true
+      }
+    },
+    {
+      "path": "reports/20261023T104759Z/render_repair_1793006784165692443/Off_input_b.json",
+      "sha256": "a3ac115722f0775631646c9246e06b4ce117f3d46a2b11938c18199b5b0624e6",
+      "accounting": {
+        "physics_substeps": {
+          "restore": 67,
+          "interaction": 0,
+          "branch": 0,
+          "prefix": 64,
+          "evaluation": 0
+        },
+        "decimation": 8,
+        "num_envs": 1,
+        "control_step_cap": 5000.0,
+        "individual_control_step_equivalents": {
+          "restore": 9,
+          "interaction": 0,
+          "branch": 0,
+          "prefix": 8,
+          "evaluation": 0
+        },
+        "charged_before_step": true
+      }
+    }
+  ]
+}

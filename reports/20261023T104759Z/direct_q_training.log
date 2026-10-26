@@ -1,0 +1,122 @@
+DIRECT_Q loading {"critic_completed": 0, "actor_completed": 0}
+DIRECT_Q critic {"critic_completed": 20, "actor_completed": 0, "loss": 0.008260331116616726}
+DIRECT_Q critic {"critic_completed": 40, "actor_completed": 0, "loss": 0.0046348306350409985}
+DIRECT_Q critic {"critic_completed": 60, "actor_completed": 0, "loss": 0.004231618717312813}
+DIRECT_Q critic {"critic_completed": 80, "actor_completed": 0, "loss": 0.008037355728447437}
+DIRECT_Q critic {"critic_completed": 100, "actor_completed": 0, "loss": 0.004484950564801693}
+DIRECT_Q critic {"critic_completed": 120, "actor_completed": 0, "loss": 0.005093488376587629}
+DIRECT_Q critic {"critic_completed": 140, "actor_completed": 0, "loss": 0.0029824567027390003}
+DIRECT_Q critic {"critic_completed": 160, "actor_completed": 0, "loss": 0.0032515674829483032}
+DIRECT_Q critic {"critic_completed": 180, "actor_completed": 0, "loss": 0.010204467922449112}
+DIRECT_Q critic {"critic_completed": 200, "actor_completed": 0, "loss": 0.004664696287363768}
+DIRECT_Q critic {"critic_completed": 220, "actor_completed": 0, "loss": 0.004425409249961376}
+DIRECT_Q critic {"critic_completed": 240, "actor_completed": 0, "loss": 0.0032110526226460934}
+DIRECT_Q critic {"critic_completed": 260, "actor_completed": 0, "loss": 0.0034369537606835365}
+DIRECT_Q critic {"critic_completed": 280, "actor_completed": 0, "loss": 0.004358767997473478}
+DIRECT_Q critic {"critic_completed": 300, "actor_completed": 0, "loss": 0.0042602261528372765}
+DIRECT_Q critic {"critic_completed": 320, "actor_completed": 0, "loss": 0.00360015663318336}
+DIRECT_Q critic {"critic_completed": 340, "actor_completed": 0, "loss": 0.004040106199681759}
+DIRECT_Q critic {"critic_completed": 360, "actor_completed": 0, "loss": 0.005067748948931694}
+DIRECT_Q critic {"critic_completed": 380, "actor_completed": 0, "loss": 0.004974182695150375}
+DIRECT_Q critic {"critic_completed": 400, "actor_completed": 0, "loss": 0.008848712779581547}
+DIRECT_Q critic {"critic_completed": 420, "actor_completed": 0, "loss": 0.004893945530056953}
+DIRECT_Q critic {"critic_completed": 440, "actor_completed": 0, "loss": 0.004728165455162525}
+DIRECT_Q critic {"critic_completed": 460, "actor_completed": 0, "loss": 0.003083760617300868}
+DIRECT_Q critic {"critic_completed": 480, "actor_completed": 0, "loss": 0.0036728179547935724}
+DIRECT_Q critic {"critic_completed": 500, "actor_completed": 0, "loss": 0.005398590117692947}
+DIRECT_Q critic {"critic_completed": 520, "actor_completed": 0, "loss": 0.004457881674170494}
+DIRECT_Q critic {"critic_completed": 540, "actor_completed": 0, "loss": 0.0042459541000425816}
+DIRECT_Q critic {"critic_completed": 560, "actor_completed": 0, "loss": 0.005388660356402397}
+DIRECT_Q critic {"critic_completed": 580, "actor_completed": 0, "loss": 0.003105618990957737}
+DIRECT_Q critic {"critic_completed": 600, "actor_completed": 0, "loss": 0.002249310724437237}
+DIRECT_Q critic {"critic_completed": 620, "actor_completed": 0, "loss": 0.0028934781439602375}
+DIRECT_Q critic {"critic_completed": 640, "actor_completed": 0, "loss": 0.002678052755072713}
+DIRECT_Q critic {"critic_completed": 660, "actor_completed": 0, "loss": 0.002951056696474552}
+DIRECT_Q critic {"critic_completed": 680, "actor_completed": 0, "loss": 0.0025874648708850145}
+DIRECT_Q critic {"critic_completed": 700, "actor_completed": 0, "loss": 0.003835028735920787}
+DIRECT_Q critic {"critic_completed": 720, "actor_completed": 0, "loss": 0.003855086863040924}
+DIRECT_Q critic {"critic_completed": 740, "actor_completed": 0, "loss": 0.0032500065863132477}
+DIRECT_Q critic {"critic_completed": 760, "actor_completed": 0, "loss": 0.0033380556851625443}
+DIRECT_Q critic {"critic_completed": 780, "actor_completed": 0, "loss": 0.0029853563755750656}
+DIRECT_Q critic {"critic_completed": 800, "actor_completed": 0, "loss": 0.006474591791629791}
+DIRECT_Q critic {"critic_completed": 820, "actor_completed": 0, "loss": 0.004457531031221151}
+DIRECT_Q critic {"critic_completed": 840, "actor_completed": 0, "loss": 0.0036387452855706215}
+DIRECT_Q critic {"critic_completed": 860, "actor_completed": 0, "loss": 0.003332646330818534}
+DIRECT_Q critic {"critic_completed": 880, "actor_completed": 0, "loss": 0.0037903939373791218}
+DIRECT_Q critic {"critic_completed": 900, "actor_completed": 0, "loss": 0.006105807609856129}
+DIRECT_Q critic {"critic_completed": 920, "actor_completed": 0, "loss": 0.004717476665973663}
+DIRECT_Q critic {"critic_completed": 940, "actor_completed": 0, "loss": 0.0025782885495573282}
+DIRECT_Q critic {"critic_completed": 960, "actor_completed": 0, "loss": 0.003205485874786973}
+DIRECT_Q critic {"critic_completed": 980, "actor_completed": 0, "loss": 0.0023200614377856255}
+DIRECT_Q critic {"critic_completed": 1000, "actor_completed": 0, "loss": 0.0035116937942802906}
+DIRECT_Q critic {"critic_completed": 1020, "actor_completed": 0, "loss": 0.0036924672313034534}
+DIRECT_Q critic {"critic_completed": 1040, "actor_completed": 0, "loss": 0.002481698291376233}
+DIRECT_Q critic {"critic_completed": 1060, "actor_completed": 0, "loss": 0.003120647743344307}
+DIRECT_Q critic {"critic_completed": 1080, "actor_completed": 0, "loss": 0.0026208763010799885}
+DIRECT_Q critic {"critic_completed": 1100, "actor_completed": 0, "loss": 0.002640853403136134}
+DIRECT_Q critic {"critic_completed": 1120, "actor_completed": 0, "loss": 0.005500061437487602}
+DIRECT_Q critic {"critic_completed": 1140, "actor_completed": 0, "loss": 0.0038832887075841427}
+DIRECT_Q critic {"critic_completed": 1160, "actor_completed": 0, "loss": 0.0023046270944178104}
+DIRECT_Q critic {"critic_completed": 1180, "actor_completed": 0, "loss": 0.003281064797192812}
+DIRECT_Q critic {"critic_completed": 1200, "actor_completed": 0, "loss": 0.003408770076930523}
+DIRECT_Q critic {"critic_completed": 1220, "actor_completed": 0, "loss": 0.0024108754005283117}
+DIRECT_Q critic {"critic_completed": 1240, "actor_completed": 0, "loss": 0.0030186912044882774}
+DIRECT_Q critic {"critic_completed": 1260, "actor_completed": 0, "loss": 0.0034353272058069706}
+DIRECT_Q critic {"critic_completed": 1280, "actor_completed": 0, "loss": 0.004855417180806398}
+DIRECT_Q critic {"critic_completed": 1300, "actor_completed": 0, "loss": 0.004714714363217354}
+DIRECT_Q critic {"critic_completed": 1320, "actor_completed": 0, "loss": 0.0029888967983424664}
+DIRECT_Q critic {"critic_completed": 1340, "actor_completed": 0, "loss": 0.002885590773075819}
+DIRECT_Q critic {"critic_completed": 1360, "actor_completed": 0, "loss": 0.0023551336489617825}
+DIRECT_Q critic {"critic_completed": 1380, "actor_completed": 0, "loss": 0.002201896160840988}
+DIRECT_Q critic {"critic_completed": 1400, "actor_completed": 0, "loss": 0.0039454372599720955}
+DIRECT_Q critic {"critic_completed": 1420, "actor_completed": 0, "loss": 0.003940455615520477}
+DIRECT_Q critic {"critic_completed": 1440, "actor_completed": 0, "loss": 0.003267428372055292}
+DIRECT_Q critic {"critic_completed": 1460, "actor_completed": 0, "loss": 0.00420259777456522}
+DIRECT_Q critic {"critic_completed": 1480, "actor_completed": 0, "loss": 0.0037213079631328583}
+DIRECT_Q critic {"critic_completed": 1500, "actor_completed": 0, "loss": 0.0040101418271660805}
+DIRECT_Q critic {"critic_completed": 1520, "actor_completed": 0, "loss": 0.004825254902243614}
+DIRECT_Q critic {"critic_completed": 1540, "actor_completed": 0, "loss": 0.004071889910846949}
+DIRECT_Q critic {"critic_completed": 1560, "actor_completed": 0, "loss": 0.0035355226136744022}
+DIRECT_Q critic {"critic_completed": 1580, "actor_completed": 0, "loss": 0.005931048654019833}
+DIRECT_Q critic {"critic_completed": 1600, "actor_completed": 0, "loss": 0.0027928389608860016}
+DIRECT_Q critic {"critic_completed": 1620, "actor_completed": 0, "loss": 0.0027051731012761593}
+DIRECT_Q critic {"critic_completed": 1640, "actor_completed": 0, "loss": 0.0028495921287685633}
+DIRECT_Q critic {"critic_completed": 1660, "actor_completed": 0, "loss": 0.001999175176024437}
+DIRECT_Q critic {"critic_completed": 1680, "actor_completed": 0, "loss": 0.002283158479258418}
+DIRECT_Q critic {"critic_completed": 1700, "actor_completed": 0, "loss": 0.002196546643972397}
+DIRECT_Q critic {"critic_completed": 1720, "actor_completed": 0, "loss": 0.0024961126036942005}
+DIRECT_Q critic {"critic_completed": 1740, "actor_completed": 0, "loss": 0.002989315427839756}
+DIRECT_Q critic {"critic_completed": 1760, "actor_completed": 0, "loss": 0.0038323230110108852}
+DIRECT_Q critic {"critic_completed": 1780, "actor_completed": 0, "loss": 0.003762025386095047}
+DIRECT_Q critic {"critic_completed": 1800, "actor_completed": 0, "loss": 0.0026847971603274345}
+DIRECT_Q critic {"critic_completed": 1820, "actor_completed": 0, "loss": 0.0024055480025708675}
+DIRECT_Q critic {"critic_completed": 1840, "actor_completed": 0, "loss": 0.002811139216646552}
+DIRECT_Q critic {"critic_completed": 1860, "actor_completed": 0, "loss": 0.005812923889607191}
+DIRECT_Q critic {"critic_completed": 1880, "actor_completed": 0, "loss": 0.005406594835221767}
+DIRECT_Q critic {"critic_completed": 1900, "actor_completed": 0, "loss": 0.00408143550157547}
+DIRECT_Q critic {"critic_completed": 1920, "actor_completed": 0, "loss": 0.0038768548984080553}
+DIRECT_Q critic {"critic_completed": 1940, "actor_completed": 0, "loss": 0.006553526967763901}
+DIRECT_Q critic {"critic_completed": 1960, "actor_completed": 0, "loss": 0.0030234805308282375}
+DIRECT_Q critic {"critic_completed": 1980, "actor_completed": 0, "loss": 0.004034524783492088}
+DIRECT_Q critic {"critic_completed": 2000, "actor_completed": 0, "loss": 0.003902025055140257}
+DIRECT_Q actor {"critic_completed": 2000, "actor_completed": 10, "last_update": {"loss": -1.019956350326538, "q_grad_norm": 0.6590198278427124, "bc_grad_norm": 7.129841327667236, "q_bc_dot": 0.11307813227176666, "saturation": 0.05908203125, "update": 10, "mean_abs_delta_action": 0.006687978282570839, "max_abs_delta_action": 0.5102672576904297}}
+DIRECT_Q actor {"critic_completed": 2000, "actor_completed": 20, "last_update": {"loss": -1.222614049911499, "q_grad_norm": 0.6419798135757446, "bc_grad_norm": 4.134274959564209, "q_bc_dot": -0.0072594028897583485, "saturation": 0.056640625, "update": 20, "mean_abs_delta_action": 0.004388518165796995, "max_abs_delta_action": 0.2604466676712036}}
+DIRECT_Q actor {"critic_completed": 2000, "actor_completed": 30, "last_update": {"loss": -1.0810195207595825, "q_grad_norm": 0.5760007500648499, "bc_grad_norm": 2.4534218311309814, "q_bc_dot": -0.09736921638250351, "saturation": 0.07568359375, "update": 30, "mean_abs_delta_action": 0.0037462101317942142, "max_abs_delta_action": 0.10300019383430481}}
+DIRECT_Q actor {"critic_completed": 2000, "actor_completed": 40, "last_update": {"loss": -1.3431578874588013, "q_grad_norm": 0.5805706977844238, "bc_grad_norm": 1.5851138830184937, "q_bc_dot": -0.038710758090019226, "saturation": 0.05810546875, "update": 40, "mean_abs_delta_action": 0.004091422073543072, "max_abs_delta_action": 0.09351757913827896}}
+DIRECT_Q actor {"critic_completed": 2000, "actor_completed": 50, "last_update": {"loss": -1.2519493103027344, "q_grad_norm": 0.7275106906890869, "bc_grad_norm": 1.1377005577087402, "q_bc_dot": -0.031103618443012238, "saturation": 0.056640625, "update": 50, "mean_abs_delta_action": 0.0032131567131727934, "max_abs_delta_action": 0.09772926568984985}}
+DIRECT_Q actor {"critic_completed": 2000, "actor_completed": 60, "last_update": {"loss": -1.3708511590957642, "q_grad_norm": 0.6063694953918457, "bc_grad_norm": 0.6045156121253967, "q_bc_dot": -0.09982358664274216, "saturation": 0.06982421875, "update": 60, "mean_abs_delta_action": 0.003307789098471403, "max_abs_delta_action": 0.11730006337165833}}
+DIRECT_Q actor {"critic_completed": 2000, "actor_completed": 70, "last_update": {"loss": -1.3204838037490845, "q_grad_norm": 0.5693328380584717, "bc_grad_norm": 0.4840950667858124, "q_bc_dot": 0.06440560519695282, "saturation": 0.05322265625, "update": 70, "mean_abs_delta_action": 0.0026857852935791016, "max_abs_delta_action": 0.07255595922470093}}
+DIRECT_Q actor {"critic_completed": 2000, "actor_completed": 80, "last_update": {"loss": -1.2442551851272583, "q_grad_norm": 0.6906642913818359, "bc_grad_norm": 0.8573480248451233, "q_bc_dot": -0.28513216972351074, "saturation": 0.0634765625, "update": 80, "mean_abs_delta_action": 0.0027320641092956066, "max_abs_delta_action": 0.06545689702033997}}
+DIRECT_Q actor {"critic_completed": 2000, "actor_completed": 90, "last_update": {"loss": -1.0029833316802979, "q_grad_norm": 0.5508700609207153, "bc_grad_norm": 0.6921950578689575, "q_bc_dot": -0.11520949006080627, "saturation": 0.072265625, "update": 90, "mean_abs_delta_action": 0.0025949417613446712, "max_abs_delta_action": 0.07322636991739273}}
+DIRECT_Q actor {"critic_completed": 2000, "actor_completed": 100, "last_update": {"loss": -1.321384310722351, "q_grad_norm": 0.582774817943573, "bc_grad_norm": 0.4115137755870819, "q_bc_dot": -0.10002186894416809, "saturation": 0.0712890625, "update": 100, "mean_abs_delta_action": 0.002989658620208502, "max_abs_delta_action": 0.04498690366744995}}
+DIRECT_Q actor {"critic_completed": 2000, "actor_completed": 110, "last_update": {"loss": -1.336225986480713, "q_grad_norm": 0.6719342470169067, "bc_grad_norm": 0.544467568397522, "q_bc_dot": -0.02148626372218132, "saturation": 0.0625, "update": 110, "mean_abs_delta_action": 0.0028212571050971746, "max_abs_delta_action": 0.07453593611717224}}
+DIRECT_Q actor {"critic_completed": 2000, "actor_completed": 120, "last_update": {"loss": -1.3032362461090088, "q_grad_norm": 0.5961563587188721, "bc_grad_norm": 0.48395678400993347, "q_bc_dot": 0.10187208652496338, "saturation": 0.05908203125, "update": 120, "mean_abs_delta_action": 0.003662392031401396, "max_abs_delta_action": 0.04986214637756348}}
+DIRECT_Q actor {"critic_completed": 2000, "actor_completed": 130, "last_update": {"loss": -1.136091947555542, "q_grad_norm": 0.7163681983947754, "bc_grad_norm": 0.6575008630752563, "q_bc_dot": 0.007726600393652916, "saturation": 0.07470703125, "update": 130, "mean_abs_delta_action": 0.0031813227105885744, "max_abs_delta_action": 0.0655331015586853}}
+DIRECT_Q actor {"critic_completed": 2000, "actor_completed": 140, "last_update": {"loss": -1.1336935758590698, "q_grad_norm": 0.6038023233413696, "bc_grad_norm": 0.5510839223861694, "q_bc_dot": -0.07365952432155609, "saturation": 0.0634765625, "update": 140, "mean_abs_delta_action": 0.002956192009150982, "max_abs_delta_action": 0.07960282266139984}}
+DIRECT_Q actor {"critic_completed": 2000, "actor_completed": 150, "last_update": {"loss": -1.01960289478302, "q_grad_norm": 0.5683373212814331, "bc_grad_norm": 0.5115076303482056, "q_bc_dot": -0.07854349911212921, "saturation": 0.0634765625, "update": 150, "mean_abs_delta_action": 0.002497095614671707, "max_abs_delta_action": 0.052175939083099365}}
+DIRECT_Q actor {"critic_completed": 2000, "actor_completed": 160, "last_update": {"loss": -1.4482221603393555, "q_grad_norm": 0.6172444224357605, "bc_grad_norm": 0.4853091239929199, "q_bc_dot": -0.05535820499062538, "saturation": 0.06103515625, "update": 160, "mean_abs_delta_action": 0.0032347869127988815, "max_abs_delta_action": 0.1588578075170517}}
+DIRECT_Q actor {"critic_completed": 2000, "actor_completed": 170, "last_update": {"loss": -1.1248137950897217, "q_grad_norm": 0.5796239972114563, "bc_grad_norm": 0.5355928540229797, "q_bc_dot": 0.051291123032569885, "saturation": 0.076171875, "update": 170, "mean_abs_delta_action": 0.0031039428431540728, "max_abs_delta_action": 0.08194291591644287}}
+DIRECT_Q actor {"critic_completed": 2000, "actor_completed": 180, "last_update": {"loss": -1.1247831583023071, "q_grad_norm": 0.673650324344635, "bc_grad_norm": 0.4577283561229706, "q_bc_dot": 0.006894751917570829, "saturation": 0.0771484375, "update": 180, "mean_abs_delta_action": 0.0022796466946601868, "max_abs_delta_action": 0.05025076866149902}}
+DIRECT_Q actor {"critic_completed": 2000, "actor_completed": 190, "last_update": {"loss": -1.0516330003738403, "q_grad_norm": 0.8049008250236511, "bc_grad_norm": 0.49903810024261475, "q_bc_dot": 0.03116650879383087, "saturation": 0.06689453125, "update": 190, "mean_abs_delta_action": 0.002583236200734973, "max_abs_delta_action": 0.07434308528900146}}
+DIRECT_Q actor {"critic_completed": 2000, "actor_completed": 200, "last_update": {"loss": -0.953732967376709, "q_grad_norm": 0.7790141105651855, "bc_grad_norm": 0.5657923817634583, "q_bc_dot": -0.09579157829284668, "saturation": 0.064453125, "update": 200, "mean_abs_delta_action": 0.0031847816426306963, "max_abs_delta_action": 0.1463102549314499}}
+DIRECT_Q training_complete {"critic_completed": 2000, "actor_completed": 200}

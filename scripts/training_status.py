@@ -103,6 +103,9 @@ def snapshot():
     evaluations = rows('act0_validation.csv')
     phase = job.get('stage', 'UNKNOWN')
     engineering=read(REPORT/'engineering_job.json')
+    direct=read(REPORT/'direct_q_job.json')
+    direct_progress=read(REPORT/'direct_q_progress.json')
+    direct_counts={a:rows(f'{a}_validation.csv') for a in ('direct_B0','direct_Q')}
     if phase == 'baseline' and job.get('status') == 'RUNNING' and running:
         if done < target:
             phase = 'ACT 示教预训练'
@@ -158,7 +161,18 @@ def snapshot():
                'shared_environment_initialization':'独立进程：8 环境初始化',
                'shared_collection':'共享真实仿真交互',
                'critic_training':'在线 Critic 训练'}.get(live.get('phase'),phase)
+    direct_alive=alive(direct.get('pid')) and direct.get('status') in ('RUNNING','STALLED')
+    direct_live=read(REPORT/direct.get('phase','unknown')/'diagnostic_live_progress.json')
+    if direct_alive:
+        phase='普通直接 Q 对照 / '+direct.get('phase','未知')
+        running=True
+        evidence_age=round(time.time()-(direct_live.get('last_physics_step') or direct.get('started',time.time())),1)
+        warning='物理步超过180秒未更新，守护器正在处理中' if direct_live.get('last_physics_step') and evidence_age>180 else None
+    elif direct.get('status')=='COMPLETED':
+        phase='普通直接 Q 对照已完成；配对校准按 D0 门槛停止'
     return dict(time_utc=datetime.now(timezone.utc).isoformat(), phase=phase,
+                direct_job=direct,direct_progress=direct_progress,direct_live=direct_live,
+                direct_counts={a:dict(episodes=len(r),successes=sum(int(x['stable_success']) for x in r)) for a,r in direct_counts.items()},
                 engineering=engineering,
                 supervisor_alive=running, supervisor_status=job.get('status'),
                 act_updates=done, act_target=target, act_percent=round(100*done/target, 1),
@@ -207,6 +221,20 @@ def display(data):
         counts=view['arms'].get(arm,{})
         lines.append(f"      {arm}：{counts.get('critic_completed',0)}/2000 / {counts.get('actor_completed',0)}/200 / {data['ablation_episodes'][arm]}/32")
     lines.append('当前子步骤：'+view['diagnostic_detail'])
+    direct=data.get('direct_progress',{})
+    if direct:
+        job=data.get('direct_job',{})
+        lines.append('11    D0 停止后允许的普通直接 Q 对照（独立项目，不计为 D2 或 B1–B3）：')
+        lines.append(f"      Critic {direct.get('critic_completed',0)}/2000；ACT {direct.get('actor_completed',0)}/200；状态 {job.get('status','TRAINING')} / {job.get('phase',direct.get('phase'))}")
+        for arm in ('direct_B0','direct_Q'):
+            value=data['direct_counts'][arm]
+            lines.append(f"      {arm} 真实评估 {value['episodes']}/32；已完成回合成功 {value['successes']}；"+('本批次结束' if value['episodes']==32 else '尚未完成，不报最终成功率'))
+        if job.get('error'):lines.append('普通对照错误：'+job['error'])
+        if job.get('stage_log'):lines.append('普通对照执行日志：'+job['stage_log'])
+        real=data.get('direct_live',{})
+        if job.get('status')=='RUNNING':
+            counts=real.get('accounting',{}).get('individual_control_step_equivalents',{})
+            lines.append(f"      本组已计实际控制步 {sum(counts.values())}/10000（含初始化/重置）；物理步更新距今 {data['execution_evidence_age_seconds']} 秒")
     if data['queue'].get('diagnostic')=='RUNNING':
         lines.append(f"仿真进程 PID {diagnostic.get('pid','初始化中')}；存活 {alive(diagnostic.get('pid'))}；本次完整轨迹 {diagnostic.get('completed_continuations',0)} 条。每条单独落盘。")
         lines.append('守护规则：初始化最多5分钟；连续3分钟没有完成新物理步，抓栈并中断；不把日志或监控心跳算作进展。')

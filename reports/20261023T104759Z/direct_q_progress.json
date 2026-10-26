@@ -1,0 +1,6 @@
+{
+  "phase": "training_complete",
+  "updated": 1793007771.748037,
+  "critic_completed": 2000,
+  "actor_completed": 200
+}
