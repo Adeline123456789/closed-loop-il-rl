@@ -1,0 +1,1738 @@
+{
+  "status": "COLLECTED",
+  "source": "same_version_recollection",
+  "episodes": [
+    {
+      "parent_id": "test-1119-000000",
+      "collection_run_id": "19_test_1119",
+      "split": "test",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "test-1119-000000/rgb.npy",
+          "sha256": "43fd4c77eaef225e7fa1b7956bd63d4380e45bbb10eceb6aa73317e776279a8e"
+        },
+        "state": {
+          "path": "test-1119-000000/state.npy",
+          "sha256": "ac88d44b392a14fbe870053a55581dde7c62abed3d1a85a968bf8a3df827a4f5"
+        },
+        "wrench": {
+          "path": "test-1119-000000/wrench.npy",
+          "sha256": "6fea04128462967028423e09fcca6b9e039bdccf3998f2a4c9f95b8768a9bf8c"
+        },
+        "motion": {
+          "path": "test-1119-000000/motion.npy",
+          "sha256": "9d879fad529914b6c2ae56146e24148ea06e65c78a6668c03f9cd571ef2fdd21"
+        },
+        "previous_command": {
+          "path": "test-1119-000000/previous_command.npy",
+          "sha256": "1450744def996afec051559cb83b3dc4f3f60c896395e03127ed63494998d91b"
+        },
+        "action": {
+          "path": "test-1119-000000/action.npy",
+          "sha256": "8dee5281fcc01f28e42533564238cd9383d256b93fe5c11479773e0c89fe8526"
+        },
+        "raw_wrench": {
+          "path": "test-1119-000000/raw_wrench.npy",
+          "sha256": "c4c507b9cd0015ad1bec8b2ea62930554608d7c2cb22959505c64aa785822fd2"
+        },
+        "substep_wrench": {
+          "path": "test-1119-000000/substep_wrench.npy",
+          "sha256": "5ce3a0fa23771fde124078a46c578880a83745b52ccebeb9a9a246ef74f2e108"
+        },
+        "ema_action": {
+          "path": "test-1119-000000/ema_action.npy",
+          "sha256": "b9f401b26d388dd2cba59a0368c735c11de95498fc1ff0fefef40c571dbcbcb9"
+        },
+        "target_position": {
+          "path": "test-1119-000000/target_position.npy",
+          "sha256": "e7bb47834d4e4ca4481d134f23bae68ce3c1fdb4a348c777ecfc381b3ef451db"
+        },
+        "target_quaternion": {
+          "path": "test-1119-000000/target_quaternion.npy",
+          "sha256": "42a350b05d24062587d1123872f7ed1890033c7902430348d83308fb889ebb50"
+        },
+        "observed_after_state": {
+          "path": "test-1119-000000/observed_after_state.npy",
+          "sha256": "a2817836ab157c0f6bf327ec6c11973cb6cf88bac4db68fef661cc8d9a8b150e"
+        },
+        "terminated": {
+          "path": "test-1119-000000/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "test-1119-000000/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "test-1119-000000/stable_success.npy",
+          "sha256": "7aa2fdd1add4a73340adaead8355366b7f4c968406eae32b3d888d939af06c49"
+        }
+      }
+    },
+    {
+      "parent_id": "test-1119-000001",
+      "collection_run_id": "19_test_1119",
+      "split": "test",
+      "successful": false,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "test-1119-000001/rgb.npy",
+          "sha256": "7e557b38a824bb6dcce38c04418b8d99118b56c2e2ab378ff52c351f29261baa"
+        },
+        "state": {
+          "path": "test-1119-000001/state.npy",
+          "sha256": "647cbdec01f0517cf7d2b113d93decda79229773039db837329c4dc2323e2793"
+        },
+        "wrench": {
+          "path": "test-1119-000001/wrench.npy",
+          "sha256": "b885684b41c39523c1c63cb0b97cad0b61c36643ad557a28fbf679f0b13c3c95"
+        },
+        "motion": {
+          "path": "test-1119-000001/motion.npy",
+          "sha256": "5d1c4102cdadec0727c17d91dd3a7cd713ea10f6130b378ea195f90896df6af3"
+        },
+        "previous_command": {
+          "path": "test-1119-000001/previous_command.npy",
+          "sha256": "c58d095c9a985570c79a306d1c87bba780a2bac855ee6f58008ba62f28fc17d5"
+        },
+        "action": {
+          "path": "test-1119-000001/action.npy",
+          "sha256": "309f5a5700e28f3284af2735796f7349e21e7cdbcf3b934ceebeeace37fcd899"
+        },
+        "raw_wrench": {
+          "path": "test-1119-000001/raw_wrench.npy",
+          "sha256": "674839914a367b0e4ac48f30cfd2432bdb9baea84ef98f7021b287a7f6bcd9da"
+        },
+        "substep_wrench": {
+          "path": "test-1119-000001/substep_wrench.npy",
+          "sha256": "7027479c263e25c7752b05f3cd7242165db0f291be30254148e3242fc128e883"
+        },
+        "ema_action": {
+          "path": "test-1119-000001/ema_action.npy",
+          "sha256": "9cb992d982c95d1628267017b5386f89d8c2b3aec908911c31b52184b746ef4c"
+        },
+        "target_position": {
+          "path": "test-1119-000001/target_position.npy",
+          "sha256": "87b1d2a782a9be7e1a4687b6ee2cc3af8fd4f5728823e9b32aba135a470fa02b"
+        },
+        "target_quaternion": {
+          "path": "test-1119-000001/target_quaternion.npy",
+          "sha256": "0b721c2662a860cd1b1ee290a761a4b464e27782d2c6d2e08616c4d8f7c1994f"
+        },
+        "observed_after_state": {
+          "path": "test-1119-000001/observed_after_state.npy",
+          "sha256": "6888e20f358ed2007c01ff54110645a1be9357d5a3b24c5996617afc4e039b02"
+        },
+        "terminated": {
+          "path": "test-1119-000001/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "test-1119-000001/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "test-1119-000001/stable_success.npy",
+          "sha256": "45b286a45b3a1f748fabfc69c27971c8f48152189a137aeb82f337e8b6c0ca68"
+        }
+      }
+    },
+    {
+      "parent_id": "test-1119-000002",
+      "collection_run_id": "19_test_1119",
+      "split": "test",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "test-1119-000002/rgb.npy",
+          "sha256": "57d4efac5eda9ea199805500a804f94803886b13fb5bd3754045783ea642daf4"
+        },
+        "state": {
+          "path": "test-1119-000002/state.npy",
+          "sha256": "1cea42756bc0ce1a4c415b6d2da787001589412a2916d8d16fb6d8ac2a735df8"
+        },
+        "wrench": {
+          "path": "test-1119-000002/wrench.npy",
+          "sha256": "8bd66e74efa8db0b66f4d3cf746da85c4428e0c888550e3af1b35561e1eb1bf9"
+        },
+        "motion": {
+          "path": "test-1119-000002/motion.npy",
+          "sha256": "b84306cb0bc93fc2423e19003e7ad010190b3fe27deaee55db2fd7e03e2d1217"
+        },
+        "previous_command": {
+          "path": "test-1119-000002/previous_command.npy",
+          "sha256": "ffc14a52a7fef1569004e28540751a1318a8a7d08323b3b67caacba9f4235c41"
+        },
+        "action": {
+          "path": "test-1119-000002/action.npy",
+          "sha256": "84178733b4b4dfd95373858dbde7c2df71e969aaa6f9b0bd9ad1102783b29eea"
+        },
+        "raw_wrench": {
+          "path": "test-1119-000002/raw_wrench.npy",
+          "sha256": "5727fca03ea7a33184791045090d6c1fad54fc84b3f62e7904befe13e919f342"
+        },
+        "substep_wrench": {
+          "path": "test-1119-000002/substep_wrench.npy",
+          "sha256": "4f143ce8a1202dec3062adcfd97270ba3d0cad62293f29462eca2d72e082aa23"
+        },
+        "ema_action": {
+          "path": "test-1119-000002/ema_action.npy",
+          "sha256": "f58a36b402d9edd5227a12701d4cdf40bf5c0738aefa9c80647c1f9aaf7f8873"
+        },
+        "target_position": {
+          "path": "test-1119-000002/target_position.npy",
+          "sha256": "9ae0fc1343435b4e9aefa2be129dbf9096a47166d9a0ad712ed572616d709789"
+        },
+        "target_quaternion": {
+          "path": "test-1119-000002/target_quaternion.npy",
+          "sha256": "cdd68ef88b97ed0b8428af394b3edddc6cc919eca64a61f748e2aebab5edc7bc"
+        },
+        "observed_after_state": {
+          "path": "test-1119-000002/observed_after_state.npy",
+          "sha256": "e3c28d24c402859f5b2469d8c1f8a44cca64a206920f6c7a4fa0956cd089dcca"
+        },
+        "terminated": {
+          "path": "test-1119-000002/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "test-1119-000002/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "test-1119-000002/stable_success.npy",
+          "sha256": "3b6c3c147f6a9804d0f10635a3a1d374d8c7eaec912c1054939b9de0a467e78b"
+        }
+      }
+    },
+    {
+      "parent_id": "test-1119-000003",
+      "collection_run_id": "19_test_1119",
+      "split": "test",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "test-1119-000003/rgb.npy",
+          "sha256": "ac866385eacb7979fe681e06e25300a3786cb3b11bdb16643fa9ded1edeba6c6"
+        },
+        "state": {
+          "path": "test-1119-000003/state.npy",
+          "sha256": "993dc008a3ebf4bcfebc610908f93657031177ab981cb4046dca13c6bd912c75"
+        },
+        "wrench": {
+          "path": "test-1119-000003/wrench.npy",
+          "sha256": "e429bcdf05ea1c321d576f72362d7d441bacd721926dcd7fb71b671fb198c8f0"
+        },
+        "motion": {
+          "path": "test-1119-000003/motion.npy",
+          "sha256": "8fdabf30c3039e1ee25b1b6f3e3135c2de5ac78e1b991904d3552a471ebb3096"
+        },
+        "previous_command": {
+          "path": "test-1119-000003/previous_command.npy",
+          "sha256": "50a6df8f565b1dc35f2e36d67bfe9206a94fdd9e02fb2adf5ca015173cde3e06"
+        },
+        "action": {
+          "path": "test-1119-000003/action.npy",
+          "sha256": "732dd37fea29f43204d63612428b6febe9053d8ea70acb227b64e1f1083eb96f"
+        },
+        "raw_wrench": {
+          "path": "test-1119-000003/raw_wrench.npy",
+          "sha256": "f24c9bf8ac4f4970750d881c427f613b80790f12499c76b236a211feec0c00b8"
+        },
+        "substep_wrench": {
+          "path": "test-1119-000003/substep_wrench.npy",
+          "sha256": "4b06f7554f6f2b81e02cf9a4b9bd46c9f1ccbe5dd5d948162f5bd47f987a2707"
+        },
+        "ema_action": {
+          "path": "test-1119-000003/ema_action.npy",
+          "sha256": "5ab2c7f573262cd21b7c46762bb1bfb0baf84472f03d9de0813c58e4b6b66450"
+        },
+        "target_position": {
+          "path": "test-1119-000003/target_position.npy",
+          "sha256": "f37fac0b3fdc3c1132f128dd2dbafe4ed807b2138ac8277474f186d0269dd50f"
+        },
+        "target_quaternion": {
+          "path": "test-1119-000003/target_quaternion.npy",
+          "sha256": "f78d2bf4b174c506edaac1eab5b5125d6669858080ab0f893162ec9af0ceac4c"
+        },
+        "observed_after_state": {
+          "path": "test-1119-000003/observed_after_state.npy",
+          "sha256": "276f76fc7849aa46bc3fac80cc6da25b86a9b9dabaa9c43ad0f6e4a11e74771d"
+        },
+        "terminated": {
+          "path": "test-1119-000003/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "test-1119-000003/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "test-1119-000003/stable_success.npy",
+          "sha256": "7a0b3f76b6f8d59ee3c7fbed367572fa44a3f9cc3036f74e13ce5a29c639ce6d"
+        }
+      }
+    },
+    {
+      "parent_id": "test-1119-000004",
+      "collection_run_id": "19_test_1119",
+      "split": "test",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "test-1119-000004/rgb.npy",
+          "sha256": "9b4a4b5e66d6cb86344a674cf795b588c69d702945227740173a83c6f2cdbf34"
+        },
+        "state": {
+          "path": "test-1119-000004/state.npy",
+          "sha256": "64004fe99abd8ee0305cd767cb1d68da7591029aa035498aa70d120845707f02"
+        },
+        "wrench": {
+          "path": "test-1119-000004/wrench.npy",
+          "sha256": "3a44ac5a30771b7844b1bded5bbd5e79d1f9cc99c22f4b41cba360c1b01d86e5"
+        },
+        "motion": {
+          "path": "test-1119-000004/motion.npy",
+          "sha256": "4796bafeefc223c4aa60811570af11af41b36ceaac68201a21c44984cab2df32"
+        },
+        "previous_command": {
+          "path": "test-1119-000004/previous_command.npy",
+          "sha256": "79a1355cd4bb341601e808e83d54e11338ca79d6f401536545b8bc6be57d2511"
+        },
+        "action": {
+          "path": "test-1119-000004/action.npy",
+          "sha256": "c9efcee710bbfbcd7bfd69a9a674ff331426240d05f070171e3bb893d4fb70e6"
+        },
+        "raw_wrench": {
+          "path": "test-1119-000004/raw_wrench.npy",
+          "sha256": "55a2b675053c862847d962a9d94635ead1c62f08ab60fc06d14eb39dd2325481"
+        },
+        "substep_wrench": {
+          "path": "test-1119-000004/substep_wrench.npy",
+          "sha256": "470866fdc1cec63d0caeb33929a6c96cc5c063900f2a78eb52a29e4c52b0d6cb"
+        },
+        "ema_action": {
+          "path": "test-1119-000004/ema_action.npy",
+          "sha256": "1f23b800905f27780287551acb6999ea57ab73b593596a23a097a4f3c66ba9bd"
+        },
+        "target_position": {
+          "path": "test-1119-000004/target_position.npy",
+          "sha256": "f9c8effa899e51be2ab781d9fe0162834e566784cd2c112e761f3d87990d9cf1"
+        },
+        "target_quaternion": {
+          "path": "test-1119-000004/target_quaternion.npy",
+          "sha256": "dc3d5253ea47284b212c575e3d9e4b663ba956d64e96f88746dac056490fd41b"
+        },
+        "observed_after_state": {
+          "path": "test-1119-000004/observed_after_state.npy",
+          "sha256": "b063c83cc910e82175ce3d3551f1543c454380169cb005afb89a6d9e4eb316f1"
+        },
+        "terminated": {
+          "path": "test-1119-000004/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "test-1119-000004/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "test-1119-000004/stable_success.npy",
+          "sha256": "4a369f09331037f4a5f28612e1343e4c1b2ec09d61a5ea1df3ddb00281712178"
+        }
+      }
+    },
+    {
+      "parent_id": "test-1119-000005",
+      "collection_run_id": "19_test_1119",
+      "split": "test",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "test-1119-000005/rgb.npy",
+          "sha256": "591093b2c4c0458892b6018ca1d93d2813808c00d24958bcecb969da56f4270c"
+        },
+        "state": {
+          "path": "test-1119-000005/state.npy",
+          "sha256": "ebc8972f27ef9a94ac33f9fb882a34c1785482e3540bdaa49536ea8c09ff5585"
+        },
+        "wrench": {
+          "path": "test-1119-000005/wrench.npy",
+          "sha256": "40c573997008423851fd4f6e78287709040d92435e429643a1254a3c2608cf3b"
+        },
+        "motion": {
+          "path": "test-1119-000005/motion.npy",
+          "sha256": "f82644b671e6a7b00bd4d339d78853cc201f5583b2195180dee8f2d6cf09ac79"
+        },
+        "previous_command": {
+          "path": "test-1119-000005/previous_command.npy",
+          "sha256": "524c8d24af69b2cba7bd455c6b7c54e5f815dd144089d08bf8baeae1489c5dc6"
+        },
+        "action": {
+          "path": "test-1119-000005/action.npy",
+          "sha256": "9a9bef445527e7c4870ca2ec998957f07b3130986f8c0d392f45c3a594bfe769"
+        },
+        "raw_wrench": {
+          "path": "test-1119-000005/raw_wrench.npy",
+          "sha256": "a92c2782c265d4626dc6434bf796080451ee866634a3b4abbd5a9102b2ef2112"
+        },
+        "substep_wrench": {
+          "path": "test-1119-000005/substep_wrench.npy",
+          "sha256": "33d09e785d76065f52c0594e7527c7cac271626a0f3afb9784ae8630e52a5078"
+        },
+        "ema_action": {
+          "path": "test-1119-000005/ema_action.npy",
+          "sha256": "f9a1b3c06c6fdf463d9b071a0762f437f636d798103b5577ab85ca85ea2afc55"
+        },
+        "target_position": {
+          "path": "test-1119-000005/target_position.npy",
+          "sha256": "d95fe724d7936577838ae453d7877eecd00b783fd9aef67aafb122676b0c8c05"
+        },
+        "target_quaternion": {
+          "path": "test-1119-000005/target_quaternion.npy",
+          "sha256": "4e4dd11b381359cbf1ab189b321966e6700d07d13686ad05a0c513eb90a1fb77"
+        },
+        "observed_after_state": {
+          "path": "test-1119-000005/observed_after_state.npy",
+          "sha256": "3600fe8c4eabf4d751581948a76b06e533f4ac2164349aef84cfc0620ea47064"
+        },
+        "terminated": {
+          "path": "test-1119-000005/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "test-1119-000005/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "test-1119-000005/stable_success.npy",
+          "sha256": "bca37fb1f02b07f3be3d8d618718074ee9ab32b11d208112f77d61cfe44ed586"
+        }
+      }
+    },
+    {
+      "parent_id": "test-1119-000006",
+      "collection_run_id": "19_test_1119",
+      "split": "test",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "test-1119-000006/rgb.npy",
+          "sha256": "594b8c9c7281409e79618a22988b83fce9bba1fc9ee1fc769f3339b989898dcc"
+        },
+        "state": {
+          "path": "test-1119-000006/state.npy",
+          "sha256": "55e6051d88ed1945815f8509723cb1512d5e560224743513c4fd50ce6a4153e0"
+        },
+        "wrench": {
+          "path": "test-1119-000006/wrench.npy",
+          "sha256": "257be7dd0465b405e1e47312248a9cc2202b94a8cf4e54bcadd532b19a6e246c"
+        },
+        "motion": {
+          "path": "test-1119-000006/motion.npy",
+          "sha256": "d9a42bc70eee278ad1f27029dee0cdb667c793f76281df8980bc8ac74cc157af"
+        },
+        "previous_command": {
+          "path": "test-1119-000006/previous_command.npy",
+          "sha256": "9e1d4c441f9d29212e0ce79d5a819ff51fc9a10dab56c9e0c9218979d97b626f"
+        },
+        "action": {
+          "path": "test-1119-000006/action.npy",
+          "sha256": "15331d59ad8b0d645b64d59ad5bca24f7933d7bae8b397d0e7bd42d0fb5a778c"
+        },
+        "raw_wrench": {
+          "path": "test-1119-000006/raw_wrench.npy",
+          "sha256": "1025699fdd83419a5515b36676f7b8c033b4ff742daebe5d2929f7f7608ab5a2"
+        },
+        "substep_wrench": {
+          "path": "test-1119-000006/substep_wrench.npy",
+          "sha256": "aa17c73068f5313ab9ca7594e2462a00821001a2f9aada1fe74dd0003bd9c00e"
+        },
+        "ema_action": {
+          "path": "test-1119-000006/ema_action.npy",
+          "sha256": "c9f57f4e27120eeacadcf48ce6749b49651ea7a7773804a83f9733040b43717f"
+        },
+        "target_position": {
+          "path": "test-1119-000006/target_position.npy",
+          "sha256": "2e7fcdba5eb529a88fd903acae537ed0c4d06f4548638861c6f5598bbf75a8a9"
+        },
+        "target_quaternion": {
+          "path": "test-1119-000006/target_quaternion.npy",
+          "sha256": "9585ef4352d6057d7bc789a6077f8a215f15ded09ca4104dd3fffa4a4183148a"
+        },
+        "observed_after_state": {
+          "path": "test-1119-000006/observed_after_state.npy",
+          "sha256": "9073aa03088a77aa17a150c40531a9d6d571dc82c04082fdc5eef3ecfa2b56e5"
+        },
+        "terminated": {
+          "path": "test-1119-000006/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "test-1119-000006/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "test-1119-000006/stable_success.npy",
+          "sha256": "5c45d3b557d4910701ff98730c5408e44313c0f5981cfeb3290ecb2eeb184e7d"
+        }
+      }
+    },
+    {
+      "parent_id": "test-1119-000007",
+      "collection_run_id": "19_test_1119",
+      "split": "test",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "test-1119-000007/rgb.npy",
+          "sha256": "a273bb5a0e8e518d036070cb3c8b173911f55df8308d70b7b7909b2415cc2e9d"
+        },
+        "state": {
+          "path": "test-1119-000007/state.npy",
+          "sha256": "19e3ea5f9f32a8363ba7d8e929d2080c450095b5295a991c39d07b671e8e3293"
+        },
+        "wrench": {
+          "path": "test-1119-000007/wrench.npy",
+          "sha256": "c75db8c5546b3a98f3a01014714eb71e6914b773db5e836ab5a0623975b2bd65"
+        },
+        "motion": {
+          "path": "test-1119-000007/motion.npy",
+          "sha256": "442421a5d58868ebddc3d9f1a99ae68e91216aa0ac63383c95f8083dd4846fd4"
+        },
+        "previous_command": {
+          "path": "test-1119-000007/previous_command.npy",
+          "sha256": "efa35ba7f7425025f6598ef861a9d8cb323759ade9adddd882cefcac3ce20204"
+        },
+        "action": {
+          "path": "test-1119-000007/action.npy",
+          "sha256": "18d60dfc4d140e5a90d14a6e4ea844c1777530a8ce462e0576d905d59d44348a"
+        },
+        "raw_wrench": {
+          "path": "test-1119-000007/raw_wrench.npy",
+          "sha256": "ae0d928a65ba92c0ac3caa4aace0a3a8237f067a2b33229ba7cf5164a007679c"
+        },
+        "substep_wrench": {
+          "path": "test-1119-000007/substep_wrench.npy",
+          "sha256": "44ad337d8aab489b16d9a5eaa7f699b457c9d3c1c60c900a7ec1d630ef3aaa79"
+        },
+        "ema_action": {
+          "path": "test-1119-000007/ema_action.npy",
+          "sha256": "eede987f2f9c9a6e8fed19879744e67132ad33e9d5afe699e07c488d6c6e5b4f"
+        },
+        "target_position": {
+          "path": "test-1119-000007/target_position.npy",
+          "sha256": "8725653e7b2a57baf61e25a60de58a38e358d369b4e14f38361f7c3c91894e0d"
+        },
+        "target_quaternion": {
+          "path": "test-1119-000007/target_quaternion.npy",
+          "sha256": "c1ff878b3f6d26bca460d9f02ca19b8deafdba6a5eeeee2cd76d529b1529adbc"
+        },
+        "observed_after_state": {
+          "path": "test-1119-000007/observed_after_state.npy",
+          "sha256": "7395e5890f9933487a1006857c9d06d9dd413ee0ff1c9bd461949a44f735b797"
+        },
+        "terminated": {
+          "path": "test-1119-000007/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "test-1119-000007/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "test-1119-000007/stable_success.npy",
+          "sha256": "16c2800fdc8857540137ae44a296a651b195dda487a0e16e62c33fd327692766"
+        }
+      }
+    },
+    {
+      "parent_id": "test-1119-000008",
+      "collection_run_id": "19_test_1119",
+      "split": "test",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "test-1119-000008/rgb.npy",
+          "sha256": "5cd7d2ccc849428729ce2765a323109576353f5a8618334c95537b80930ee555"
+        },
+        "state": {
+          "path": "test-1119-000008/state.npy",
+          "sha256": "4a758c92e5b73c01b3e1978fbf043d1ce405bacf87fdea67f82b652282ea3b74"
+        },
+        "wrench": {
+          "path": "test-1119-000008/wrench.npy",
+          "sha256": "e711893fa1e1d3aa4fa4d74ff8965de949cce3aca6210f7a8c461f64e10136bb"
+        },
+        "motion": {
+          "path": "test-1119-000008/motion.npy",
+          "sha256": "72fe83806cfa2994be63d91d7b8c8e7b4d2aa3346092f4feeb880cf68952d984"
+        },
+        "previous_command": {
+          "path": "test-1119-000008/previous_command.npy",
+          "sha256": "c70ed2321b64d1781e42cfd010cc0b72c24aadb0ed36bf4d233c26c905a2c396"
+        },
+        "action": {
+          "path": "test-1119-000008/action.npy",
+          "sha256": "3fb3b9003d85ad8f58af5310b0b996d220a435865c9f505cc85b3f9b4668051a"
+        },
+        "raw_wrench": {
+          "path": "test-1119-000008/raw_wrench.npy",
+          "sha256": "e5f59cb204da5ec96f887a755ce118e4518422240ded794b76404cc00889c487"
+        },
+        "substep_wrench": {
+          "path": "test-1119-000008/substep_wrench.npy",
+          "sha256": "3eaa634b750e4962de49a24c8b6586a68752cc5f67f7abf12bbf91924cdf0bca"
+        },
+        "ema_action": {
+          "path": "test-1119-000008/ema_action.npy",
+          "sha256": "8ff1587380d6b147526576e2884a3f5f8159dff1d68da004ef3c70a9abbecdf1"
+        },
+        "target_position": {
+          "path": "test-1119-000008/target_position.npy",
+          "sha256": "caf8eaac221100dcae218388855b2fc842dabda086f5900aa31669c9e89c9848"
+        },
+        "target_quaternion": {
+          "path": "test-1119-000008/target_quaternion.npy",
+          "sha256": "bb6436b0784db18da573968021aff049b916c7371f1669ecd3875d67007d210a"
+        },
+        "observed_after_state": {
+          "path": "test-1119-000008/observed_after_state.npy",
+          "sha256": "83d8f26256a9e1817d9b8dea2b29335ca32e29d471fd37f08085c05e6bcff646"
+        },
+        "terminated": {
+          "path": "test-1119-000008/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "test-1119-000008/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "test-1119-000008/stable_success.npy",
+          "sha256": "3b6c3c147f6a9804d0f10635a3a1d374d8c7eaec912c1054939b9de0a467e78b"
+        }
+      }
+    },
+    {
+      "parent_id": "test-1119-000009",
+      "collection_run_id": "19_test_1119",
+      "split": "test",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "test-1119-000009/rgb.npy",
+          "sha256": "c7fe71bdd269becc0feb3dc14ed7b81f8faca6bd312873b7756aa46b3f2eeac3"
+        },
+        "state": {
+          "path": "test-1119-000009/state.npy",
+          "sha256": "b4d0298439028abcad865378625ac796949349035850c3e70111a066aa39933a"
+        },
+        "wrench": {
+          "path": "test-1119-000009/wrench.npy",
+          "sha256": "5cf2761a21b7a8ceb9b94e5939e193e6c8ff4d308f494a9d6faf3c7a2e782404"
+        },
+        "motion": {
+          "path": "test-1119-000009/motion.npy",
+          "sha256": "26f45c1c1faec82b8547bff62e3dfd08e6f51f84645446e412324cb06a510a98"
+        },
+        "previous_command": {
+          "path": "test-1119-000009/previous_command.npy",
+          "sha256": "8b6897781893074f7d75d90e16a368961f63e563333ef1caa0798b9b7d37c933"
+        },
+        "action": {
+          "path": "test-1119-000009/action.npy",
+          "sha256": "2c178a399efe3a306ab55d680ed325660fc19af307fdfc16877ca4627110527e"
+        },
+        "raw_wrench": {
+          "path": "test-1119-000009/raw_wrench.npy",
+          "sha256": "b634685ece3097e05fb4c83ef38f2a04618762819fe3fc0d408f0548ab0f67cb"
+        },
+        "substep_wrench": {
+          "path": "test-1119-000009/substep_wrench.npy",
+          "sha256": "1b34612198d30f4f7e1a1861d54b346a4eb459205741f9955cf93070d50e3743"
+        },
+        "ema_action": {
+          "path": "test-1119-000009/ema_action.npy",
+          "sha256": "d8a652db29d8e74fd20ffc1554512ddd0bce6ed4a95781b8b7375f37c5279b14"
+        },
+        "target_position": {
+          "path": "test-1119-000009/target_position.npy",
+          "sha256": "3f1f27931d8095181f5c57004d09baebeaae7416c60c0198d71d99b2c842f9db"
+        },
+        "target_quaternion": {
+          "path": "test-1119-000009/target_quaternion.npy",
+          "sha256": "dd48afc13522e03662bec13e4f08f211f61eb79c3963c38f8cc345f616dfc303"
+        },
+        "observed_after_state": {
+          "path": "test-1119-000009/observed_after_state.npy",
+          "sha256": "6ec3b8e52bd8f795f165501a3901583d1caeb2857254d2a25804f85a60d6698b"
+        },
+        "terminated": {
+          "path": "test-1119-000009/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "test-1119-000009/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "test-1119-000009/stable_success.npy",
+          "sha256": "2734e01b3b6e3936a591455fec759fbef69a6ba1a659112541dc9b4ddda9d482"
+        }
+      }
+    },
+    {
+      "parent_id": "test-1119-000010",
+      "collection_run_id": "19_test_1119",
+      "split": "test",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "test-1119-000010/rgb.npy",
+          "sha256": "286692a884cb864817d7dab26ccbe55c41e64acfbd4e50660f487f0c6f816d96"
+        },
+        "state": {
+          "path": "test-1119-000010/state.npy",
+          "sha256": "06cf8f42e2ae609b2d2540a830c827109fa8d786211ef3aa57d7aaba4ab724a2"
+        },
+        "wrench": {
+          "path": "test-1119-000010/wrench.npy",
+          "sha256": "ba29ef76200365da9071d95e9f59450a534ef2dc498f013adae8340972f8e07d"
+        },
+        "motion": {
+          "path": "test-1119-000010/motion.npy",
+          "sha256": "d2c0940040cff1921f816aebbdcb53fe44c32cfa1234728ece0152d3e9dc96ec"
+        },
+        "previous_command": {
+          "path": "test-1119-000010/previous_command.npy",
+          "sha256": "2a47b364c9058d561a2c2a320c580d49ce06e879c8826b58d69973fb2457b4e4"
+        },
+        "action": {
+          "path": "test-1119-000010/action.npy",
+          "sha256": "22e364b7a9cc815f162a577d3d61dfe37962fd52f8cc2f315298dc7b2e14d6fe"
+        },
+        "raw_wrench": {
+          "path": "test-1119-000010/raw_wrench.npy",
+          "sha256": "a149a09acd3863eb6e38dca4f914738e3c95eaf18da4552c47b1c8e55886bdab"
+        },
+        "substep_wrench": {
+          "path": "test-1119-000010/substep_wrench.npy",
+          "sha256": "d413827f1523afe4e09c59b6120c5121b2e5da12355206b9d1832385d0c0c68e"
+        },
+        "ema_action": {
+          "path": "test-1119-000010/ema_action.npy",
+          "sha256": "cd8313c94af63a29dac9cab1d9e45e85e4b3a8947061c0399af5147204cd5eb4"
+        },
+        "target_position": {
+          "path": "test-1119-000010/target_position.npy",
+          "sha256": "62721b5f7929253f3bc8174c8a79873531e15de195af65f496a09d945329a531"
+        },
+        "target_quaternion": {
+          "path": "test-1119-000010/target_quaternion.npy",
+          "sha256": "c1b63d290625cc6aa64d6696388e68d7c40e5b9a9b4979f1a6e46406a81d42f5"
+        },
+        "observed_after_state": {
+          "path": "test-1119-000010/observed_after_state.npy",
+          "sha256": "8ab8bc85ca3519c9b30292ae582602de612666e1f14e8d524986fa09276b42db"
+        },
+        "terminated": {
+          "path": "test-1119-000010/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "test-1119-000010/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "test-1119-000010/stable_success.npy",
+          "sha256": "5d989091e333cb6f958a31bb378fb590000ed13ec1eb9bc7296b4122d327094f"
+        }
+      }
+    },
+    {
+      "parent_id": "test-1119-000011",
+      "collection_run_id": "19_test_1119",
+      "split": "test",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "test-1119-000011/rgb.npy",
+          "sha256": "20a47f717c34edf388eca09be2d5342ed9b9da652ee02608d9ce81e0c5656557"
+        },
+        "state": {
+          "path": "test-1119-000011/state.npy",
+          "sha256": "b7d401acb61d177369a6cdedced4dfdcecee65b8da56e77f4cbf2b86f5d3665c"
+        },
+        "wrench": {
+          "path": "test-1119-000011/wrench.npy",
+          "sha256": "c4f8e07b083f483e179d5c005ddb9ba6aaa6d78351f944b7b79d536a6a96b6cf"
+        },
+        "motion": {
+          "path": "test-1119-000011/motion.npy",
+          "sha256": "f12a0a1fe83c5fbc72923548ca62ce1975bb449edadd8fc670be1ff8051e26ab"
+        },
+        "previous_command": {
+          "path": "test-1119-000011/previous_command.npy",
+          "sha256": "cff3158c9d3290728fac65164a5a014ca9d0a72ae021548d22475fd53c6cd8fa"
+        },
+        "action": {
+          "path": "test-1119-000011/action.npy",
+          "sha256": "d3b69e84f1e2df67757cd2480881e0e4a1d9f484e9fffa64bce87f6bb3ddcbd3"
+        },
+        "raw_wrench": {
+          "path": "test-1119-000011/raw_wrench.npy",
+          "sha256": "e23d46d133bf4554d328de5c996362a2ae092bf2e5e6e2ef4bd2c6b100a4b23b"
+        },
+        "substep_wrench": {
+          "path": "test-1119-000011/substep_wrench.npy",
+          "sha256": "aac8665c7a211ac484a498f6feea9eaefa5817ecdcf63ed5dfbfaf7c6a74323f"
+        },
+        "ema_action": {
+          "path": "test-1119-000011/ema_action.npy",
+          "sha256": "cb50eba962379ed6d92d90b1b2ff74c61f50a4dafdbe4f7860b24a25013014f5"
+        },
+        "target_position": {
+          "path": "test-1119-000011/target_position.npy",
+          "sha256": "8fdbbabda80c831b5747ecc69ab5a34d98b326607b8ef22e0fa9fdbe224abab3"
+        },
+        "target_quaternion": {
+          "path": "test-1119-000011/target_quaternion.npy",
+          "sha256": "2f76c014cabeb47700a4a365f3017e9e3fb5c50ef6dab67676023baaa556c4de"
+        },
+        "observed_after_state": {
+          "path": "test-1119-000011/observed_after_state.npy",
+          "sha256": "75755688f251fbb66e5840f88341649c2e8a57906512afd6a75622b228f8a065"
+        },
+        "terminated": {
+          "path": "test-1119-000011/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "test-1119-000011/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "test-1119-000011/stable_success.npy",
+          "sha256": "c54cf0c3f867deb63906030d6f2377bdcc3d3aa8a8c8dba6e0bb4ee80d13e322"
+        }
+      }
+    },
+    {
+      "parent_id": "test-1119-000012",
+      "collection_run_id": "19_test_1119",
+      "split": "test",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "test-1119-000012/rgb.npy",
+          "sha256": "b7d12a0245968c51046399e1f02d2488aabf20032310ebe56ae2f8bbb5f887f5"
+        },
+        "state": {
+          "path": "test-1119-000012/state.npy",
+          "sha256": "864391e18883de5f22bdd4aeac220f5cef4ec2f5724420ed4416cae8e360a8cf"
+        },
+        "wrench": {
+          "path": "test-1119-000012/wrench.npy",
+          "sha256": "af2e3865db1fe84a353acc8056136f25c1c10c0e92908e4e7dc05add792a898f"
+        },
+        "motion": {
+          "path": "test-1119-000012/motion.npy",
+          "sha256": "036dd25987549c7a86c4dc8d581406d4f088943c45ce83df8180b1c410f05bc9"
+        },
+        "previous_command": {
+          "path": "test-1119-000012/previous_command.npy",
+          "sha256": "536b6c94eb0e4b8acc85a9a8cb6b08b070bc913fead528f12e9f0966eb32e006"
+        },
+        "action": {
+          "path": "test-1119-000012/action.npy",
+          "sha256": "989b217d4978891892d7ac7ace282a6b398b7bbc3307cadb745b6c21b6112965"
+        },
+        "raw_wrench": {
+          "path": "test-1119-000012/raw_wrench.npy",
+          "sha256": "1021e4d57c518f8be7420287e74c31e5383339c41968015c5a2fa60c7d44f786"
+        },
+        "substep_wrench": {
+          "path": "test-1119-000012/substep_wrench.npy",
+          "sha256": "fed02a7271a5cb9ae001674ebc8d27d3845edda4506965c3ccf71b1c2451bbfb"
+        },
+        "ema_action": {
+          "path": "test-1119-000012/ema_action.npy",
+          "sha256": "2832b3e6cbe190b8b2dca2b41c4166280a5dc5232a579924b8a3dae32a340cb6"
+        },
+        "target_position": {
+          "path": "test-1119-000012/target_position.npy",
+          "sha256": "ecef202dbd4bd803a6718809eb393bb015dce0f8edcca9eb664ab532a1326763"
+        },
+        "target_quaternion": {
+          "path": "test-1119-000012/target_quaternion.npy",
+          "sha256": "2cdedc1639f78258cc7a77a3f434d2efb73b74f0cbd686b13333ae3f733e91fb"
+        },
+        "observed_after_state": {
+          "path": "test-1119-000012/observed_after_state.npy",
+          "sha256": "05451f20d09a68e4e7604a135c8f20d6c3addc1eae84b4d7b51a7ea329c5c14e"
+        },
+        "terminated": {
+          "path": "test-1119-000012/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "test-1119-000012/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "test-1119-000012/stable_success.npy",
+          "sha256": "bca37fb1f02b07f3be3d8d618718074ee9ab32b11d208112f77d61cfe44ed586"
+        }
+      }
+    },
+    {
+      "parent_id": "test-1119-000013",
+      "collection_run_id": "19_test_1119",
+      "split": "test",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "test-1119-000013/rgb.npy",
+          "sha256": "590026a6c7d74d4911242b1ab18752186d92cc9830680b8dfcebcda34714792c"
+        },
+        "state": {
+          "path": "test-1119-000013/state.npy",
+          "sha256": "3a143cc118515d8c5ee8262a527c98dcbc1eb6668a600aa542f3da9c70d3888c"
+        },
+        "wrench": {
+          "path": "test-1119-000013/wrench.npy",
+          "sha256": "71845d8528884f1aee39ba152ff692e8f26b35c8214df93da607ff584a1e8156"
+        },
+        "motion": {
+          "path": "test-1119-000013/motion.npy",
+          "sha256": "d99d3041c0f62beeff9249c41a4731f722f0cb3e9189b811aab9cbea00c5f3e4"
+        },
+        "previous_command": {
+          "path": "test-1119-000013/previous_command.npy",
+          "sha256": "aaafe1332c294bd2ae6de3a32678b510473f93a861fd025836ba736108e404b1"
+        },
+        "action": {
+          "path": "test-1119-000013/action.npy",
+          "sha256": "9de803f605b0419e53bf6dd2cf549e7da747c82fc228bdbccc12fb1272c88430"
+        },
+        "raw_wrench": {
+          "path": "test-1119-000013/raw_wrench.npy",
+          "sha256": "ac898398f333849a5c68716f65c6814c45a1286346ae4fb02176ca073913b59e"
+        },
+        "substep_wrench": {
+          "path": "test-1119-000013/substep_wrench.npy",
+          "sha256": "9f333e35615fc0fcbd89c19df0f8d053339305a5c31c6bc61d8fc318ae6d47b5"
+        },
+        "ema_action": {
+          "path": "test-1119-000013/ema_action.npy",
+          "sha256": "5d001b1fd7fff59fbffd57fd02901511c83d5c56930a5379231847bffd7163b3"
+        },
+        "target_position": {
+          "path": "test-1119-000013/target_position.npy",
+          "sha256": "bfd0e97212fc995f0ccd3c0b1560f789bf967e0ccbce929aaf7d84f3643996e9"
+        },
+        "target_quaternion": {
+          "path": "test-1119-000013/target_quaternion.npy",
+          "sha256": "8f66446f14a950b4f3622c34ae32af21e4145dd7ce4b7e1b97371348003ca38c"
+        },
+        "observed_after_state": {
+          "path": "test-1119-000013/observed_after_state.npy",
+          "sha256": "480e02b5c2b82256335f22f4cb0d8d017ed4bff6424ff84c843302b4445f8868"
+        },
+        "terminated": {
+          "path": "test-1119-000013/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "test-1119-000013/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "test-1119-000013/stable_success.npy",
+          "sha256": "4e32fb30b550945c34042fe2cea2d2c916cfb031b10ac3009c4f6388f2d299fd"
+        }
+      }
+    },
+    {
+      "parent_id": "test-1119-000014",
+      "collection_run_id": "19_test_1119",
+      "split": "test",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "test-1119-000014/rgb.npy",
+          "sha256": "b1d5b74798268757b0e3f1228b5f1577656b775f0558969c403edbf25be2f3d5"
+        },
+        "state": {
+          "path": "test-1119-000014/state.npy",
+          "sha256": "d1098163324b7e300891aa4d1e341c89a0a44a0a3fe716d68237edcd5e301a4e"
+        },
+        "wrench": {
+          "path": "test-1119-000014/wrench.npy",
+          "sha256": "396f29c555b56c7814ef6b4e1367684128c6778b81964f65c500c5775e0cc175"
+        },
+        "motion": {
+          "path": "test-1119-000014/motion.npy",
+          "sha256": "6cfd94b384dbbfdcc552458837f500bd4378716fb3812b0f188dfc7d4271d937"
+        },
+        "previous_command": {
+          "path": "test-1119-000014/previous_command.npy",
+          "sha256": "e4e2d7cc5ba1bdecab05ba0f646c5eec7f220e5e8fa260c66c97eee433c7659b"
+        },
+        "action": {
+          "path": "test-1119-000014/action.npy",
+          "sha256": "3732c8de5c914c1e89700b52b8355f0f768ccc6118dda37742b6a0cd64703d54"
+        },
+        "raw_wrench": {
+          "path": "test-1119-000014/raw_wrench.npy",
+          "sha256": "ffc16f131af4aeafd5f868db4fe3aca504f503f9bf9185e3f9829d01a1a7611f"
+        },
+        "substep_wrench": {
+          "path": "test-1119-000014/substep_wrench.npy",
+          "sha256": "eed9615c0df1d48322d7f7f14eedf0c854d8dd7b0b857adae81c63328a8eaf56"
+        },
+        "ema_action": {
+          "path": "test-1119-000014/ema_action.npy",
+          "sha256": "d7399e6f518d4f1bd9cf745373f8c190843853c28fad6ad61683792307cd629c"
+        },
+        "target_position": {
+          "path": "test-1119-000014/target_position.npy",
+          "sha256": "3a3962d5fe96647d1a5c55b141edc02ff5bde97d5a68a04a6c022780787d1ab8"
+        },
+        "target_quaternion": {
+          "path": "test-1119-000014/target_quaternion.npy",
+          "sha256": "9506e14983fe8875c6eda988ffa2242bd2b505d25fd5be0c3285ca970bee428e"
+        },
+        "observed_after_state": {
+          "path": "test-1119-000014/observed_after_state.npy",
+          "sha256": "ee9c9298ff7c069a9f68a48eb2d11cd065b59016192a37c6d8daf5726e85d289"
+        },
+        "terminated": {
+          "path": "test-1119-000014/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "test-1119-000014/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "test-1119-000014/stable_success.npy",
+          "sha256": "4d7e684e242a6124f72f99e05a0a8bd787f7b943cbd60b16b22822aab6cfb5df"
+        }
+      }
+    },
+    {
+      "parent_id": "test-1119-000015",
+      "collection_run_id": "19_test_1119",
+      "split": "test",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "test-1119-000015/rgb.npy",
+          "sha256": "9da9ce1a7f39d9f9c99910ff8dc2edee9b1ec89d6518b64342bceae1fb140600"
+        },
+        "state": {
+          "path": "test-1119-000015/state.npy",
+          "sha256": "fab88b8ff7b9074256b2df7b87333ec10128bca8032b99c366633645f6309377"
+        },
+        "wrench": {
+          "path": "test-1119-000015/wrench.npy",
+          "sha256": "8c359a2a170e0bab9c3f186dffc308302f1d21f7ba9c616d139fa8b4d0ddc689"
+        },
+        "motion": {
+          "path": "test-1119-000015/motion.npy",
+          "sha256": "0ccd8dac05f0eb185dbc60714af53ce289f93682bf66395fb53c486600c23cf0"
+        },
+        "previous_command": {
+          "path": "test-1119-000015/previous_command.npy",
+          "sha256": "3cbf4c845f242b63a4b49180a070de6f0a072bc04f4d5a77af076ffd2d4d4487"
+        },
+        "action": {
+          "path": "test-1119-000015/action.npy",
+          "sha256": "bb330160ab87787b4dcdd258800095581528ee7c87441040e93193c7a83b4d9c"
+        },
+        "raw_wrench": {
+          "path": "test-1119-000015/raw_wrench.npy",
+          "sha256": "1883aab689166e2b76bf1786d2c29d6a2e7ff5fef6bf03e8ea70d04104d97d9d"
+        },
+        "substep_wrench": {
+          "path": "test-1119-000015/substep_wrench.npy",
+          "sha256": "0ed83b293789a3684371c6fffa3a56a86f0ae5f5b266faf39ba0f943138eda49"
+        },
+        "ema_action": {
+          "path": "test-1119-000015/ema_action.npy",
+          "sha256": "e5fd0c61df8873f6ba4a64301f536289cd09a218ffc61dd5aa3a5d9934cdaf67"
+        },
+        "target_position": {
+          "path": "test-1119-000015/target_position.npy",
+          "sha256": "9aa4c77815ea0df01b5a161e995c8f748047296c826a83b87d005e99b37dcafa"
+        },
+        "target_quaternion": {
+          "path": "test-1119-000015/target_quaternion.npy",
+          "sha256": "97d137cd153b988313725b1f8e250f7515711d97d06dc491fc9a27c394da9edb"
+        },
+        "observed_after_state": {
+          "path": "test-1119-000015/observed_after_state.npy",
+          "sha256": "832e8cbb1d7f023226a5b341332f00d9d5f30c47bf749707d354b15b13390d07"
+        },
+        "terminated": {
+          "path": "test-1119-000015/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "test-1119-000015/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "test-1119-000015/stable_success.npy",
+          "sha256": "1ac455a3a1ddffc6b06c24ea16569ced85d924b66ef5c72ddc31647299eb3419"
+        }
+      }
+    },
+    {
+      "parent_id": "test-1119-000016",
+      "collection_run_id": "19_test_1119",
+      "split": "test",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "test-1119-000016/rgb.npy",
+          "sha256": "3e794fd5f13255768604e9e8440f5aa08c8071d19002dca3ec42b754dd054359"
+        },
+        "state": {
+          "path": "test-1119-000016/state.npy",
+          "sha256": "8650e38b6dc8ae0016781126c4276954fd6961e42d3e4feb4d2273f0cf2b8c4d"
+        },
+        "wrench": {
+          "path": "test-1119-000016/wrench.npy",
+          "sha256": "ee916ddd79b632a358f9616e306527a428f6eb931b9ec5fe471fbf1cf6ebc944"
+        },
+        "motion": {
+          "path": "test-1119-000016/motion.npy",
+          "sha256": "61ad6da75563726ef392c526046768827c3a210792ef9f2fe098a8320adca6ab"
+        },
+        "previous_command": {
+          "path": "test-1119-000016/previous_command.npy",
+          "sha256": "14e94405927201f41c7ca3ca1cb74859bb839f88b598414ab88782755137d9a8"
+        },
+        "action": {
+          "path": "test-1119-000016/action.npy",
+          "sha256": "cb68aca8884b965edfc06c8a8e8154d8a6b01ede87abed295a5c6b8bb22056e6"
+        },
+        "raw_wrench": {
+          "path": "test-1119-000016/raw_wrench.npy",
+          "sha256": "974ab8c2894c626d7689d2fc252123e4abac41fb461889a2916f9030868d2fa2"
+        },
+        "substep_wrench": {
+          "path": "test-1119-000016/substep_wrench.npy",
+          "sha256": "efdd74a5b28d1733d58d09533b1075b2b812964b0e7d04be88669ce525625238"
+        },
+        "ema_action": {
+          "path": "test-1119-000016/ema_action.npy",
+          "sha256": "01a6e94ef13f9616a122c9219dadcf51ed0778a620f978edb93c452db3132eaa"
+        },
+        "target_position": {
+          "path": "test-1119-000016/target_position.npy",
+          "sha256": "cbe186e2d9f13cbbd9af3e8985076f3f9d49189f85bb6ad2cd0cf9480d47c63e"
+        },
+        "target_quaternion": {
+          "path": "test-1119-000016/target_quaternion.npy",
+          "sha256": "c377bd9ab53822da9e0b085e9bfe4d8c41e795da30d6c10efe0b5ea3dd40743c"
+        },
+        "observed_after_state": {
+          "path": "test-1119-000016/observed_after_state.npy",
+          "sha256": "5c6023b65978c1664a108f51ebc61ad96d686202daa40808c364e5edbc89d8f9"
+        },
+        "terminated": {
+          "path": "test-1119-000016/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "test-1119-000016/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "test-1119-000016/stable_success.npy",
+          "sha256": "5d989091e333cb6f958a31bb378fb590000ed13ec1eb9bc7296b4122d327094f"
+        }
+      }
+    },
+    {
+      "parent_id": "test-1119-000017",
+      "collection_run_id": "19_test_1119",
+      "split": "test",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "test-1119-000017/rgb.npy",
+          "sha256": "bd008c1de43ca353c9f335716ae5852d1036efdc3c8ba7b1fd62dc4e4c724281"
+        },
+        "state": {
+          "path": "test-1119-000017/state.npy",
+          "sha256": "8250daf7cf48420a84a864e7d5d635e2c634f594af0e8b6ea1d66d85f27b42ab"
+        },
+        "wrench": {
+          "path": "test-1119-000017/wrench.npy",
+          "sha256": "d9f3c58459c60c719379fa0e1e34e918c23ecbceae7f82dcbffd21aa2f6117c4"
+        },
+        "motion": {
+          "path": "test-1119-000017/motion.npy",
+          "sha256": "328d1583867eda0916abb7d26260ee69b5c696302c06b61a6e4dca814150d525"
+        },
+        "previous_command": {
+          "path": "test-1119-000017/previous_command.npy",
+          "sha256": "da477a080633b9fdadc12b658efc5aec2839ecb80607e191b2e37ba08c854871"
+        },
+        "action": {
+          "path": "test-1119-000017/action.npy",
+          "sha256": "5c266ffd1f1d0454dd3460d216b462f509d1272bb8555d5760f986de00bd06b5"
+        },
+        "raw_wrench": {
+          "path": "test-1119-000017/raw_wrench.npy",
+          "sha256": "6552ce83821b6d821eec308c54969921b228d6846ce0cd9ace04b0a9b93dbe84"
+        },
+        "substep_wrench": {
+          "path": "test-1119-000017/substep_wrench.npy",
+          "sha256": "53ed4ee5f357bad4df15e822ff8f0cef5be149727824bddd84d4e5d6201e53ff"
+        },
+        "ema_action": {
+          "path": "test-1119-000017/ema_action.npy",
+          "sha256": "09f5f2ecc5d2ae649c68793bbd9f10564a563f89a085834f3c512de1ba026df5"
+        },
+        "target_position": {
+          "path": "test-1119-000017/target_position.npy",
+          "sha256": "495453e57604b441a0ac46731a0208a0929592326f7b9151afd24b3c21e82f80"
+        },
+        "target_quaternion": {
+          "path": "test-1119-000017/target_quaternion.npy",
+          "sha256": "faf37a62d96c3c2c74e42e19725c8d8f5f36e392b6fafadf6b4f75dfb609485e"
+        },
+        "observed_after_state": {
+          "path": "test-1119-000017/observed_after_state.npy",
+          "sha256": "5859184f61307a67e2a2ef4511a7e1ec4c0561641546c31d7fef4ef0cc63c80b"
+        },
+        "terminated": {
+          "path": "test-1119-000017/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "test-1119-000017/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "test-1119-000017/stable_success.npy",
+          "sha256": "bca37fb1f02b07f3be3d8d618718074ee9ab32b11d208112f77d61cfe44ed586"
+        }
+      }
+    },
+    {
+      "parent_id": "test-1119-000018",
+      "collection_run_id": "19_test_1119",
+      "split": "test",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "test-1119-000018/rgb.npy",
+          "sha256": "5b5e95e01dc3261878234a096382a93e7d73e6063128578abd6f7e9a1fd01246"
+        },
+        "state": {
+          "path": "test-1119-000018/state.npy",
+          "sha256": "eb00f96e1949f7d2168875b5231918da87d3aee73f34d5c2cb0a7f1e20a3b431"
+        },
+        "wrench": {
+          "path": "test-1119-000018/wrench.npy",
+          "sha256": "61413a9bd7b314225b14ca20b6a6df0da438de3fa93c83c3da6dc086321365ab"
+        },
+        "motion": {
+          "path": "test-1119-000018/motion.npy",
+          "sha256": "2195d07556c59b4dddb56306a966e9d943a24a5f61895135284e9b0cdce80cbe"
+        },
+        "previous_command": {
+          "path": "test-1119-000018/previous_command.npy",
+          "sha256": "7100b472c756db119e6939ffb3ef1cc8bc46ea1484c1c65e793ab01252247917"
+        },
+        "action": {
+          "path": "test-1119-000018/action.npy",
+          "sha256": "1770c497f14d70f8d744ecf8ade93f590d44b3164c860ff3dbc4ba12e003469a"
+        },
+        "raw_wrench": {
+          "path": "test-1119-000018/raw_wrench.npy",
+          "sha256": "429d97ca2f3532ee492afc7f16ca6088a49e4c26db1ffaee66cdd95a64d1f612"
+        },
+        "substep_wrench": {
+          "path": "test-1119-000018/substep_wrench.npy",
+          "sha256": "a1ea5e31892593ca6ca9e3f220a123df7feabc6b7b9cf01e20babe6b60a7d6ac"
+        },
+        "ema_action": {
+          "path": "test-1119-000018/ema_action.npy",
+          "sha256": "0741c4cc6aee36b351c160f6053f906e1d28cb46cbec40e287049d8ef18119bc"
+        },
+        "target_position": {
+          "path": "test-1119-000018/target_position.npy",
+          "sha256": "6a7f4f87bb144054a014dfb8324b6f084d5d213d62d1091616029b0d538b290c"
+        },
+        "target_quaternion": {
+          "path": "test-1119-000018/target_quaternion.npy",
+          "sha256": "64050b8afaacc4ac224c818f1399ecf41d0dc4216372353aa5d0fda69acabc68"
+        },
+        "observed_after_state": {
+          "path": "test-1119-000018/observed_after_state.npy",
+          "sha256": "3540c9b92759a2ea8987b4953bc137348f73c67e3e9b6664a36a8061066c4ae6"
+        },
+        "terminated": {
+          "path": "test-1119-000018/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "test-1119-000018/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "test-1119-000018/stable_success.npy",
+          "sha256": "b1b5c297b1ee5b94dc9fd1d5c985ba243135daabf260d6e119e8159a0120fe52"
+        }
+      }
+    },
+    {
+      "parent_id": "test-1119-000019",
+      "collection_run_id": "19_test_1119",
+      "split": "test",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "test-1119-000019/rgb.npy",
+          "sha256": "f8547f9561697dd7e104e0e8d008d1c8472578d185fc64eb16a7a8963d88f2ec"
+        },
+        "state": {
+          "path": "test-1119-000019/state.npy",
+          "sha256": "f084b3f315ae6663967a73c7674efcedb4e65ef95c5c7292151dde854c7013a2"
+        },
+        "wrench": {
+          "path": "test-1119-000019/wrench.npy",
+          "sha256": "5264d1ebd1b2c20057f5bac99f02c096d7ef80d3b60262d8a765f066a1112386"
+        },
+        "motion": {
+          "path": "test-1119-000019/motion.npy",
+          "sha256": "14107fcf13669160c09106c269ae8201b8e1b4d97a7ace7c4cd9a75af488fd19"
+        },
+        "previous_command": {
+          "path": "test-1119-000019/previous_command.npy",
+          "sha256": "dd7136af3a764f58b408b01cd452b9b532168deb3d6881d5ec1a49e8cf369692"
+        },
+        "action": {
+          "path": "test-1119-000019/action.npy",
+          "sha256": "e0d728e01a72bd03abdf8f5476116dac1e4dd044659253a313e8f7e04ea5d3aa"
+        },
+        "raw_wrench": {
+          "path": "test-1119-000019/raw_wrench.npy",
+          "sha256": "5bdbd05907a4997bb787db9ff506f4726d07f9e5f8296e2c0104c052d04a4c7c"
+        },
+        "substep_wrench": {
+          "path": "test-1119-000019/substep_wrench.npy",
+          "sha256": "0145a7442073051b7a58f55c0d797a9234277898e7e987d376488bc730ba2ef9"
+        },
+        "ema_action": {
+          "path": "test-1119-000019/ema_action.npy",
+          "sha256": "1b2b97ffef9acab44212c475d85678646b4e4504123f2eeed902526d02e74e15"
+        },
+        "target_position": {
+          "path": "test-1119-000019/target_position.npy",
+          "sha256": "dca8662fed4cfdfa4fc3383e4f7d2c74b5ef7c9767e74b6fa340033e893bb0b7"
+        },
+        "target_quaternion": {
+          "path": "test-1119-000019/target_quaternion.npy",
+          "sha256": "8a69ded31d1a93ae1772e3281d3a89c71a44127ca30e9fc4ed0f395938c9be54"
+        },
+        "observed_after_state": {
+          "path": "test-1119-000019/observed_after_state.npy",
+          "sha256": "97f0c10845bd227f8593d3101fb92df7e6eb0582aeae75705aa8d89c04917d8a"
+        },
+        "terminated": {
+          "path": "test-1119-000019/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "test-1119-000019/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "test-1119-000019/stable_success.npy",
+          "sha256": "9048f048a2752b14e17b0764ec479cfbb6c96849996ef5d3d774a8efc6fb072d"
+        }
+      }
+    },
+    {
+      "parent_id": "test-1119-000020",
+      "collection_run_id": "19_test_1119",
+      "split": "test",
+      "successful": false,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "test-1119-000020/rgb.npy",
+          "sha256": "66bd3c36af9c998f7bbd1ba9d687e5e4f671dc6fe9867204024ed412899a53ce"
+        },
+        "state": {
+          "path": "test-1119-000020/state.npy",
+          "sha256": "215f0a2e6f65b5e50b5489421b7102b9fff1bb3ee69ba52abbdf77d4b1232524"
+        },
+        "wrench": {
+          "path": "test-1119-000020/wrench.npy",
+          "sha256": "a64b362f2ddb353671d5046b4289090244d22ec355448fc8acf3f314ee2333e9"
+        },
+        "motion": {
+          "path": "test-1119-000020/motion.npy",
+          "sha256": "f5a9caeb74c9fb8e05d86cc4cc872ea282617b8cabb15b068104c4e55535e402"
+        },
+        "previous_command": {
+          "path": "test-1119-000020/previous_command.npy",
+          "sha256": "418cc19fd4b92daa28852ad3fbb2731fa8d64650dc726ecbdd15087458b0a980"
+        },
+        "action": {
+          "path": "test-1119-000020/action.npy",
+          "sha256": "3f00b1dd50d2c3be3d57d71af23c9cfe55c0d5e9eea6ee4fd55b5830d5c99c6b"
+        },
+        "raw_wrench": {
+          "path": "test-1119-000020/raw_wrench.npy",
+          "sha256": "4da25db43a4fa5354f070ec8310aa245f7437465ad65a1e2fdda99956f387111"
+        },
+        "substep_wrench": {
+          "path": "test-1119-000020/substep_wrench.npy",
+          "sha256": "82acf6f98fa752e21c1ac665cadebb52e68f0703280d147dfbc20294bf5e6526"
+        },
+        "ema_action": {
+          "path": "test-1119-000020/ema_action.npy",
+          "sha256": "fb4e5dd2314ad0bbd8e045773ce0f9e2857f1c6c5b1fcfa10426be469777f697"
+        },
+        "target_position": {
+          "path": "test-1119-000020/target_position.npy",
+          "sha256": "3835b550ffc6aaed3eb7a8a3108e0261c7addcb9302255a0b48f5d017178de7b"
+        },
+        "target_quaternion": {
+          "path": "test-1119-000020/target_quaternion.npy",
+          "sha256": "2b99205c0d95d60555b093f3ee0a7489a513e0e2dbba3bda609cb340fa7b6cad"
+        },
+        "observed_after_state": {
+          "path": "test-1119-000020/observed_after_state.npy",
+          "sha256": "413f3b6f619d7ed44777fe14f93c4f06770beead1713ec8843b19153e53d4ac5"
+        },
+        "terminated": {
+          "path": "test-1119-000020/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "test-1119-000020/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "test-1119-000020/stable_success.npy",
+          "sha256": "45b286a45b3a1f748fabfc69c27971c8f48152189a137aeb82f337e8b6c0ca68"
+        }
+      }
+    },
+    {
+      "parent_id": "test-1119-000021",
+      "collection_run_id": "19_test_1119",
+      "split": "test",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "test-1119-000021/rgb.npy",
+          "sha256": "c1de7edd8bfa0f8486def7083330061e519baef88f06c57f9291600dbae81a78"
+        },
+        "state": {
+          "path": "test-1119-000021/state.npy",
+          "sha256": "b9439ab71c906ad02ae65671a5b40331a9fad885bb98a8a960c5aae97021e4e0"
+        },
+        "wrench": {
+          "path": "test-1119-000021/wrench.npy",
+          "sha256": "92ff30548af3c270d233dc0a44b7e7d83041b88d00afd556985f5392d0c44925"
+        },
+        "motion": {
+          "path": "test-1119-000021/motion.npy",
+          "sha256": "d9919af467be990ab7e11336d116f911c608431d6e4e96ae57bc31edcdd626d0"
+        },
+        "previous_command": {
+          "path": "test-1119-000021/previous_command.npy",
+          "sha256": "5db44b9710f01529136a0c9333fad2d7a6a8f5e470f17c5427653b92daee07ce"
+        },
+        "action": {
+          "path": "test-1119-000021/action.npy",
+          "sha256": "365b6dc24950088675b5cd690557d18a28217d809097f3da03b102dcc0f67bf9"
+        },
+        "raw_wrench": {
+          "path": "test-1119-000021/raw_wrench.npy",
+          "sha256": "c3b7c32795fe6e60cb8291efd0b7c00e0c25d727259f6ea5b6bc29239b533f58"
+        },
+        "substep_wrench": {
+          "path": "test-1119-000021/substep_wrench.npy",
+          "sha256": "2b93bf7260811255a46698781de1215524c6be32a27c52b6915e518f646016db"
+        },
+        "ema_action": {
+          "path": "test-1119-000021/ema_action.npy",
+          "sha256": "973bfaa51874259d51c91f189e1b1c59bbd304eac6a449f232c9b0b7faf09193"
+        },
+        "target_position": {
+          "path": "test-1119-000021/target_position.npy",
+          "sha256": "74b00ac50605e26ac22c4d5d8eda508b993df856b193a1cbdd9b62655ce05e3c"
+        },
+        "target_quaternion": {
+          "path": "test-1119-000021/target_quaternion.npy",
+          "sha256": "c4c119b1ed651128fa797a28c4a7ca4799ec1022ae08e1eec04eea6934c581e3"
+        },
+        "observed_after_state": {
+          "path": "test-1119-000021/observed_after_state.npy",
+          "sha256": "9a99ffffb611349aaa05e85d112955d115b11784363d4fa97a863458b60608bf"
+        },
+        "terminated": {
+          "path": "test-1119-000021/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "test-1119-000021/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "test-1119-000021/stable_success.npy",
+          "sha256": "56023280e3380a9f5bde3d54ef889a4f132862ff2923d976acf1c0e6286d64eb"
+        }
+      }
+    },
+    {
+      "parent_id": "test-1119-000022",
+      "collection_run_id": "19_test_1119",
+      "split": "test",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "test-1119-000022/rgb.npy",
+          "sha256": "b01ed91b2d31ed1fa3cb6ed2e2a9234c68bc396da72b65ad0a524217513321f0"
+        },
+        "state": {
+          "path": "test-1119-000022/state.npy",
+          "sha256": "4dd987f3ab4441fd86bd4c6e89bba6f94de15d5aa7f03cb4657a1ed383438d65"
+        },
+        "wrench": {
+          "path": "test-1119-000022/wrench.npy",
+          "sha256": "ac7b5a4a975834d703a62a3b7d04f6cb6fe986439ee0268ef77df5208fd14dfe"
+        },
+        "motion": {
+          "path": "test-1119-000022/motion.npy",
+          "sha256": "5a412724b8f1dd00c0250ddbf06694fb0848fb10b675fd24c8e5b48b5d3a4267"
+        },
+        "previous_command": {
+          "path": "test-1119-000022/previous_command.npy",
+          "sha256": "597067445fed351d9086c745108fec3795bfe0621f5cd73b49971e51ab46b37f"
+        },
+        "action": {
+          "path": "test-1119-000022/action.npy",
+          "sha256": "f4d834acd0b7f4a4e9053babc1e16539e21f9114c161a39d1166373a9dc3bb16"
+        },
+        "raw_wrench": {
+          "path": "test-1119-000022/raw_wrench.npy",
+          "sha256": "81befdc6ab329746163cc269620ef1f98a0f069f22186553209096ff836efd53"
+        },
+        "substep_wrench": {
+          "path": "test-1119-000022/substep_wrench.npy",
+          "sha256": "034c74153390e0980dbf893cf1702c3e277c40a902bbeb0292c3d083b86c0898"
+        },
+        "ema_action": {
+          "path": "test-1119-000022/ema_action.npy",
+          "sha256": "f9f3f0bc2daf242ea8088d2ff9e525f10a409b3ed6901b5c014dec206ef81ad0"
+        },
+        "target_position": {
+          "path": "test-1119-000022/target_position.npy",
+          "sha256": "55a4a06cd01b91e3d5a309b1dfd63e28cef692c6f24c0e531f3f1d3b3cb75a32"
+        },
+        "target_quaternion": {
+          "path": "test-1119-000022/target_quaternion.npy",
+          "sha256": "0700a10baa075ca186fbb6d12eac85994f46400933454d3447ec7e8dd88ca82a"
+        },
+        "observed_after_state": {
+          "path": "test-1119-000022/observed_after_state.npy",
+          "sha256": "60e2eec8348e13904c0498ad4106463976202089c0afa48430cd5a8670024a95"
+        },
+        "terminated": {
+          "path": "test-1119-000022/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "test-1119-000022/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "test-1119-000022/stable_success.npy",
+          "sha256": "064621ad86f7240abc2f225d5a9911e097924a163954717defc0f15d4f7549b4"
+        }
+      }
+    },
+    {
+      "parent_id": "test-1119-000023",
+      "collection_run_id": "19_test_1119",
+      "split": "test",
+      "successful": true,
+      "source": "real_forge_recording",
+      "files": {
+        "rgb": {
+          "path": "test-1119-000023/rgb.npy",
+          "sha256": "1d39d107ba149ef2aa3f5e57c021b47684052c66c08bc8ccbf216eb9fe3db4df"
+        },
+        "state": {
+          "path": "test-1119-000023/state.npy",
+          "sha256": "3fd8449bc1607755b9f55570f8bbd5de6de6e22aa399e710e3a009e746f70096"
+        },
+        "wrench": {
+          "path": "test-1119-000023/wrench.npy",
+          "sha256": "67227d0db7a97ec290b551ee2889dc6343e9392c002fed05cf281fcae94489c3"
+        },
+        "motion": {
+          "path": "test-1119-000023/motion.npy",
+          "sha256": "fd1b11bd860ba3686263f9eb4d6315e50ab4fc851362aea869da2665cc33f20a"
+        },
+        "previous_command": {
+          "path": "test-1119-000023/previous_command.npy",
+          "sha256": "13128fd4c99482fffda319b98b3ee42be3fdd74872f9851a212c76e45f687181"
+        },
+        "action": {
+          "path": "test-1119-000023/action.npy",
+          "sha256": "01778beb4d05a7140243b913aea84f515cbfbae5fcf3ee698e474417a9b8f569"
+        },
+        "raw_wrench": {
+          "path": "test-1119-000023/raw_wrench.npy",
+          "sha256": "14b5854dc95a9f472c13088a2d1d9b3a8ecdc884514133a000f4eda2ff5c0996"
+        },
+        "substep_wrench": {
+          "path": "test-1119-000023/substep_wrench.npy",
+          "sha256": "87eb4aa194ffb4b5304be8504060253c91e0f26c8475ff7c9ab9b2db4d89593f"
+        },
+        "ema_action": {
+          "path": "test-1119-000023/ema_action.npy",
+          "sha256": "2ac70051c23d786d34bca186f31ce04ef455d748691117f57b469a109209f534"
+        },
+        "target_position": {
+          "path": "test-1119-000023/target_position.npy",
+          "sha256": "14f70b0fe55e8f287a5ae1c4665437172998629d55c1488f399f2a97fa215a6d"
+        },
+        "target_quaternion": {
+          "path": "test-1119-000023/target_quaternion.npy",
+          "sha256": "ea63d1bb4deff4e2eb0e219626c2e358f67f567285f17ed41c341ed737958515"
+        },
+        "observed_after_state": {
+          "path": "test-1119-000023/observed_after_state.npy",
+          "sha256": "a00a54226b6af094a807aff2f0e31268894f6a91f737a3beb9ce6e933f130694"
+        },
+        "terminated": {
+          "path": "test-1119-000023/terminated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "truncated": {
+          "path": "test-1119-000023/truncated.npy",
+          "sha256": "13b5cdddab92de86dddcc0f13c1cff48f3bd7ce5849066f92ea63141dc80c308"
+        },
+        "stable_success": {
+          "path": "test-1119-000023/stable_success.npy",
+          "sha256": "407253b21835d5ef7bc0eafacef3d9193c885d53ef7d88df03dad9bef74147ea"
+        }
+      }
+    }
+  ],
+  "seed": 1119,
+  "split": "test",
+  "successful_episodes": 22,
+  "individual_transitions": 3576,
+  "contract": {
+    "task": "Isaac-Forge-PegInsert-Direct-v0",
+    "action_stage": "submitted_pre_ema",
+    "action_axes": [
+      "x",
+      "y",
+      "z",
+      "yaw"
+    ],
+    "observation_timing": "before_action",
+    "wrench_dim": 6,
+    "history_steps": 4,
+    "chunk_length": 4,
+    "wrench_frame": "incoming_joint",
+    "camera": {
+      "eye": [
+        0.95,
+        0.45,
+        0.45
+      ],
+      "target": [
+        0.6,
+        0.0,
+        0.12
+      ],
+      "width": 256,
+      "height": 256,
+      "focal_length": 24.0,
+      "horizontal_aperture": 20.955,
+      "clipping_range": [
+        0.1,
+        10.0
+      ]
+    },
+    "control_dt": 0.06666666666666667,
+    "expert_sha256": "10efdf802e8abfccaa13f6e7a18cc2887ca2f3f96b35526bc9984fde419e59f8",
+    "expert_seventh_action": "replaced_by_fixed_minus_one",
+    "acceptance_evidence": "acceptance.json",
+    "acceptance_sha256": "806f2ee087086597157953de3ec8de75e22e93966671c274e8be9b3ea6981a0d"
+  },
+  "accounting": {
+    "physics_substeps": {
+      "restore": 2144,
+      "interaction": 28608,
+      "branch": 0,
+      "prefix": 0,
+      "evaluation": 0
+    },
+    "decimation": 8,
+    "num_envs": 8,
+    "control_step_cap": 50000.0,
+    "individual_control_step_equivalents": {
+      "restore": 268,
+      "interaction": 3576,
+      "branch": 0,
+      "prefix": 0,
+      "evaluation": 0
+    },
+    "charged_before_step": true
+  },
+  "attempts": 24,
+  "partial_episode_lengths": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "note": "A collected manifest is not P0 acceptance or an ACT baseline result."
+}

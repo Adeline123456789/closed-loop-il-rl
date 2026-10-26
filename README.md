@@ -6,7 +6,7 @@ ACT is the actor: single RGB + proprioception + four past wrench/motion/command 
 
 Implemented components and boundaries are documented in each run's `implementation_audit.md`. In particular, a stage command returning a blocked prerequisite is **not** a completed robot training driver. Live FORGE integration, expert recollection, ACT pretraining, online chunk replay/critic fitting, O/R/P diagnostics and short B1/B2/B3 drivers are implemented. Only actually measured stages are accepted; conditional pilot/confirmation/generalization remain incomplete. This repository does not claim the full research pipeline has run.
 
-Local data paths, foreground continuation commands and progress monitoring: [TRAINING_GUIDE.md](TRAINING_GUIDE.md).
+Local data paths, managed background continuation and progress monitoring: [TRAINING_GUIDE.md](TRAINING_GUIDE.md). Actual NumPy image/force/pose schema and video export: [DATA_FORMAT.md](DATA_FORMAT.md).
 
 ## Commands actually exercised on this machine
 

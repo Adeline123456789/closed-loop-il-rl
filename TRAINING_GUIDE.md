@@ -24,7 +24,29 @@
 
 GitHub 上传代码、配置、真实日志、CSV、清单和小图。原始数据、Isaac 缓存及大权重按 CODEX_TASK.md 保留在本机；仓库中的数据清单携带各文件 SHA256。旧 HF 的动作/相机契约仍未对齐，因此训练使用新采集数据。
 
-## 推荐：前台顺序继续
+## 推荐：受管理的后台顺序继续（用户已授权）
+
+20 个采集批次已完成：376 回合，其中 367 个成功，合并 manifest 已存在。数组字段详解与 MP4 导出见 [DATA_FORMAT.md](DATA_FORMAT.md)。
+
+```bash
+cd /media/midea/F496AC8096AC4548/closed_loop_act
+bash scripts/start_background_training.sh
+tail -f .cache/background_training.log
+```
+
+启动器会拒绝重复训练进程。会话名 `forcecritic-training`，终端关闭后仍由本机 tmux 管理（机器必须保持开机且不休眠）。先发布当前采集快照，再运行 doctor → audit-data → smoke-1 → smoke-8 → baseline → diagnostic → short-ablation。初始快照、smoke 完成、后续各阶段结束及失败停止时均尝试自动 commit/push 并更新 PR #1。上传失败单独记录在 `.cache/background_publication.json`；不会被写成实验失败或成功。网络操作有超时和一次重试。
+
+```bash
+tmux list-sessions
+tmux attach -t forcecritic-training
+# 查看后按 Ctrl-b，再按 d 脱离，会继续运行。
+cat reports/20261023T104759Z/background_job.json
+cat .cache/background_publication.json
+```
+
+先检查已有会话和 `background_job.json`，不要同时运行下列前台命令。任何门槛失败即停，不自动扩预算，也不自动启动 pilot/confirm/generalization。
+
+## 可选：前台顺序继续
 
 ```bash
 cd /media/midea/F496AC8096AC4548/closed_loop_act
@@ -74,7 +96,7 @@ watch -n 2 nvidia-smi
 训练开始后：
 
 ```bash
-tail -f .cache/continue_training.log
+tail -f .cache/background_training.log
 watch -n 10 '.venv/bin/python -c "import json,pathlib; p=pathlib.Path(\"checkpoints/20261023T104759Z/act0.json\"); d=json.loads(p.read_text()) if p.exists() else {}; print({k:d.get(k) for k in (\"status\",\"completed_updates\",\"requested_updates\")})"'
 ```
 

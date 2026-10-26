@@ -1,0 +1,102 @@
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/apps/isaaclab.python.headless.rendering.kit
+[Warning] [simulation_app.simulation_app] Modules: ['omni.kit_app'] were loaded before SimulationApp was started and might not be loaded correctly.
+[Warning] [simulation_app.simulation_app] Please check to make sure no extra omniverse or pxr modules are imported before the call to SimulationApp(...)
+Loading user config located at: '/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/omni/data/Kit/Isaac-Sim/5.0/user.config.json'
+[Info] [carb] Logging to file: /media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/omni/logs/Kit/Isaac-Sim/5.0/kit_20261026_114117.log
+
+|---------------------------------------------------------------------------------------------|
+| Driver Version: 575.51.03     | Graphics API: Vulkan
+|=============================================================================================|
+| GPU | Name                             | Active | LDA | GPU Memory | Vendor-ID | LUID       |
+|     |                                  |        |     |            | Device-ID | UUID       |
+|     |                                  |        |     |            | Bus-ID    |            |
+|---------------------------------------------------------------------------------------------|
+| 0   | NVIDIA GeForce RTX 3090          | Yes: 0 |     | 24576   MB | 10de      | 0          |
+|     |                                  |        |     |            | 2204      | ffd9f1a6.. |
+|     |                                  |        |     |            | 1         |            |
+|=============================================================================================|
+| OS: 22.04.5 LTS (Jammy Jellyfish) ubuntu, Version: 22.04.5, Kernel: 6.8.0-138-generic
+| XServer Vendor: The X.Org Foundation, XServer Version: 12101004 (1.21.1.4)
+| Processor: 12th Gen Intel(R) Core(TM) i9-12900K
+| Cores: 16 | Logical Cores: 24
+|---------------------------------------------------------------------------------------------|
+| Total Memory (MB): 64057 | Free Memory: 43642
+| Total Page/Swap (MB): 2047 | Free Page/Swap: 1502
+|---------------------------------------------------------------------------------------------|
+2026-10-26T03:41:17Z [668ms] [Warning] [gpu.foundation.plugin] CPU performance profile is set to powersave. This profile sets the CPU to the lowest frequency reducing performance.
+2026-10-26T03:41:17Z [671ms] [Warning] [gpu.foundation.plugin] IOMMU is enabled.
+2026-10-26T03:41:19Z [2,160ms] [Warning] [omni.log] Source: omni.hydra was already registered.
+2026-10-26T03:41:19Z [2,323ms] [Warning] [omni.isaac.dynamic_control] omni.isaac.dynamic_control is deprecated as of Isaac Sim 4.5. No action is needed from end-users.
+2026-10-26T03:41:21Z [4,160ms] [Warning] [pxr.Semantics] pxr.Semantics is deprecated - please use Semantics instead
+2026-10-26T03:41:21Z [4,272ms] [Warning] [omni.replicator.core.scripts.extension] No material configuration file, adding configuration to material settings directly.
+2026-10-26T03:41:24Z [7,168ms] [Warning] [usdrt.population.plugin] using high frequency span is disabled
+2026-10-26T03:41:24Z [7,256ms] [Warning] [carb] Acquiring non optional plugin interface which is not listed as dependency: [carb::dictionary::ISerializer v1.1] (plugin: carb.dictionary.serializer-json.plugin), by client: carb.scenerenderer-rtx.plugin. Add it to CARB_PLUGIN_IMPL_DEPS() macro of a client.
+2026-10-26T03:41:25Z [8,668ms] [Warning] [usdrt.hydra.fabric_scene_delegate.plugin] using high frequency span is disabled
+2026-10-26T03:41:25Z [8,668ms] [Warning] [usdrt.hydra.fabric_scene_delegate.plugin] using high frequency span is disabled
+2026-10-26T03:41:25Z [8,668ms] [Warning] [usdrt.hydra.fabric_scene_delegate.plugin] using high frequency span with attrs is disabled
+2026-10-26T03:41:25Z [8,673ms] [Warning] [omni.fabric.plugin] Warning: attribute viewportHandle not found for bucket id 7
+
+2026-10-26T03:41:25Z [8,680ms] [Warning] [usdrt.hydra.fabric_scene_delegate.plugin] using high frequency span is disabled
+2026-10-26T03:41:25Z [8,680ms] [Warning] [usdrt.hydra.fabric_scene_delegate.plugin] using high frequency span is disabled
+[INFO]: Parsing configuration from: <class 'isaaclab_tasks.direct.forge.forge_env_cfg.ForgeTaskPegInsertCfg'>
+Setting seed: 1117
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : 1117
+	Physics step-size     : 0.008333333333333333
+	Rendering step-size   : 0.06666666666666667
+	Environment step-size : 0.06666666666666667
+[INFO]: Time taken for scene creation : 2.132875 seconds
+[INFO]: Scene manager:  <class InteractiveScene>
+	Number of environments: 8
+	Environment spacing   : 2.0
+	Source prim name      : /World/envs/env_0
+	Global prim paths     : []
+	Replicate physics     : True
+[INFO]: Starting the simulation. This may take a few seconds. Please wait...
+2026-10-26T03:41:28Z [11,942ms] [Warning] [carb] Client omni.hydratexture.plugin has acquired [carb::settings::ISettings v1.0] 100 times. Consider accessing this interface with carb::getCachedInterface() (Performance warning)
+2026-10-26T03:41:29Z [11,960ms] [Warning] [carb] Client omni.hydratexture.plugin has acquired [carb::dictionary::IDictionary v1.1] 100 times. Consider accessing this interface with carb::getCachedInterface() (Performance warning)
+2026-10-26T03:41:29Z [12,174ms] [Warning] [usdrt.hydra.fabric_scene_delegate.plugin] using high frequency span with attrs is disabled
+2026-10-26T03:41:29Z [12,187ms] [Warning] [usdrt.hydra.fabric_scene_delegate.plugin] using high frequency span with attrs is disabled
+2026-10-26T03:41:29Z [12,828ms] [Warning] [rtx.postprocessing.plugin] DLSS increasing input dimensions: Render resolution of (148, 148) is below minimal input resolution of 300.
+[INFO]: Time taken for simulation start : 2.055932 seconds
+[INFO] Event Manager:  <EventManager> contains 3 active terms.
++------------------------------------+
+| Active Event Terms in Mode: 'reset' |
++---------+--------------------------+
+|  Index  | Name                     |
++---------+--------------------------+
+|    0    | object_scale_mass        |
++---------+--------------------------+
++----------------------------------------+
+| Active Event Terms in Mode: 'startup'  |
++---------+------------------------------+
+|  Index  | Name                         |
++---------+------------------------------+
+|    0    | held_physics_material        |
+|    1    | fixed_physics_material       |
+|    2    | robot_physics_material       |
++---------+------------------------------+
++--------------------------------------------------------+
+|         Active Event Terms in Mode: 'interval'         |
++-------+----------------------+-------------------------+
+| Index | Name                 | Interval time range (s) |
++-------+----------------------+-------------------------+
+|   0   | dead_zone_thresholds |        (2.0, 2.0)       |
++-------+----------------------+-------------------------+
+
+[INFO]: Completed setting up the environment...
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+[INFO]: Parsing configuration from: /media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/direct/forge/agents/rl_games_ppo_cfg.yaml
+self.seed = 1117
+[BasePlayer] Creating regular env:  rlgpu
+{'observation_space': Box(-inf, inf, (24,), float32), 'action_space': Box(-1.0, 1.0, (7,), float32), 'agents': 1, 'value_size': 1}
+build mlp: 1024
+RunningMeanStd:  (1,)
+RunningMeanStd:  (24,)
+=> loading checkpoint '.cache/expert/447a6109cec7c228763d1bfc8cf0ab73f6558a1b/forge_peginsert_2026-06-30.pth'
+Setting seed: 1117
+2026-10-26T03:41:38Z [21,628ms] [Warning] [carb] Client gpu.foundation.plugin has acquired [gpu::unstable::IMemoryBudgetManagerFactory v0.1] 100 times. Consider accessing this interface with carb::getCachedInterface() (Performance warning)

@@ -28,7 +28,7 @@ Isaac Lab checkout: `0f00ca2b4b2d54d5f90006a92abb1b00a72b2f20` (v2.2.1; distribu
 Omniverse acceptance indicators: `{"status": "ACCEPTED", "accepted": true, "acceptance_marker_exists": true, "environment_acceptance_flag": false, "agreement_url": "https://docs.omniverse.nvidia.com/enterprise/latest/common/NVIDIA_Omniverse_License_Agreement.html"}`. No acceptance is inferred from installation.
 Loaded assets, camera rendering, expert compatibility and robot efficacy require their own successful measured records. Package installation and the CUDA tensor check do not establish them.
 
-- `cpu_tests`: return code `0`; 49 passed in 1.43s.
+- `cpu_tests`: return code `0`; 49 passed in 1.47s.
 - `diff_check`: return code `0`; see command log.
 - `angledusgar/forge-v1`: 984 PegInsert episodes in metadata; inspected 1 complete episode(s), 149 frames, at revision `0ebe4ff65ade3da8d2011d66cce0259870c95f78`.
 - `angledusgar/forge-failure-v1`: 26 PegInsert episodes in metadata; inspected 1 complete episode(s), 149 frames, at revision `820392e1167df4d6f5d60f985ec4f3b1b4fd6237`.
@@ -56,8 +56,8 @@ Expert download integrity: `VERIFIED`; safe tensor-shape inspection: `PASSED`. M
 
 ## Cost and artifacts
 
-Individual simulator transitions by category: `{"interaction": 35768, "branch": 0, "prefix": 0, "restore": 3221, "evaluation": 136}`.
-Total accounted simulator transitions: 39125. CPU unit fixtures are excluded from robot metrics.
+Individual simulator transitions by category: `{"interaction": 57224, "branch": 0, "prefix": 0, "restore": 4896, "evaluation": 136}`.
+Total accounted simulator transitions: 62256. CPU unit fixtures are excluded from robot metrics.
 Checkpoint index entries: 0. Publication is not implied by a local checkpoint; only verified Release entries may be used as download links.
 Header-only fidelity/pair/actor/episode CSV files mean NOT_RUN, not zero success.
 
@@ -75,7 +75,3 @@ Current doctor and actual smoke records determine runtime status. Historical lic
 Consult the stage table and implementation_audit.md for unresolved interfaces and unimplemented orchestration; CPU software tests never establish robot efficacy.
 Stage execution deliberately fails closed while P0 is incomplete. Higher-stage robot orchestration is not presented as experimentally validated.
 See `data_audit.json`, `doctor.json`, `action_contract.md`, `sensor_contract.md`, `implementation_audit.md`, and command logs for exact evidence.
-
-## Publication handoff
-
-See [PUBLICATION_STATUS.md](PUBLICATION_STATUS.md) for the timestamped recollection cutoff and [TRAINING_GUIDE.md](../../TRAINING_GUIDE.md) for local data and remaining commands. ACT and ablation outcomes are NOT_RUN. Later local collection files may be newer than this publication.

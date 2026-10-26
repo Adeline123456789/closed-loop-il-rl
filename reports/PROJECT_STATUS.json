@@ -15,7 +15,7 @@
         "--run-id",
         "20261023T104759Z"
       ],
-      "code_sha": "e8df1561611f0b756872d91c4e8989432ab6ce3d",
+      "code_sha": "cb938b7da63b82f98eb0b91037ce3806e01aacb3",
       "dirty": true,
       "source_hashes": {
         "scripts/audit_expert.py": "8bb4e278e0eddd70b07604d2fee6ed8f95a70561e7c76f8f21835780463f9d26",
@@ -30,7 +30,7 @@
         "scripts/install_expert.sh": "7ae5714e80f874e64006a8e781cf74efeae37dec7ade75ca645276e3cf5ead0b",
         "scripts/install_isaac.sh": "d00af540630018ee80d68ef78948294abdf86a0f443459db7e91394dfa29a259",
         "scripts/measure_gradient_path.py": "d0daae4188de9de415624c6faf6362aeb79c59260d7dbf71b086227bf8fab61f",
-        "scripts/publish.py": "347da8dee71664b4551fd3901537bf958aef3db2910326452e2ab3b74da8b6c0",
+        "scripts/publish.py": "21736f1ef00a69712ce801308ebcb6a97ac19cee32d4a89e853417e139893bf2",
         "scripts/record_checks.py": "ce86e4526e0186430de8577fe87e3200fd662974a5c7bc33d18621e1c95fa2c7",
         "scripts/record_environment.py": "e05442fdab973348326841d92eb9864fc0750454dc9cfa31a6530ea4e6548439",
         "scripts/resume_after_environment_fix.sh": "517b308665fe95f26b147ce86f036994b8c2e092ece2108d6745ef721c7aef35",
@@ -86,9 +86,9 @@
         "src/forcecritic/runtime.py": "35641207d381e4362fabe966208dc386519f404fd6d9ece6a6fadd99a7fe1b45"
       },
       "config_hash": "a355f6209f5049e01afb25d9cc196524ad577f11dee2d54404219f7f0e64eedb",
-      "time": "2026-10-26T03:29:18.027986+00:00",
+      "time": "2026-10-26T05:34:45.974162+00:00",
       "artifacts": {
-        "reports/20261023T104759Z/doctor.json": "ea3ba1f37b68adb3192229807392adbb1fdbe39091dac3fb278e851e5ab8e6cf"
+        "reports/20261023T104759Z/doctor.json": "af5db95a0fe841d86111fd6c8dd6c138422d32f4a64a719b31279f3712951be3"
       }
     },
     "audit-data": {
