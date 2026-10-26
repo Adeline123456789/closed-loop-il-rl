@@ -4,7 +4,7 @@ Protocol: `force_critic_act_v2_diagnostic_first`. Run: `20261023T104759Z`.
 
 ## Outcome
 
-P0 has passed for same-version recollection; ACT robot outcomes have not been measured. Expert results and software gradients are not ACT insertion evidence.
+Raw completed episodes are summarized separately by seed, split and checkpoint; no pooling across policy versions. See paired_comparisons.csv for matched-parent differences.
 
 | Stage | Status | Reason |
 |---|---|---|
@@ -12,12 +12,12 @@ P0 has passed for same-version recollection; ACT robot outcomes have not been me
 | audit-data | PASSED | Accepted hashed same-version recordings; HF semantics remain unresolved |
 | smoke-1 | PASSED | Real launcher attempted; see command log |
 | smoke-8 | PASSED | Real launcher attempted; see command log |
-| baseline | NOT_RUN | No completed stage outcome yet. Live process/optimizer progress and queued successors are in training_progress.json. |
-| diagnostic | NOT_RUN | No completed stage outcome yet. Live process/optimizer progress and queued successors are in training_progress.json. |
-| short-ablation | NOT_RUN | No completed stage outcome yet. Live process/optimizer progress and queued successors are in training_progress.json. |
-| pilot | NOT_RUN | No completed stage outcome yet. Live process/optimizer progress and queued successors are in training_progress.json. |
-| confirm | NOT_RUN | No completed stage outcome yet. Live process/optimizer progress and queued successors are in training_progress.json. |
-| generalization | NOT_RUN | No completed stage outcome yet. Live process/optimizer progress and queued successors are in training_progress.json. |
+| baseline | FAILED_IMPLEMENTATION | Robot driver failed |
+| diagnostic | NOT_RUN | Not reached: same-version recollection is still running; all real predecessor gates remain required |
+| short-ablation | NOT_RUN | Not reached: same-version recollection is still running; all real predecessor gates remain required |
+| pilot | NOT_RUN | Not reached: same-version recollection is still running; all real predecessor gates remain required |
+| confirm | NOT_RUN | Not reached: same-version recollection is still running; all real predecessor gates remain required |
+| generalization | NOT_RUN | Not reached: same-version recollection is still running; all real predecessor gates remain required |
 | installation | PASSED | Candidate Python 3.11 / cu128 Torch / pinned Isaac Sim and Lab dependencies installed; camera/physics still require smoke |
 
 ## Runtime and inspected evidence
@@ -38,18 +38,18 @@ Expert download integrity: `VERIFIED`; safe tensor-shape inspection: `PASSED`. M
 ## Questions
 
 1. Critic → ACT: implemented in `training/updates.py`; CPU tests change critic slope on fixed ACT/data, observe changed ACT output, and verify nonzero Q-only gradients with critic parameters fixed.
-2. Ordinary direct update improves insertion: **insufficient evidence**, B0/B1 not run.
+2. Ordinary direct update: see B1-B0 matched-parent comparison; causal/continuation decisions require all diagnostic gates.
 3. Replay fidelity rows: 0; diagnostic stage status: NOT_RUN. Row count alone is not evidence of equivalence.
-4. B2 vs B1 filtering: **insufficient evidence**, NOT_RUN.
-5. B3 vs B2 calibration: **insufficient evidence**, NOT_RUN. Endpoint labels already contain contrast information.
-6. Recorded continuation decision: **NOT_RUN** — P0 is accepted; ACT training is active. Diagnostic/ablation go/no-go has not yet been measured. See training_progress.json.
+4. B2 vs B1 filtering: see matched-parent comparison and independent diagnostic evidence.
+5. B3 vs B2 calibration: see matched-parent comparison; endpoint labels already contain contrast information.
+6. Recorded continuation decision: **NOT_RUN** — P0 accepted and current smoke-1/smoke-8 passed. ACT pretraining is running; no diagnostic continuation decision has been measured yet. See training_progress.json..
 7. Stages not passed/completed: baseline, diagnostic, short-ablation, pilot, confirm, generalization. Reasons are listed above; an environment block is not an algorithm negative result.
 
 ## Raw result summary
 
 | Arm / seed / split / policy | Status | Episodes | Success | Overload |
 |---|---|---:|---|---|
-| B0 / NA / NA / NA | NOT_RUN | 0 | NA | NA |
+| B0 / 0 / validation / 6343385 | COMPLETED | 32 | 0.1875 | 0.90625 |
 | B1 / NA / NA / NA | NOT_RUN | 0 | NA | NA |
 | B2 / NA / NA / NA | NOT_RUN | 0 | NA | NA |
 | B3 / NA / NA / NA | NOT_RUN | 0 | NA | NA |

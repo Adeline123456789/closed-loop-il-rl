@@ -1,1 +1,1 @@
-No robot performance plot: no accepted robot episodes. Empty CSV files contain schemas only.
+Episode summaries and parent-paired comparisons are in CSV; no curve is inferred from optimizer losses.
