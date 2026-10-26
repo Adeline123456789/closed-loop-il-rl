@@ -232,3 +232,120 @@ Setting seed: 40001
 Setting seed: 40001
 Setting seed: 40001
 Setting seed: 40001
+Setting seed: 40001
+Timeout (0:05:00)!
+Thread 0x0000720aed496640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x0000721950afe640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x0000721ac23fe640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x0000721ad2bff640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x0000721d32320740 (most recent call first):
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/isaacsim/exts/isaacsim.core.api/isaacsim/core/api/physics_context/physics_context.py", line 563 in _step
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/isaacsim/exts/isaacsim.core.api/isaacsim/core/api/simulation_context/simulation_context.py", line 709 in step
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab/isaaclab/sim/simulation_context.py", line 638 in step
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/envs/accounting.py", line 20 in counted
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab/isaaclab/envs/direct_rl_env.py", line 357 in step
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/gymnasium/core.py", line 327 in step
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/gymnasium/wrappers/common.py", line 393 in step
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/envs/forge.py", line 225 in step
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/diagnostics/live.py", line 146 in continuation
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/diagnostics/live.py", line 209 in fidelity_checkpoint
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/diagnostics/driver.py", line 92 in admit_checkpoints
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/diagnostics/driver.py", line 197 in diagnostic
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/scripts/train_forge.py", line 56 in <module>
+Setting seed: 40001
+Setting seed: 40001
+Setting seed: 40001
+Setting seed: 40001
+Setting seed: 40001
+Timeout (0:05:00)!
+Thread 0x0000720aed496640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x0000721950afe640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x0000721ac23fe640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x0000721ad2bff640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x0000721d32320740 (most recent call first):
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/isaacsim/exts/isaacsim.core.api/isaacsim/core/api/physics_context/physics_context.py", line 563 in _step
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/isaacsim/exts/isaacsim.core.api/isaacsim/core/api/simulation_context/simulation_context.py", line 709 in step
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab/isaaclab/sim/simulation_context.py", line 638 in step
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/envs/accounting.py", line 20 in counted
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab/isaaclab/envs/direct_rl_env.py", line 357 in step
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/gymnasium/core.py", line 327 in step
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/gymnasium/wrappers/common.py", line 393 in step
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/envs/forge.py", line 225 in step
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/diagnostics/live.py", line 146 in continuation
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/diagnostics/live.py", line 209 in fidelity_checkpoint
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/diagnostics/driver.py", line 92 in admit_checkpoints
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/diagnostics/driver.py", line 197 in diagnostic
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/scripts/train_forge.py", line 56 in <module>
+Setting seed: 40001
+Traceback (most recent call last):
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/scripts/train_forge.py", line 56, in <module>
+    result = diagnostic(run,args.demonstrations,make_adapter,device=args.device)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/diagnostics/driver.py", line 197, in diagnostic
+    d0 = admit_checkpoints(adapter,policy,noise,checkpoints,ledger,thresholds,fitted['scale'],
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/diagnostics/driver.py", line 112, in admit_checkpoints
+    atomic_json(directory/'fidelity.json',{'checkpoints':summary,'continuations_used':used,'accounting':ledger.record()})
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/runtime.py", line 57, in atomic_json
+    temp=path.with_suffix(path.suffix+'.tmp'); temp.write_text(json.dumps(value,indent=2,allow_nan=False)+'\n'); temp.replace(path)
+                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/midea/miniconda3/lib/python3.11/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/home/midea/miniconda3/lib/python3.11/json/encoder.py", line 202, in encode
+    chunks = list(chunks)
+             ^^^^^^^^^^^^
+  File "/home/midea/miniconda3/lib/python3.11/json/encoder.py", line 432, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/home/midea/miniconda3/lib/python3.11/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/home/midea/miniconda3/lib/python3.11/json/encoder.py", line 326, in _iterencode_list
+    yield from chunks
+  File "/home/midea/miniconda3/lib/python3.11/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/home/midea/miniconda3/lib/python3.11/json/encoder.py", line 439, in _iterencode
+    o = _default(o)
+        ^^^^^^^^^^^
+  File "/home/midea/miniconda3/lib/python3.11/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool_ is not JSON serializable

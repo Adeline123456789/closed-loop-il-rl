@@ -1,0 +1,31 @@
+{
+  "individual_control_step_equivalents": {
+    "restore": 620,
+    "interaction": 0,
+    "branch": 5909,
+    "prefix": 337,
+    "evaluation": 0
+  },
+  "instances": [
+    {
+      "physics_substeps": {
+        "restore": 4958,
+        "interaction": 0,
+        "branch": 47272,
+        "prefix": 2696,
+        "evaluation": 0
+      },
+      "decimation": 8,
+      "num_envs": 1,
+      "control_step_cap": 300000.0,
+      "individual_control_step_equivalents": {
+        "restore": 620,
+        "interaction": 0,
+        "branch": 5909,
+        "prefix": 337,
+        "evaluation": 0
+      },
+      "charged_before_step": true
+    }
+  ]
+}

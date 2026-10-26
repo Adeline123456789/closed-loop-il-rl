@@ -1,12 +1,12 @@
 {
-  "time_utc": "2026-10-26T08:16:12.061185+00:00",
+  "time_utc": "2026-10-26T08:23:42.878720+00:00",
   "phase": "diagnostic",
   "supervisor_alive": true,
   "supervisor_status": "RUNNING",
   "act_updates": 10000,
   "act_target": 10000,
   "act_percent": 100.0,
-  "checkpoint_age_seconds": 5372.8,
+  "checkpoint_age_seconds": 5823.6,
   "real_baseline_episodes": 32,
   "real_baseline_successes": 6,
   "queue": {
@@ -35,11 +35,11 @@
     "act0_update_010000.pt"
   ],
   "publication": {
-    "time_utc": "2026-10-26T07:57:38.355327+00:00",
+    "time_utc": "2026-10-26T08:16:18.566439+00:00",
     "returncode": 0,
-    "head": "112c4eb6879b78e4fb8591125033b3c6b9e16003"
+    "head": "fd9fe1c4fc83286ba290e7fce7f929eadcf9f0e4"
   },
-  "execution_evidence_age_seconds": 44.4,
+  "execution_evidence_age_seconds": 26.5,
   "progress_warning": null,
   "latest_execution_evidence": "reports/20261023T104759Z/diagnostic_1793001458468229690.log",
   "latest_stage_log": "reports/20261023T104759Z/diagnostic_1793001458468229690.log",

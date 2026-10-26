@@ -1,5 +1,5 @@
 {
-  "snapshot_time_utc": "2026-10-26T08:16:12.093673+00:00",
+  "snapshot_time_utc": "2026-10-26T08:23:57.248847+00:00",
   "completed_collection_runs": 20,
   "planned_collection_runs": 20,
   "completed_episodes": 376,
@@ -127,7 +127,7 @@
     "smoke-1": "PASSED",
     "smoke-8": "PASSED",
     "baseline": "PASSED",
-    "diagnostic": "NOT_RUN",
+    "diagnostic": "FAILED_IMPLEMENTATION",
     "short-ablation": "NOT_RUN",
     "pilot": "NOT_RUN",
     "confirm": "NOT_RUN",
@@ -136,12 +136,13 @@
   },
   "raw_dataset_location": "/media/midea/F496AC8096AC4548/closed_loop_act/data/act_demonstrations",
   "background_job": {
-    "status": "RUNNING",
+    "status": "STOPPED",
     "stage": "diagnostic",
-    "time_utc": "2026-10-26T07:57:38.357844+00:00",
+    "time_utc": "2026-10-26T08:23:56.867609+00:00",
     "pid": 1249544,
     "session": "forcecritic-training",
-    "log": ".cache/background_training.log"
+    "log": ".cache/background_training.log",
+    "returncode": 2
   },
   "note": "Measured snapshot; expert success is not ACT performance. Raw arrays and weights remain local."
 }
