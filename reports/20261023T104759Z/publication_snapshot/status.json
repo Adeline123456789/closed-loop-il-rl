@@ -1,5 +1,5 @@
 {
-  "snapshot_time_utc": "2026-10-26T08:48:27.984716+00:00",
+  "snapshot_time_utc": "2026-10-26T08:48:38.147585+00:00",
   "completed_collection_runs": 20,
   "planned_collection_runs": 20,
   "completed_episodes": 376,
@@ -137,8 +137,8 @@
   "raw_dataset_location": "/media/midea/F496AC8096AC4548/closed_loop_act/data/act_demonstrations",
   "background_job": {
     "status": "STAGE_FINISHED",
-    "stage": "smoke-8",
-    "time_utc": "2026-10-26T08:48:27.593733+00:00",
+    "stage": "baseline",
+    "time_utc": "2026-10-26T08:48:37.768518+00:00",
     "pid": 1271400,
     "session": "forcecritic-training",
     "log": ".cache/background_training.log",
