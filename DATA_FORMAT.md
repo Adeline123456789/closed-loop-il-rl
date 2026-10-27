@@ -54,3 +54,21 @@ print(rgb.shape, wrench[74], state[74])
 ```
 
 单回合 RGB 约 29.3 MB 是 149 张未压缩图片的正常大小。完整原始数据与视频保留在本机；GitHub 上传契约、清单 hash、结果 CSV、日志及少量审计图。
+
+## 在 FORGE 中重建原采集轨迹
+
+2026-10-27 已验证 seed 1100、1101 各自的第一个 8 环境批次，共 16 回合、2,384 帧：所有非图像字段逐值完全一致，包括力的每个物理子步、EMA、动作目标和成功标记。重渲染 RGB 与原记录仍有差异，运行中恢复快照也未通过原容差。完整证据见 [根因报告](reports/replay_root_cause_20261027/FINAL_REPORT.md)。
+
+根因之一是采集时的 `Expert.action()`：rl-games 即使最终选择确定性的均值动作，也先采样并推进 CUDA 随机数状态。直接读 `action.npy` 而省掉这个调用，会改变 FORGE 后续观测噪声和随机化。修复脚本保持原初始化顺序、seed、8 环境批量、专家及 RNN 调用顺序，实际下发的动作仍来自文件。
+
+在项目根目录、原 `.venv` 和专家权重仍在时运行。下面是保留预算内的 16 步复核命令；输出标签必须唯一：
+
+```bash
+PYTHONPATH=src .venv/bin/python scripts/run_replay_root_cause.py verify_train1100 \
+  --dataset --steps 16 --control-step-cap 220 \
+  --manifest data/act_demonstrations/00_train_1100/manifest.json
+```
+
+已完成的完整 149 步证据位于 `reports/replay_root_cause_20261027/06_dataset_original/result.json` 和 `08_dataset_seed1101/result.json`。每次完整批次含 reset 共消耗 1,326 个环境控制步当量。工程预算总上限 5,000；本次已计费或保留 4,275.5，完整复跑需要新的有界预算记录，不能自动绕过上限。
+
+当前脚本仅接受原训练采集 manifest 的第一个同步批次。后续批次需要执行之前的完整采集前缀；本次未实现或验证。不能把单个任意回合改名后从 seed 直接启动。`MEASURED` 只说明测量完成，是否一致必须查看每个字段的误差；`all_nonvisual_fields_bitwise_equal` 按有限数值的零最大绝对误差判定，不是文件字节比较。`--omit-expert-rng` 仅用于复现失败的负对照。

@@ -1,0 +1,62 @@
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/apps/isaaclab.python.headless.rendering.kit
+[Warning] [simulation_app.simulation_app] Modules: ['omni.kit_app'] were loaded before SimulationApp was started and might not be loaded correctly.
+[Warning] [simulation_app.simulation_app] Please check to make sure no extra omniverse or pxr modules are imported before the call to SimulationApp(...)
+Loading user config located at: '/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/omni/data/Kit/Isaac-Sim/5.0/user.config.json'
+[Info] [carb] Logging to file: /media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/omni/logs/Kit/Isaac-Sim/5.0/kit_20261027_092652.log
+
+|---------------------------------------------------------------------------------------------|
+| Driver Version: 575.51.03     | Graphics API: Vulkan
+|=============================================================================================|
+| GPU | Name                             | Active | LDA | GPU Memory | Vendor-ID | LUID       |
+|     |                                  |        |     |            | Device-ID | UUID       |
+|     |                                  |        |     |            | Bus-ID    |            |
+|---------------------------------------------------------------------------------------------|
+| 0   | NVIDIA GeForce RTX 3090          | Yes: 0 |     | 24576   MB | 10de      | 0          |
+|     |                                  |        |     |            | 2204      | ffd9f1a6.. |
+|     |                                  |        |     |            | 1         |            |
+|=============================================================================================|
+| OS: 22.04.5 LTS (Jammy Jellyfish) ubuntu, Version: 22.04.5, Kernel: 6.8.0-138-generic
+| XServer Vendor: The X.Org Foundation, XServer Version: 12101004 (1.21.1.4)
+| Processor: 12th Gen Intel(R) Core(TM) i9-12900K
+| Cores: 16 | Logical Cores: 24
+|---------------------------------------------------------------------------------------------|
+| Total Memory (MB): 64057 | Free Memory: 54348
+| Total Page/Swap (MB): 2047 | Free Page/Swap: 2047
+|---------------------------------------------------------------------------------------------|
+2026-10-27T01:26:58Z [5,665ms] [Warning] [gpu.foundation.plugin] CPU performance profile is set to powersave. This profile sets the CPU to the lowest frequency reducing performance.
+2026-10-27T01:26:58Z [5,670ms] [Warning] [gpu.foundation.plugin] IOMMU is enabled.
+2026-10-27T01:27:01Z [9,001ms] [Warning] [omni.log] Source: omni.hydra was already registered.
+2026-10-27T01:27:02Z [9,685ms] [Warning] [omni.isaac.dynamic_control] omni.isaac.dynamic_control is deprecated as of Isaac Sim 4.5. No action is needed from end-users.
+2026-10-27T01:27:19Z [27,304ms] [Warning] [pxr.Semantics] pxr.Semantics is deprecated - please use Semantics instead
+2026-10-27T01:27:20Z [27,675ms] [Warning] [omni.replicator.core.scripts.extension] No material configuration file, adding configuration to material settings directly.
+2026-10-27T01:27:43Z [50,811ms] [Warning] [usdrt.population.plugin] using high frequency span is disabled
+2026-10-27T01:27:43Z [51,023ms] [Warning] [carb] Acquiring non optional plugin interface which is not listed as dependency: [carb::dictionary::ISerializer v1.1] (plugin: carb.dictionary.serializer-json.plugin), by client: carb.scenerenderer-rtx.plugin. Add it to CARB_PLUGIN_IMPL_DEPS() macro of a client.
+2026-10-27T01:27:45Z [53,315ms] [Warning] [usdrt.hydra.fabric_scene_delegate.plugin] using high frequency span is disabled
+2026-10-27T01:27:45Z [53,315ms] [Warning] [usdrt.hydra.fabric_scene_delegate.plugin] using high frequency span is disabled
+2026-10-27T01:27:45Z [53,316ms] [Warning] [usdrt.hydra.fabric_scene_delegate.plugin] using high frequency span with attrs is disabled
+2026-10-27T01:27:45Z [53,323ms] [Warning] [omni.fabric.plugin] Warning: attribute viewPickingId not found for bucket id 7
+
+2026-10-27T01:27:45Z [53,330ms] [Warning] [usdrt.hydra.fabric_scene_delegate.plugin] using high frequency span is disabled
+2026-10-27T01:27:45Z [53,330ms] [Warning] [usdrt.hydra.fabric_scene_delegate.plugin] using high frequency span is disabled
+Traceback (most recent call last):
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/scripts/probe_replay_root_cause.py", line 37, in <module>
+    candidate = np.asarray(reference['candidate_action'], dtype=np.float32)
+                           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+KeyError: 'candidate_action'
+2026-10-27T01:27:46Z [54,333ms] [Warning] [omni.graph.core.plugin] Could not find category 'Replicator:Annotators' for removal
+2026-10-27T01:27:46Z [54,333ms] [Warning] [omni.graph.core.plugin] Could not find category 'Replicator:Annotators' for removal
+2026-10-27T01:27:46Z [54,333ms] [Warning] [omni.graph.core.plugin] Could not find category 'Replicator:Annotators' for removal
+2026-10-27T01:27:46Z [54,333ms] [Warning] [omni.graph.core.plugin] Could not find category 'Replicator:Annotators' for removal
+2026-10-27T01:27:46Z [54,333ms] [Warning] [omni.graph.core.plugin] Could not find category 'Replicator:Annotators' for removal
+2026-10-27T01:27:46Z [54,333ms] [Warning] [omni.graph.core.plugin] Could not find category 'Replicator:Annotators' for removal
+2026-10-27T01:27:46Z [54,333ms] [Warning] [omni.graph.core.plugin] Could not find category 'Replicator:Annotators' for removal
+2026-10-27T01:27:46Z [54,333ms] [Warning] [omni.graph.core.plugin] Could not find category 'Replicator:Annotators' for removal
+2026-10-27T01:27:46Z [54,333ms] [Warning] [omni.graph.core.plugin] Could not find category 'Replicator:Annotators' for removal
+2026-10-27T01:27:46Z [54,333ms] [Warning] [omni.graph.core.plugin] Could not find category 'Replicator:Annotators' for removal
+2026-10-27T01:27:46Z [54,333ms] [Warning] [omni.graph.core.plugin] Could not find category 'Replicator:Annotators' for removal
+2026-10-27T01:27:46Z [54,333ms] [Warning] [omni.graph.core.plugin] Could not find category 'Replicator:Annotators' for removal
+2026-10-27T01:27:46Z [54,333ms] [Warning] [omni.graph.core.plugin] Could not find category 'Replicator:Core' for removal
+2026-10-27T01:27:46Z [54,336ms] [Warning] [omni.physx.plugin] USD stage detach not called, holding a loose ptr to a stage!
+2026-10-27T01:27:46Z [54,341ms] [Warning] [omni.fabric.plugin] gFabricState->gUsdStageToSimStageWithHistoryMap had 1 outstanding SimStageWithHistory(s) at shutdown
+2026-10-27T01:27:46Z [54,436ms] [Warning] [carb] Recursive unloadAllPlugins() detected!

@@ -1,0 +1,12 @@
+{
+  "version": "replay_render_rtpt_v1",
+  "scope": "Opt-in engineering rendering revision; historical camera contract and checkpoints are not re-labelled",
+  "source": "https://raw.githubusercontent.com/isaac-sim/IsaacLab/develop/source/isaaclab_physx/isaaclab_physx/renderers/isaac_rtx_renderer_utils.py",
+  "rationale": "Test upstream reproducible-rendering settings on the installed Sim 5.0 runtime; source is a compatibility lead, not proof this older runtime works",
+  "settings": {
+    "/rtx/rendermode": "RealTimePathTracing",
+    "/rtx/rtpt/cached/enabled": false,
+    "/rtx/rtpt/lightcache/cached/enabled": false
+  },
+  "acceptance": "Compare independently regenerated real RGB and physics before use; no replayed image injection and no relaxed D0 tolerance"
+}

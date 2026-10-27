@@ -1,0 +1,12 @@
+{
+  "protocol": "replay_dataset_reconstruction_v1",
+  "scope": "User-requested repair: replay the existing first training collection batch from a fresh process, preserving the original eight-environment collector and expert RNG consumption",
+  "manifest": "data/act_demonstrations/00_train_1100/manifest.json",
+  "num_envs": 8,
+  "per_process_control_step_cap": 1500,
+  "shared_total_control_step_cap": 5000,
+  "budget_note": "Shares the root-cause engineering cap; completed journaled work is charged exactly, incomplete processes retain their full reservation. This does not resume historical D0.",
+  "expert_evidence": "reports/20261023T104759Z/expert_download.json",
+  "settings": "Unchanged stock collection camera, physics, action stages and global RNG; call the original expert at each step to reproduce its RNG consumption, but submit recorded actions",
+  "acceptance": "Compare every recorded field independently; data replay and scientific branch admission are separate. No held-out data or relaxed tolerances."
+}

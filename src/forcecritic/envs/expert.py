@@ -1,6 +1,6 @@
 """Pinned rl-games expert player, including observation normalization and LSTM.
 
-This is used only for P0 acceptance and newly recorded demonstrations. It is not
+This is used for P0 acceptance, collection, and reconstruction of its RNG calls. It is not
 an actor residual, a teacher in the critic loop, or evidence of published scores.
 """
 import math
@@ -47,6 +47,9 @@ class Expert:
             self.started = True
         # rl-games mutates recurrent states when environments finish. Keep
         # ordinary tensors so reset_done can update them outside this call.
+        # Pinned rl-games samples internally even when get_action returns the
+        # deterministic mean. Historical FORGE collection shares that CUDA RNG:
+        # replay must preserve this call before submitting the recorded action.
         with torch.no_grad():
             return self.player.get_action(self.player.obs_to_torch(obs),
                 is_deterministic=self.player.is_deterministic).clamp(-1, 1)
