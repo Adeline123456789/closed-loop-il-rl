@@ -85,11 +85,26 @@ class NoiseSchedule:
         self.adapter.reset = self.adapter_reset
 
 
+def clone_tensor_layout(value):
+    """Copy a simulator tensor without changing strided controller arithmetic.
+
+    torch.clone packs a sliced 7x7 mass matrix from stride (81,9,1) to
+    (49,7,1). Equal entries can then select different GPU arithmetic and change
+    the very first control torque. Preserve strides, including broadcast axes.
+    Simulator tensors here have no overlapping non-broadcast dimensions.
+    """
+    result = torch.empty_strided(value.size(), value.stride(), dtype=value.dtype, device=value.device)
+    unique = tuple(slice(0,1) if n > 1 and s == 0 else slice(None)
+                   for n,s in zip(value.size(),value.stride()))
+    result[unique].copy_(value[unique])
+    return result
+
+
 def snapshot(adapter, noise):
     if adapter.n != 1:
         raise ValueError('Paired restore is single-environment only')
     r = adapter.raw
-    tensors = {k: v.clone() for k,v in vars(r).items() if torch.is_tensor(v)}
+    tensors = {k: clone_tensor_layout(v) for k,v in vars(r).items() if torch.is_tensor(v)}
     properties = {}
     for name, asset in {'robot': r._robot, 'held': r._held_asset, 'fixed': r._fixed_asset}.items():
         view = asset.root_physx_view
@@ -98,7 +113,8 @@ def snapshot(adapter, noise):
     targets = {name: {kind: getattr(asset.data, f'joint_{kind}_target').clone()
                      for kind in ('pos', 'vel', 'effort')}
                for name, asset in r.scene.articulations.items()}
-    return dict(scene=copy.deepcopy(r.scene.get_state()), tensors=tensors, properties=properties, targets=targets,
+    return dict(kind='public_scene_and_controller_state_not_contact_checkpoint', tensor_layout_version=1,
+        scene=copy.deepcopy(r.scene.get_state()), tensors=tensors, properties=properties, targets=targets,
         counters={k: getattr(r,k) for k in ('common_step_counter','_sim_step_counter')},
         intervals=copy.deepcopy(r.event_manager._interval_term_time_left),
         adapter={k: copy.deepcopy(getattr(adapter,k)) for k in
@@ -107,15 +123,49 @@ def snapshot(adapter, noise):
         limitation='PhysX contact warm-start/solver internals are not exposed; snapshot admission requires O/R comparison')
 
 
+def write_changed_scene_state(scene, saved):
+    """Avoid destructive identity writes; this does not restore contact caches.
+
+    In the pinned FORGE runtime, setting even identical joint positions or a
+    held-body pose changes subsequent contact dynamics. reset_to also writes
+    measured joint states into PD targets, which is wrong for FORGE's arm.
+    Only the three articulation assets used by this task are supported here.
+    """
+    if any(saved.get(k) for k in ('rigid_object','deformable_object','gripper')):
+        raise ValueError('Unimplemented scene entity in diagnostic restore')
+    current = scene.get_state()['articulation']
+    if set(current) != set(saved['articulation']):
+        raise ValueError('Snapshot articulation topology differs from the live scene')
+    setters = {'root_pose':'write_root_pose_to_sim', 'root_velocity':'write_root_velocity_to_sim',
+               'joint_position':'write_joint_position_to_sim', 'joint_velocity':'write_joint_velocity_to_sim'}
+    writes = []
+    for name, target in saved['articulation'].items():
+        for key, setter in setters.items():
+            if not torch.equal(current[name][key], target[key]):
+                getattr(scene.articulations[name], setter)(target[key].clone())
+                writes.append(name+'/'+key)
+    return writes
+
+
 def restore(adapter, noise, state, ledger):
+    """Diagnostic public-state restore, never an assertion of contact equivalence.
+
+    PhysX 107.3 documents non-serializable internal contact history. Use O/R
+    admission; restoring pose/velocity alone cannot establish a valid branch.
+    """
+    if state.get('tensor_layout_version') != 1:
+        raise ValueError('Legacy snapshot lost tensor layouts; regenerate the checkpoint from its original prefix')
     r = adapter.raw
+    writes = []
     with ledger.using('restore'):
         for name, asset in {'robot':r._robot, 'held':r._held_asset, 'fixed':r._fixed_asset}.items():
             view = asset.root_physx_view
             for key, value in state['properties'][name].items():
-                indices = torch.arange(len(value), device='cpu', dtype=torch.int32)
-                getattr(view, f'set_{key}')(value, indices)
-        r.scene.reset_to(state['scene'])
+                if not torch.equal(getattr(view, f'get_{key}')(), value):
+                    indices = torch.arange(len(value), device='cpu', dtype=torch.int32)
+                    getattr(view, f'set_{key}')(value, indices)
+                    writes.append(name+'/'+key)
+        writes.extend(write_changed_scene_state(r.scene, state['scene']))
         # Isaac Lab reset_to assumes PD position control and replaces targets
         # with measured joint states. FORGE is effort controlled: restore the
         # actual actuator commands, including finger position/velocity targets.
@@ -128,7 +178,7 @@ def restore(adapter, noise, state, ledger):
         r.sim.forward()
         r.scene.update(0.)
         for key, value in state['tensors'].items():
-            setattr(r, key, value.clone())
+            setattr(r, key, clone_tensor_layout(value))
         for key, value in state['counters'].items():
             setattr(r, key, value)
         r.event_manager._interval_term_time_left = copy.deepcopy(state['intervals'])
@@ -137,6 +187,7 @@ def restore(adapter, noise, state, ledger):
             setattr(adapter, key, copy.deepcopy(value))
         noise.seed, noise.tick = state['noise_seed'], state['noise_tick']
         r.sim.render()
+    return {'writes':writes, 'contact_state_restored':False, 'requires_fidelity_admission':True}
 
 
 def prefix_replay(adapter, noise, seed, actions, ledger):

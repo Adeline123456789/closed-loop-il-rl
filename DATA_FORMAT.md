@@ -61,14 +61,15 @@ print(rgb.shape, wrench[74], state[74])
 
 根因之一是采集时的 `Expert.action()`：rl-games 即使最终选择确定性的均值动作，也先采样并推进 CUDA 随机数状态。直接读 `action.npy` 而省掉这个调用，会改变 FORGE 后续观测噪声和随机化。修复脚本保持原初始化顺序、seed、8 环境批量、专家及 RNN 调用顺序，实际下发的动作仍来自文件。
 
-在项目根目录、原 `.venv` 和专家权重仍在时运行。下面是保留预算内的 16 步复核命令；输出标签必须唯一：
+回放需要原 `.venv` 和专家权重。在项目根目录查看本次已完成的真实调用命令和结果（不消耗仿真步）：
 
 ```bash
-PYTHONPATH=src .venv/bin/python scripts/run_replay_root_cause.py verify_train1100 \
-  --dataset --steps 16 --control-step-cap 220 \
-  --manifest data/act_demonstrations/00_train_1100/manifest.json
+cat reports/replay_root_cause_20261027/06_dataset_original.command.json
+cat reports/replay_root_cause_20261027/restore_components_summary.json
 ```
 
-已完成的完整 149 步证据位于 `reports/replay_root_cause_20261027/06_dataset_original/result.json` 和 `08_dataset_seed1101/result.json`。每次完整批次含 reset 共消耗 1,326 个环境控制步当量。工程预算总上限 5,000；本次已计费或保留 4,275.5，完整复跑需要新的有界预算记录，不能自动绕过上限。
+已完成的完整 149 步证据位于 `reports/replay_root_cause_20261027/06_dataset_original/result.json` 和 `08_dataset_seed1101/result.json`。每次完整批次含 reset 共消耗 1,326 个环境控制步当量。工程预算总上限 5,000；包括后续定位实验已计费或保留 4,906.875，完整复跑需要新的有界预算记录，不能自动绕过上限。
+
+后续修复了快照复制改变张量内存布局、重复写回未变化物理状态两个实现问题，原地保存/恢复已实现物理零差异。真正回退到旧接触快照仍失败，具体证据见 [恢复根因报告](reports/replay_root_cause_20261027/RESTORE_ROOT_CAUSE.md)。此问题发生在回放恢复流程，原始采集没有使用此快照代码。不要据此删除原力数据，也不能据此宣称原数据已通过真实传感器标定。
 
 当前脚本仅接受原训练采集 manifest 的第一个同步批次。后续批次需要执行之前的完整采集前缀；本次未实现或验证。不能把单个任意回合改名后从 seed 直接启动。`MEASURED` 只说明测量完成，是否一致必须查看每个字段的误差；`all_nonvisual_fields_bitwise_equal` 按有限数值的零最大绝对误差判定，不是文件字节比较。`--omit-expert-rng` 仅用于复现失败的负对照。

@@ -21,6 +21,7 @@ parser.add_argument('--dataset', action='store_true')
 parser.add_argument('--omit-expert-rng', action='store_true')
 parser.add_argument('--manifest')
 parser.add_argument('--control-step-cap', type=int)
+parser.add_argument('--mutation', default='none')
 args = parser.parse_args()
 plan_path = Path('configs/replay_root_cause_20261027.json')
 plan = json.loads(plan_path.read_text())
@@ -52,6 +53,7 @@ if used+process_cap > plan['total_control_step_cap']:
 cmd = [sys.executable, '-u', 'scripts/probe_replay_root_cause.py', '--output', str(out),
        '--variant', args.variant, '--steps', str(args.steps), '--repeats', str(args.repeats),
        '--render-profile', args.render_profile,
+       '--mutation', args.mutation,
        '--control-step-cap', str(process_cap),
        '--headless', '--enable_cameras', '--kit_args='+json.loads(Path('configs/isaac_launcher.json').read_text())['kit_args']]
 if args.dataset:

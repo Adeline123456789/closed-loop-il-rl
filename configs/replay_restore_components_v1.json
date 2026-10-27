@@ -1,0 +1,12 @@
+{
+  "protocol": "restore_components_v1",
+  "authorization": "2026-10-27 user asks to find and solve simulator setup/replay root causes, not merely recollect data",
+  "budget": "Use remaining 724.5 of the existing 5000-step replay_root_cause_v1 cap; no automatic extension",
+  "source": "Existing development seed 60000, original 8-step prefix, fixed continuation commands",
+  "intervention": "Before any future physics advance, write back the current state or invoke one refresh operation; compare independent cold processes",
+  "components": ["none", "forward", "render", "robot_position", "robot_velocity", "held_pose", "held_velocity", "fixed_pose", "robot_root", "scene", "scene_no_forward"],
+  "ordering": "Test full state round-trip and refresh first, then isolate only components implicated by those results",
+  "adaptive_followup": "After experiment 18 failed despite zero state writes, inspected first pre-physics command and tensor strides; experiment 20 isolates mass-matrix clone, 21 tests layout preservation, 22 tests actual rollback. These are adaptive debugging checks, not preregistered scientific endpoints.",
+  "acceptance": "Unchanged frozen physical tolerances; report direct physical substeps, controller signals and rendered input separately. Software probes are not D0 admission.",
+  "data_policy": "Preserve original datasets and failed evidence; no recollection, training or held-out tuning"
+}

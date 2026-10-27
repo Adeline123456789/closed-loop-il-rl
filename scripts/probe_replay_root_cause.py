@@ -11,6 +11,9 @@ parser.add_argument('--steps', type=int, default=16)
 parser.add_argument('--repeats', type=int, default=3)
 parser.add_argument('--render-profile', choices=['stock','rtpt','rtpt_forced'], default='stock')
 parser.add_argument('--control-step-cap', type=int)
+parser.add_argument('--mutation', default='none', choices=['none','forward','render','robot_position',
+    'robot_velocity','held_pose','held_velocity','fixed_pose','robot_root','scene','scene_no_forward',
+    'mass_clone','tensor_clones'])
 from isaaclab.app import AppLauncher
 AppLauncher.add_app_launcher_args(parser)
 args = parser.parse_args()
@@ -52,6 +55,7 @@ raw_dir = Path('checkpoints/replay_root_cause_20261027') / out.name
 observer = DiagnosticProgress(ledger, out, raw_dir)
 result = dict(status='RUNNING', protocol=plan['protocol'], plan_sha256=digest(plan_path),
               variant=args.variant, render_profile=args.render_profile, render_revision=render_revision,
+              mutation=args.mutation,
               seed=plan['seed'], source=str(source), source_sha256=digest(source),
               source_hashes=source_hashes(), fixed_commands=commands.tolist(), comparisons=[])
 records = {}
@@ -125,6 +129,18 @@ try:
     adapter = ForgeAdapter(env, limits=accepted_limits(acceptance),
                            hard_limits=json.loads(acceptance.read_text())['physical_protection_limits'],
                            physics_ledger=ledger, diagnostic=True)
+    result['setup_audit'] = {
+        'physics_dt': cfg.sim.dt, 'decimation': cfg.decimation,
+        'solver_type': cfg.sim.physx.solver_type,
+        'max_position_iterations': cfg.sim.physx.max_position_iteration_count,
+        'max_velocity_iterations': cfg.sim.physx.max_velocity_iteration_count,
+        'gpu_max_num_partitions': cfg.sim.physx.gpu_max_num_partitions,
+        'assets': {name: {'fixed_tendons': asset.num_fixed_tendons,
+                          'spatial_tendons': asset.num_spatial_tendons,
+                          'joints': asset.joint_names,
+                          'dof_stiffness': numpy(asset.root_physx_view.get_dof_stiffnesses()).tolist(),
+                          'dof_damping': numpy(asset.root_physx_view.get_dof_dampings()).tolist()}
+                   for name,asset in adapter.raw.scene.articulations.items()}}
     noise = NoiseSchedule(adapter, plan['seed'])
     adapter.reset(seed=plan['seed'])
     for action in prefix:
@@ -139,6 +155,39 @@ try:
             traces.append(dict(before=before, after=capture()))
         return value
     ledger.original = measured_step
+    # No elapsed physics: locate the first destructive component of a state
+    # round trip, independently of rolling a future contact trajectory back.
+    before_mutation = capture()
+    result['tensor_layouts_before'] = {k:list(v.stride()) for k,v in vars(adapter.raw).items() if torch.is_tensor(v)}
+    if args.mutation == 'forward':
+        adapter.raw.sim.forward()
+    elif args.mutation == 'render':
+        adapter.raw.sim.render()
+    elif args.mutation == 'mass_clone':
+        adapter.raw.arm_mass_matrix = adapter.raw.arm_mass_matrix.clone()
+    elif args.mutation == 'tensor_clones':
+        for key,value in state['tensors'].items(): setattr(adapter.raw,key,value.clone())
+    elif args.mutation.startswith('scene'):
+        restore_state = {**state, 'properties':{k:{} for k in state['properties']}}
+        forward = adapter.raw.sim.forward
+        render = adapter.raw.sim.render
+        if args.mutation == 'scene_no_forward':
+            adapter.raw.sim.forward = lambda: None
+            adapter.raw.sim.render = lambda: None
+        try:
+            result['restore_receipt'] = restore(adapter, noise, restore_state, ledger)
+        finally:
+            adapter.raw.sim.forward = forward
+            adapter.raw.sim.render = render
+    elif args.mutation != 'none':
+        asset_name, field = args.mutation.split('_')
+        asset = {'robot':adapter.raw._robot,'held':adapter.raw._held_asset,'fixed':adapter.raw._fixed_asset}[asset_name]
+        if field == 'position': asset.write_joint_position_to_sim(asset.data.joint_pos.clone())
+        elif field == 'velocity' and asset_name == 'robot': asset.write_joint_velocity_to_sim(asset.data.joint_vel.clone())
+        elif field == 'velocity': asset.write_root_velocity_to_sim(asset.data.root_vel_w.clone())
+        else: asset.write_root_pose_to_sim(asset.data.root_pose_w.clone())
+    result['immediate_mutation_errors'] = errors(before_mutation,capture())
+    result['tensor_layouts_after'] = {k:list(v.stride()) for k,v in vars(adapter.raw).items() if torch.is_tensor(v)}
     run_commands('original')
     if args.variant != 'fresh':
         for repeat in range(args.repeats):

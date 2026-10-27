@@ -1,0 +1,52 @@
+{
+  "command": [
+    "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/bin/python",
+    "-u",
+    "scripts/probe_replay_root_cause.py",
+    "--output",
+    "reports/replay_root_cause_20261027/12_identity_none",
+    "--variant",
+    "fresh",
+    "--steps",
+    "16",
+    "--repeats",
+    "3",
+    "--render-profile",
+    "stock",
+    "--mutation",
+    "none",
+    "--control-step-cap",
+    "50",
+    "--headless",
+    "--enable_cameras",
+    "--kit_args=--/exts/omni.kit.registry.nucleus/registries/0/url=https://ovextensionsprod.blob.core.windows.net/exts/kit/prod/107/shared"
+  ],
+  "started": 1793066843.796941,
+  "plan_sha256": "e466411e96272cc9354113fdd426c4d27a637201d314b2e0e1971d31f083afae",
+  "reserved_control_steps": 50,
+  "charged_or_reserved_before": 4275.5,
+  "status": "FINISHED",
+  "returncode": 0,
+  "finished": 1793066866.9099116,
+  "measurement_status": "MEASURED",
+  "accounting": {
+    "status": "CHARGED_STEPS_RECOVERED",
+    "physics_substeps": {
+      "restore": 67,
+      "interaction": 0,
+      "branch": 128,
+      "prefix": 64,
+      "evaluation": 0
+    },
+    "individual_control_step_equivalents": {
+      "restore": 9,
+      "interaction": 0,
+      "branch": 16,
+      "prefix": 8,
+      "evaluation": 0
+    },
+    "pending_physics_substeps": 0,
+    "unresolved_unflushed_steps": false,
+    "note": "Before-step journal charges a possibly incomplete final substep. Without that journal, unflushed work remains unknown; zero is not inferred."
+  }
+}
