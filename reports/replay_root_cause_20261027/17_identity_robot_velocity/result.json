@@ -1,0 +1,362 @@
+{
+  "status": "MEASURED",
+  "protocol": "replay_root_cause_v1",
+  "plan_sha256": "e466411e96272cc9354113fdd426c4d27a637201d314b2e0e1971d31f083afae",
+  "variant": "fresh",
+  "render_profile": "stock",
+  "render_revision": null,
+  "mutation": "robot_velocity",
+  "seed": 60000,
+  "source": "reports/20261023T104759Z/replay_probe_fresh_a.json",
+  "source_sha256": "4cffa31390375978607485e26c588c3730926fa813351017fbb11152dc85f22a",
+  "source_hashes": {
+    "scripts/audit_direct_q.py": "5f540cdb5cf0654398b34fd4ea4b4b2356d7f5751f88b4ff3524ab2e6980c483",
+    "scripts/audit_expert.py": "8bb4e278e0eddd70b07604d2fee6ed8f95a70561e7c76f8f21835780463f9d26",
+    "scripts/audit_forge.py": "f6c0d53a2922e62bd68dc9b23eaba5123eda7b5269cc66c9b5c864694a61d1fa",
+    "scripts/audit_stage_v3_training.py": "17787a7a4b4ba1d21f67c356d0f2fef27feb24c52901f3cc1be941bd2a37684f",
+    "scripts/background_direct_q.py": "8d2f85d30e760a2603f8bf19d44f391123063cc5d85ff7bdcdc2765f3e5d2af2",
+    "scripts/background_stage_v3.py": "6e3d1f53cd7123964ef4755f0e2d68c7477c12299744f516614bc7acc32b5dfc",
+    "scripts/background_training.py": "3c55d80a8378605965c46a5de351f2897ab63f7c6f74884b65add128b026c087",
+    "scripts/bootstrap_cpu.sh": "f9571af76723f1bce07a536a38612dab20e88c48a86f47f7094cacde0ec3ad1f",
+    "scripts/check_stage_gates.py": "a85f6bcda2973a108e89990dd6a844c96335925687dc8669b69182284b04a312",
+    "scripts/collect_demonstrations.py": "6dfbd516f89f4fd4c08641c362955b5270b2c84eb9ab74a7f39b15131742f831",
+    "scripts/collect_forge.py": "42a994a0c6a88b40df02178d8037a7917c4e79ef8ed59dd375a7b4d9f87f4026",
+    "scripts/continue_training.sh": "282342349023fed671d424b17439386a1485460f3514ea908fb6521a142807d8",
+    "scripts/download_expert.py": "edb418986cc7c4cdd2602d666965571da647af1f03f3cb0a42597ea076419802",
+    "scripts/evaluate_direct_q.py": "fc7ed8be2a844baf882d7b83fc3ed7c198af66389d435dd98ba21f0cb9e7ca58",
+    "scripts/evaluate_stage_v3.py": "cc6687f5b9184e92f122be1bc714d32e59c86e47793052f623f9778322a66694",
+    "scripts/export_stage_v3_ledgers.py": "c94dc758413f5186ec234965a03e8d8c46317cb498ed5fbb3be885f5b4a4af44",
+    "scripts/finalize_diagnostic_repair.py": "9743ad54d67ba5e07b830a08f3b3065a16a8c02b77bf8038f1714d66f7eaf55c",
+    "scripts/inspect_baseline.py": "d21261f28df3b39eb26c9acfdb059ac2e63057d5f7c59f9a7fbbf624bdbe1f61",
+    "scripts/inspect_recording.py": "974e84daf4e83f8b261fde18a5d635de87dfa58fdb55a432b26d2a2475190b91",
+    "scripts/install_expert.sh": "7ae5714e80f874e64006a8e781cf74efeae37dec7ade75ca645276e3cf5ead0b",
+    "scripts/install_isaac.sh": "d00af540630018ee80d68ef78948294abdf86a0f443459db7e91394dfa29a259",
+    "scripts/lock_stage_v3.py": "56374f84d9bd85fbe53b19ed148da2102b0febde821912d1fd85bbed1a81db26",
+    "scripts/measure_gradient_path.py": "d0daae4188de9de415624c6faf6362aeb79c59260d7dbf71b086227bf8fab61f",
+    "scripts/probe_diagnostic_replay.py": "b5623894063e50c11be072302ffb2fd704e33f8b5e72f4adb0018ca7bf2d91eb",
+    "scripts/probe_environment_recreation.py": "ec071837404721fdbc490a80050e9396c3caab4376d4e8cbe20a0500e3e4b692",
+    "scripts/probe_replay_root_cause.py": "45c373cb001a8362854d72c40ef5df504d7889eb494331619ff01da12286923c",
+    "scripts/probe_stage_v3_objective.py": "0ee98a2d808ea10918be94eb016693c188924f5f1f6b5215b9e2b9e2cb0a4d87",
+    "scripts/publish.py": "e5fe1a08a70f83b06007750a18f757302f0c2e775b98a5c9d7dfee3ae417dada",
+    "scripts/publish_stage_v3.py": "deb0c80b5b7241c2c736cf068cde1dd8e9d8d7bf1bd5e028983f0e3c9ad49fd6",
+    "scripts/record_checks.py": "ce86e4526e0186430de8577fe87e3200fd662974a5c7bc33d18621e1c95fa2c7",
+    "scripts/record_environment.py": "e05442fdab973348326841d92eb9864fc0750454dc9cfa31a6530ea4e6548439",
+    "scripts/recover_diagnostic_attempt.py": "949e6fb22dfc875d42f5dfd0a5c9fce4cf7a2e5887521202e65d77930f3f9e5e",
+    "scripts/repair_replay_rendering.py": "0925f2242baa3f7bbaad42296e1b25130cc985f9e28ae8acb4517635acfd1829",
+    "scripts/replay_demonstrations.py": "c7d2e28d0f6f269522b6019298d002a7eeeb4e2b8823d6cc739dd63859d685b5",
+    "scripts/report_stage_v3.py": "7e205e3094619f3d73be62bb6046d11b522c37e0644d21e833423e832e1c4da0",
+    "scripts/resume_after_environment_fix.sh": "517b308665fe95f26b147ce86f036994b8c2e092ece2108d6745ef721c7aef35",
+    "scripts/retain_act_checkpoints.py": "46b250e8049c2abc44f54994760e44f0ea07750483e9a742a8f78f7d9efa4eb1",
+    "scripts/run_end_to_end.sh": "5d4ff196cd3d4d0d37a4a03a5449bdc816af5096f94446fd63fcd0b2da92a1fb",
+    "scripts/run_forge_probe.py": "b3ee7558aff19057d97e34965988b99fbdad45031228f31420cff9bf023e0475",
+    "scripts/run_replay_root_cause.py": "e85318d990adb7c9131fc5cf5743461e071df25f3c18c8238d45279ee23dd054",
+    "scripts/run_robot_stage.py": "1fffee4f2dd6646f7f3eea0371219f8bece1f6763e35667bdd809bee46053590",
+    "scripts/smoke_forge.py": "111f9f0afc9c46ea66aaadbec1d0555088252b9e95e7a69cef4823106a958d8a",
+    "scripts/stage_v3_status.py": "21f182250e37abc29da9e8882af370d385c0158c5bf42015d6ec9039549e4c5b",
+    "scripts/start_background_training.sh": "434ec81e2a392646918fa102ad9e9c9299987ead810132545e8f6c86601a6eda",
+    "scripts/train_direct_q_fallback.py": "f9454c574d131b82ea3757c4f5426d019d2c2b87e85d424be8c0497210a63c3b",
+    "scripts/train_forge.py": "6306ef909ca65577b7dc22ca9aef761c37db21c1543057fca148ce824cd3cfdc",
+    "scripts/train_stage_v3_a1.py": "d27767ff137d1fc9d3b5a7bdab3ae9fed1e03e573206a8c6020c7e5f40be81fe",
+    "scripts/training_status.py": "51ec008ad1b3122518f94e596c1e265c146fcc347762f4c9f04909db4bd8086b",
+    "scripts/watch_diagnostic.py": "65f2ce0b5f98530d41bff2a6dcf551d83c830a9f1d1278cd5bcb79aa6020d0f7",
+    "scripts/write_repair_report.py": "719cb512f766f973533e655066db494656f6cd6c79b65a9bc76e96a0a1410630",
+    "src/forcecritic/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/forcecritic/cli.py": "847f2d6efc3227d8c0c9179999bee4b4fab0ab3ea918621a398fb5a43d819999",
+    "src/forcecritic/data/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/forcecritic/data/audit.py": "863a57c83f424150d12bce6b288c0af54fc7226ba196c5473971e8e5396d0441",
+    "src/forcecritic/data/demonstrations.py": "c61d70ae4fe27010a03e34895c7cd84223df1c46d03a249c25ad160187e92f6a",
+    "src/forcecritic/data/reconstruction.py": "50ef529cae5ecfbe4d3c0875fd295c60656087a9ae9b896b6c8c6227f472839d",
+    "src/forcecritic/data/splits.py": "401f04ccae56c9a94ee2850e58b47238167c101768347f6a81f718e44725f885",
+    "src/forcecritic/diagnostics/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/forcecritic/diagnostics/artifacts.py": "f19b92be05423ffa24ece2e31b68fd705ce6b33833cce15da1119a85538069b0",
+    "src/forcecritic/diagnostics/driver.py": "2db93e1c36c1d848c02ae71722460dfa3167306278aa2c182f3cc89280b91f6f",
+    "src/forcecritic/diagnostics/live.py": "606af5cc0dd3f54844a139beb70a3a5931d4ba87d5a44031f084287d4428f6fb",
+    "src/forcecritic/diagnostics/pairs.py": "b513aafd9835a316c5d8d18964833536c691d7b51576dd908c371ff4ce96f8e0",
+    "src/forcecritic/diagnostics/progress.py": "41669607489a3875bfa43a760ffe0d175aabc7e92b4a1bc737a51b587860b7b3",
+    "src/forcecritic/diagnostics/recovery.py": "1111a1c95304e6113bcc08276ce046f458d16c90e3c2183b60d45a1908226934",
+    "src/forcecritic/doctor.py": "0ade30c5da2f74f1e48df9aaf117d69769f0040e52f9e2cf4de5afd2abe24b50",
+    "src/forcecritic/envs/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/forcecritic/envs/accounting.py": "cc15dfb6cdc408e29ea74b5d5b353c5f117d58a98af47f1d0a8b47c82c00f151",
+    "src/forcecritic/envs/contracts.py": "bd7248770b38f66f88df405399e67b5008384dc54c7add5b8cd8fd15d7367495",
+    "src/forcecritic/envs/expert.py": "08c725b7f8f21cf1d7201eb57b0c7d30589a41b50090f03c84839fab0bd27910",
+    "src/forcecritic/envs/forge.py": "f81310cec14e25f2114438e6162b3e5ecdae9652a1c6d16226e0ff1438f49d90",
+    "src/forcecritic/envs/observations.py": "9bdd847a8ad4357eb602e43e3cc38e2492f36f52138571f27c388d7f5cbffb96",
+    "src/forcecritic/envs/reward.py": "a96b9b415fbed5d7527ec5845cbbe455797d516a195ee10ffcfa82ec540df606",
+    "src/forcecritic/evaluation/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/forcecritic/evaluation/export.py": "6000b58edaec2524237418fea7fc8c48e686ddf07a9ed81f2e886658ba86577b",
+    "src/forcecritic/evaluation/gates.py": "41b000644a23f6b1f9137d86632d81a7131b4ddeb278b028437acaff7313fcde",
+    "src/forcecritic/evaluation/metrics.py": "e81957859ad13165695701dea3d871af5cba94bc8f762495bdf620bef1feda6f",
+    "src/forcecritic/evaluation/plots.py": "3a1a0d04bf891722900cfb69bc851f7c00c560e892af3f118da9009af78d052d",
+    "src/forcecritic/evaluation/report.py": "269084c2eca00fd67335c7581eec9d557d28d36707b9e2b3e2f814205e4d856e",
+    "src/forcecritic/evaluation/short_gate.py": "aaee5a6aa5795d7a6ca28549ef42b056218f560034d4f9e934ffca5de4c40996",
+    "src/forcecritic/models/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/forcecritic/models/act.py": "026c8142310fe81976cf5a5a215a6d316ae12bb35ae78bd6464156692a18c927",
+    "src/forcecritic/models/critic.py": "b1f62c883982aa8c884c811743c5f7e5bac90574a335f219705ee5ce9db5ff05",
+    "src/forcecritic/runtime.py": "c536d0a21a6998559c9fd9f2a58467156615ddf884a3202d6ffb0405b4e806bc",
+    "src/forcecritic/staged/__init__.py": "0748ff0f55f02dc3fdd7ef58b83ce73dbab193bef0bc68c8117dcf2f563029a4",
+    "src/forcecritic/staged/audit.py": "c7e7f98fc6dd387b0f218140655a330a7bad5e5832a5bc502b1903d534b6e881",
+    "src/forcecritic/staged/common.py": "d62437117750d5e8923c2441bac95e0624f93e608b0be0c14a6d25d16b6837d1",
+    "src/forcecritic/staged/results.py": "418a00a9c8db38e26b8d02a2823baf4b957d754de35655cbefced9fd60c12452",
+    "src/forcecritic/training/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/forcecritic/training/ablation.py": "27df88e718963c7a934d38ed11f59fdb76e7832d16898d5c1666b04bf350ee99",
+    "src/forcecritic/training/baseline.py": "5e782ce9a9014629bc92612e7f2ec7ea54d0f940d951503c88ec1685441b1cbb",
+    "src/forcecritic/training/checkpoint.py": "b63edd04f2ffd5012e9f0c90e46d67702036816c0d4518a8b17d9e4b6baa8d3c",
+    "src/forcecritic/training/live.py": "f8b77b838237031855982a63968da30c13effaaa530a4ac726150dc89923cd72",
+    "src/forcecritic/training/pretrain.py": "9a979017e908d9a42c43cf75ab6882ce39d910611f4b9fa6c96c9dc30b759da8",
+    "src/forcecritic/training/replay.py": "bc179c3ea8fdc39731d0ccd5420092da92a378616cea049e58fc64fc99140b84",
+    "src/forcecritic/training/short_live.py": "cfd941d82a4ad2d66ba668c37641a800067abae62c71e3fcc129846c4beb74cc",
+    "src/forcecritic/training/updates.py": "65961aa7ff318235095b1bd7b209123a5bd38da655a1a3a19bb2917ea65a0cbd"
+  },
+  "fixed_commands": [
+    [
+      0.13021360337734222,
+      0.9999959468841553,
+      -0.42047929763793945,
+      0.5238379836082458
+    ],
+    [
+      0.06803830713033676,
+      0.5816394090652466,
+      -0.15161408483982086,
+      0.30390313267707825
+    ],
+    [
+      0.334644079208374,
+      -0.9232811331748962,
+      -0.10031887143850327,
+      0.9701076149940491
+    ],
+    [
+      -0.6527490615844727,
+      0.1389513462781906,
+      0.08955997228622437,
+      -0.27024519443511963
+    ],
+    [
+      0.13021360337734222,
+      0.9999959468841553,
+      -0.42047929763793945,
+      0.5238379836082458
+    ],
+    [
+      0.06803830713033676,
+      0.5816394090652466,
+      -0.15161408483982086,
+      0.30390313267707825
+    ],
+    [
+      0.334644079208374,
+      -0.9232811331748962,
+      -0.10031887143850327,
+      0.9701076149940491
+    ],
+    [
+      -0.6527490615844727,
+      0.1389513462781906,
+      0.08955997228622437,
+      -0.27024519443511963
+    ],
+    [
+      0.13021360337734222,
+      0.9999959468841553,
+      -0.42047929763793945,
+      0.5238379836082458
+    ],
+    [
+      0.06803830713033676,
+      0.5816394090652466,
+      -0.15161408483982086,
+      0.30390313267707825
+    ],
+    [
+      0.334644079208374,
+      -0.9232811331748962,
+      -0.10031887143850327,
+      0.9701076149940491
+    ],
+    [
+      -0.6527490615844727,
+      0.1389513462781906,
+      0.08955997228622437,
+      -0.27024519443511963
+    ],
+    [
+      0.13021360337734222,
+      0.9999959468841553,
+      -0.42047929763793945,
+      0.5238379836082458
+    ],
+    [
+      0.06803830713033676,
+      0.5816394090652466,
+      -0.15161408483982086,
+      0.30390313267707825
+    ],
+    [
+      0.334644079208374,
+      -0.9232811331748962,
+      -0.10031887143850327,
+      0.9701076149940491
+    ],
+    [
+      -0.6527490615844727,
+      0.1389513462781906,
+      0.08955997228622437,
+      -0.27024519443511963
+    ]
+  ],
+  "comparisons": [],
+  "accounting": {
+    "physics_substeps": {
+      "restore": 67,
+      "interaction": 0,
+      "branch": 128,
+      "prefix": 64,
+      "evaluation": 0
+    },
+    "decimation": 8,
+    "num_envs": 1,
+    "control_step_cap": 50.0,
+    "individual_control_step_equivalents": {
+      "restore": 9,
+      "interaction": 0,
+      "branch": 16,
+      "prefix": 8,
+      "evaluation": 0
+    },
+    "charged_before_step": true
+  },
+  "actual_render_settings": {
+    "/rtx/rendermode": "RaytracedLighting",
+    "/rtx/rtpt/cached/enabled": true,
+    "/rtx/rtpt/lightcache/cached/enabled": true
+  },
+  "setup_audit": {
+    "physics_dt": 0.008333333333333333,
+    "decimation": 8,
+    "solver_type": 1,
+    "max_position_iterations": 192,
+    "max_velocity_iterations": 1,
+    "gpu_max_num_partitions": 1,
+    "assets": {
+      "robot": {
+        "fixed_tendons": 0,
+        "spatial_tendons": 0,
+        "joints": [
+          "panda_joint1",
+          "panda_joint2",
+          "panda_joint3",
+          "panda_joint4",
+          "panda_joint5",
+          "panda_joint6",
+          "panda_joint7",
+          "panda_finger_joint1",
+          "panda_finger_joint2"
+        ],
+        "dof_stiffness": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            7500.0,
+            7500.0
+          ]
+        ],
+        "dof_damping": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            173.0,
+            173.0
+          ]
+        ]
+      },
+      "fixed_asset": {
+        "fixed_tendons": 0,
+        "spatial_tendons": 0,
+        "joints": [],
+        "dof_stiffness": [
+          []
+        ],
+        "dof_damping": [
+          []
+        ]
+      },
+      "held_asset": {
+        "fixed_tendons": 0,
+        "spatial_tendons": 0,
+        "joints": [],
+        "dof_stiffness": [
+          []
+        ],
+        "dof_damping": [
+          []
+        ]
+      }
+    }
+  },
+  "immediate_mutation_errors": {
+    "robot/root_transforms": 0.0,
+    "robot/root_velocities": 0.0,
+    "robot/dof_positions": 0.0,
+    "robot/dof_velocities": 0.0,
+    "robot/link_transforms": 0.0,
+    "robot/link_velocities": 0.0,
+    "robot/jacobians": 5.960464477539063e-08,
+    "robot/generalized_mass_matrices": 4.76837158203125e-07,
+    "robot/link_incoming_joint_force": 15.079468727111816,
+    "robot/target_pos": 0.0,
+    "robot/target_vel": 0.0,
+    "robot/target_effort": 0.0,
+    "held/root_transforms": 0.0,
+    "held/root_velocities": 0.0,
+    "held/dof_positions": 0.0,
+    "held/dof_velocities": 0.0,
+    "held/link_transforms": 0.0,
+    "held/link_velocities": 0.0,
+    "held/jacobians": 0.0,
+    "held/generalized_mass_matrices": 0.0,
+    "held/link_incoming_joint_force": 0.0,
+    "held/target_pos": 0.0,
+    "held/target_vel": 0.0,
+    "held/target_effort": 0.0,
+    "fixed/root_transforms": 0.0,
+    "fixed/root_velocities": 0.0,
+    "fixed/dof_positions": 0.0,
+    "fixed/dof_velocities": 0.0,
+    "fixed/link_transforms": 0.0,
+    "fixed/link_velocities": 0.0,
+    "fixed/jacobians": 0.0,
+    "fixed/generalized_mass_matrices": 0.0,
+    "fixed/link_incoming_joint_force": 0.0,
+    "fixed/target_pos": 0.0,
+    "fixed/target_vel": 0.0,
+    "fixed/target_effort": 0.0,
+    "controller/joint_pos": 0.0,
+    "controller/joint_vel": 0.0,
+    "controller/fingertip_midpoint_pos": 0.0,
+    "controller/fingertip_midpoint_quat": 0.0,
+    "controller/fingertip_midpoint_linvel": 0.0,
+    "controller/fingertip_midpoint_angvel": 0.0,
+    "controller/arm_mass_matrix": 4.76837158203125e-07,
+    "controller/fingertip_midpoint_jacobian": 0.0,
+    "controller/actions": 0.0,
+    "controller/task_prop_gains": 0.0,
+    "controller/task_deriv_gains": 0.0,
+    "controller/dead_zone_thresholds": 0.0,
+    "controller/force_sensor_world_smooth": 0.0,
+    "controller/prev_fingertip_pos": 0.0,
+    "controller/prev_fingertip_quat": 0.0,
+    "controller/prev_joint_pos": 0.0,
+    "noise_tick": 0.0
+  }
+}

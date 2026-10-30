@@ -1,0 +1,10 @@
+{
+  "command": [
+    ".venv/bin/python",
+    "-c",
+    "import torch,json; x=torch.ones((16,16),device=\"cuda\"); y=x@x; torch.cuda.synchronize(); print(json.dumps({\"torch\":torch.__version__,\"cuda\":torch.version.cuda,\"gpu\":torch.cuda.get_device_name(0),\"cudnn\":torch.backends.cudnn.version(),\"kernel_check\":float(y.sum())==4096}))"
+  ],
+  "returncode": 0,
+  "stdout": "{\"torch\": \"2.7.0+cu128\", \"cuda\": \"12.8\", \"gpu\": \"NVIDIA GeForce RTX 3090\", \"cudnn\": 90701, \"kernel_check\": true}\n",
+  "stderr": ""
+}

@@ -1,0 +1,384 @@
+{
+  "status": "MEASURED",
+  "purpose": "Engineering reset/restore probe, not scientific admission",
+  "source_hashes": {
+    "scripts/audit_expert.py": "8bb4e278e0eddd70b07604d2fee6ed8f95a70561e7c76f8f21835780463f9d26",
+    "scripts/audit_forge.py": "f6c0d53a2922e62bd68dc9b23eaba5123eda7b5269cc66c9b5c864694a61d1fa",
+    "scripts/background_training.py": "da169acc3753bba566a02b9e87d0cc2b5eee04146cff939eb39186c6f41d70ac",
+    "scripts/bootstrap_cpu.sh": "f9571af76723f1bce07a536a38612dab20e88c48a86f47f7094cacde0ec3ad1f",
+    "scripts/check_stage_gates.py": "a85f6bcda2973a108e89990dd6a844c96335925687dc8669b69182284b04a312",
+    "scripts/collect_demonstrations.py": "6dfbd516f89f4fd4c08641c362955b5270b2c84eb9ab74a7f39b15131742f831",
+    "scripts/collect_forge.py": "42a994a0c6a88b40df02178d8037a7917c4e79ef8ed59dd375a7b4d9f87f4026",
+    "scripts/continue_training.sh": "282342349023fed671d424b17439386a1485460f3514ea908fb6521a142807d8",
+    "scripts/download_expert.py": "edb418986cc7c4cdd2602d666965571da647af1f03f3cb0a42597ea076419802",
+    "scripts/finalize_diagnostic_repair.py": "9743ad54d67ba5e07b830a08f3b3065a16a8c02b77bf8038f1714d66f7eaf55c",
+    "scripts/inspect_baseline.py": "d21261f28df3b39eb26c9acfdb059ac2e63057d5f7c59f9a7fbbf624bdbe1f61",
+    "scripts/inspect_recording.py": "974e84daf4e83f8b261fde18a5d635de87dfa58fdb55a432b26d2a2475190b91",
+    "scripts/install_expert.sh": "7ae5714e80f874e64006a8e781cf74efeae37dec7ade75ca645276e3cf5ead0b",
+    "scripts/install_isaac.sh": "d00af540630018ee80d68ef78948294abdf86a0f443459db7e91394dfa29a259",
+    "scripts/measure_gradient_path.py": "d0daae4188de9de415624c6faf6362aeb79c59260d7dbf71b086227bf8fab61f",
+    "scripts/probe_diagnostic_replay.py": "1720f440398604dce4fce3fb0736a3a03b2f8356d7b55ca776fdd92227735b59",
+    "scripts/probe_environment_recreation.py": "ec071837404721fdbc490a80050e9396c3caab4376d4e8cbe20a0500e3e4b692",
+    "scripts/publish.py": "1fedf20d6c6fb044ee605484d85aeb4299d05e26d009e98dc285603c68bec813",
+    "scripts/record_checks.py": "ce86e4526e0186430de8577fe87e3200fd662974a5c7bc33d18621e1c95fa2c7",
+    "scripts/record_environment.py": "e05442fdab973348326841d92eb9864fc0750454dc9cfa31a6530ea4e6548439",
+    "scripts/recover_diagnostic_attempt.py": "949e6fb22dfc875d42f5dfd0a5c9fce4cf7a2e5887521202e65d77930f3f9e5e",
+    "scripts/repair_replay_rendering.py": "e3247311a97a3fd1574ecd82b8348d9ed9ab2e085abef2ec451e741dc3d1b2d4",
+    "scripts/resume_after_environment_fix.sh": "517b308665fe95f26b147ce86f036994b8c2e092ece2108d6745ef721c7aef35",
+    "scripts/retain_act_checkpoints.py": "46b250e8049c2abc44f54994760e44f0ea07750483e9a742a8f78f7d9efa4eb1",
+    "scripts/run_end_to_end.sh": "5d4ff196cd3d4d0d37a4a03a5449bdc816af5096f94446fd63fcd0b2da92a1fb",
+    "scripts/run_forge_probe.py": "b3ee7558aff19057d97e34965988b99fbdad45031228f31420cff9bf023e0475",
+    "scripts/run_robot_stage.py": "1fffee4f2dd6646f7f3eea0371219f8bece1f6763e35667bdd809bee46053590",
+    "scripts/smoke_forge.py": "111f9f0afc9c46ea66aaadbec1d0555088252b9e95e7a69cef4823106a958d8a",
+    "scripts/start_background_training.sh": "434ec81e2a392646918fa102ad9e9c9299987ead810132545e8f6c86601a6eda",
+    "scripts/train_forge.py": "6306ef909ca65577b7dc22ca9aef761c37db21c1543057fca148ce824cd3cfdc",
+    "scripts/training_status.py": "6ccd7d6f1baf889c3028d5664e9c76f78796b870485897c1a9e5cce618dc0b0c",
+    "scripts/watch_diagnostic.py": "65f2ce0b5f98530d41bff2a6dcf551d83c830a9f1d1278cd5bcb79aa6020d0f7",
+    "scripts/write_repair_report.py": "b414b81f3da30e89d97617ca82ad5f49f641f38029875ab21c7dcfdb0cdfadc2",
+    "src/forcecritic/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/forcecritic/cli.py": "847f2d6efc3227d8c0c9179999bee4b4fab0ab3ea918621a398fb5a43d819999",
+    "src/forcecritic/data/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/forcecritic/data/audit.py": "863a57c83f424150d12bce6b288c0af54fc7226ba196c5473971e8e5396d0441",
+    "src/forcecritic/data/demonstrations.py": "c61d70ae4fe27010a03e34895c7cd84223df1c46d03a249c25ad160187e92f6a",
+    "src/forcecritic/data/splits.py": "401f04ccae56c9a94ee2850e58b47238167c101768347f6a81f718e44725f885",
+    "src/forcecritic/diagnostics/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/forcecritic/diagnostics/artifacts.py": "f19b92be05423ffa24ece2e31b68fd705ce6b33833cce15da1119a85538069b0",
+    "src/forcecritic/diagnostics/driver.py": "2db93e1c36c1d848c02ae71722460dfa3167306278aa2c182f3cc89280b91f6f",
+    "src/forcecritic/diagnostics/live.py": "606af5cc0dd3f54844a139beb70a3a5931d4ba87d5a44031f084287d4428f6fb",
+    "src/forcecritic/diagnostics/pairs.py": "b513aafd9835a316c5d8d18964833536c691d7b51576dd908c371ff4ce96f8e0",
+    "src/forcecritic/diagnostics/progress.py": "41669607489a3875bfa43a760ffe0d175aabc7e92b4a1bc737a51b587860b7b3",
+    "src/forcecritic/diagnostics/recovery.py": "1111a1c95304e6113bcc08276ce046f458d16c90e3c2183b60d45a1908226934",
+    "src/forcecritic/doctor.py": "0ade30c5da2f74f1e48df9aaf117d69769f0040e52f9e2cf4de5afd2abe24b50",
+    "src/forcecritic/envs/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/forcecritic/envs/accounting.py": "cc15dfb6cdc408e29ea74b5d5b353c5f117d58a98af47f1d0a8b47c82c00f151",
+    "src/forcecritic/envs/contracts.py": "bd7248770b38f66f88df405399e67b5008384dc54c7add5b8cd8fd15d7367495",
+    "src/forcecritic/envs/expert.py": "3ad2bc55d55cbb483eb0aec9fe7c66bd7b16bd648be2fc6be434a51919447be9",
+    "src/forcecritic/envs/forge.py": "f81310cec14e25f2114438e6162b3e5ecdae9652a1c6d16226e0ff1438f49d90",
+    "src/forcecritic/envs/observations.py": "9bdd847a8ad4357eb602e43e3cc38e2492f36f52138571f27c388d7f5cbffb96",
+    "src/forcecritic/envs/reward.py": "a96b9b415fbed5d7527ec5845cbbe455797d516a195ee10ffcfa82ec540df606",
+    "src/forcecritic/evaluation/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/forcecritic/evaluation/export.py": "6000b58edaec2524237418fea7fc8c48e686ddf07a9ed81f2e886658ba86577b",
+    "src/forcecritic/evaluation/gates.py": "41b000644a23f6b1f9137d86632d81a7131b4ddeb278b028437acaff7313fcde",
+    "src/forcecritic/evaluation/metrics.py": "e81957859ad13165695701dea3d871af5cba94bc8f762495bdf620bef1feda6f",
+    "src/forcecritic/evaluation/plots.py": "3a1a0d04bf891722900cfb69bc851f7c00c560e892af3f118da9009af78d052d",
+    "src/forcecritic/evaluation/report.py": "269084c2eca00fd67335c7581eec9d557d28d36707b9e2b3e2f814205e4d856e",
+    "src/forcecritic/evaluation/short_gate.py": "aaee5a6aa5795d7a6ca28549ef42b056218f560034d4f9e934ffca5de4c40996",
+    "src/forcecritic/models/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/forcecritic/models/act.py": "026c8142310fe81976cf5a5a215a6d316ae12bb35ae78bd6464156692a18c927",
+    "src/forcecritic/models/critic.py": "b1f62c883982aa8c884c811743c5f7e5bac90574a335f219705ee5ce9db5ff05",
+    "src/forcecritic/runtime.py": "c536d0a21a6998559c9fd9f2a58467156615ddf884a3202d6ffb0405b4e806bc",
+    "src/forcecritic/training/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/forcecritic/training/ablation.py": "27df88e718963c7a934d38ed11f59fdb76e7832d16898d5c1666b04bf350ee99",
+    "src/forcecritic/training/baseline.py": "5e782ce9a9014629bc92612e7f2ec7ea54d0f940d951503c88ec1685441b1cbb",
+    "src/forcecritic/training/checkpoint.py": "b63edd04f2ffd5012e9f0c90e46d67702036816c0d4518a8b17d9e4b6baa8d3c",
+    "src/forcecritic/training/live.py": "f8b77b838237031855982a63968da30c13effaaa530a4ac726150dc89923cd72",
+    "src/forcecritic/training/pretrain.py": "9a979017e908d9a42c43cf75ab6882ce39d910611f4b9fa6c96c9dc30b759da8",
+    "src/forcecritic/training/replay.py": "bc179c3ea8fdc39731d0ccd5420092da92a378616cea049e58fc64fc99140b84",
+    "src/forcecritic/training/short_live.py": "cfd941d82a4ad2d66ba668c37641a800067abae62c71e3fcc129846c4beb74cc",
+    "src/forcecritic/training/updates.py": "65961aa7ff318235095b1bd7b209123a5bd38da655a1a3a19bb2917ea65a0cbd"
+  },
+  "observations": [
+    {
+      "actions": [
+        [
+          -0.22914767265319824,
+          0.4218793213367462,
+          0.806308388710022,
+          0.0,
+          0.0,
+          0.6615027189254761,
+          -1.0
+        ]
+      ],
+      "ema_factor": [
+        [
+          0.09221023321151733
+        ]
+      ],
+      "task_prop_gains": [
+        [
+          417.7492980957031,
+          406.757080078125,
+          611.2301635742188,
+          34.80899429321289,
+          23.580060958862305,
+          23.10283088684082
+        ]
+      ],
+      "pos_threshold": [
+        [
+          0.018737711012363434,
+          0.0189552940428257,
+          0.020627213642001152
+        ]
+      ],
+      "rot_threshold": [
+        [
+          0.09211415797472,
+          0.10830015689134598,
+          0.11667755991220474
+        ]
+      ],
+      "dead_zone_thresholds": [
+        [
+          2.01202130317688,
+          3.7805562019348145,
+          1.1897096633911133,
+          0.3265027701854706,
+          0.055398695170879364,
+          0.8663291931152344
+        ]
+      ],
+      "init_fixed_pos_obs_noise": [
+        [
+          0.0005996303516440094,
+          -0.0022166587878018618,
+          -0.00047335014096461236
+        ]
+      ],
+      "fingertip_midpoint_pos": [
+        [
+          0.6323698163032532,
+          0.031078152358531952,
+          0.13212154805660248
+        ]
+      ],
+      "joint_pos": [
+        [
+          -0.2425556182861328,
+          0.5114962458610535,
+          0.31210148334503174,
+          -1.8909229040145874,
+          -0.21702492237091064,
+          2.3701653480529785,
+          1.747045874595642,
+          0.004021267406642437,
+          0.004035044461488724
+        ]
+      ],
+      "joint_vel": [
+        [
+          -1.1354790925979614,
+          0.1608579307794571,
+          1.2235580682754517,
+          0.007077057845890522,
+          -0.8756616115570068,
+          -0.10300098359584808,
+          0.5572587251663208,
+          2.5707149688969366e-06,
+          4.681118298321962e-06
+        ]
+      ],
+      "held_pos": [
+        [
+          0.6332035660743713,
+          0.03021056018769741,
+          0.09746018052101135
+        ]
+      ],
+      "held_quat": [
+        [
+          0.3770922124385834,
+          7.412930426653475e-05,
+          0.0006537265726365149,
+          0.9261754751205444
+        ]
+      ],
+      "force_sensor_world_smooth": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "noise_tick": 67,
+      "interval": [
+        2.0
+      ],
+      "mass": [
+        [
+          0.0157470740377903
+        ]
+      ],
+      "joint_position_target": [
+        [
+          -0.008904986083507538,
+          0.4916709363460541,
+          0.0618259534239769,
+          -1.8924620151519775,
+          -0.042405012995004654,
+          2.3828940391540527,
+          1.6350764036178589,
+          0.0,
+          0.0
+        ]
+      ],
+      "joint_velocity_target": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "joint_effort_target": [
+        [
+          0.3053053021430969,
+          0.0006928890943527222,
+          0.10683786869049072,
+          -0.024068962782621384,
+          0.007696890272200108,
+          -0.0017690665554255247,
+          -0.0006176759488880634,
+          0.0,
+          0.0
+        ]
+      ]
+    }
+  ],
+  "comparisons": [
+    {
+      "kind": "reset",
+      "repeat": 0,
+      "max_errors": {
+        "actions": 0.0,
+        "ema_factor": 0.0,
+        "task_prop_gains": 0.0,
+        "pos_threshold": 0.0,
+        "rot_threshold": 0.0,
+        "dead_zone_thresholds": 0.0,
+        "init_fixed_pos_obs_noise": 0.0,
+        "fingertip_midpoint_pos": 0.0,
+        "joint_pos": 0.0,
+        "joint_vel": 0.0,
+        "held_pos": 0.0,
+        "held_quat": 0.0,
+        "force_sensor_world_smooth": 0.0,
+        "noise_tick": 0.0,
+        "interval": 0.0,
+        "mass": 0.0,
+        "joint_position_target": 0.0,
+        "joint_velocity_target": 0.0,
+        "joint_effort_target": 0.0
+      }
+    },
+    {
+      "kind": "prefix",
+      "repeat": 0,
+      "max_errors": {
+        "actions": 0.0,
+        "ema_factor": 0.0,
+        "task_prop_gains": 0.0,
+        "pos_threshold": 0.0,
+        "rot_threshold": 0.0,
+        "dead_zone_thresholds": 0.0,
+        "init_fixed_pos_obs_noise": 0.0,
+        "fingertip_midpoint_pos": 0.0,
+        "joint_pos": 0.0,
+        "joint_vel": 0.0,
+        "held_pos": 0.0,
+        "held_quat": 0.0,
+        "force_sensor_world_smooth": 0.0,
+        "noise_tick": 0.0,
+        "interval": 0.0,
+        "mass": 0.0,
+        "joint_position_target": 0.0,
+        "joint_velocity_target": 0.0,
+        "joint_effort_target": 0.0
+      }
+    }
+  ],
+  "render_aa": "FXAA",
+  "reference": null,
+  "reset_render_history": true,
+  "spatial_render": true,
+  "phase": "finished",
+  "time": 1793007060.8734653,
+  "accounting": {
+    "physics_substeps": {
+      "restore": 67,
+      "interaction": 0,
+      "branch": 0,
+      "prefix": 64,
+      "evaluation": 0
+    },
+    "decimation": 8,
+    "num_envs": 1,
+    "control_step_cap": 5000.0,
+    "individual_control_step_equivalents": {
+      "restore": 9,
+      "interaction": 0,
+      "branch": 0,
+      "prefix": 8,
+      "evaluation": 0
+    },
+    "charged_before_step": true
+  },
+  "actual_render_settings": {
+    "/rtx/post/aa/op": 2,
+    "/rtx/post/dlss/execMode": 1,
+    "/rtx-transient/dldenoiser/enabled": false,
+    "/rtx/directLighting/sampledLighting/enabled": true,
+    "/rtx/rendermode": "RaytracedLighting"
+  },
+  "raw_inputs": "checkpoints/20261023T104759Z/render_repair_1793007043704066167_FXAA_input_a_inputs.pt",
+  "same_input_action_max_error": 0.0,
+  "prefix_actions": [
+    [
+      0.9729435443878174,
+      -0.7760144472122192,
+      -0.43863970041275024,
+      0.18488892912864685
+    ],
+    [
+      0.1180957779288292,
+      -0.6387208700180054,
+      -0.20230253040790558,
+      0.052974216639995575
+    ],
+    [
+      -0.36750978231430054,
+      -0.6649543642997742,
+      -0.37910211086273193,
+      0.0014264648780226707
+    ],
+    [
+      -0.03118986450135708,
+      0.1251516342163086,
+      -0.3113316297531128,
+      -0.17630724608898163
+    ],
+    [
+      0.006731043569743633,
+      0.25765326619148254,
+      -0.6869872808456421,
+      0.626244306564331
+    ],
+    [
+      -0.4332839548587799,
+      0.3146345019340515,
+      -0.2179909497499466,
+      -0.41829419136047363
+    ],
+    [
+      -0.31430700421333313,
+      0.1396324634552002,
+      0.9625812768936157,
+      0.6372067928314209
+    ],
+    [
+      -0.35947665572166443,
+      0.53252112865448,
+      0.15919828414916992,
+      0.5128821730613708
+    ]
+  ]
+}

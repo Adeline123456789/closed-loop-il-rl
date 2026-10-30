@@ -1,0 +1,135 @@
+{
+  "training": {
+    "command": "env PYTHONPATH=src .venv/bin/python -u scripts/train_stage_v3_a1.py",
+    "returncode": null,
+    "returncode_note": "Detached training launcher did not retain OS exit code; completion artifact and checkpoint audited",
+    "deployed_A1_updates": 200,
+    "discarded_A2_reproduction_updates": 1,
+    "new_environment_interactions": 0
+  },
+  "reused": {
+    "A2_actor_updates": 200,
+    "A2_critic_updates": 2000,
+    "A0_episodes": 32,
+    "A2_episodes": 32
+  },
+  "new_evaluations": {
+    "eval_A1_initial": {
+      "command": [
+        "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/bin/python",
+        "-u",
+        "scripts/evaluate_stage_v3.py",
+        "--arm",
+        "A1",
+        "--batch",
+        "initial",
+        "--headless",
+        "--enable_cameras",
+        "--kit_args=--/exts/omni.kit.registry.nucleus/registries/0/url=https://ovextensionsprod.blob.core.windows.net/exts/kit/prod/107/shared"
+      ],
+      "returncode": 0,
+      "started": 1793017522.8902552,
+      "finished": 1793018494.9827363,
+      "log": "reports/stage_v3_20261026/eval_A1_initial.log",
+      "status": "PASSED",
+      "accounting": {
+        "physics_substeps": {
+          "restore": 3618,
+          "interaction": 0,
+          "branch": 0,
+          "prefix": 0,
+          "evaluation": 30992
+        },
+        "decimation": 8,
+        "num_envs": 1,
+        "control_step_cap": 10000.0,
+        "individual_control_step_equivalents": {
+          "restore": 453,
+          "interaction": 0,
+          "branch": 0,
+          "prefix": 0,
+          "evaluation": 3874
+        },
+        "charged_before_step": true
+      }
+    },
+    "eval_A1_extension": {
+      "command": [
+        "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/bin/python",
+        "-u",
+        "scripts/evaluate_stage_v3.py",
+        "--arm",
+        "A1",
+        "--batch",
+        "extension",
+        "--headless",
+        "--enable_cameras",
+        "--kit_args=--/exts/omni.kit.registry.nucleus/registries/0/url=https://ovextensionsprod.blob.core.windows.net/exts/kit/prod/107/shared"
+      ],
+      "returncode": 0,
+      "started": 1793018498.046738,
+      "finished": 1793019512.1400583,
+      "log": "reports/stage_v3_20261026/eval_A1_extension.log",
+      "status": "PASSED",
+      "accounting": {
+        "physics_substeps": {
+          "restore": 3618,
+          "interaction": 0,
+          "branch": 0,
+          "prefix": 0,
+          "evaluation": 32312
+        },
+        "decimation": 8,
+        "num_envs": 1,
+        "control_step_cap": 10000.0,
+        "individual_control_step_equivalents": {
+          "restore": 453,
+          "interaction": 0,
+          "branch": 0,
+          "prefix": 0,
+          "evaluation": 4039
+        },
+        "charged_before_step": true
+      }
+    },
+    "eval_A2_extension": {
+      "command": [
+        "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/bin/python",
+        "-u",
+        "scripts/evaluate_stage_v3.py",
+        "--arm",
+        "A2",
+        "--batch",
+        "extension",
+        "--headless",
+        "--enable_cameras",
+        "--kit_args=--/exts/omni.kit.registry.nucleus/registries/0/url=https://ovextensionsprod.blob.core.windows.net/exts/kit/prod/107/shared"
+      ],
+      "returncode": 0,
+      "started": 1793019512.141334,
+      "finished": 1793020568.242692,
+      "log": "reports/stage_v3_20261026/eval_A2_extension.log",
+      "status": "PASSED",
+      "accounting": {
+        "physics_substeps": {
+          "restore": 3752,
+          "interaction": 0,
+          "branch": 0,
+          "prefix": 0,
+          "evaluation": 33576
+        },
+        "decimation": 8,
+        "num_envs": 1,
+        "control_step_cap": 10000.0,
+        "individual_control_step_equivalents": {
+          "restore": 469,
+          "interaction": 0,
+          "branch": 0,
+          "prefix": 0,
+          "evaluation": 4197
+        },
+        "charged_before_step": true
+      }
+    }
+  }
+}

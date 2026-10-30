@@ -1,0 +1,9 @@
+{
+  "command": "PYTHONPATH=src .venv/bin/python: import pyarrow,numpy; pq.read_table(cached pinned parquet)",
+  "pyarrow": "21.0.0",
+  "numpy": "1.26.0",
+  "actual_parquet": ".cache/hf/angledusgar--forge-failure-v1/820392e1167df4d6f5d60f985ec4f3b1b4fd6237/data/chunk-000/episode_000000.parquet",
+  "rows": 149,
+  "status": "PASSED",
+  "returncode": 0
+}

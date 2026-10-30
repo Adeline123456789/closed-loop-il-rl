@@ -1,0 +1,17 @@
+{
+  "command": [
+    "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/bin/python",
+    "scripts/smoke_forge.py",
+    "--headless",
+    "--enable_cameras",
+    "--num_envs",
+    "1",
+    "--output",
+    "reports/20261023T104759Z/smoke-1_1792978021526024284.json",
+    "--kit_args=--/exts/omni.kit.registry.nucleus/registries/0/url=https://ovextensionsprod.blob.core.windows.net/exts/kit/prod/107/shared"
+  ],
+  "returncode": null,
+  "error": "Command '['/media/midea/F496AC8096AC4548/closed_loop_act/.venv/bin/python', 'scripts/smoke_forge.py', '--headless', '--enable_cameras', '--num_envs', '1', '--output', 'reports/20261023T104759Z/smoke-1_1792978021526024284.json', '--kit_args=--/exts/omni.kit.registry.nucleus/registries/0/url=https://ovextensionsprod.blob.core.windows.net/exts/kit/prod/107/shared']' timed out after 1799.9999895689543 seconds",
+  "combined_live_log": "reports/20261023T104759Z/smoke-1_1792978021526024284.log",
+  "stdout": ""
+}

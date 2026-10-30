@@ -1,0 +1,21 @@
+{
+  "status": "NO_GO_REPLAY",
+  "methods": [],
+  "continuations_used": 7,
+  "measured_parent_ids": [
+    "diagnostic-40000"
+  ],
+  "parents_fully_completed": 0,
+  "parents_with_failed_admission": 1,
+  "planned_parents": 8,
+  "candidates_measured": 1,
+  "candidates_planned": 3,
+  "thresholds_sha256": "3ffb367d23f39b8ad1cbcfbdcfd07cd5be750b52fc7a3bdae621e855b6d07bf5",
+  "raw_original": {
+    "path": "checkpoints/20261023T104759Z/diagnostic_attempt_1793004539946602860/trajectory_0001.pt",
+    "sha256": "d63a1998db1d13bea81ad9163b4fb3247aa0ca8fb2c5aee69cd04a3b62ababa7"
+  },
+  "native_failure_preserved": "diagnostic_1793004526346629461_outcome.json",
+  "reason": "Saved real original and three repeats of each replay method all violate locked tolerances for candidate A0. This already falsifies all-comparisons admission. Other candidates/parents and D1/D2/B1-B3 remain NOT_RUN; the native crash is a separate implementation failure, not a scientific result.",
+  "scope": "Reanalysis of real saved trajectories, not new simulator execution or CPU-gradient validation"
+}

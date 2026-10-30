@@ -1,0 +1,150 @@
+{
+  "snapshot_time_utc": "2026-10-26T11:00:11.524548+00:00",
+  "completed_collection_runs": 20,
+  "planned_collection_runs": 20,
+  "completed_episodes": 376,
+  "completed_stable_successes": 367,
+  "splits": {
+    "train": {
+      "episodes": 256,
+      "successful": 251
+    },
+    "validation": {
+      "episodes": 56,
+      "successful": 55
+    },
+    "test": {
+      "episodes": 64,
+      "successful": 61
+    }
+  },
+  "actor_pretraining_updates": 10000,
+  "collection_runs": [
+    {
+      "collection_run": "00_train_1100",
+      "status": "COLLECTED",
+      "manifest_sha256": "4f1301afae5bbf45166954db321512f734b6825f23ede4c3e35017d87921f9da"
+    },
+    {
+      "collection_run": "01_train_1101",
+      "status": "COLLECTED",
+      "manifest_sha256": "ee03bee9a309723a25d71a1798118cbbf263f9d43c85ddbf0d318a3d65d527f2"
+    },
+    {
+      "collection_run": "02_train_1102",
+      "status": "COLLECTED",
+      "manifest_sha256": "18515ba33a986b2d34bf92c8a54cb61ed6d081a39012f215a413aa595e375df9"
+    },
+    {
+      "collection_run": "03_train_1103",
+      "status": "COLLECTED",
+      "manifest_sha256": "b2e59dc216bd91366ed2b185b6e03d193e3452427df49ddef55a0499a070dbc1"
+    },
+    {
+      "collection_run": "04_train_1104",
+      "status": "COLLECTED",
+      "manifest_sha256": "dbd5961ead83dfc66b6abee0dcd259ee3b1d179834c345ac33dd1cdd03e27409"
+    },
+    {
+      "collection_run": "05_train_1105",
+      "status": "COLLECTED",
+      "manifest_sha256": "668050d77a403686c43a216f441fa504b9ccba9dbe48e898e8576f878fdfb54f"
+    },
+    {
+      "collection_run": "06_train_1106",
+      "status": "COLLECTED",
+      "manifest_sha256": "1e3753e89b575040f85845f44932b7e4cf051e2df30ae5f5e35f77f251f28d5d"
+    },
+    {
+      "collection_run": "07_train_1107",
+      "status": "COLLECTED",
+      "manifest_sha256": "224b87825b2b7139661b72bdcedab45f91b68d62c5c90da3d56db35cbac5dd43"
+    },
+    {
+      "collection_run": "08_train_1108",
+      "status": "COLLECTED",
+      "manifest_sha256": "e916aa9aa7249fb523d3487366f73a5e3b44ea3e19be3889ff08769a508a1c5e"
+    },
+    {
+      "collection_run": "09_train_1109",
+      "status": "COLLECTED",
+      "manifest_sha256": "1e4cae0bd5271ff332701d183c659980beb27bc86dd1c16ac3d0fdf7e78dffc6"
+    },
+    {
+      "collection_run": "10_train_1110",
+      "status": "COLLECTED",
+      "manifest_sha256": "946696553fe0368c7f3ebe35f99f6e32b24ab13781fcdd9e544232ee408bebb6"
+    },
+    {
+      "collection_run": "11_train_1111",
+      "status": "COLLECTED",
+      "manifest_sha256": "7e92a56c4dcf05d1d579f0b6f34b474f832825650bc1a577fa3a2c20183f87ab"
+    },
+    {
+      "collection_run": "12_train_1112",
+      "status": "COLLECTED",
+      "manifest_sha256": "dd94d3af98e294cc51b63d9a44150a66f78c1b14e8c4af0afc2bd71c5665520f"
+    },
+    {
+      "collection_run": "13_train_1113",
+      "status": "COLLECTED",
+      "manifest_sha256": "1eb456e85bf3e4b64088d97ce79d191def092827d5485734931c079894d16428"
+    },
+    {
+      "collection_run": "14_validation_1114",
+      "status": "COLLECTED",
+      "manifest_sha256": "dba5c5f3551d7160a68be885593580c307c6506417a9b35062565e14580d8ac5"
+    },
+    {
+      "collection_run": "15_validation_1115",
+      "status": "COLLECTED",
+      "manifest_sha256": "67ea3bde883a8dd7b19142ba0c194396a144a63d577cdeb754d68b207e8167f7"
+    },
+    {
+      "collection_run": "16_validation_1116",
+      "status": "COLLECTED",
+      "manifest_sha256": "3fe975b1d5983eeee9ae9f23c2b1aa336b2048f2bd403570b4d84f60ca0be314"
+    },
+    {
+      "collection_run": "17_test_1117",
+      "status": "COLLECTED",
+      "manifest_sha256": "0f0bb8444a763134b8d237ca743ffad9ef5e4bd19ba5a9bacd6987a0d73b15ec"
+    },
+    {
+      "collection_run": "18_test_1118",
+      "status": "COLLECTED",
+      "manifest_sha256": "043eef8eedfe3ea7aefdbb8e0404b5acbd14f793757f6cf15ff3c3c2fc459aee"
+    },
+    {
+      "collection_run": "19_test_1119",
+      "status": "COLLECTED",
+      "manifest_sha256": "76a81e12dd8c1cfce17965953382b3919ddb28f3fa820f2935ec991784db2625"
+    }
+  ],
+  "stages": {
+    "doctor": "PASSED",
+    "audit-data": "PASSED",
+    "smoke-1": "PASSED",
+    "smoke-8": "PASSED",
+    "baseline": "PASSED",
+    "diagnostic": "NO_GO_REPLAY",
+    "short-ablation": "NOT_RUN",
+    "pilot": "NOT_RUN",
+    "confirm": "NOT_RUN",
+    "generalization": "NOT_RUN",
+    "installation": "PASSED"
+  },
+  "raw_dataset_location": "/media/midea/F496AC8096AC4548/closed_loop_act/data/act_demonstrations",
+  "background_job": {
+    "status": "STOPPED",
+    "stage": "diagnostic",
+    "time_utc": "2026-10-26T08:53:56.280140+00:00",
+    "pid": 1271400,
+    "session": "forcecritic-training",
+    "log": ".cache/background_training.log",
+    "returncode": 2,
+    "recorded_stage_status": "NO_GO_REPLAY",
+    "note": "No active training; D0 gate failed on saved real trajectories. Native crash separately retained. See DIAGNOSTIC_REPAIR.md."
+  },
+  "note": "Measured snapshot; expert success is not ACT performance. Raw arrays and weights remain local."
+}

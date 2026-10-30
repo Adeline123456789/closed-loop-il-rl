@@ -1,0 +1,24 @@
+{
+  "research_status": "STOPPED_BLOCKED_LICENSE",
+  "stop_gate": "environment/license",
+  "run_id": "20261023T104759Z",
+  "observed_at": "2026-10-23T12:51:22.986572+00:00",
+  "live_installation": null,
+  "live_training": null,
+  "candidate_environment": ".venv/bin/python; Python 3.11 / Torch 2.7.0+cu128 / Isaac Sim 5.0.0 / Isaac Lab v2.2.1",
+  "cpu_tests_passed": 39,
+  "current_robot_transitions": 0,
+  "expert_integrity": "VERIFIED; official player NOT_RUN",
+  "remote_branch": "codex/force-critic-act-v2",
+  "pr": "https://github.com/Adeline123456789/closed-loop-il-rl/pull/1",
+  "publication_transport": "GitHub connector; shell HTTPS and SSH push authentication unavailable",
+  "publication_sha_route": "Exact final SHA is verified after publication and reported in the completion message; local execution SHAs and content hashes are retained.",
+  "resume_command": "bash scripts/resume_after_environment_fix.sh",
+  "resume_requires": "Interactive terminal and direct user review/answer to vendor EULA prompt; no automatic acceptance",
+  "remaining_research_work": [
+    "P0 license, actual 1-env and 8-env camera/physics acceptance",
+    "action/wrench/camera alignment or compatible expert recollection",
+    "live collection and O/R/P/pair/pilot orchestration implementation and validation",
+    "all robot efficacy stages remain conditional and NOT_RUN"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "arm": "direct_Q",
+  "returncode": 0,
+  "started": 1793008868.4487448,
+  "finished": 1793009898.5462162,
+  "log": "reports/20261023T104759Z/direct_Q_evaluation.log",
+  "command": [
+    "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/bin/python",
+    "-u",
+    "scripts/evaluate_direct_q.py",
+    "--arm",
+    "direct_Q",
+    "--headless",
+    "--enable_cameras",
+    "--kit_args=--/exts/omni.kit.registry.nucleus/registries/0/url=https://ovextensionsprod.blob.core.windows.net/exts/kit/prod/107/shared"
+  ],
+  "accounting": {
+    "physics_substeps": {
+      "restore": 3685,
+      "interaction": 0,
+      "branch": 0,
+      "prefix": 0,
+      "evaluation": 32280
+    },
+    "decimation": 8,
+    "num_envs": 1,
+    "control_step_cap": 10000.0,
+    "individual_control_step_equivalents": {
+      "restore": 461,
+      "interaction": 0,
+      "branch": 0,
+      "prefix": 0,
+      "evaluation": 4035
+    },
+    "charged_before_step": true
+  },
+  "status": "COMPLETED"
+}

@@ -1,0 +1,32 @@
+{
+  "pid": 30672,
+  "started": 1793064983.4347475,
+  "phase": "D0_sampling",
+  "journal_path": "checkpoints/replay_root_cause_20261027/06_dataset_original/physics_ledger.jsonl",
+  "completed_continuations": 0,
+  "previous_continuations": 0,
+  "phase_completed": {},
+  "status": "RUNNING",
+  "last_physics_step": 1793065041.6921217,
+  "updated": 1793065041.692124,
+  "accounting": {
+    "physics_substeps": {
+      "restore": 536,
+      "interaction": 9520,
+      "branch": 0,
+      "prefix": 0,
+      "evaluation": 0
+    },
+    "decimation": 8,
+    "num_envs": 8,
+    "control_step_cap": 1500.0,
+    "individual_control_step_equivalents": {
+      "restore": 67,
+      "interaction": 1190,
+      "branch": 0,
+      "prefix": 0,
+      "evaluation": 0
+    },
+    "charged_before_step": true
+  }
+}

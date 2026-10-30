@@ -1,0 +1,15 @@
+{
+  "command": [
+    "/media/midea/F496AC8096AC4548/closed_loop_act/.venv-cpu/bin/python",
+    "scripts/smoke_forge.py",
+    "--headless",
+    "--enable_cameras",
+    "--num_envs",
+    "1",
+    "--output",
+    "reports/20261023T104759Z/smoke-1_1792754034833191383.json"
+  ],
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"/media/midea/F496AC8096AC4548/closed_loop_act/scripts/smoke_forge.py\", line 11, in <module>\n    from isaaclab.app import AppLauncher\nModuleNotFoundError: No module named 'isaaclab'\n"
+}

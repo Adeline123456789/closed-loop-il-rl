@@ -1,0 +1,17 @@
+{
+  "status": "INCONCLUSIVE",
+  "look": 2,
+  "episodes_per_arm": 64,
+  "success_difference": -0.03125,
+  "paired_seed_bootstrap_interval": [
+    -0.140625,
+    0.078125
+  ],
+  "interval_level": 0.975,
+  "exact_discordant_p": 0.75390625,
+  "A2_only_success": 4,
+  "A1_only_success": 6,
+  "paired_seed_caveat": "Pair assigned evaluation seed, not trusted D0 checkpoint replay; report marginal Wilson intervals too",
+  "reason": "Locked success-effect/interval/exact-test rule applied; equal-seed pairing is not D0 contact-state recovery",
+  "extension_allowed": false
+}

@@ -1,8 +1,10 @@
 # Codex 实施任务书：力觉 Critic 直接更新 ACT 的最小验证
 
+> 2026-10-26 用户修订：当前执行顺序与停止规则以 [PROTOCOL_STAGE_V3.md](PROTOCOL_STAGE_V3.md) 为准。下文保留原始 diagnostic-first 协议，历史结果不覆盖。D0 失败限制第三阶段配对校准，不阻止第一阶段匹配 Q 对照；第二阶段须先有第一阶段支持。下文的旧阶段状态不是最新运行状态。
+
 协议：`force_critic_act_v2_diagnostic_first`。这是待执行的研究协议，不是已验证算法。
 目标仓库：https://github.com/Adeline123456789/closed-loop-il-rl
-当前状态：只有实施规范与配置；没有本项目机器人训练结果。旧版 `prd_mvp_v1_prior_gap` 已作废，Git 历史保留，禁止继续按旧版执行。
+当前状态：已增加 CPU 可验证的学习与控制组件及 P0 实测审计；P0 尚未验收，没有本项目机器人训练结果。具体执行状态见 reports/PROJECT_STATUS.json 和对应 implementation_audit.md。旧版 `prd_mvp_v1_prior_gap` 已作废，Git 历史保留，禁止继续按旧版执行。
 
 ## 0. 先固定研究对象，不再换题
 
@@ -237,7 +239,7 @@ python -m forcecritic.cli run --stage diagnostic --config configs/minimal_valida
 python -m forcecritic.cli run --stage pilot --require-go reports/<run>/decision.json
 python -m forcecritic.cli evaluate --suite generalization --no-training
 python -m forcecritic.cli report --run-dir results/<run>
-上述目前只是接口合同，不是已存在命令。README应给实际Isaac launcher/camera flags；不要把示例标为已验证。
+CLI 已实现参数与前置条件检查；后续机器人阶段调度仍待 P0 验收后实现/验证，不能将阻塞返回视为阶段完成。README应给实际Isaac launcher/camera flags；不要把示例标为已验证。
 
 最重要autograd单测：固定replay和ACT，改变Critic动作梯度，actor更新确实改变；Critic参数冻结不更新，但dQ/dA非零。不能在Q(actor_action)外层no_grad或detach动作。证明online actor收到Q项而不仅BC项。
 其他单测：分割不泄漏、HF task过滤、动作第7维排除、roll/pitch约束、EMA单次、force帧变换、z=0推理不读未来、K步执行及提前终止、gamma^k、terminal_observation、防跨reset、零mask稳定、MC续行policy版本、paired数据各组一致、测试标签不进筛选、env_steps计数含所有分支。
@@ -255,4 +257,4 @@ CPU单测与真实Isaac smoke分开，Mock只验证软件。禁止以mock输出�
 
 ## 12. 现在开始
 
-先完成P0，随后P1及P2。不要先把所有训练脚本空壳写完，也不要直接运行全套泛化。在可运行GPU环境中按门槛推进；条件不满足就以真实审计/诊断产物完成本轮交付。目标是尽早判断是否值得做，不是强行制造正结果。
+先完成P0，随后P1及P2。当前交付若被 P0 阻塞，保留真实停止报告，不将后续未完成调度宣称为已实现。不要先把所有训练脚本空壳写完，也不要直接运行全套泛化。在可运行GPU环境中按门槛推进；条件不满足就以真实审计/诊断产物完成本轮交付。目标是尽早判断是否值得做，不是强行制造正结果。

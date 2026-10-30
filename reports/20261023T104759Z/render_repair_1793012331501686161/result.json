@@ -1,0 +1,111 @@
+{
+  "status": "ENGINEERING_INPUTS_DIFFER",
+  "purpose": "Development-only engineering repair; unchanged scientific gates",
+  "attempts": [
+    {
+      "name": "FXAA_input_a",
+      "returncode": 0,
+      "command": [
+        "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/bin/python",
+        "-u",
+        "scripts/probe_diagnostic_replay.py",
+        "--output",
+        "reports/20261023T104759Z/render_repair_1793012331501686161/FXAA_input_a.json",
+        "--headless",
+        "--enable_cameras",
+        "--kit_args=--/exts/omni.kit.registry.nucleus/registries/0/url=https://ovextensionsprod.blob.core.windows.net/exts/kit/prod/107/shared",
+        "--render-aa",
+        "FXAA",
+        "--only-prefix",
+        "--reset-render-history",
+        "--spatial-render",
+        "--fixed-shadow-seed"
+      ],
+      "output": "reports/20261023T104759Z/render_repair_1793012331501686161/FXAA_input_a.json",
+      "elapsed": 22.00257134437561
+    },
+    {
+      "name": "FXAA_input_b",
+      "returncode": 0,
+      "command": [
+        "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/bin/python",
+        "-u",
+        "scripts/probe_diagnostic_replay.py",
+        "--output",
+        "reports/20261023T104759Z/render_repair_1793012331501686161/FXAA_input_b.json",
+        "--headless",
+        "--enable_cameras",
+        "--kit_args=--/exts/omni.kit.registry.nucleus/registries/0/url=https://ovextensionsprod.blob.core.windows.net/exts/kit/prod/107/shared",
+        "--render-aa",
+        "FXAA",
+        "--only-prefix",
+        "--reset-render-history",
+        "--spatial-render",
+        "--fixed-shadow-seed"
+      ],
+      "output": "reports/20261023T104759Z/render_repair_1793012331501686161/FXAA_input_b.json",
+      "elapsed": 20.002896070480347
+    }
+  ],
+  "comparisons": [
+    {
+      "mode": "FXAA",
+      "input_max_errors": {
+        "rgb": 66.0,
+        "state": 0.0,
+        "history": 0.0
+      },
+      "action_max_error": 0.20456364750862122
+    }
+  ],
+  "accounting": [
+    {
+      "path": "reports/20261023T104759Z/render_repair_1793012331501686161/FXAA_input_a.json",
+      "sha256": "a86343a67618cb66b7dec8741556c3886e660fe71444390cde4a053df0062489",
+      "accounting": {
+        "physics_substeps": {
+          "restore": 67,
+          "interaction": 0,
+          "branch": 0,
+          "prefix": 64,
+          "evaluation": 0
+        },
+        "decimation": 8,
+        "num_envs": 1,
+        "control_step_cap": 5000.0,
+        "individual_control_step_equivalents": {
+          "restore": 9,
+          "interaction": 0,
+          "branch": 0,
+          "prefix": 8,
+          "evaluation": 0
+        },
+        "charged_before_step": true
+      }
+    },
+    {
+      "path": "reports/20261023T104759Z/render_repair_1793012331501686161/FXAA_input_b.json",
+      "sha256": "ab6cffbaa3c9553c5fa3dc22846e4e61b5d43b84c3573df14406ade0e98a2d84",
+      "accounting": {
+        "physics_substeps": {
+          "restore": 67,
+          "interaction": 0,
+          "branch": 0,
+          "prefix": 64,
+          "evaluation": 0
+        },
+        "decimation": 8,
+        "num_envs": 1,
+        "control_step_cap": 5000.0,
+        "individual_control_step_equivalents": {
+          "restore": 9,
+          "interaction": 0,
+          "branch": 0,
+          "prefix": 8,
+          "evaluation": 0
+        },
+        "charged_before_step": true
+      }
+    }
+  ]
+}

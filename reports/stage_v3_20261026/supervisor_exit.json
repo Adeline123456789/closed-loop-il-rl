@@ -1,0 +1,8 @@
+{
+  "command": "env PYTHONPATH=src .venv/bin/python -u scripts/background_stage_v3.py",
+  "returncode": 0,
+  "source": "tmux retained dead-pane exit status",
+  "scientific_decision": "INCONCLUSIVE",
+  "publication_subprocess_returncode": 1,
+  "publication_failure_scope": "Push succeeded; subsequent unbounded read-only git ls-remote was terminated, then replaced with a 45-second GitHub API verification. Simulation jobs all exited 0."
+}

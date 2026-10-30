@@ -1,0 +1,351 @@
+ISOLATED_PHASE single ["/media/midea/F496AC8096AC4548/closed_loop_act/.venv/bin/python", "-u", "scripts/train_forge.py", "--stage", "diagnostic", "--outcome", "reports/20261023T104759Z/diagnostic_1793001458468229690_outcome.single.json", "--config", "configs/minimal_validation.yaml", "--run-id", "20261023T104759Z", "--demonstrations", "/media/midea/F496AC8096AC4548/closed_loop_act/data/act_demonstrations/manifest.json", "--headless", "--enable_cameras", "--kit_args=--/exts/omni.kit.registry.nucleus/registries/0/url=https://ovextensionsprod.blob.core.windows.net/exts/kit/prod/107/shared"]
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/apps/isaaclab.python.headless.rendering.kit
+[Warning] [simulation_app.simulation_app] Modules: ['omni.kit_app'] were loaded before SimulationApp was started and might not be loaded correctly.
+[Warning] [simulation_app.simulation_app] Please check to make sure no extra omniverse or pxr modules are imported before the call to SimulationApp(...)
+Loading user config located at: '/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/omni/data/Kit/Isaac-Sim/5.0/user.config.json'
+[Info] [carb] Logging to file: /media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/omni/logs/Kit/Isaac-Sim/5.0/kit_20261026_155738.log
+
+|---------------------------------------------------------------------------------------------|
+| Driver Version: 575.51.03     | Graphics API: Vulkan
+|=============================================================================================|
+| GPU | Name                             | Active | LDA | GPU Memory | Vendor-ID | LUID       |
+|     |                                  |        |     |            | Device-ID | UUID       |
+|     |                                  |        |     |            | Bus-ID    |            |
+|---------------------------------------------------------------------------------------------|
+| 0   | NVIDIA GeForce RTX 3090          | Yes: 0 |     | 24576   MB | 10de      | 0          |
+|     |                                  |        |     |            | 2204      | ffd9f1a6.. |
+|     |                                  |        |     |            | 1         |            |
+|=============================================================================================|
+| OS: 22.04.5 LTS (Jammy Jellyfish) ubuntu, Version: 22.04.5, Kernel: 6.8.0-138-generic
+| XServer Vendor: The X.Org Foundation, XServer Version: 12101004 (1.21.1.4)
+| Processor: 12th Gen Intel(R) Core(TM) i9-12900K
+| Cores: 16 | Logical Cores: 24
+|---------------------------------------------------------------------------------------------|
+| Total Memory (MB): 64057 | Free Memory: 44320
+| Total Page/Swap (MB): 2047 | Free Page/Swap: 653
+|---------------------------------------------------------------------------------------------|
+2026-10-26T07:57:39Z [998ms] [Warning] [gpu.foundation.plugin] CPU performance profile is set to powersave. This profile sets the CPU to the lowest frequency reducing performance.
+2026-10-26T07:57:39Z [1,001ms] [Warning] [gpu.foundation.plugin] IOMMU is enabled.
+2026-10-26T07:57:41Z [2,498ms] [Warning] [omni.log] Source: omni.hydra was already registered.
+2026-10-26T07:57:41Z [2,736ms] [Warning] [omni.isaac.dynamic_control] omni.isaac.dynamic_control is deprecated as of Isaac Sim 4.5. No action is needed from end-users.
+2026-10-26T07:57:43Z [4,706ms] [Warning] [pxr.Semantics] pxr.Semantics is deprecated - please use Semantics instead
+2026-10-26T07:57:43Z [4,810ms] [Warning] [omni.replicator.core.scripts.extension] No material configuration file, adding configuration to material settings directly.
+2026-10-26T07:57:46Z [7,551ms] [Warning] [usdrt.population.plugin] using high frequency span is disabled
+2026-10-26T07:57:46Z [7,646ms] [Warning] [carb] Acquiring non optional plugin interface which is not listed as dependency: [carb::dictionary::ISerializer v1.1] (plugin: carb.dictionary.serializer-json.plugin), by client: carb.scenerenderer-rtx.plugin. Add it to CARB_PLUGIN_IMPL_DEPS() macro of a client.
+2026-10-26T07:57:48Z [9,646ms] [Warning] [usdrt.hydra.fabric_scene_delegate.plugin] using high frequency span is disabled
+2026-10-26T07:57:48Z [9,646ms] [Warning] [usdrt.hydra.fabric_scene_delegate.plugin] using high frequency span is disabled
+2026-10-26T07:57:48Z [9,646ms] [Warning] [usdrt.hydra.fabric_scene_delegate.plugin] using high frequency span with attrs is disabled
+2026-10-26T07:57:48Z [9,651ms] [Warning] [omni.fabric.plugin] Warning: attribute viewportHandle not found for bucket id 7
+
+2026-10-26T07:57:48Z [9,657ms] [Warning] [usdrt.hydra.fabric_scene_delegate.plugin] using high frequency span is disabled
+2026-10-26T07:57:48Z [9,657ms] [Warning] [usdrt.hydra.fabric_scene_delegate.plugin] using high frequency span is disabled
+[INFO]: Parsing configuration from: <class 'isaaclab_tasks.direct.forge.forge_env_cfg.ForgeTaskPegInsertCfg'>
+Setting seed: 0
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : 0
+	Physics step-size     : 0.008333333333333333
+	Rendering step-size   : 0.06666666666666667
+	Environment step-size : 0.06666666666666667
+[INFO]: Time taken for scene creation : 1.554923 seconds
+[INFO]: Scene manager:  <class InteractiveScene>
+	Number of environments: 1
+	Environment spacing   : 2.0
+	Source prim name      : /World/envs/env_0
+	Global prim paths     : []
+	Replicate physics     : True
+[INFO]: Starting the simulation. This may take a few seconds. Please wait...
+2026-10-26T07:57:53Z [14,539ms] [Warning] [usdrt.hydra.fabric_scene_delegate.plugin] using high frequency span with attrs is disabled
+2026-10-26T07:57:53Z [14,546ms] [Warning] [usdrt.hydra.fabric_scene_delegate.plugin] using high frequency span with attrs is disabled
+2026-10-26T07:57:53Z [15,160ms] [Warning] [rtx.postprocessing.plugin] DLSS increasing input dimensions: Render resolution of (148, 148) is below minimal input resolution of 300.
+[INFO]: Time taken for simulation start : 1.818819 seconds
+[INFO] Event Manager:  <EventManager> contains 3 active terms.
++------------------------------------+
+| Active Event Terms in Mode: 'reset' |
++---------+--------------------------+
+|  Index  | Name                     |
++---------+--------------------------+
+|    0    | object_scale_mass        |
++---------+--------------------------+
++----------------------------------------+
+| Active Event Terms in Mode: 'startup'  |
++---------+------------------------------+
+|  Index  | Name                         |
++---------+------------------------------+
+|    0    | held_physics_material        |
+|    1    | fixed_physics_material       |
+|    2    | robot_physics_material       |
++---------+------------------------------+
++--------------------------------------------------------+
+|         Active Event Terms in Mode: 'interval'         |
++-------+----------------------+-------------------------+
+| Index | Name                 | Interval time range (s) |
++-------+----------------------+-------------------------+
+|   0   | dead_zone_thresholds |        (2.0, 2.0)       |
++-------+----------------------+-------------------------+
+
+[INFO]: Completed setting up the environment...
+Setting seed: 40000
+Setting seed: 40001
+Setting seed: 40002
+Setting seed: 40003
+Setting seed: 40004
+Setting seed: 40005
+Setting seed: 40006
+Setting seed: 40007
+2026-10-26T07:58:24Z [46,162ms] [Warning] [carb] Client gpu.foundation.plugin has acquired [gpu::unstable::IMemoryBudgetManagerFactory v0.1] 100 times. Consider accessing this interface with carb::getCachedInterface() (Performance warning)
+Setting seed: 40008
+Setting seed: 40000
+Setting seed: 40000
+Setting seed: 40000
+Setting seed: 40000
+Setting seed: 40000
+Timeout (0:05:00)!
+Thread 0x0000720aed496640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x0000721950afe640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x0000721ac23fe640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x0000721ad2bff640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x0000721d32320740 (most recent call first):
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/isaacsim/exts/isaacsim.core.api/isaacsim/core/api/physics_context/physics_context.py", line 563 in _step
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/isaacsim/exts/isaacsim.core.api/isaacsim/core/api/simulation_context/simulation_context.py", line 709 in step
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab/isaaclab/sim/simulation_context.py", line 638 in step
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/envs/accounting.py", line 20 in counted
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/direct/factory/factory_env.py", line 610 in step_sim_no_action
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/direct/factory/factory_env.py", line 801 in randomize_initial_state
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/direct/factory/factory_env.py", line 496 in _reset_idx
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/direct/forge/forge_env.py", line 269 in _reset_idx
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/envs/forge.py", line 87 in _counted_reset
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab/isaaclab/envs/direct_rl_env.py", line 296 in reset
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/gymnasium/core.py", line 333 in reset
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/gymnasium/wrappers/common.py", line 400 in reset
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/envs/forge.py", line 201 in reset
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/diagnostics/live.py", line 115 in prefix_replay
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/diagnostics/live.py", line 198 in fidelity_checkpoint
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/diagnostics/driver.py", line 92 in admit_checkpoints
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/diagnostics/driver.py", line 197 in diagnostic
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/scripts/train_forge.py", line 56 in <module>
+Setting seed: 40000
+Setting seed: 40000
+Setting seed: 40000
+Setting seed: 40000
+Timeout (0:05:00)!
+Thread 0x0000720aed496640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x0000721950afe640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x0000721ac23fe640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x0000721ad2bff640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x0000721d32320740 (most recent call first):
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/envs/forge.py", line 183 in _before_reset
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab/isaaclab/envs/direct_rl_env.py", line 373 in step
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/gymnasium/core.py", line 327 in step
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/gymnasium/wrappers/common.py", line 393 in step
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/envs/forge.py", line 225 in step
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/diagnostics/live.py", line 146 in continuation
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/diagnostics/live.py", line 209 in fidelity_checkpoint
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/diagnostics/driver.py", line 92 in admit_checkpoints
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/diagnostics/driver.py", line 197 in diagnostic
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/scripts/train_forge.py", line 56 in <module>
+Setting seed: 40000
+Setting seed: 40000
+Setting seed: 40000
+Setting seed: 40001
+Timeout (0:05:00)!
+Thread 0x0000720aed496640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x0000721950afe640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x0000721ac23fe640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x0000721ad2bff640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x0000721d32320740 (most recent call first):
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/isaacsim/exts/isaacsim.core.api/isaacsim/core/api/physics_context/physics_context.py", line 563 in _step
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/isaacsim/exts/isaacsim.core.api/isaacsim/core/api/simulation_context/simulation_context.py", line 709 in step
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab/isaaclab/sim/simulation_context.py", line 638 in step
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/envs/accounting.py", line 20 in counted
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab/isaaclab/envs/direct_rl_env.py", line 357 in step
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/gymnasium/core.py", line 327 in step
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/gymnasium/wrappers/common.py", line 393 in step
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/envs/forge.py", line 225 in step
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/diagnostics/live.py", line 146 in continuation
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/diagnostics/live.py", line 209 in fidelity_checkpoint
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/diagnostics/driver.py", line 92 in admit_checkpoints
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/diagnostics/driver.py", line 197 in diagnostic
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/scripts/train_forge.py", line 56 in <module>
+Setting seed: 40001
+Setting seed: 40001
+Setting seed: 40001
+Setting seed: 40001
+Setting seed: 40001
+Timeout (0:05:00)!
+Thread 0x0000720aed496640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x0000721950afe640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x0000721ac23fe640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x0000721ad2bff640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x0000721d32320740 (most recent call first):
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/isaacsim/exts/isaacsim.core.api/isaacsim/core/api/physics_context/physics_context.py", line 563 in _step
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/isaacsim/exts/isaacsim.core.api/isaacsim/core/api/simulation_context/simulation_context.py", line 709 in step
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab/isaaclab/sim/simulation_context.py", line 638 in step
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/envs/accounting.py", line 20 in counted
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab/isaaclab/envs/direct_rl_env.py", line 357 in step
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/gymnasium/core.py", line 327 in step
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/gymnasium/wrappers/common.py", line 393 in step
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/envs/forge.py", line 225 in step
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/diagnostics/live.py", line 146 in continuation
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/diagnostics/live.py", line 209 in fidelity_checkpoint
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/diagnostics/driver.py", line 92 in admit_checkpoints
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/diagnostics/driver.py", line 197 in diagnostic
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/scripts/train_forge.py", line 56 in <module>
+Setting seed: 40001
+Setting seed: 40001
+Setting seed: 40001
+Setting seed: 40001
+Setting seed: 40001
+Timeout (0:05:00)!
+Thread 0x0000720aed496640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x0000721950afe640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x0000721ac23fe640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x0000721ad2bff640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x0000721d32320740 (most recent call first):
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/isaacsim/exts/isaacsim.core.api/isaacsim/core/api/physics_context/physics_context.py", line 563 in _step
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/isaacsim/exts/isaacsim.core.api/isaacsim/core/api/simulation_context/simulation_context.py", line 709 in step
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab/isaaclab/sim/simulation_context.py", line 638 in step
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/envs/accounting.py", line 20 in counted
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab/isaaclab/envs/direct_rl_env.py", line 357 in step
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/gymnasium/core.py", line 327 in step
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/gymnasium/wrappers/common.py", line 393 in step
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/envs/forge.py", line 225 in step
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/diagnostics/live.py", line 146 in continuation
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/diagnostics/live.py", line 209 in fidelity_checkpoint
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/diagnostics/driver.py", line 92 in admit_checkpoints
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/diagnostics/driver.py", line 197 in diagnostic
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/scripts/train_forge.py", line 56 in <module>
+Setting seed: 40001
+Traceback (most recent call last):
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/scripts/train_forge.py", line 56, in <module>
+    result = diagnostic(run,args.demonstrations,make_adapter,device=args.device)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/diagnostics/driver.py", line 197, in diagnostic
+    d0 = admit_checkpoints(adapter,policy,noise,checkpoints,ledger,thresholds,fitted['scale'],
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/diagnostics/driver.py", line 112, in admit_checkpoints
+    atomic_json(directory/'fidelity.json',{'checkpoints':summary,'continuations_used':used,'accounting':ledger.record()})
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/src/forcecritic/runtime.py", line 57, in atomic_json
+    temp=path.with_suffix(path.suffix+'.tmp'); temp.write_text(json.dumps(value,indent=2,allow_nan=False)+'\n'); temp.replace(path)
+                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/midea/miniconda3/lib/python3.11/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/home/midea/miniconda3/lib/python3.11/json/encoder.py", line 202, in encode
+    chunks = list(chunks)
+             ^^^^^^^^^^^^
+  File "/home/midea/miniconda3/lib/python3.11/json/encoder.py", line 432, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/home/midea/miniconda3/lib/python3.11/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/home/midea/miniconda3/lib/python3.11/json/encoder.py", line 326, in _iterencode_list
+    yield from chunks
+  File "/home/midea/miniconda3/lib/python3.11/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/home/midea/miniconda3/lib/python3.11/json/encoder.py", line 439, in _iterencode
+    o = _default(o)
+        ^^^^^^^^^^^
+  File "/home/midea/miniconda3/lib/python3.11/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool_ is not JSON serializable

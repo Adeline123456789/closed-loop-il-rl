@@ -1,0 +1,3 @@
+# flatdict 4.0.1 imports pkg_resources during its legacy build.
+# setuptools >=82 removed that module; keep the build backend reproducible.
+setuptools==80.9.0

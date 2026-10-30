@@ -1,0 +1,68 @@
+{
+  "status": "PASSED",
+  "purpose": "environment/camera smoke only; NOT expert evaluation",
+  "num_envs": 1,
+  "control_dt": 0.06666666666666667,
+  "physics_dt": 0.008333333333333333,
+  "decimation": 8,
+  "records": [
+    {
+      "step": 0,
+      "rgb_shape": [
+        1,
+        256,
+        256,
+        3
+      ],
+      "rgb_min": 0,
+      "rgb_max": 242,
+      "wrench_finite": true,
+      "individual_transitions": 1
+    },
+    {
+      "step": 1,
+      "rgb_shape": [
+        1,
+        256,
+        256,
+        3
+      ],
+      "rgb_min": 0,
+      "rgb_max": 244,
+      "wrench_finite": true,
+      "individual_transitions": 1
+    },
+    {
+      "step": 2,
+      "rgb_shape": [
+        1,
+        256,
+        256,
+        3
+      ],
+      "rgb_min": 0,
+      "rgb_max": 244,
+      "wrench_finite": true,
+      "individual_transitions": 1
+    },
+    {
+      "step": 3,
+      "rgb_shape": [
+        1,
+        256,
+        256,
+        3
+      ],
+      "rgb_min": 0,
+      "rgb_max": 245,
+      "wrench_finite": true,
+      "individual_transitions": 1
+    }
+  ],
+  "time": 1792982791.434443,
+  "physics_substeps": {
+    "initialization_restore": 67,
+    "evaluation": 32
+  },
+  "reset_control_step_equivalents": 8.375
+}

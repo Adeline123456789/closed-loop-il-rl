@@ -1,0 +1,4 @@
+comparison,seed,split,status,paired_parents,success_difference_pp,success_ci_low_pp,success_ci_high_pp,overload_difference_pp,reason
+B1-B0,0,validation,INCONCLUSIVE,0,NA,NA,NA,NA,missing or mixed policy versions
+B2-B1,0,validation,INCONCLUSIVE,0,NA,NA,NA,NA,missing or mixed policy versions
+B3-B2,0,validation,INCONCLUSIVE,0,NA,NA,NA,NA,missing or mixed policy versions

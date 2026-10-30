@@ -1,0 +1,32 @@
+{
+  "pid": 1288853,
+  "started": 1793007419.114156,
+  "phase": "engineering_fresh_prefix",
+  "journal_path": "checkpoints/20261023T104759Z/render_repair_1793007388611133331_FXAA_input_b/physics_ledger.jsonl",
+  "completed_continuations": 0,
+  "previous_continuations": 0,
+  "phase_completed": {},
+  "status": "RUNNING",
+  "last_physics_step": null,
+  "updated": 1793007424.07886,
+  "accounting": {
+    "physics_substeps": {
+      "restore": 0,
+      "interaction": 0,
+      "branch": 0,
+      "prefix": 0,
+      "evaluation": 0
+    },
+    "decimation": 8,
+    "num_envs": 1,
+    "control_step_cap": 5000.0,
+    "individual_control_step_equivalents": {
+      "restore": 0,
+      "interaction": 0,
+      "branch": 0,
+      "prefix": 0,
+      "evaluation": 0
+    },
+    "charged_before_step": true
+  }
+}

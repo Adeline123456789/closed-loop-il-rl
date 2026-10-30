@@ -1,0 +1,7 @@
+{
+  "phase": "critic_training",
+  "time": 1793001438.450562,
+  "completed_updates": 10000,
+  "requested_updates": 10000,
+  "loss": 0.0032240678556263447
+}

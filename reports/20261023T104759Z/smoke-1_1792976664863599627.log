@@ -1,0 +1,39 @@
+[Warning] [simulation_app.simulation_app] Modules: ['omni.kit_app'] were loaded before SimulationApp was started and might not be loaded correctly.
+[Warning] [simulation_app.simulation_app] Please check to make sure no extra omniverse or pxr modules are imported before the call to SimulationApp(...)
+[Info] [carb] Logging to file: /media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/omni/logs/Kit/Isaac-Sim/5.0/kit_20261026_090425.log
+2026-10-26T01:04:32Z [7,443ms] [Error] [omni.ext.plugin] Failed to resolve extension dependencies. Failure hints:
+	[isaaclab.python.headless.rendering-2.2.1 -> isaaclab.python.headless-2.2.1] dependency: 'omni.physx' = { version='^' } can't be satisfied. Available versions:
+	 (none found)
+ Platform incompatible packages:
+	 - [omni.physx-106.5.7+106.5.0.lx64.d.cp310.ub3f] (registry)
+	 - [omni.physx-106.5.7+106.5.0.lx64.r.cp310.ub3f] (registry)
+	 - [omni.physx-106.5.7+106.5.0.wx64.r.cp310.ub3f] (registry)
+	 - [omni.physx-106.5.7+106.5.0.wx64.d.cp310.ub3f] (registry)
+	 - [omni.physx-106.5.3+106.5.0.lx64.r.cp310.ub3f] (registry)
+	 - [omni.physx-106.5.3+106.5.0.lx64.d.cp310.ub3f] (registry)
+	 - [omni.physx-106.5.3+106.5.0.wx64.d.cp310.ub3f] (registry)
+	 - [omni.physx-106.5.3+106.5.0.wx64.r.cp310.ub3f] (registry)
+	 - [omni.physx-106.4.7+106.4.0.wx64.r.cp310.ub3f] (registry)
+	 - [omni.physx-106.4.7+106.4.0.lx64.r.cp310.ub3f] (registry)
+	 - ... (22 more) ...
+ Synced registries:
+	 - kit/default         : found 619 packages 
+	 - kit/sdk             : found 307 packages 
+	 - kit/community       : found 663 packages 
+
+2026-10-26T01:04:32Z [7,443ms] [Error] [omni.kit.app.plugin] Exiting app because of dependency solver failure...
+Traceback (most recent call last):
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/scripts/smoke_forge.py", line 16, in <module>
+    launcher=AppLauncher(args)
+             ^^^^^^^^^^^^^^^^^
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab/isaaclab/app/app_launcher.py", line 127, in __init__
+    self._create_app()
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab/isaaclab/app/app_launcher.py", line 811, in _create_app
+    self._app = SimulationApp(self._sim_app_config, experience=self._sim_experience_file)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/isaacsim/exts/isaacsim.simulation_app/isaacsim/simulation_app/simulation_app.py", line 245, in __init__
+    from .utils import create_new_stage, open_stage
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/isaacsim/exts/isaacsim.simulation_app/isaacsim/simulation_app/utils.py", line 23, in <module>
+    from omni.kit.usd import layers
+ModuleNotFoundError: No module named 'omni.kit.usd'
+2026-10-26T01:04:32Z [7,445ms] [Warning] [carb] Recursive unloadAllPlugins() detected!

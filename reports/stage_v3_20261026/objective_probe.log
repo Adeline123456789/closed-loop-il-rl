@@ -1,0 +1,26 @@
+{
+  "status": "PASSED",
+  "scope": "Read-only final A2 gradients on training data; zero optimizer and simulator steps",
+  "plan_sha": "fbe7d0259cb8e5e889bbccfbdfaa3fed97875550dc67fbf437754b2de1c039ee",
+  "started": 1793018715.2518768,
+  "finished": 1793018745.0970604,
+  "losses": {
+    "q": -1.0043106079101562,
+    "bc": 0.020945746451616287,
+    "step": 0.02842784859240055
+  },
+  "weighted_parameter_gradient_norm": {
+    "q": 0.7819723017072858,
+    "bc": 0.3542794770265312,
+    "step": 0.4974216323519098,
+    "total": 0.42240159567701024
+  },
+  "action_q_gradient_norm": 0.015997933223843575,
+  "q_bc_cosine": -0.4674551948174461,
+  "q_step_cosine": -0.8862436695135694,
+  "total_gradient_projection_onto_q_relative_to_q": 0.22446542750914958,
+  "optimizer_steps": 0,
+  "simulator_steps": 0,
+  "checkpoint_after_sha": "58737a7556c76d0fa5cace6aa2f97dfe5730960fe2133e7ae0c12557ae356452",
+  "interpretation": "Positive total-gradient projection preserves a local descent component for Q loss; this does not establish a correct physical action direction or improvement"
+}

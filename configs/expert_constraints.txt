@@ -1,0 +1,9 @@
+# Compatible player dependency set verified with uv pip check on 2026-10-26.
+ray==2.52.1
+wandb==0.18.3
+onnx==1.21.0
+protobuf==5.29.6
+googleapis-common-protos==1.75.0
+tensorboard==2.20.0
+tensorboardX==2.6.5
+pydantic==2.11.10

@@ -1,0 +1,11 @@
+{
+  "status": "TRAINED_NOT_EVALUATED",
+  "checkpoint": "checkpoints/20261023T104759Z/direct_Q.pt",
+  "sha256": "58737a7556c76d0fa5cace6aa2f97dfe5730960fe2133e7ae0c12557ae356452",
+  "critic_updates": 2000,
+  "actor_updates": 200,
+  "critic_final_loss": 0.003902025055140257,
+  "actor_update_records": "results/20261023T104759Z/direct_Q_actor_updates.csv",
+  "robot_success_rate": null,
+  "plan_sha": "bdbe2fb6f0d420ad60817c2d5807c7423bfe70d3a9bcd1781344d4d0ba2e2794"
+}

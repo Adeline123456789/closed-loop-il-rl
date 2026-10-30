@@ -1,0 +1,26 @@
+RUNNING eval_A1_initial {'child_pid': 1331142, 'started': 1793017522.8902552, 'log': 'reports/stage_v3_20261026/eval_A1_initial.log'}
+INCONCLUSIVE True
+RUNNING eval_A1_extension {'child_pid': 1337246, 'started': 1793018498.046738, 'log': 'reports/stage_v3_20261026/eval_A1_extension.log'}
+RUNNING eval_A2_extension {'child_pid': 1342543, 'started': 1793019512.141334, 'log': 'reports/stage_v3_20261026/eval_A2_extension.log'}
+INCONCLUSIVE False
+INCONCLUSIVE phase1_complete {'decision': {'status': 'INCONCLUSIVE', 'look': 2, 'episodes_per_arm': 64, 'success_difference': -0.03125, 'paired_seed_bootstrap_interval': [-0.140625, 0.078125], 'interval_level': 0.975, 'exact_discordant_p': 0.75390625, 'A2_only_success': 4, 'A1_only_success': 6, 'paired_seed_caveat': 'Pair assigned evaluation seed, not trusted D0 checkpoint replay; report marginal Wilson intervals too', 'reason': 'Locked success-effect/interval/exact-test rule applied; equal-seed pairing is not D0 contact-state recovery', 'extension_allowed': False}}
+INCONCLUSIVE False
+Verified and exported 3 completed physics journals
+INCONCLUSIVE False
+......................................................................   [100%]
+70 passed in 1.92s
+
+To https://github.com/Adeline123456789/closed-loop-il-rl.git
+   e80a1f6..7817843  HEAD -> codex/force-critic-act-v2
+
+Traceback (most recent call last):
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/scripts/publish_stage_v3.py", line 16, in <module>
+    remote=subprocess.check_output(['gh','api','repos/Adeline123456789/closed-loop-il-rl/git/ref/heads/codex/force-critic-act-v2',
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/midea/miniconda3/lib/python3.11/subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/midea/miniconda3/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'ls-remote', 'origin', 'refs/heads/codex/force-critic-act-v2']' died with <Signals.SIGTERM: 15>.
+Publication failed; local evidence retained

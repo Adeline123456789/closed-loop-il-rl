@@ -1,0 +1,15 @@
+{
+  "original_workspace": "empty, not a git repository",
+  "clone": "https://github.com/Adeline123456789/closed-loop-il-rl.git",
+  "initial_head": "527da843bb6c42074a4d1c8d10d1742cd61b4ddf",
+  "initial_worktree": "clean",
+  "branch_existed": false,
+  "graph_tools_available": false,
+  "codegraph_directory_present": false,
+  "code_discovery": "source fallback; no graph indexing performed",
+  "hardware": "NVIDIA RTX 3090 24576 MiB, driver 575.51.03",
+  "cuda_driver_capability": "12.9",
+  "cpu_test_environment": "existing tote_insert Python3.12 / torch2.10 cu128 via isolated --system-site-packages venv",
+  "initial_isaac_packages": "not found in base or inspected conda env package directories",
+  "assets_directory_initially_empty": true
+}

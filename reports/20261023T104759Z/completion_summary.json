@@ -1,0 +1,33 @@
+{
+  "scope": "Completed ordinary direct-Q fallback; paired calibration stopped under locked D0 rule",
+  "ordinary_evaluation": "COMPLETED",
+  "ordinary_effect": "INCONCLUSIVE",
+  "paired_calibration": "NO_GO_REPLAY",
+  "not_run": [
+    "D1",
+    "D2",
+    "B1",
+    "B2",
+    "B3",
+    "pilot",
+    "confirm",
+    "generalization"
+  ],
+  "real_evaluation_episodes": 64,
+  "actor_updates": 200,
+  "critic_updates": 2000,
+  "successes": {
+    "direct_B0": 5,
+    "direct_Q": 6
+  },
+  "charged_control_steps": 9236,
+  "integrity": "PASSED",
+  "native_crash_budget_tail": "Still unknown; not inferred as zero",
+  "render_repair": {
+    "result": "reports/20261023T104759Z/render_repair_1793012331501686161/result.json",
+    "status": "ENGINEERING_INPUTS_DIFFER"
+  },
+  "raw_data": "data/act_demonstrations",
+  "weights": "checkpoints/20261023T104759Z",
+  "publication_excludes_raw_data_and_weights": true
+}

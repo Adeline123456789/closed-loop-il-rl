@@ -1,0 +1,62 @@
+{
+  "status": "PASSED",
+  "scope": "Artifact consistency audit, not a significance or calibration claim",
+  "baseline_preserved": true,
+  "actor_updates": 200,
+  "arms": {
+    "direct_B0": {
+      "episodes": 32,
+      "successes": 5,
+      "policy_sha": "63433851d051fe4149d8f27deec600a438f146208eb5928782d56b9223dc8bb8",
+      "csv_sha": "1e7b2713349f1c7ef0011e0f9165b7b9cf6443dfac76045bcf850e46c5230e3a",
+      "accounting": {
+        "physics_substeps": {
+          "restore": 3752,
+          "interaction": 0,
+          "branch": 0,
+          "prefix": 0,
+          "evaluation": 34168
+        },
+        "decimation": 8,
+        "num_envs": 1,
+        "control_step_cap": 10000.0,
+        "individual_control_step_equivalents": {
+          "restore": 469,
+          "interaction": 0,
+          "branch": 0,
+          "prefix": 0,
+          "evaluation": 4271
+        },
+        "charged_before_step": true
+      }
+    },
+    "direct_Q": {
+      "episodes": 32,
+      "successes": 6,
+      "policy_sha": "58737a7556c76d0fa5cace6aa2f97dfe5730960fe2133e7ae0c12557ae356452",
+      "csv_sha": "ca025c06d00bc3a3ffce0ae7a58d7fe27dc3a6e7757bc5425e310a4a43f96b6f",
+      "accounting": {
+        "physics_substeps": {
+          "restore": 3685,
+          "interaction": 0,
+          "branch": 0,
+          "prefix": 0,
+          "evaluation": 32280
+        },
+        "decimation": 8,
+        "num_envs": 1,
+        "control_step_cap": 10000.0,
+        "individual_control_step_equivalents": {
+          "restore": 461,
+          "interaction": 0,
+          "branch": 0,
+          "prefix": 0,
+          "evaluation": 4035
+        },
+        "charged_before_step": true
+      }
+    }
+  },
+  "plan_sha": "bdbe2fb6f0d420ad60817c2d5807c7423bfe70d3a9bcd1781344d4d0ba2e2794",
+  "paired_diagnostic_status": "NO_GO_REPLAY"
+}

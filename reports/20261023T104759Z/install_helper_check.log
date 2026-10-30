@@ -1,0 +1,23 @@
+Checked 2 packages in 5ms
+Resolved 232 packages in 29.81s
+   Building isaaclab-assets @ file:///media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab_assets
+   Building isaaclab-rl @ file:///media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab_rl
+   Building isaaclab @ file:///media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab
+   Building isaaclab-tasks @ file:///media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab_tasks
+   Building forcecritic @ file:///media/midea/F496AC8096AC4548/closed_loop_act
+      Built isaaclab-assets @ file:///media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab_assets
+      Built isaaclab-tasks @ file:///media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab_tasks
+      Built isaaclab @ file:///media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab
+      Built isaaclab-rl @ file:///media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab_rl
+      Built forcecritic @ file:///media/midea/F496AC8096AC4548/closed_loop_act
+Prepared 5 packages in 417ms
+Uninstalled 5 packages in 1ms
+warning: Failed to hardlink files; falling back to full copy. This may lead to degraded performance.
+         If the cache and target directories are on different filesystems, hardlinking may not be supported.
+         If this is intentional, set `export UV_LINK_MODE=copy` or use `--link-mode=copy` to suppress this warning.
+Installed 5 packages in 0.84ms
+ ~ forcecritic==0.1.0 (from file:///media/midea/F496AC8096AC4548/closed_loop_act)
+ ~ isaaclab==0.45.9 (from file:///media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab)
+ ~ isaaclab-assets==0.2.2 (from file:///media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab_assets)
+ ~ isaaclab-rl==0.2.4 (from file:///media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab_rl)
+ ~ isaaclab-tasks==0.10.47 (from file:///media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab_tasks)

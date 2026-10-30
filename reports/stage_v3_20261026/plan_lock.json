@@ -1,0 +1,5 @@
+{
+  "config": "configs/stage_v3_phase1.json",
+  "sha256": "d520e1f544db8a09be8252eabf6fa22e2ece8ef984b59a5cb32643ad2b72fe95",
+  "input_audit_sha": "d2f3bae64dfee9c5fb2d7ba88d662d5d7dd895b7c1d2541919ac00c0712ba8a6"
+}

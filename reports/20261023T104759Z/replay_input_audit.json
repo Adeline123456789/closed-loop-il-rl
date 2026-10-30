@@ -1,0 +1,22 @@
+{
+  "status": "MEASURED_INPUT_NONREPEATABILITY",
+  "source": "Two real fresh FORGE resets at seed 60000; same ACT weights",
+  "fields": {
+    "rgb": {
+      "max_abs": 20.0,
+      "mean_abs": 0.4801279703776042
+    },
+    "state": {
+      "max_abs": 0.0,
+      "mean_abs": 0.0
+    },
+    "history": {
+      "max_abs": 0.0,
+      "mean_abs": 0.0
+    }
+  },
+  "gpu_action_difference": 0.14564847946166992,
+  "same_process_saved_input_action_difference": 0.15217530727386475,
+  "cpu_gpu_reconstruction_max_difference": 0.011249452829360962,
+  "scope": "CPU inference only isolates saved real RGB input sensitivity; it is not training, insertion evaluation, or replay admission. Independent fresh rollout prefixes differ, so fresh_a/b are NOT a matched-action fidelity test."
+}

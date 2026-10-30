@@ -1,0 +1,141 @@
+"""Atomic evidence records, provenance hashes and resumable stage state."""
+import datetime
+import hashlib
+import json
+import os
+from pathlib import Path
+import subprocess
+import sys
+import yaml
+
+PROTOCOL = 'force_critic_act_v2_diagnostic_first'
+STAGES = ('doctor','audit-data','smoke-1','smoke-8','baseline','diagnostic','short-ablation','pilot','confirm','generalization')
+
+
+def digest(path):
+    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+
+def source_hashes():
+    paths=list(Path('src').rglob('*.py'))
+    paths+=list(Path('scripts').rglob('*.py'))+list(Path('scripts').rglob('*.sh'))
+    return {str(p):digest(p) for p in sorted(paths)}
+
+
+def verification_sources(stage, sources=None):
+    all_sources=source_hashes() if sources is None else sources
+    # Early environment/data checks do not execute training or diagnostics code.
+    # Retain full provenance separately, but invalidate evidence on its actual
+    # executable dependencies rather than an unrelated later-stage implementation.
+    if stage in ('doctor','audit-data','smoke-1','smoke-8'):
+        common={'src/forcecritic/__init__.py','src/forcecritic/cli.py','src/forcecritic/runtime.py',
+                'src/forcecritic/evaluation/report.py','src/forcecritic/evaluation/metrics.py'}
+        if stage=='doctor':common.add('src/forcecritic/doctor.py')
+        if stage=='audit-data':
+            common.update(p for p in all_sources if p.startswith('src/forcecritic/data/'))
+        if stage.startswith('smoke-'):
+            common.update(p for p in all_sources if p.startswith('scripts/smoke'))
+        return {p:h for p,h in all_sources.items() if p in common}
+    if stage in ('baseline','diagnostic','short-ablation'):
+        shared={'src/forcecritic/__init__.py','src/forcecritic/cli.py','src/forcecritic/runtime.py',
+                'scripts/train_forge.py','scripts/run_robot_stage.py','src/forcecritic/training/__init__.py',
+                'src/forcecritic/training/baseline.py','src/forcecritic/training/pretrain.py',
+                'src/forcecritic/training/live.py','src/forcecritic/training/updates.py',
+                'src/forcecritic/training/replay.py','src/forcecritic/training/checkpoint.py'}
+        shared.update(p for p in all_sources if any(p.startswith(prefix) for prefix in
+            ('src/forcecritic/envs/','src/forcecritic/models/','src/forcecritic/data/','src/forcecritic/evaluation/')))
+        if stage in ('diagnostic','short-ablation'):
+            shared.update(p for p in all_sources if p.startswith('src/forcecritic/diagnostics/'))
+        if stage=='short-ablation':
+            shared.update(('src/forcecritic/training/short_live.py','src/forcecritic/training/ablation.py'))
+        return {p:h for p,h in all_sources.items() if p in shared}
+    return all_sources
+
+
+def atomic_json(path, value):
+    path=Path(path); path.parent.mkdir(parents=True, exist_ok=True)
+    temp=path.with_suffix(path.suffix+'.tmp'); temp.write_text(json.dumps(value,indent=2,allow_nan=False)+'\n'); temp.replace(path)
+
+
+def command(cmd, timeout=60, log_path=None):
+    try:
+        if log_path is not None:
+            log_path=Path(log_path);log_path.parent.mkdir(parents=True,exist_ok=True)
+            with log_path.open('w') as stream:
+                p=subprocess.run(cmd,stdout=stream,stderr=subprocess.STDOUT,text=True,timeout=timeout,
+                                 env={**os.environ,'GIT_TERMINAL_PROMPT':'0'})
+            output=log_path.read_text(errors='replace')
+            return {'command':cmd,'returncode':p.returncode,'stdout':output[-20000:],'stderr':'',
+                    'combined_live_log':str(log_path),'output_excerpt_truncated':len(output)>20000}
+        p=subprocess.run(cmd,capture_output=True,text=True,timeout=timeout,env={**os.environ,'GIT_TERMINAL_PROMPT':'0'})
+        return {'command':cmd,'returncode':p.returncode,'stdout':p.stdout,'stderr':p.stderr}
+    except (OSError,subprocess.TimeoutExpired) as e:
+        result={'command':cmd,'returncode':None,'error':str(e)}
+        if log_path is not None and Path(log_path).exists():
+            result.update(combined_live_log=str(log_path),stdout=Path(log_path).read_text(errors='replace')[-20000:])
+        return result
+
+
+class Run:
+    def __init__(self, config, run_id=None):
+        self.config_path=Path(config); self.config=yaml.safe_load(self.config_path.read_text())
+        self.config_hash=digest(config)
+        if self.config['protocol'] != PROTOCOL: raise ValueError('wrong protocol')
+        self.run_id=run_id or datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%dT%H%M%SZ')
+        self.report=Path('reports')/self.run_id; self.result=Path('results')/self.run_id
+        self.report.mkdir(parents=True,exist_ok=True);self.result.mkdir(parents=True,exist_ok=True)
+        path=self.report/'run_manifest.json'
+        if path.exists():
+            self.manifest=json.loads(path.read_text())
+            if self.manifest['config_hash'] != self.config_hash:raise ValueError('resume config changed: use a new run ID')
+        else:
+            self.manifest={'run_id':self.run_id,'protocol':PROTOCOL,'config_hash':self.config_hash,
+                'stages':{s:{'status':'NOT_RUN'} for s in STAGES},'events':[],
+                'steps':dict(interaction=0,branch=0,prefix=0,restore=0,evaluation=0), 'checkpoints':[]}
+        self.save()
+
+    def save(self):
+        atomic_json(self.report/'run_manifest.json',self.manifest)
+        atomic_json('reports/PROJECT_STATUS.json',{'run_id':self.run_id,'protocol':PROTOCOL,
+                    'stages':self.manifest['stages'],'manifest':str(self.report/'run_manifest.json')})
+
+    def verified(self, stage):
+        event=self.manifest['stages'].get(stage,{})
+        if event.get('status')!='PASSED' or event.get('config_hash')!=self.config_hash:return False
+        expected=event.get('verification_source_hashes',event.get('source_hashes',{}))
+        current=verification_sources(stage) if 'verification_source_hashes' in event else source_hashes()
+        if expected!=current:return False
+        for p,h in {**event.get('artifacts',{}),**expected}.items():
+            if not Path(p).is_file() or digest(p)!=h:return False
+        return bool(event.get('artifacts'))
+
+    def record(self, stage, status, reason='', returncode=0, artifacts=(), executed_sources=None):
+        sources=source_hashes() if executed_sources is None else executed_sources
+        current_scope=verification_sources(stage)
+        scope=verification_sources(stage,sources)
+        if executed_sources is not None and scope!=current_scope and status=='PASSED':
+            status='STALE_SOURCE';returncode=2
+            reason='Executable source changed during the measured run; repeat after source freeze. '+reason
+        invocation=([sys.executable,'-m','forcecritic.cli',*sys.argv[1:]]
+                    if Path(sys.argv[0]).name=='cli.py' else [sys.executable,*sys.argv])
+        event={'stage':stage,'status':status,'reason':reason,'returncode':returncode,
+               'command':invocation,
+               'code_sha':command(['git','rev-parse','HEAD'])['stdout'].strip(),
+               'dirty':bool(command(['git','status','--porcelain'])['stdout'].strip()),
+               'source_hashes':sources,
+               'verification_source_hashes':scope,
+               'config_hash':self.config_hash,'time':datetime.datetime.now(datetime.timezone.utc).isoformat(),
+               'artifacts':{str(p):digest(p) for p in artifacts if Path(p).is_file()}}
+        self.manifest['stages'][stage]=event;self.manifest['events'].append(event);self.save()
+
+
+def lock_protocol(config_path):
+    config=yaml.safe_load(Path(config_path).read_text())
+    lock={'protocol':PROTOCOL,'config_hash':digest(config_path),'config':config,
+          'locked_before_test':True,'physical_thresholds_status':'UNRESOLVED_DO_NOT_RUN',
+          'rules':{'replay_failure':'NO_GO_CALIBRATION','hard_coverage':[.25,4],
+                   'pilot_success_gain_pp':5,'alternative_noninferiority_pp':-3,'overload_reduction':.2,
+                   'minimum_baseline_overload_events':10,'low_event_or_wide_interval':'INCONCLUSIVE','no_test_labels_for_training':True}}
+    path=Path('protocol_lock.json')
+    if path.exists() and json.loads(path.read_text()) != lock: raise ValueError('protocol lock differs; explicit revision required')
+    atomic_json(path,lock)

@@ -1,0 +1,105 @@
+{
+  "status": "MEASURED_NOT_YET_ACCEPTED",
+  "source": "real_forge",
+  "seed": 1000,
+  "task": "Isaac-Forge-PegInsert-Direct-v0",
+  "camera": {
+    "eye": [
+      0.95,
+      0.45,
+      0.45
+    ],
+    "target": [
+      0.6,
+      0.0,
+      0.12
+    ],
+    "width": 256,
+    "height": 256,
+    "focal_length": 24.0,
+    "horizontal_aperture": 20.955,
+    "clipping_range": [
+      0.1,
+      10.0
+    ]
+  },
+  "control_dt": 0.06666666666666667,
+  "physics_dt": 0.008333333333333333,
+  "decimation": 8,
+  "individual_control_steps": 24,
+  "max_ema_error": 0.0,
+  "action_alignment": true,
+  "max_position_target_error_m": 2.9802322387695312e-08,
+  "max_yaw_target_error_rad": 2.384185791015625e-07,
+  "native_axes": [
+    "x",
+    "y",
+    "z",
+    "yaw"
+  ],
+  "action_stage": "submitted_pre_ema",
+  "position_bounds": [
+    0.05,
+    0.05,
+    0.05
+  ],
+  "bolt_frame_yaw_range_radians": [
+    -3.141592653589793,
+    1.5707963267948966
+  ],
+  "target_rotation_order": "RotX(pi) * RotZ(bolt_frame_yaw)",
+  "camera_nonconstant": true,
+  "sensor_finite": true,
+  "raw_wrench_max_abs_per_axis": [
+    0.028429092839360237,
+    0.024408375844359398,
+    0.04316514730453491,
+    0.005710889585316181,
+    0.013471579179167747,
+    0.002862535882741213
+  ],
+  "force_filter_alpha": 0.25,
+  "force_filter_rate_hz": 120.0,
+  "max_force_filter_error": 0.0,
+  "force_filter_alignment": true,
+  "wrench_dim": 6,
+  "actor_wrench_source": "force_sensor_world_smooth (variable name is misleading)",
+  "actor_wrench_frame": "incoming joint frame at joint anchor; PhysX 5.5.1 API",
+  "sensor_joints": [
+    {
+      "path": "/World/envs/env_0/Robot/panda_link7/panda_hand_joint",
+      "body0": [
+        "/World/envs/env_0/Robot/panda_link7"
+      ],
+      "body1": [
+        "/World/envs/env_0/Robot/force_sensor"
+      ],
+      "local_pos1": "(0, 0, 0)",
+      "local_rot1": "(1, 0, 0, 0)"
+    }
+  ],
+  "physical_limits_status": "UNRESOLVED",
+  "observation_timing": "before_action",
+  "causal_observations": true,
+  "note": "Requires sensor-frame/anchor review and physical limit calibration before P0 acceptance.",
+  "accounting": {
+    "physics_substeps": {
+      "restore": 67,
+      "interaction": 0,
+      "branch": 0,
+      "prefix": 0,
+      "evaluation": 192
+    },
+    "decimation": 8,
+    "num_envs": 1,
+    "control_step_cap": 5000.0,
+    "individual_control_step_equivalents": {
+      "restore": 9,
+      "interaction": 0,
+      "branch": 0,
+      "prefix": 0,
+      "evaluation": 24
+    },
+    "charged_before_step": true
+  }
+}

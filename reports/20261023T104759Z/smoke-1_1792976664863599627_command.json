@@ -1,0 +1,17 @@
+{
+  "command": [
+    "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/bin/python",
+    "scripts/smoke_forge.py",
+    "--headless",
+    "--enable_cameras",
+    "--num_envs",
+    "1",
+    "--output",
+    "reports/20261023T104759Z/smoke-1_1792976664863599627.json"
+  ],
+  "returncode": 55,
+  "stdout": "[Warning] [simulation_app.simulation_app] Modules: ['omni.kit_app'] were loaded before SimulationApp was started and might not be loaded correctly.\n[Warning] [simulation_app.simulation_app] Please check to make sure no extra omniverse or pxr modules are imported before the call to SimulationApp(...)\n[Info] [carb] Logging to file: /media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/omni/logs/Kit/Isaac-Sim/5.0/kit_20261026_090425.log\n2026-10-26T01:04:32Z [7,443ms] [Error] [omni.ext.plugin] Failed to resolve extension dependencies. Failure hints:\n\t[isaaclab.python.headless.rendering-2.2.1 -> isaaclab.python.headless-2.2.1] dependency: 'omni.physx' = { version='^' } can't be satisfied. Available versions:\n\t (none found)\n Platform incompatible packages:\n\t - [omni.physx-106.5.7+106.5.0.lx64.d.cp310.ub3f] (registry)\n\t - [omni.physx-106.5.7+106.5.0.lx64.r.cp310.ub3f] (registry)\n\t - [omni.physx-106.5.7+106.5.0.wx64.r.cp310.ub3f] (registry)\n\t - [omni.physx-106.5.7+106.5.0.wx64.d.cp310.ub3f] (registry)\n\t - [omni.physx-106.5.3+106.5.0.lx64.r.cp310.ub3f] (registry)\n\t - [omni.physx-106.5.3+106.5.0.lx64.d.cp310.ub3f] (registry)\n\t - [omni.physx-106.5.3+106.5.0.wx64.d.cp310.ub3f] (registry)\n\t - [omni.physx-106.5.3+106.5.0.wx64.r.cp310.ub3f] (registry)\n\t - [omni.physx-106.4.7+106.4.0.wx64.r.cp310.ub3f] (registry)\n\t - [omni.physx-106.4.7+106.4.0.lx64.r.cp310.ub3f] (registry)\n\t - ... (22 more) ...\n Synced registries:\n\t - kit/default         : found 619 packages \n\t - kit/sdk             : found 307 packages \n\t - kit/community       : found 663 packages \n\n2026-10-26T01:04:32Z [7,443ms] [Error] [omni.kit.app.plugin] Exiting app because of dependency solver failure...\nTraceback (most recent call last):\n  File \"/media/midea/F496AC8096AC4548/closed_loop_act/scripts/smoke_forge.py\", line 16, in <module>\n    launcher=AppLauncher(args)\n             ^^^^^^^^^^^^^^^^^\n  File \"/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab/isaaclab/app/app_launcher.py\", line 127, in __init__\n    self._create_app()\n  File \"/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab/isaaclab/app/app_launcher.py\", line 811, in _create_app\n    self._app = SimulationApp(self._sim_app_config, experience=self._sim_experience_file)\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/isaacsim/exts/isaacsim.simulation_app/isaacsim/simulation_app/simulation_app.py\", line 245, in __init__\n    from .utils import create_new_stage, open_stage\n  File \"/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/isaacsim/exts/isaacsim.simulation_app/isaacsim/simulation_app/utils.py\", line 23, in <module>\n    from omni.kit.usd import layers\nModuleNotFoundError: No module named 'omni.kit.usd'\n2026-10-26T01:04:32Z [7,445ms] [Warning] [carb] Recursive unloadAllPlugins() detected!\n",
+  "stderr": "",
+  "combined_live_log": "reports/20261023T104759Z/smoke-1_1792976664863599627.log",
+  "output_excerpt_truncated": false
+}

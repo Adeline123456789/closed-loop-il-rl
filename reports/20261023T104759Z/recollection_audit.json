@@ -1,0 +1,8 @@
+{
+  "status": "PASSED",
+  "source": "same_version_recollection",
+  "accepted_successful_train_episodes": 251,
+  "manifest": "/media/midea/F496AC8096AC4548/closed_loop_act/data/act_demonstrations/manifest.json",
+  "manifest_sha256": "293f149d1da3583084c38fd5a4ec87d2932cc9669d42e9446502a85db6e3660f",
+  "old_hf_alignment": "UNRESOLVED; not admitted by this acceptance"
+}

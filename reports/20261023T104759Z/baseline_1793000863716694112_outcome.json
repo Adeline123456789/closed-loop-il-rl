@@ -1,0 +1,60 @@
+{
+  "status": "PASSED",
+  "reason": "ACT0 has measured insertions; ordinary critic fitted on actual chunk transitions",
+  "isolated_phases": [
+    {
+      "phase": "evaluation",
+      "command": [
+        "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/bin/python",
+        "-u",
+        "scripts/train_forge.py",
+        "--stage",
+        "baseline",
+        "--outcome",
+        "reports/20261023T104759Z/baseline_1793000863716694112_outcome.evaluation.json",
+        "--config",
+        "configs/minimal_validation.yaml",
+        "--run-id",
+        "20261023T104759Z",
+        "--demonstrations",
+        "/media/midea/F496AC8096AC4548/closed_loop_act/data/act_demonstrations/manifest.json",
+        "--headless",
+        "--enable_cameras",
+        "--kit_args=--/exts/omni.kit.registry.nucleus/registries/0/url=https://ovextensionsprod.blob.core.windows.net/exts/kit/prod/107/shared",
+        "--baseline-phase",
+        "evaluation"
+      ],
+      "returncode": 0,
+      "started": 1793000863.7464356,
+      "finished": 1793000879.4977744,
+      "outcome": "reports/20261023T104759Z/baseline_1793000863716694112_outcome.evaluation.json"
+    },
+    {
+      "phase": "shared",
+      "command": [
+        "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/bin/python",
+        "-u",
+        "scripts/train_forge.py",
+        "--stage",
+        "baseline",
+        "--outcome",
+        "reports/20261023T104759Z/baseline_1793000863716694112_outcome.shared.json",
+        "--config",
+        "configs/minimal_validation.yaml",
+        "--run-id",
+        "20261023T104759Z",
+        "--demonstrations",
+        "/media/midea/F496AC8096AC4548/closed_loop_act/data/act_demonstrations/manifest.json",
+        "--headless",
+        "--enable_cameras",
+        "--kit_args=--/exts/omni.kit.registry.nucleus/registries/0/url=https://ovextensionsprod.blob.core.windows.net/exts/kit/prod/107/shared",
+        "--baseline-phase",
+        "shared"
+      ],
+      "returncode": 0,
+      "started": 1793000879.497809,
+      "finished": 1793001442.865168,
+      "outcome": "reports/20261023T104759Z/baseline_1793000863716694112_outcome.shared.json"
+    }
+  ]
+}

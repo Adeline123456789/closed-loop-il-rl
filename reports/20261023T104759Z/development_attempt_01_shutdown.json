@@ -1,0 +1,5 @@
+{
+  "measurement": "data/development_1000/manifest.json",
+  "reason": "Measurement recorded FAILED after one step: rl-games recurrent state mutation rejected inference tensors; switched Expert.action to no_grad. App teardown had not finished; child PID 1183595 received SIGTERM after failure. Kit handled SIGTERM and exited 0; this does not supersede FAILED measurement.",
+  "attempt_accepted": false
+}

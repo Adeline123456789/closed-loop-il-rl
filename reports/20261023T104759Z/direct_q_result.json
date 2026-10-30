@@ -1,0 +1,38 @@
+{
+  "status": "COMPLETED",
+  "scope": "Ordinary direct-Q fallback; formal paired D1/D2/B1-B3 remain NOT_RUN",
+  "arms": {
+    "direct_B0": {
+      "episodes": 32,
+      "successes": 5,
+      "success_rate": 0.15625,
+      "wilson95": [
+        0.0686442028250571,
+        0.3175414959753039
+      ],
+      "mean_cost": 2.091412264577186,
+      "mean_return": 31.328741461374317,
+      "unsafe_episodes": 3,
+      "policy_sha": "63433851d051fe4149d8f27deec600a438f146208eb5928782d56b9223dc8bb8",
+      "csv_sha": "1e7b2713349f1c7ef0011e0f9165b7b9cf6443dfac76045bcf850e46c5230e3a"
+    },
+    "direct_Q": {
+      "episodes": 32,
+      "successes": 6,
+      "success_rate": 0.1875,
+      "wilson95": [
+        0.08889544689565954,
+        0.3530915520137596
+      ],
+      "mean_cost": 1.431278389832685,
+      "mean_return": 28.836791782782733,
+      "unsafe_episodes": 3,
+      "policy_sha": "58737a7556c76d0fa5cace6aa2f97dfe5730960fe2133e7ae0c12557ae356452",
+      "csv_sha": "ca025c06d00bc3a3ffce0ae7a58d7fe27dc3a6e7757bc5425e310a4a43f96b6f"
+    }
+  },
+  "delta_success_rate": 0.03125,
+  "interpretation": "Real batch observations only; additional BC is a confound for attributing differences to Q alone. No paired-calibration claim.",
+  "plan_sha": "bdbe2fb6f0d420ad60817c2d5807c7423bfe70d3a9bcd1781344d4d0ba2e2794",
+  "finished": 1793009898.5757833
+}

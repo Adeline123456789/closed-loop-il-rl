@@ -1,0 +1,130 @@
+Timeout (0:00:35)!
+Thread 0x00007f8cee7ff640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x00007f9b1bfff640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x00007f9b4adfe640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x00007f9cbd5fc640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x00007f9cce5fe640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x00007f9f2d9c3740 (most recent call first):
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab/isaaclab/sim/simulation_context.py", line 685 in render
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab/isaaclab/sim/simulation_context.py", line 945 in _app_control_on_stop_handle_fn
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab/isaaclab/sim/simulation_context.py", line 240 in <lambda>
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/isaacsim/exts/isaacsim.core.api/isaacsim/core/api/simulation_context/simulation_context.py", line 985 in stop
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/isaacsim/exts/isaacsim.core.api/isaacsim/core/api/simulation_context/simulation_context.py", line 152 in __init__
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab/isaaclab/sim/simulation_context.py", line 275 in __init__
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab/isaaclab/envs/direct_rl_env.py", line 102 in __init__
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/direct/factory/factory_env.py", line 34 in __init__
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/direct/forge/forge_env.py", line 24 in __init__
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/gymnasium/envs/registration.py", line 734 in make
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/scripts/probe_environment_recreation.py", line 34 in <module>
+Timeout (0:00:35)!
+Thread 0x00007f8cee7ff640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x00007f9b1bfff640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x00007f9b4adfe640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x00007f9cbd5fc640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x00007f9cce5fe640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x00007f9f2d9c3740 (most recent call first):
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/omni/kernel/py/carb/profiler/__init__.py", line 102 in wrapper
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab/isaaclab/sim/simulation_context.py", line 685 in render
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab/isaaclab/sim/simulation_context.py", line 945 in _app_control_on_stop_handle_fn
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab/isaaclab/sim/simulation_context.py", line 240 in <lambda>
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/isaacsim/exts/isaacsim.core.api/isaacsim/core/api/simulation_context/simulation_context.py", line 985 in stop
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/isaacsim/exts/isaacsim.core.api/isaacsim/core/api/simulation_context/simulation_context.py", line 152 in __init__
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab/isaaclab/sim/simulation_context.py", line 275 in __init__
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab/isaaclab/envs/direct_rl_env.py", line 102 in __init__
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/direct/factory/factory_env.py", line 34 in __init__
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/direct/forge/forge_env.py", line 24 in __init__
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/gymnasium/envs/registration.py", line 734 in make
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/scripts/probe_environment_recreation.py", line 34 in <module>
+Timeout (0:00:35)!
+Thread 0x00007f8cee7ff640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x00007f9b1bfff640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x00007f9b4adfe640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x00007f9cbd5fc640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x00007f9cce5fe640 (most recent call first):
+  File "/home/midea/miniconda3/lib/python3.11/concurrent/futures/thread.py", line 81 in _worker
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 982 in run
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1045 in _bootstrap_inner
+  File "/home/midea/miniconda3/lib/python3.11/threading.py", line 1002 in _bootstrap
+
+Thread 0x00007f9f2d9c3740 (most recent call first):
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab/isaaclab/sim/simulation_context.py", line 685 in render
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab/isaaclab/sim/simulation_context.py", line 945 in _app_control_on_stop_handle_fn
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab/isaaclab/sim/simulation_context.py", line 240 in <lambda>
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/isaacsim/exts/isaacsim.core.api/isaacsim/core/api/simulation_context/simulation_context.py", line 985 in stop
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/isaacsim/exts/isaacsim.core.api/isaacsim/core/api/simulation_context/simulation_context.py", line 152 in __init__
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab/isaaclab/sim/simulation_context.py", line 275 in __init__
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab/isaaclab/envs/direct_rl_env.py", line 102 in __init__
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/direct/factory/factory_env.py", line 34 in __init__
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.cache/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/direct/forge/forge_env.py", line 24 in __init__
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/.venv/lib/python3.11/site-packages/gymnasium/envs/registration.py", line 734 in make
+  File "/media/midea/F496AC8096AC4548/closed_loop_act/scripts/probe_environment_recreation.py", line 34 in <module>

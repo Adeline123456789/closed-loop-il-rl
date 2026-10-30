@@ -1,0 +1,9 @@
+{
+  "scope": "Read-only final A2 gradients on training data; zero optimizer and simulator steps",
+  "parent_config_sha": "d520e1f544db8a09be8252eabf6fa22e2ece8ef984b59a5cb32643ad2b72fe95",
+  "batch_update_index": 199,
+  "torch_cvae_probe_seed": 0,
+  "device": "cpu",
+  "policy_sha": "58737a7556c76d0fa5cace6aa2f97dfe5730960fe2133e7ae0c12557ae356452",
+  "limitation": "A fixed final-policy check, not reconstruction of every historical step or a robot success metric"
+}

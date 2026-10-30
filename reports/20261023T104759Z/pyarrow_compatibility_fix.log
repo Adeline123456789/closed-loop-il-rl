@@ -1,0 +1,11 @@
+Resolved 1 package in 1.28s
+Downloading pyarrow (40.8MiB)
+ Downloaded pyarrow
+Prepared 1 package in 37.77s
+Uninstalled 1 package in 31ms
+warning: Failed to hardlink files; falling back to full copy. This may lead to degraded performance.
+         If the cache and target directories are on different filesystems, hardlinking may not be supported.
+         If this is intentional, set `export UV_LINK_MODE=copy` or use `--link-mode=copy` to suppress this warning.
+Installed 1 package in 59ms
+ - pyarrow==26.0.0
+ + pyarrow==21.0.0

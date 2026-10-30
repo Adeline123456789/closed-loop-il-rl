@@ -1,0 +1,11 @@
+{
+  "time_utc": "2026-10-26T07:32:32.188753+00:00",
+  "pid": 1228198,
+  "action": "SIGINT to obtain traceback and exit stalled second-environment initialization",
+  "preserved": [
+    "checkpoints/20261023T104759Z/act0.pt",
+    "reports/20261023T104759Z/baseline_validation.json",
+    "results/20261023T104759Z/act0_validation.csv"
+  ],
+  "reason": "No producer log or new stage artifact since 2026-10-26 07:03:51 UTC; user requested exact stall location. Read-only ptrace inspection unavailable without host privileges."
+}

@@ -1,0 +1,9 @@
+{
+  "status": "FAILED_IMPLEMENTATION",
+  "physics_substeps": {
+    "initialization_restore": 0,
+    "evaluation": 0
+  },
+  "records": [],
+  "error": "RuntimeError('CUDA error: device-side assert triggered\\nCompile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.\\n')"
+}

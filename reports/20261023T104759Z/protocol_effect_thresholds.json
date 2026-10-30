@@ -1,0 +1,61 @@
+{
+  "status": "LOCKED",
+  "config_hash": "a355f6209f5049e01afb25d9cc196524ad577f11dee2d54404219f7f0e64eedb",
+  "source_split": "development",
+  "source_evidence": {
+    "development_calibration": "4f40a58215f7ca8238751f46a4959108bd93df3ee37942bf7e44a64a0a12c9f5",
+    "asset_dimensions": "Pinned Factory Peg8mm diameter .007986 m, Hole8mm diameter .0081 m; radial clearance .000057 m"
+  },
+  "checkpoint_control_steps": [
+    8,
+    12,
+    16,
+    24,
+    32,
+    48,
+    64,
+    96,
+    128
+  ],
+  "hard_force_N": 5.0,
+  "hard_progress_per_step": 0.001,
+  "normal_progress_per_step": 0.002,
+  "checkpoint_selection_rationale": "Stock contact penalty begins at 5 N; low change in the geometric reward over consecutive four-step windows defines stagnation independently of Q.",
+  "minimum_normal_success_starts": 4,
+  "minimum_misranked_confirmed_points": 2,
+  "fidelity_tolerances": {
+    "position_m": 2.85e-05,
+    "rotation_matrix": 0.0005,
+    "joint_rad": 0.0005,
+    "gripper_m": 1e-05,
+    "gripper_velocity_m_s": 0.002,
+    "linear_velocity_m_s": 0.002,
+    "angular_velocity_rad_s": 0.01,
+    "joint_velocity_rad_s": 0.01,
+    "force_N": 0.25,
+    "torque_Nm": 0.025,
+    "controller": 1e-05,
+    "scaled_return": 0.025,
+    "scaled_cost": 0.025,
+    "success": 0,
+    "steps": 0
+  },
+  "tolerance_rationale": "Position equivalence uses half the nominal radial clearance; rotation-matrix/joint tolerances 0.0005 correspond to small-angle motion of order 25 micrometres at a 50 mm peg. Gripper prismatic coordinates and velocities are measured separately from rotary arm joints. Force/torque use raw 120 Hz sampled step averages. These are engineering equivalence tests, not error bounds.",
+  "minimum_effect_scaled": 0.1,
+  "perturbation_epsilons": [
+    0.02,
+    0.05
+  ],
+  "directions": "Unit-norm K=4 repeated +z or +x, each step coefficient .5; pre-EMA target increments .5 or 1.25 mm before stock controller clipping.",
+  "short_gate": {
+    "minimum_contrast_relative_reduction": 0.1,
+    "max_mean_peak_relative_increase": 0.05,
+    "max_overload_rate_increase": 0.0,
+    "max_success_ci_width_pp": 20.0,
+    "bootstrap_parent_repeats": 2000,
+    "bootstrap_seed": 0,
+    "actual_utility_improvement": "paired 95% bootstrap lower bound > 0",
+    "heldout_prediction_improvement": "validation-parent contrast MSE reduction >=10% and paired 95% upper bound <0"
+  },
+  "scope": "Locked before ACT training, D0/D1, held-out diagnostics and ACT validation. No tuning from test outcomes."
+}

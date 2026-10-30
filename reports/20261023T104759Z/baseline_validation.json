@@ -1,0 +1,26 @@
+{
+  "status": "PASSED",
+  "successful_starts": 6,
+  "independent_starts": 32,
+  "checkpoint_sha256": "63433851d051fe4149d8f27deec600a438f146208eb5928782d56b9223dc8bb8",
+  "accounting": {
+    "physics_substeps": {
+      "restore": 3819,
+      "interaction": 0,
+      "branch": 0,
+      "prefix": 0,
+      "evaluation": 33632
+    },
+    "decimation": 8,
+    "num_envs": 1,
+    "control_step_cap": 100000.0,
+    "individual_control_step_equivalents": {
+      "restore": 478,
+      "interaction": 0,
+      "branch": 0,
+      "prefix": 0,
+      "evaluation": 4204
+    },
+    "charged_before_step": true
+  }
+}

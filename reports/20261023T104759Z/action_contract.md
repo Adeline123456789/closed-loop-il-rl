@@ -1,0 +1,9 @@
+# Measured action contract — 2026-10-26
+
+Real stock FORGE, Isaac Lab `0f00ca2b4b2d54d5f90006a92abb1b00a72b2f20`, Sim 5.0.0. Native ACT commands are submitted **before** the stock EMA. Four axes map to stock `[x,y,z,0,0,yaw,-1]`; the last component is success prediction, never gripper control. Roll/pitch remain constrained by the stock controller.
+
+`contract_probe_02/action_sensor_trace.npz` records 24 real control steps across ±0.02 perturbations of all four native axes: submitted commands, previous and next EMA, actual target poses, measured motion, and raw/smoothed wrench. EMA mismatch is zero; position target mismatch is below 3e-8 m and yaw mismatch below 2.4e-7 rad. Position scaling is 0.05 m per normalized unit, before EMA and displacement clipping. Bolt yaw maps [-1,1] to [-pi,pi/2], then RotX(pi)*RotZ(yaw), world-yaw wrapping and relative threshold clipping. Thus a normalized perturbation is not itself realized Cartesian motion.
+
+Physics is 120 Hz, control/rendering 15 Hz, decimation 8. ACT emits a complete K=4 chunk once, executes its valid prefix, and replans only at the next boundary except success/hard protection. Expert single-step recordings supply adjacent BC targets only, not fabricated causal TD chunks. Observations precede their action label; history contains four six-axis wrench/motion/previous-native-command frames. The adapter captures terminal observations before stock automatic reset. Partial reset is rejected because pinned FORGE mutates whole-batch controller memory.
+
+The learning reward is the sum of the official three keypoint squash terms and engaged indicator (each coefficient 1), plus a once-only stable geometric success bonus 1. Success means the official geometric predicate holds for three consecutive control steps. Prediction and stock contact penalties are excluded; separate calibrated contact cost is used.

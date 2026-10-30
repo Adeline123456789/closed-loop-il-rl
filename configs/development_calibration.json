@@ -1,0 +1,30 @@
+{
+  "status": "LOCKED_BEFORE_COMPLETED_DEVELOPMENT_EPISODES",
+  "source_partition": "development; excluded from P1 training and all validation/test",
+  "expert_success_target": 8,
+  "expert_attempt_cap": 32,
+  "seed": 1000,
+  "sensor_frame": "incoming_joint_at_anchor",
+  "units": [
+    "N",
+    "N",
+    "N",
+    "Nm",
+    "Nm",
+    "Nm"
+  ],
+  "cost_limit_rule": "max(1.25 * per-axis 99.5th percentile absolute raw substep wrench in successful development episodes, stock dead-zone upper range)",
+  "dead_zone_floor": [
+    5,
+    5,
+    5,
+    1,
+    1,
+    1
+  ],
+  "hard_protection_rule": "max(2 * cost limit, 1.5 * per-axis maximum absolute raw substep wrench in successful development episodes)",
+  "minimum_successful_development_parents": 8,
+  "interpretation": "Empirical simulation operating envelope, not asset damage limits or hardware safety certification. Locked before all ACT evaluation; no test-derived tuning.",
+  "if_insufficient_success": "BLOCKED_EXPERT_COMPATIBILITY; do not calibrate costs from failed-only data",
+  "if_frame_or_causal_alignment_fails": "BLOCKED_SENSOR_CONTRACT; do not proceed to P1"
+}

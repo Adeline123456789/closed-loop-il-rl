@@ -1,0 +1,22 @@
+[
+  {
+    "command": "env PYTHONPATH=src CUDA_VISIBLE_DEVICES= .venv/bin/python scripts/audit_stage_v3_training.py",
+    "returncode": 1,
+    "log": "reports/stage_v3_20261026/training_matching_audit_attempt1.log",
+    "reason": "Audit reader addressed policy_sha at row level; schema stores it on the replay bundle. No simulation or optimizer work."
+  },
+  {
+    "command": "env PYTHONPATH=src CUDA_VISIBLE_DEVICES= .venv/bin/python scripts/audit_stage_v3_training.py",
+    "returncode": 0,
+    "log": "reports/stage_v3_20261026/training_matching_audit.log",
+    "reason": "Corrected bundle-level provenance lookup; complete read-only audit passed."
+  },
+  {
+    "command": "env PYTHONPATH=src CUDA_VISIBLE_DEVICES='' .venv/bin/python scripts/probe_stage_v3_objective.py",
+    "returncode": 0,
+    "source_sha": "0ee98a2d808ea10918be94eb016693c188924f5f1f6b5215b9e2b9e2cb0a4d87",
+    "log": "reports/stage_v3_20261026/objective_probe.log",
+    "optimizer_steps": 0,
+    "simulator_steps": 0
+  }
+]

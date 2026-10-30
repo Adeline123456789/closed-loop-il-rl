@@ -1,0 +1,127 @@
+{
+  "repository": "angledusgar/forge-peginsert-v1",
+  "revision": "447a6109cec7c228763d1bfc8cf0ab73f6558a1b",
+  "path": ".cache/expert/447a6109cec7c228763d1bfc8cf0ab73f6558a1b/forge_peginsert_2026-06-30.pth",
+  "size": 213431615,
+  "sha256": "10efdf802e8abfccaa13f6e7a18cc2887ca2f3f96b35526bc9984fde419e59f8",
+  "download_status": "VERIFIED",
+  "inspection_command": [
+    "/media/midea/F496AC8096AC4548/closed_loop_act/.venv-cpu/bin/python",
+    "scripts/audit_expert.py",
+    "--output",
+    "reports/20261023T104759Z/expert_download.json"
+  ],
+  "compatibility": "NOT_RUN",
+  "project_expert_success": "NOT_RUN",
+  "safe_inspection": "PASSED",
+  "checkpoint_keys": [
+    "scaler",
+    "central_val_stats",
+    "model",
+    "epoch",
+    "frame",
+    "optimizer",
+    "assymetric_vf_nets",
+    "last_mean_rewards",
+    "env_state"
+  ],
+  "model_tensor_shapes": {
+    "value_mean_std.running_mean": [
+      1
+    ],
+    "value_mean_std.running_var": [
+      1
+    ],
+    "value_mean_std.count": [],
+    "running_mean_std.running_mean": [
+      24
+    ],
+    "running_mean_std.running_var": [
+      24
+    ],
+    "running_mean_std.count": [],
+    "a2c_network.actor_mlp.0.weight": [
+      512,
+      1024
+    ],
+    "a2c_network.actor_mlp.0.bias": [
+      512
+    ],
+    "a2c_network.actor_mlp.2.weight": [
+      128,
+      512
+    ],
+    "a2c_network.actor_mlp.2.bias": [
+      128
+    ],
+    "a2c_network.actor_mlp.4.weight": [
+      64,
+      128
+    ],
+    "a2c_network.actor_mlp.4.bias": [
+      64
+    ],
+    "a2c_network.rnn.rnn.weight_ih_l0": [
+      4096,
+      24
+    ],
+    "a2c_network.rnn.rnn.weight_hh_l0": [
+      4096,
+      1024
+    ],
+    "a2c_network.rnn.rnn.bias_ih_l0": [
+      4096
+    ],
+    "a2c_network.rnn.rnn.bias_hh_l0": [
+      4096
+    ],
+    "a2c_network.rnn.rnn.weight_ih_l1": [
+      4096,
+      1024
+    ],
+    "a2c_network.rnn.rnn.weight_hh_l1": [
+      4096,
+      1024
+    ],
+    "a2c_network.rnn.rnn.bias_ih_l1": [
+      4096
+    ],
+    "a2c_network.rnn.rnn.bias_hh_l1": [
+      4096
+    ],
+    "a2c_network.layer_norm.weight": [
+      1024
+    ],
+    "a2c_network.layer_norm.bias": [
+      1024
+    ],
+    "a2c_network.value.weight": [
+      1,
+      64
+    ],
+    "a2c_network.value.bias": [
+      1
+    ],
+    "a2c_network.mu.weight": [
+      7,
+      64
+    ],
+    "a2c_network.mu.bias": [
+      7
+    ],
+    "a2c_network.sigma.weight": [
+      7,
+      64
+    ],
+    "a2c_network.sigma.bias": [
+      7
+    ]
+  },
+  "safe_globals_allowlist": [
+    "numpy.core.multiarray.scalar",
+    "numpy.dtype",
+    "float64 dtype",
+    "float32 dtype"
+  ],
+  "inspection_note": "Tensor shapes and normalization state are metadata; official player rollout remains required."
+}
